@@ -1,0 +1,214 @@
+<openbox_pipe_menu>
+
+		<item label="Run Program">
+			<action name="Execute">
+				<command>
+					gmrun
+				</command>
+			</action>
+		</item>
+		<separator label="Accessories"/>
+		<item label="Catfish File Search">
+			<action name="Execute">
+				<command>
+					catfish
+				</command>
+			</action>
+		</item>
+		<item label="Archive Manager">
+			<action name="Execute">
+				<command>
+					file-roller
+				</command>
+			</action>
+		</item>
+		<item label="Task Manager (htop)">
+			<action name="Execute">
+				<command>terminator --command=&quot;htop&quot;</command>
+			</action>
+		</item>
+		<item label="Terminator Terminal">
+			<action name="Execute">
+				<command>
+					terminator
+				</command>
+			</action>
+		</item>
+		<separator label="Graphics"/>
+		<item label="Viewnior Image Viewer">
+			<action name="Execute">
+				<command>
+					viewnior
+				</command>
+			</action>
+		</item>
+		<menu id="graphicsScreenshots" label="Take Screenshot">
+			<item label="Screenshooter">
+				<action name="Execute">
+					<command>
+						xfce4-screenshooter
+					</command>
+				</action>
+			</item>
+			<separator label="scrot"/>
+			<item label="Now">
+				<action name="Execute">
+					<command>
+						scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/Pictures/ &amp; viewnior ~/Pictures/$f'
+					</command>
+				</action>
+			</item>
+			<item label="In 5 Seconds...">
+				<action name="Execute">
+					<command>
+						scrot -d 5 '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/Pictures/ &amp; viewnior ~/Pictures/$f'
+					</command>
+				</action>
+			</item>
+			<item label="In 10 Seconds...">
+				<action name="Execute">
+					<command>
+						scrot -d 10 '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/Pictures/ &amp; viewnior ~/Pictures/$f'
+					</command>
+				</action>
+			</item>
+			<item label="Selected Area... (click &amp; drag mouse)">
+				<action name="Execute">
+					<command>
+						scrot -s '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/Pictures/ &amp; viewnior ~/Pictures/$f'
+					</command>
+				</action>
+			</item>
+		</menu>
+		<separator label="Multimedia"/>
+		<item label="Volume Control">
+			<action name="Execute">
+				<command>
+					pavucontrol
+				</command>
+			</action>
+		</item>
+		<item label="Xfburn">
+			<action name="Execute">
+				<command>
+					xfburn
+				</command>
+			</action>
+		</item>
+		<separator label="Network"/>
+		<item label="gFTP Client">
+			<action name="Execute">
+				<command>
+					gftp
+				</command>
+			</action>
+		</item>
+		<item label="XChat IRC Client">
+			<action name="Execute">
+				<command>
+					xchat
+				</command>
+			</action>
+		</item>
+		<item label="Remote Filesystems">
+			<action name="Execute">
+				<command>
+					gigolo
+				</command>
+			</action>
+		</item>
+		<separator label="Office"/>
+		<item label="Calculator">
+			<action name="Execute">
+				<command>
+					galculator
+				</command>
+			</action>
+		</item>
+		<item label="Evince PDF Viewer">
+			<action name="Execute">
+				<command>
+					evince
+				</command>
+			</action>
+		</item>
+		<separator label="#!"/>
+		<menu execute="cb-places-pipemenu" id="pipe-placesmenu" label="Places"/>
+		<menu execute="cb-recent-files-pipemenu" id="pipe-recentfilesmenu" label="Recent Files"/>
+		<separator/>
+		<menu id="settings" label="Settings">
+			<separator label="Openbox"/>
+			<item label="GUI Menu Editor">
+				<action name="Execute">
+					<command>
+						obmenu
+					</command>
+				</action>
+			</item>
+			<item label="GUI Applications Settings Editor">
+				<action name="Execute">
+					<command>
+						obapps
+					</command>
+				</action>
+			</item>
+			<item label="GUI Config Tool">
+				<action name="Execute">
+					<command>
+						obconf
+					</command>
+				</action>
+			</item>
+			<separator/>
+			<item label="Reconfigure">
+				<action name="Reconfigure"/>
+			</item>
+			<item label="Restart">
+				<action name="Restart"/>
+			</item>
+			<separator label="Miscellanous"/>
+			<item label="ARandR Screen Layout Editor">
+				<action name="Execute">
+					<command>
+						arandr
+					</command>
+				</action>
+			</item>
+			<item label="Notifications settings">
+				<action name="Execute">
+					<command>xfce4-notifyd-config</command>
+				</action>
+			</item>
+			<item label="Choose Wallpaper">
+				<action name="Execute">
+					<command>
+						nitrogen ~/Pictures/
+					</command>
+				</action>
+			</item>
+		</menu>
+		<menu execute="cb-printing-pipemenu" id="PrintingPipeMenu" label="Printers"/>
+		<item label="User Login Settings">
+			<action name="Execute">
+				<command>
+					gksudo slimconf
+				</command>
+			</action>
+		</item>
+		<separator/>
+		<item label="Lock Screen">
+			<action name="Execute">
+				<command>
+					cb-lock
+				</command>
+			</action>
+		</item>
+		<item label="Exit">
+			<action name="Execute">
+				<command>
+					cb-exit
+				</command>
+			</action>
+		</item>
+
+</openbox_pipe_menu>

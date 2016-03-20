@@ -1,0 +1,13 @@
+# xrandr -s 1024x768
+
+# feh --bg-scale /home/epsi/Pictures/Wallpapers/pekarangan_1255.JPG
+
+compton -m 0.8 &
+tint2 &
+# volwheel &
+# nm-applet &
+dockx
+# conky -d
+# gkrellm &
+/usr/games/amor &
+# mpd

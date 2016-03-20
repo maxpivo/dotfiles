@@ -1,0 +1,40 @@
+xrandr -s 1024x768
+hsetroot -solid "#2E3436" &
+# feh --bg-scale /home/epsi/Pictures/wallpaper/419705d10967da63e3e229141a70f9dc.media.900x675.jpeg
+
+
+# compton -m 0.9 -e 0.7 &
+
+cb-compositor --start 
+sleep 2s 
+tint2 &
+
+# volwheel &
+# nm-applet &
+# dockx
+
+## Volume control for systray
+(sleep 2s && pnmixer) &
+
+## Volume keys daemon
+xfce4-volumed &
+
+## Enable power management
+xfce4-power-manager &
+
+## Start Thunar Daemon
+thunar --daemon &
+
+## Start xscreensaver
+xscreensaver -no-splash &
+
+## Start Clipboard manager
+(sleep 3s && clipit) &
+
+
+
+conky -q -d -c ~/config/conky/conkyrc.crunchbang
+
+# gkrellm &
+# amor &
+# mpd

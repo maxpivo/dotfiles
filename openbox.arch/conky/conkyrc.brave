@@ -1,0 +1,57 @@
+#SHIKI-CONKY BY SARAI B. 2009 (GPL)
+#PLEASE PROVIDE CREDIT WHEN SHARING :)
+
+#avoid flicker
+double_buffer yes
+
+#own window to run simultanious 2 or more conkys
+own_window  yes
+own_window_transparent no
+own_window_type normal
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager 
+
+#borders
+draw_borders no
+border_margin 1
+
+#shades
+draw_shades no
+
+#position
+gap_x 6
+gap_y 6
+alignment top_left
+
+#behaviour
+update_interval 1
+
+default_color  676767
+color2 FFFFFF
+color3 4b78b1
+color4 8aafd6
+
+#default_shade_color 000000
+own_window_colour 393939
+
+#font
+use_xft yes
+xftfont Sans:pixelsize=11
+#to prevent window from moving
+use_spacer none
+minimum_size 1680 0
+
+
+
+TEXT
+kernel: ${color2}${kernel} (${exec uname -m})   ${color4}\
+| |   ${color}time: ${color2}${uptime_short}   ${color3}\
+| |   ${color}cpu1: ${color2}${cpu cpu1}%   ${color}${cpugraph cpu1 10,50 FFFFFF FFFFFF}  ${color4}\
+| |   ${color}cpu2: ${color2}${cpu cpu2}%   ${color}${cpugraph cpu2 10,50 FFFFFF FFFFFF}  ${color3}\
+| |   ${color}ram: ${color2}$memperc% ${color} ${memgraph 10,50 FFFFFF FFFFFF}   ${color4}\
+| |   ${color}cpu: ${color2}${acpitemp}°C  ${color}gpu: ${color2}${execpi 10 nvidia-settings -q GPUCoreTemp | grep COMPNAME | sed s/\ \ Attribute\ \'GPUCoreTemp\'\ \(COMPNAME:0.0\):\ // | cut -b1-2 ;}°C   ${color3}\
+ 
+| |   ${color}hdd: ${color2}${fs_free /} free   ${color3}\
+| |   ${color}up: ${color2}${upspeedf wlan0} kb/s ${color}${upspeedgraph wlan0 10,50 FFFFFF FFFFFF}   ${color3}\
+| |   ${color}down: ${color2}${downspeedf wlan0} kb/s ${color}${downspeedgraph wlan0 10,50 FFFFFF FFFFFF}   ${color4}\
+| |   ${color}ip: ${color2}${execi 100 wget http://checkip.dyndns.org/ -q -O - | grep -Eo '\<[[:digit:]]{1,3}(\.[[:digit:]]{1,3}){3}\>'}   ${color3}\
+| |   ${color}ping: ${color2}${execi 20 ping -c3 -q google.com | grep 'ms' | awk -F'=' '{ printf $2}' | awk -F'ms' '{ printf $1}' | awk -F'/' '{ printf $2}'}ms   ${color4}\

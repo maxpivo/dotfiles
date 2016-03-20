@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# fluxbox startup-script:
+#
+# Lines starting with a '#' are ignored.
+
+# Change your keymap:
+xmodmap "/home/epsi/.Xmodmap"
+
+# Applications you want to run with fluxbox.
+# MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN ''&'' AT THE END.
+#
+# unclutter -idle 2 &
+# wmnd &
+# wmsmixer -w &
+# idesk &
+
+xrandr -s 1024x768
+feh --bg-scale /home/epsi/Pictures/colourful/FALLOUT_drink_nuclear_radiation_color_glow_neon_1600x900.jpg
+compton -m 0.95 &
+# tint2 &
+volwheel &
+nm-applet &
+dockx &
+conky -d &
+# gkrellm &
+# amor &
+mpd & 
+
+# And last but not least we start fluxbox.
+# Because it is the last app you have to run it with ''exec'' before it.
+
+exec fluxbox
+# or if you want to keep a log:
+# exec fluxbox -log "/home/epsi/.fluxbox/log"

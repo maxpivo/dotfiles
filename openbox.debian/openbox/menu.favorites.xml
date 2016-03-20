@@ -1,0 +1,49 @@
+<openbox_pipe_menu>
+	<separator label="Terminal"/>
+	<item label="URXVT" icon="/usr/share/icons/gnome/16x16/apps/utilities-terminal.png">
+		<action name="Execute"><execute>urxvt</execute></action>
+	</item>
+	<item label="XFCE Terminal" icon="/usr/share/icons/Numix-Circle/48x48/apps/utilities-terminal.svg">
+		<action name="Execute"><execute>xfce4-terminal</execute></action>
+	</item>
+	<separator label="Office"/>
+	<item label="Libre Office" icon="/usr/share/icons/Numix-Circle/48x48/apps/libreoffice-startcenter.svg">
+		<action name="Execute"><execute>libreoffice</execute></action>
+	</item>	
+	<separator label="File Manager"/>
+	<item label="PC Man FM" icon="/usr/share/icons/Numix-Circle/48x48/apps/file-manager.svg">
+		<action name="Execute"><execute>pcmanfm</execute></action>
+	</item> 
+	<item label="Thunar" icon="/usr/share/icons/Numix-Circle/48x48/apps/Thunar.svg">
+		<action name="Execute"><execute>thunar</execute></action>
+	</item> 
+	<item label="Geany" icon="/usr/share/icons/Numix-Circle/48x48/apps/geany.svg">
+		<action name="Execute"><execute>geany</execute></action>
+	</item>
+    <separator label="Network"/>
+	<item label="Iceweasel" icon="/usr/share/icons/Numix-Circle/48x48/apps/firefox.svg">
+		<action name="Execute"><execute>iceweasel</execute></action>
+	</item>
+	<item label="Chromium" icon="/usr/share/icons/Numix-Circle/48x48/apps/chromium.svg">
+		<action name="Execute"><execute>chromium</execute></action>
+	</item>
+	<item label="Midori" icon="/usr/share/icons/Numix-Circle/48x48/apps/midori.svg">
+		<action name="Execute"><execute>midori</execute></action>
+	</item>
+	<item label="Icedove" icon="/usr/share/icons/Numix-Circle/48x48/apps/thunderbird.svg">
+		<action name="Execute"><execute>icedove</execute></action>
+	</item>
+	<item label="Deluge" icon="/usr/share/icons/Numix-Circle/48x48/apps/deluge.svg">
+		<action name="Execute"><execute>deluge-gtk </execute></action>
+	</item> 
+	<separator label="Media"/>
+	<item label="Clementine" icon="/usr/share/icons/Numix-Circle/48x48/apps/clementine.svg">
+		<action name="Execute"><execute>clementine</execute></action>
+	</item>
+	<item label="VLC" icon="/usr/share/icons/Numix-Circle/48x48/apps/vlc.svg">
+		<action name="Execute"><execute>vlc</execute></action>
+	</item>	
+	<item label="Screenshot" icon="/usr/share/icons/Numix-Circle/48x48/apps/gnome-screenshot.svg">
+		<action name="Execute"><execute>lximage-qt --screenshot</execute></action>
+	</item>	
+</openbox_pipe_menu>
