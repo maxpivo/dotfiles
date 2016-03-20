@@ -251,6 +251,12 @@
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
+    <keybind key="W-A-z">
+      <action name="Decorate"/>
+    </keybind>
+    <keybind key="W-A-x">
+      <action name="Undecorate"/>
+    </keybind>    
     <!-- Keybindings for windows -->
     <keybind key="A-F4">
       <action name="Close"/>
