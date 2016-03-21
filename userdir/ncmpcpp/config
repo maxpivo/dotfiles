@@ -1,9 +1,18 @@
+#
+# ~/.ncmpcpp/config
+#
+##### connection settings #####
 mpd_host                   = "localhost"
 mpd_port                   = "6600"
 mpd_music_dir              = "~/Music"
-mpd_crossfade_time         = "1"
 
+##### timeouts and delays #####
+#mpd_connection_timeout = "5"
+mpd_crossfade_time = "2"
+playlist_disable_highlight_delay = "3"
+message_delay_time = "2"
 
+##### visualizer settins #####
 visualizer_output_name = "fifo"
 visualizer_in_stereo = "yes"
 visualizer_fifo_path = "/home/epsi/mpd.fifo"
@@ -13,3 +22,69 @@ visualizer_sync_interval = "30"
 #visualizer_look = "+|"
 #visualizer_look = "·│"
 visualizer_type = "spectrum" (spectrum/wave)
+
+
+
+
+/* UI */
+
+#playlist_display_mode = "columns" (classic/columns)
+#browser_display_mode = "columns" (classic/columns)
+#user_interface = "classic" (classic/alternative)
+
+playlist_display_mode = "classic"
+
+# song_list_format = "$3%n$9$1&#9621; $1$4%a$9$1 - $1$6%t$1     $R$2%b$9"
+# song_status_format = "{{%a} // {%t}} // {%b}"
+# song_library_format = "{%n - }{%t}|{%f}"
+
+song_list_format = "{$8%n▕ $9}{$2$b%a$/b$4 - $9}{$8$b%t$/b$8}|{$4$b%f$/b$9}$R{$8▕ $4%b$9}{$8▕ $8%l$9}"
+song_status_format = "$2%a $9• $3%n. $b%t$/b $9• $4%b {(Disc %d) }$9• $5%y$9"
+
+#song_columns_list_format = "(6f)[blue]{l} (25)[red]{a} (40)[green]{t|f} (30)[yellow]{b}"
+#song_columns_list_format = "(8f)[white]{l}  (32)[red]{a} (42)[yellow]{t|f} (18)[magenta]{b}"
+#song_columns_list_format = "(5f)[green]{n} (22)[white]{a} (34)[white]{t} (25)[white]{b} (7f)[green]{lr}"
+
+# user_interface = "alternative"
+# alternative_header_first_line_format = "$b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b"
+# alternative_header_second_line_format = "{{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}"
+
+# now_playing_prefix = "$b"
+# now_playing_suffix = "$/b"
+# browser_playlist_prefix = "$2playlist$9 "
+# selected_item_prefix = "$6"
+# selected_item_suffix = "$9"
+#
+
+## colors are not supported for below variable
+# song_window_title_format = "{%a - }{%t}"
+
+#progressbar_look = "░█ "
+progressbar_look = "▪▪▫"
+display_remaining_time = "yes"
+clock_display_seconds = "yes"
+display_bitrate = "yes"
+
+
+/* colors */
+
+colors_enabled = "yes"
+
+empty_tag_color = "yellow"
+header_window_color = "white"
+volume_color = "green"
+
+main_window_color = "white"
+main_window_highlight_color = "white"
+
+progressbar_color = "black"
+
+active_column_color = "red"
+window_border_color = "red"
+active_window_border = "red"
+
+
+
+
+
+
