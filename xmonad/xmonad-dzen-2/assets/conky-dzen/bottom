@@ -10,7 +10,7 @@ TEXT
 # -------------------------------------------------------------------------- 
 # Clock
 # -------------------------------------------------------------------------- 
-^ca(1, .xmonad/scripts/dateshow)\
+^ca(1, .xmonad/assets/scripts/dateshow)\
 ^i(.xmonad/assets/monitor/clock.xbm) \
 ${time %a %b %d %H:%M}^fg(\#393939)     \
 ^ca()\

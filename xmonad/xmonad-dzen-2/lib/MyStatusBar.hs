@@ -47,19 +47,19 @@ csbdTopBackground = "echo '^fg("++dcColor++")^p(;-10)^r("++screenWidth++"x5)' |"
     ++ dzenArgs ++ dzenColors
 
 csbdTopLeft = "sleep 0.5 && "
-    ++ " echo '^bg("++dcColor++")       ^bg()^fg("++dcColor++")^i(.xmonad/assets/deco/mt1.xbm)^fg()' |"    
-    ++ " dzen2 -ta l -h 30 -y 4 -w 200 -x 0 "
+    ++ " conky -c ~/.xmonad/assets/conky-dzen/top-left | "
+    ++ " dzen2 -ta l -h 30 -y 4 -w 300 -x 0 "
     ++ dzenArgs ++ dzenColors
 
 csbdTopRight = "sleep 0.5 && "
-    ++ " echo '^fg("++dcColor++")^i(.xmonad/assets/deco/mt2.xbm)^fg()^bg("++dcColor++")       ^bg()' |"    
-    ++ " dzen2 -ta r -h 30 -y 4 -w 200 -x -200 "
+    ++ " conky -c ~/.xmonad/assets/conky-dzen/top-right | "
+    ++ " dzen2 -ta r -h 30 -y 4 -w 300 -x -300 "
     ++ dzenArgs ++ dzenColors
 
-csbdConkyMonitor = "sleep 2 && "
-    ++ " conky -c ~/.xmonad/conky_dzen_top | "
+csbdConkyMonitor = "sleep 0.5 && "
+    ++ " conky -c ~/.xmonad/assets/conky-dzen/top-center | "
     ++ " dzen2 -ta c -x 0 -y 5 -h 20 "
-    ++ " -w `expr "++screenWidth++" - 300` -x 150 "    
+    ++ " -w `expr "++screenWidth++" - 600` -x 300 "    
     ++ dzenArgs ++ dzenColors
 
 ------------------------------------------------------------------------
@@ -75,7 +75,7 @@ csbdBottomLeft = "sleep 1; "
     ++ dzenArgs ++ dzenColors
 
 csbdBottomRight = "sleep 1.5 && "
-    ++ " conky -c ~/.xmonad/conky_dzen_bottom | "
+    ++ " conky -c ~/.xmonad/assets/conky-dzen/bottom | "
     ++ " dzen2 -ta r -h 25 -y -30 -w 200 -x -200 "
     ++ dzenArgs ++ dzenColors
         
