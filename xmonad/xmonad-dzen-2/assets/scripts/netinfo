@@ -7,11 +7,17 @@
 #
 # ------------------------------------------------------------------
 
+# 'iwconfig wlan0' is deprecated, use 'iw dev wlan0 info'
+
+# Debian user may use this option to enable iwconfig for no root user
+# chmod u+s /sbin/iwconfig, which lead to security issue or
+# set /etc/sudoers.d for iw
+
 if [[ $(cat /sys/class/net/enp0s4/carrier) = 1 ]]; then
     ICON="net_wired.xbm"
     ESSID="( wired )"
 else
-    ESSID=$(iwconfig wlan0 |  awk -F '"' 'NR==1 {print $2}')
+    ESSID=$(/sbin/iwconfig wlp0s3f3u2 |  awk -F '"' 'NR==1 {print $2}')
     ICON="wireless.xbm"
     if [[ $ESSID = "" ]]; then
         ICON=""

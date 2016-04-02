@@ -31,7 +31,7 @@ myPP_LT p = def
     , ppSep     = ""
     , ppTitle   = titleWrapper . makeSpace  
                 . (" " ++) . (icon_run ++) . (" " ++)
-                . shorten 100 
+                . shorten 50 
                 . ( \t -> if t == [] then "Epsi Sayidina Desktop" else t )
     , ppLayout  = buttonLayout . makeSpace .
                   (\x -> case x of
@@ -46,8 +46,8 @@ myPP_LT p = def
     where
         titleWrapper = wrap ("^fg("++dcColor++")^i(.xmonad/assets/deco/mr1.xbm)^fg()") ""
         buttonLayout = wrap ("^ca(1,xdotool key super+space)^bg("++dcColor++")") "^bg()^ca()"
-        icon_comm = wrapXBitmapL "mptall.xbm"  ++ "  Tall (1/3)"
-        icon_scre = wrapXBitmapL "sptall.xbm"   ++ "  Tall (1/2)"
+        icon_comm = wrapXBitmapL "mptall.xbm" ++ "  Tall (1/3)"
+        icon_scre = wrapXBitmapL "sptall.xbm" ++ "  Tall (1/2)"
         icon_work = wrapXBitmapL "grid.xbm"   ++ "  Default"
         icon_full = wrapXBitmapL "full.xbm"   ++ "  Full"
         icon_run  = wrapXBitmapT "misc/heart.xbm"

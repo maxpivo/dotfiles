@@ -39,8 +39,9 @@ commonLayout = renamed [Replace "common"]
 
 screenshotLayout = renamed [Replace "screenshot"]
     $ avoidStruts 
-    $ gaps [(U,40), (D,40)] 
+    $ gaps [(U,25), (D,25)] 
     $ spacing 16
+    $ Mirror 
     $ Tall 1 (5/100) (1/2)
 --  $ Tall 1 (30/1280) (794/1280)  
 --  $ ThreeColMid 2 (3/100) (1/2)
