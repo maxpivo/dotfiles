@@ -50,7 +50,8 @@ workingLayout = renamed [Replace "working"]
     $ avoidStruts 
     $ gaps [(U,5), (D,5)] 
     $ spacing 10
-    $ layoutHook def
+--  $ layoutHook def    
+    $ layoutHook defaultConfig
 
 browserLayout = renamed [Replace "browser"]
     $ noBorders 

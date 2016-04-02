@@ -35,9 +35,11 @@ main = do
     spawn csbdTopLeft
     spawn csbdTopRight
     spawn csbdConkyMonitor
+
+--  use def instead of defaultConfig for more edge distribution.
         
-    xmonad $ def
-        { manageHook    = myManageHook <+> manageDocks <+> manageHook def
+    xmonad $ defaultConfig
+        { manageHook    = myManageHook <+> manageDocks <+> manageHook defaultConfig
         , layoutHook    = myLayoutHook 
         , logHook       = myLogHookLT sbLayoutText <+> myLogHookWS sbWorkspace
         , workspaces    = myWorkspaces

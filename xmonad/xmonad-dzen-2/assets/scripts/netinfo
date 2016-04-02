@@ -17,7 +17,7 @@ if [[ $(cat /sys/class/net/enp0s4/carrier) = 1 ]]; then
     ICON="net_wired.xbm"
     ESSID="( wired )"
 else
-    ESSID=$(/sbin/iwconfig wlp0s3f3u2 |  awk -F '"' 'NR==1 {print $2}')
+    ESSID=$(/sbin/iwconfig wlan0 |  awk -F '"' 'NR==1 {print $2}')
     ICON="wireless.xbm"
     if [[ $ESSID = "" ]]; then
         ICON=""

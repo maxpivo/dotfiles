@@ -27,7 +27,8 @@ rightDeco  = "^fg()^bg()"
 
 
 myLogHookWS ::  H.Handle -> X ()
-myLogHookWS h = dynamicLogWithPP $ def
+--myLogHookWS h = dynamicLogWithPP $ def
+myLogHookWS h = dynamicLogWithPP $ defaultPP
     {
         ppCurrent         = wrap (leftDeco "DarkGray" "Yellow") rightDeco
                           . wrap "[ " "]" . (icon_grid ++) . pad                           

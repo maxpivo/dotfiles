@@ -6,6 +6,7 @@
 #     Author: Alex Sánchez <kniren@gmail.com>
 #
 # ------------------------------------------------------------------
+# debian user should use dzen2-gdbar instead of gdbar
 
 FREE=`df /home -h | awk 'END{gsub(/%/,""); print $5}'`
 

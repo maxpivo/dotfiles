@@ -35,6 +35,7 @@ screenWidth = "1280"
 font1 = "awesome-9"
 font2 = "profont-9"
 font3 = "Droid Sans Fallback-9:bold"
+font4 = "takao-9"
 
 dzenArgs = " -p -e 'button3=' -fn '"++font3++"' "
 dzenColors = " -fg '"++fgColor++"' -bg '"++bgColor++"' "
@@ -58,7 +59,7 @@ csbdTopRight = "sleep 0.5 && "
 
 csbdConkyMonitor = "sleep 0.5 && "
     ++ " conky -c ~/.xmonad/assets/conky-dzen/top-center | "
-    ++ " dzen2 -ta c -h 18 -x 0 -y 5 "
+    ++ " dzen2 -ta c -h 18 -x 0 -y 4 "
     ++ " -w `expr "++screenWidth++" - 600` -x 300 "    
     ++ dzenArgs ++ dzenColors
 
@@ -70,17 +71,17 @@ csbdBottomBackground = "echo '^fg("++dcColor++")^p(;21)^r("++screenWidth++"x5)' 
     ++ dzenArgs ++ dzenColors
     
 csbdBottomLeft = "sleep 1; "
-    ++ " dzen2 -ta l -h 25 -y -30 "
+    ++ " dzen2 -ta l -h 25 -y -29 "
     ++ " -w `expr "++screenWidth++" / 2` "
     ++ dzenArgs ++ dzenColors
 
 csbdBottomRight = "sleep 1.5 && "
     ++ " conky -c ~/.xmonad/assets/conky-dzen/bottom | "
-    ++ " dzen2 -ta r -h 25 -y -30 -w 200 -x -200 "
+    ++ " dzen2 -ta r -h 25 -y -29 -w 200 -x -200 "
     ++ dzenArgs ++ dzenColors
         
 csbdBottomCenter = "sleep 2; "
-    ++ " dzen2 -ta c -h 20 -y -25 "
+    ++ " dzen2 -ta c -h 20 -y -24 "
     ++ " -w 600 -x `expr "++screenWidth++" / 2 - 150` "
     ++ dzenArgs ++ dzenColors
     
