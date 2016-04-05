@@ -35,7 +35,7 @@ screenWidth = "1280"
 font1 = "awesome-9"
 font2 = "profont-9"
 font3 = "Droid Sans Fallback-9:bold"
-font4 = "takao-9"
+font4 = "takaopgothic-9"
 
 dzenArgs = " -p -e 'button3=' -fn '"++font3++"' "
 dzenColors = " -fg '"++fgColor++"' -bg '"++bgColor++"' "
