@@ -3,6 +3,7 @@ import XMonad
 -- util --
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.SpawnOnce
 
 -- hooks --
 import XMonad.Hooks.ManageDocks
@@ -44,10 +45,14 @@ main = do
         , logHook       = myLogHookLT sbLayoutText <+> myLogHookWS sbWorkspace
         , workspaces    = myWorkspaces
         , terminal      = myTerminal
+        , borderWidth   = 3
+        , startupHook   = spawnOnce autoload
         , modMask       = mod4Mask     -- Rebind Mod to the Windows key
         , normalBorderColor  = myColor "Blue"
         , focusedBorderColor = myColor "Yellow"
         } `additionalKeys` myKeys
+     where
+        autoload = "~/.xmonad/assets/bin/autoload.sh"
 
 -- Common
 myTerminal = "termite"
