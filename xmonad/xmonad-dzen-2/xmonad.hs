@@ -35,8 +35,9 @@ main = do
     spawn csbdTopBackground        
     spawn csbdTopLeft
     spawn csbdTopRight
-    spawn csbdConkyMonitor
+    spawn csbdTopCenter
 
+--  http://xmonad.org/xmonad-docs/xmonad/src/XMonad-Config.html
 --  use def instead of defaultConfig for more edge distribution.
         
     xmonad $ defaultConfig

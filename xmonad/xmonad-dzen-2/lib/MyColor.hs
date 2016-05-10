@@ -34,7 +34,8 @@ colorSchemes =
     ,("PureWhite",    "#FFFFFF")
 
     ,("Foreground",   "#efefef")    
-    ,("Background",   "#2d2d2d")    
+    ,("Background",   "#2d2d2d")
+    ,("Separator",    "#393939")    
     ,("RedHaruka",    "#c90c25")
     ,("BlueUnknown",  "#5c5dad") 
     ,("Decoration",   "#2980b9") 

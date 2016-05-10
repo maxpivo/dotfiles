@@ -43,37 +43,37 @@ myManageHook = (composeAll . concat $
   ])
 
   where
-  viewShift = doF . liftM2 (.) W.greedyView W.shift
+    viewShift = doF . liftM2 (.) W.greedyView W.shift
 
-  role = stringProperty "WM_WINDOW_ROLE"
-  name = stringProperty "WM_NAME"
+    role = stringProperty "WM_WINDOW_ROLE"
+    name = stringProperty "WM_NAME"
 
-  doFocusCenterFloat = doF W.shiftMaster <+> doF W.swapDown <+> doCenterFloat
+    doFocusCenterFloat = doF W.shiftMaster <+> doF W.swapDown <+> doCenterFloat
 
-  doFocusFullFloat   = doFullFloat
+    doFocusFullFloat   = doFullFloat
 
-  -- classnames
-  myFloats      = ["MPlayer", "Vlc", "Smplayer", "Lxappearance", "XFontSel"]
-  myFullFloats  = ["feh", "Mirage", "Zathura", "Mcomix"]
-  myGfxs        = ["Inkscape", "Gimp"]
+    -- classnames
+    myFloats      = ["MPlayer", "Vlc", "Smplayer", "Lxappearance", "XFontSel"]
+    myFullFloats  = ["feh", "Mirage", "Zathura", "Mcomix"]
+    myGfxs        = ["Inkscape", "Gimp"]
 
-  -- roles
-  myFs          = ["ranger_startup"]
+    -- roles
+    myFs          = ["ranger_startup"]
 
-  -- resources
-  myIgnores = ["desktop", "desktop_window"]
-
-  -- names
-  myNames   = ["Google Chrome Options", "Chromium Options", "Firefox Preferences"]
+    -- resources
+    myIgnores = ["desktop", "desktop_window"]
+ 
+    -- names
+    myNames   = ["Google Chrome Options", "Chromium Options", "Firefox Preferences"]
   
-  -- browser
-  myBrowser = ["Midori", "midori4", "Chromium", "Firefox", "Navigator"]
+    -- browser
+    myBrowser = ["Midori", "midori4", "Chromium", "Firefox", "Navigator"]
+ 
+    -- editor
+    myEditor = ["Geany"]
 
-  -- editor
-  myEditor = ["Geany"]
+    -- editor
+    myPlace = ["Thunar"]
 
-  -- editor
-  myPlace = ["Thunar"]
-
-  -- mail
-  myMail = ["Mail", "Thunderbird"]
+    -- mail
+    myMail = ["Mail", "Thunderbird"]
