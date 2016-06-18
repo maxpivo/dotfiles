@@ -28,7 +28,7 @@ multicolor_icon_set = I             -- object name
 markup      = lain.util.markup
 
 -- progress bar related widgets -- after global markup
-local config_path = awful.util.getdir("config") .. "/anybox/"
+local config_path = awful.util.getdir("config") .. "/anybox/lain/"
 dofile(config_path .. "lain-diskfree.lua")
 dofile(config_path .. "lain-battery.lua")
 dofile(config_path .. "lain-sound.lua")

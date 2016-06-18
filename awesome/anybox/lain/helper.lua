@@ -103,7 +103,7 @@ end
 
 WB.vicious_widgets = function (screen)
   local vic = wibox.layout.fixed.horizontal()
-  local vw = require("anybox.vicious")
+  local vw = require("anybox.vicious.vicious")
 
   if screen == 1 then vic:add(wibox.widget.systray()) end
 

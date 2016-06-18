@@ -13,7 +13,7 @@ local binding = {
 }
 
 -- Custom Local Library
-require("anybox.lain")
+require("anybox.lain.lain")
 
 -- }}}
 

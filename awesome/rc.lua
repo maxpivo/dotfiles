@@ -36,7 +36,7 @@ local binding = {
   clientkeys    = require("binding.clientkeys")
 }
 -- Custom Local Library: Wibox (statusbar or maybe titlebar here)
-local statusbar = require("anybox.statusbar") -- after theme
+local statusbar = require("anybox.lain.statusbar") -- after theme
 
 
 
