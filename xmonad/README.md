@@ -21,7 +21,7 @@ XMonad
   + Statusbar: Dzen2<br>
   + Run: xmonad.hs, man xmonad
 
-[![Self Explanatory][image-ss-self-explanatory]{: .img-responsive }][picasa-ss-self-explanatory]
+![Self Explanatory][picasa-ss-self-explanatory]
 
 <br/><br/>
 
