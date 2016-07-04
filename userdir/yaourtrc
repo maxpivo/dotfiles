@@ -1,0 +1,9 @@
+# SUDO
+SUDONOVERIF=1      # Avoid multiple sudo checks when timestamp_timeout=0
+
+# Prompt
+BUILD_NOCONFIRM=1  # Only prompt for editing files
+EDITFILES=0
+
+# Command
+MAKEPKG="makepkg --skippgpcheck"
