@@ -35,10 +35,3 @@ dofile(config_path .. "/main/" .. "menu.lua")
 dofile(config_path .. "/binding/" .. "binding.lua")
 dofile(config_path .. "/main/" .. "rules.lua")
 dofile(config_path .. "/wibox/" .. "wibox.lua")
-
--- To Do
-
--- read vicious
--- read lain
--- read awesome
--- http://dotshare.it/category/wms/awesome/
