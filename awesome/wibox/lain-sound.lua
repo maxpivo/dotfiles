@@ -79,7 +79,7 @@ W.volume_wibox = lain.widgets.alsabar({
 
 W.volume_margin = wibox.layout.margin(W.volume_wibox.bar, 2, 7)
 W.volume_margin:set_top(6)
-W.volume_margin:set_bottom(6)
+W.volume_margin:set_bottom(9)
 W.volume_bar_widget = wibox.widget.background(W.volume_margin)
 W.volume_bar_widget:set_bgimage(beautiful.bar_bg_copland)
 
