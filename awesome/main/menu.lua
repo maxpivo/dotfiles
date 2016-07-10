@@ -4,7 +4,7 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 -- Required library
 local menugen = require("modules.menugen")
-local menu_blackarch = require("main.menu_blackarch")
+local menu_blackarch = require("main.menu-blackarch")
 
 local M = {}  -- menu
 local _M = {} -- module
@@ -53,6 +53,7 @@ M.network_main = {
 
 function _M.get()
 
+  --[[
   -- Main Menu
   local menu_items = {
     { "awesome", M.awesome, beautiful.awesome_subicon },
@@ -61,13 +62,13 @@ function _M.get()
     { "network", M.network_main },
   	{ "favorite", M.favorite }
   }
+  ]]
 
-  --[[
   local menu_items = require("menugen").build_menu()
   table.insert(menu_items, 1, { nil, nil })
   table.insert(menu_items, 1, { "Favorite", M.favorite })
   table.insert(menu_items, 1, { "Awesome", M.awesome, beautiful.awesome_subicon })
-  ]]
+
   return menu_items
 end
 
