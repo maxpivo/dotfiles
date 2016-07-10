@@ -10,7 +10,7 @@ local modkey = require("main.user-variables").modkey
 
 -- {{{ Key bindings
 
-function _M.bind(globalkeys)
+function _M.get(globalkeys)
   -- Bind all key numbers to tags.
   -- Be careful: we use keycodes to make it works on any keyboard layout.
   -- This should map on the top row of your keyboard, usually 1 to 9.
@@ -64,9 +64,11 @@ function _M.bind(globalkeys)
                   end))
         --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
   end
+
+  return globalkeys
 end
 -- }}}
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-return setmetatable({}, { __call = function(_, ...) return _M.bind(...) end })
+return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })

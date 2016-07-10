@@ -71,8 +71,8 @@ menubar.utils.terminal = RC.terminal -- Set the terminal for applications that r
 -- }}}
 
 -- {{{ Mouse and Key bindings
-RC.globalkeys = binding.globalkeys(),
-binding.bindtotags(RC.globalkeys)
+RC.globalkeys = binding.globalkeys()
+RC.globalkeys = binding.bindtotags(RC.globalkeys)
 
 -- Set root
 root.buttons(binding.globalbuttons())
