@@ -7,6 +7,7 @@
 
 -- Standard awesome library
 local beautiful = require("beautiful")
+local bfont = beautiful.font
 
 -- Wibox handling library
 local wibox = require("wibox")
@@ -34,8 +35,8 @@ W.volume = lain.widgets.alsa({
 
 -- ALSA volume bar
 
--- global terminal is required in alsabar
-terminal = RC.terminal
+-- global terminal is required in alsabar, unfortunately
+terminal = require("main.user-variables").terminal
 
 -- ALSA volume bar from copycat-rainbow
 --[[

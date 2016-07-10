@@ -1,17 +1,14 @@
---theme.font          = "Sans 8"
---theme.font            = "Terminus 8"
-theme.font            = "Tamsyn 10.5"
+theme.font            = "Tamsyn 10.5"  -- "Terminus 8" -- "Sans 8"
 
---theme.bg_normal     = "#1c1c1c99"
-theme.bg_normal     = "#000000cc"
+theme.bg_normal     = "#000000cc"   -- "#1c1c1c99"
 theme.bg_focus      = "#7985A366"
-theme.bg_urgent     = "#A3666666"
+theme.bg_urgent     = "#ad3737"     -- "#A3666666"
 --theme.bg_minimize   = "#444444"
 --theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = "#C5C5C5"
 theme.fg_focus      = "#E4E4E4"
-theme.fg_urgent     = "#A36666"
+theme.fg_urgent     = "#ffffff"     -- "#A36666"
 --theme.fg_minimize   = "#ffffff"
 
 theme.border_width  = 3
@@ -53,19 +50,15 @@ theme.taglist_squares_unsel = theme_path .. "taglist/copycat-zenburn/squareza.pn
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon  = theme_path .. "misc/default/submenu.png"
--- theme.menu_height = 15
--- theme.menu_width  = 100
-theme.menu_height = 20
-theme.menu_width  = 180
+theme.menu_height = 20      -- 15
+theme.menu_width  = 180     -- 100
 --theme.menu_context_height = 20
 
---theme.menu_bg_focus = "#7985A3"
-theme.menu_bg_focus = "#c9c925"
+theme.menu_bg_focus = "#c9c925"     -- "#7985A3"
 theme.menu_fg_focus = "#000000"
 theme.menu_bg_normal = "#454545"
 
--- theme.menu_border_color = "#7985A3"
-theme.menu_border_color = "#5c5dad"
+theme.menu_border_color = "#5c5dad" -- "#7985A3"
 theme.menu_border_width = 1
 
 -- You can add as many variables as

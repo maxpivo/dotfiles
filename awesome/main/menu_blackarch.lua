@@ -1,4 +1,5 @@
-local M = menu_object
+local M = {}  -- menu
+local _M = {} -- module
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
@@ -4089,3 +4090,11 @@ M.blackarch = {
   { "windows", M.windows },
   { "wireless", M.wireless },
 }
+
+function _M.get()
+  return M.blackarch
+end
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })

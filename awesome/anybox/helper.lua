@@ -5,7 +5,7 @@ local beautiful = require("beautiful")
 
 -- Wibox handling library
 local wibox = require("wibox")
-local lain = require("lain")
+local lain  = require("lain")
 
 -- Unused Filter Tag List, Awful Monkey Patches
 -- local eminent   = require("modules/eminent")
@@ -15,21 +15,25 @@ local lain = require("lain")
 
 local WB = wibox_package
 
--- Spacer
-WB.spacer = wibox.widget.textbox(" ")
+function WB.initdeco()
 
--- Separators lain
-local separators = lain.util.separators
-WB.arrl_dl = separators.arrow_left("alpha", beautiful.arrow_color)
-WB.arrl_ld = separators.arrow_left(beautiful.arrow_color, "alpha")
-WB.arrl_dr = separators.arrow_right("alpha", beautiful.arrow_color)
-WB.arrl_rd = separators.arrow_right(beautiful.arrow_color, "alpha")
+  -- Spacer
+  WB.spacer = wibox.widget.textbox(" ")
 
--- Separators png
-WB.arrl_pre = wibox.widget.imagebox()
-WB.arrl_pre:set_image(beautiful.arrl_lr_pre)
-WB.arrl_post = wibox.widget.imagebox()
-WB.arrl_post:set_image(beautiful.arrl_lr_post)
+  -- Separators lain
+  local separators = lain.util.separators
+  WB.arrl_dl = separators.arrow_left("alpha", beautiful.arrow_color)
+  WB.arrl_ld = separators.arrow_left(beautiful.arrow_color, "alpha")
+  WB.arrl_dr = separators.arrow_right("alpha", beautiful.arrow_color)
+  WB.arrl_rd = separators.arrow_right(beautiful.arrow_color, "alpha")
+
+  -- Separators png
+  WB.arrl_pre = wibox.widget.imagebox()
+  WB.arrl_pre:set_image(beautiful.arrl_lr_pre)
+  WB.arrl_post = wibox.widget.imagebox()
+  WB.arrl_post:set_image(beautiful.arrl_lr_post)
+
+end
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
@@ -48,7 +52,6 @@ function WB.updatelayoutbox(layout, s)
 end
 
 WB.setup_common_boxes = function (s)
-
   -- Create a promptbox for each screen
   WB.promptbox[s] = awful.widget.prompt()
 
@@ -100,7 +103,7 @@ end
 
 WB.vicious_widgets = function (screen)
   local vic = wibox.layout.fixed.horizontal()
-  local vw = vicious_widget_set
+  local vw = require("anybox.vicious")
 
   if screen == 1 then vic:add(wibox.widget.systray()) end
 

@@ -1,26 +1,26 @@
 -- Standard awesome library
 local awful = require("awful")
-
 -- Menubar library
 local menubar = require("menubar")
-
 -- Lain Library
 local lain = require("lain")
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+local modkey = require("main.user-variables").modkey
+local terminal = require("main.user-variables").terminal
 
-local modkey = RC.modkey
+local _M = {}
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 -- quake terminal -- from lain multicolor
 local quakeconsole = {}
 for s = 1, screen.count() do
-   quakeconsole[s] = lain.util.quake({ app = RC.terminal })
+   quakeconsole[s] = lain.util.quake({ app = terminal })
 end
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-globalkeys = awful.util.table.join(
+function _M.get()
+  local globalkeys = awful.util.table.join(
     -- Tag browsing
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
@@ -66,7 +66,7 @@ globalkeys = awful.util.table.join(
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(RC.terminal) end),
+    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -122,8 +122,19 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "Left",  function () awful.client.moveresize(-20,   0,   0,   0) end),
     awful.key({ modkey, "Shift"   }, "Right", function () awful.client.moveresize( 20,   0,   0,   0) end),
 
+    -- On the fly useless gaps change
+    awful.key({ modkey, "Control" }, "+", function () lain.util.useless_gaps_resize(1) end),
+    awful.key({ modkey, "Control" }, "-", function () lain.util.useless_gaps_resize(-1) end),
+
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Menubar
     -- awful.key({ modkey }, "d", function() awful.util.spawn_with_shell("dmenu_run") end)
     awful.key({ modkey }, "p", function() menubar.show() end)
-)
+  )
+
+  return globalkeys
+end
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })

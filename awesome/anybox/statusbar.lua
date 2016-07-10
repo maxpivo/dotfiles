@@ -5,21 +5,28 @@ local beautiful = require("beautiful")
 
 -- Wibox handling library
 local wibox = require("wibox")
+
+-- Custom Local Library: Keys and Mouse Binding
+local binding = {
+  taglist  = require("binding.taglist"),
+  tasklist = require("binding.tasklist")
+}
+
+-- Custom Local Library
+require("anybox.lain-multicolor")
+
 -- }}}
+
+local _M = {}
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 local WB = {}
-wibox_package = WB               -- package name
+wibox_package = WB               -- global object name
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
-local config_path = awful.util.getdir("config") .. "/wibox/"
-
-dofile(config_path .. "vicious.lua")
-dofile(config_path .. "lain-multicolor.lua")
-dofile(config_path .. "list-tag.lua")
-dofile(config_path .. "list-task.lua")
+-- split module, to make each file shorter,
+-- all must have same package name
+local config_path = awful.util.getdir("config") .. "/anybox/"
 dofile(config_path .. "helper.lua")
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -28,7 +35,7 @@ WB.generate_wibox_top = function (s)
 
   -- Widgets that are aligned to the top left
   local top_left_layout = wibox.layout.fixed.horizontal()
-  top_left_layout:add(menu_object.launcher)
+  top_left_layout:add(RC.launcher)
   top_left_layout:add(WB.taglist[s])
   top_left_layout:add(WB.arrl_pre)
   top_left_layout:add(WB.promptbox[s])
@@ -79,14 +86,25 @@ end
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 -- {{{ Main
-for s = 1, screen.count() do
-  -- in helper.lua
-  WB.setup_common_boxes(s)
+function _M.init()
+  WB.taglist  = binding.taglist()
+  WB.tasklist = binding.tasklist()
 
-  -- Create the top wibox
-  WB.generate_wibox_top(s)
+  WB.initdeco()
 
-  -- Create the bottom wibox
-  WB.generate_wibox_bottom(s)
+  for s = 1, screen.count() do
+    -- in helper.lua
+    WB.setup_common_boxes(s)
+
+    -- Create the top wibox
+    WB.generate_wibox_top(s)
+
+    -- Create the bottom wibox
+    WB.generate_wibox_bottom(s)
+  end
 end
 -- }}}
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+return setmetatable({}, { __call = function(_, ...) return _M.init(...) end })

@@ -4,8 +4,8 @@ local awful = require("awful")
 -- Widget and layout library
 local wibox = require("wibox")
 
--- Custom Library
-require("main/titlebar")
+-- Custom Local Library
+local titlebar = require("anybox.titlebar")
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 -- {{{ Signals
@@ -38,7 +38,7 @@ client.connect_signal("manage", function (c, startup)
 
     local titlebars_enabled = true
     if titlebars_enabled and (c.type == "normal" or c.type == "dialog") then
-        awful.titlebar(c,{size=16}):set_widget(titlebar_layout(c))
+        awful.titlebar(c,{size=16}):set_widget(titlebar(c))
     end
 
 end)

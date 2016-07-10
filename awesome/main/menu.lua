@@ -2,30 +2,30 @@
 local awful = require("awful")
 -- Theme handling library
 local beautiful = require("beautiful")
--- Required librariy
-local menubar = require("menubar")
-local menugen = require("modules/menugen")
+-- Required library
+local menugen = require("modules.menugen")
+local menu_blackarch = require("main.menu_blackarch")
+
+local M = {}  -- menu
+local _M = {} -- module
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-local M = {}
-menu_object = M                  -- global namespace
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+-- This is used later as the default terminal and editor to run.
+-- local terminal = "xfce4-terminal"
+local terminal = require("main.user-variables").terminal
 
--- {{{ Variable definitions
+-- Variable definitions
 -- This is used later as the default terminal and editor to run.
 local editor = os.getenv("EDITOR") or "nano"
-local editor_cmd = RC.terminal .. " -e " .. editor
--- }}}
+local editor_cmd = terminal .. " -e " .. editor
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
--- {{{ Menu
--- Create a laucher widget and a main menu
 M.awesome = {
-   { "manual", RC.terminal .. " -e man awesome" },
+   { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "Terminal", RC.terminal },
+   { "Terminal", terminal },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
@@ -49,43 +49,28 @@ M.network_main = {
     { "wicd-gtk", "wicd-gtk" }
 }
 
--- dofile(awful.util.getdir("config") .. "/rc/" .. "menu.blackarch.lua")
-
-
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
---[[
--- Main Menu
--- menu_items = {
---	{ "awesome", M.awesome, beautiful.awesome_subicon },
---	{ "open terminal", terminal },
---	{ "blackarch", M.blackarch },
---  { "network", M.network_main },
---	{ "favorite", M.favorite }
---	}
 
--- Generated Menu
--- gen_items = menugen.build_menu()
+function _M.get()
 
--- Merge Each Submenu
--- for item in gen_items do
---  table.insert(menu_items, item)
--- end
-]]
+  -- Main Menu
+  local menu_items = {
+    { "awesome", M.awesome, beautiful.awesome_subicon },
+  	{ "open terminal", terminal },
+  	{ "blackarch", menu_blackarch() },
+    { "network", M.network_main },
+  	{ "favorite", M.favorite }
+  }
 
-menu_items = require("menugen").build_menu()
-table.insert(menu_items, 1, { nil, nil })
-table.insert(menu_items, 1, { "Favorite", M.favorite })
-table.insert(menu_items, 1, { "Awesome", M.awesome, beautiful.awesome_subicon })
-
-M.main = awful.menu({ items = menu_items })
+  --[[
+  local menu_items = require("menugen").build_menu()
+  table.insert(menu_items, 1, { nil, nil })
+  table.insert(menu_items, 1, { "Favorite", M.favorite })
+  table.insert(menu_items, 1, { "Awesome", M.awesome, beautiful.awesome_subicon })
+  ]]
+  return menu_items
+end
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-M.launcher = awful.widget.launcher(
-  { image = beautiful.awesome_icon, menu = M.main }
-)
-
--- Menubar configuration
-menubar.utils.terminal = RC.terminal -- Set the terminal for applications that require it
-
--- }}}
+return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })

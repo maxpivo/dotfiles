@@ -1,19 +1,20 @@
+module("binding.bindtotags", package.seeall)
+
 -- Standard awesome library
 local awful = require("awful")
 
-
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
-local modkey = RC.modkey
+local _M = {}
+local modkey = require("main.user-variables").modkey
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 -- {{{ Key bindings
 
--- Bind all key numbers to tags.
--- Be careful: we use keycodes to make it works on any keyboard layout.
--- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+function _M.bind(globalkeys)
+  -- Bind all key numbers to tags.
+  -- Be careful: we use keycodes to make it works on any keyboard layout.
+  -- This should map on the top row of your keyboard, usually 1 to 9.
+  for i = 1, 9 do
     globalkeys = awful.util.table.join(globalkeys,
 
         --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -62,6 +63,10 @@ for i = 1, 9 do
                       end
                   end))
         --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+  end
 end
-
 -- }}}
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+return setmetatable({}, { __call = function(_, ...) return _M.bind(...) end })

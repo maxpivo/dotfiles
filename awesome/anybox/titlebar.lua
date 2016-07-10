@@ -1,3 +1,5 @@
+module("anybox.titlebar", package.seeall)
+
 -- Standard awesome library
 local awful = require("awful")
 
@@ -6,7 +8,7 @@ local wibox = require("wibox")
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-function titlebar_layout(c)
+function get(c)
 
   -- buttons for the titlebar
   local buttons = awful.util.table.join(
@@ -50,3 +52,7 @@ function titlebar_layout(c)
 
   return layout
 end
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+return setmetatable({}, { __call = function(_, ...) return get(...) end })

@@ -1,5 +1,5 @@
 --[[
-     Vicious Sample Widget Source Taken From:  
+     Vicious Sample Widget Source Taken From:
      https://awesome.naquadah.org/wiki/Vicious#Example_widgets
 --]]
 
@@ -15,11 +15,8 @@ local vicious = require("vicious")
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 local W = {}
-vicious_widget_set = W           -- package name
-
 local hlcolor = "#d7e0ea"
-
-local wlandev = 'wlp0s3f3u2'
+local wlandev = require("main.user-variables").wlandev
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
@@ -83,3 +80,7 @@ W.cpu:set_color({
 })
 vicious.cache(vicious.widgets.cpu)
 vicious.register(W.cpu, vicious.widgets.cpu, "$1", 3)
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+return W

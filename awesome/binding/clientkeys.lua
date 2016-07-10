@@ -1,15 +1,17 @@
+module("binding.clientkeys", package.seeall)
+
 -- Standard Awesome library
 local awful = require("awful")
+-- Custom Local Library
+local titlebar = require("anybox.titlebar")
 
--- Custom Library
-require("main/titlebar")
+local _M = {}
+local modkey = require("main.user-variables").modkey
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-local modkey = RC.modkey
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
-clientkeys = awful.util.table.join(
+function _M.get()
+  local clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
@@ -35,7 +37,14 @@ clientkeys = awful.util.table.join(
             if (c:titlebar_top():geometry()['height'] > 0) then
                 awful.titlebar(c, {size = 0})
             else
-                awful.titlebar(c):set_widget(titlebar_layout(c))
+                awful.titlebar(c):set_widget(titlebar(c))
             end
         end)
-)
+  )
+
+  return clientkeys
+end
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })

@@ -21,9 +21,20 @@ multicolor_widget_set = W           -- object name
 local I = {}
 multicolor_icon_set = I             -- object name
 
-local config_path = awful.util.getdir("config") .. "/wibox/"
+-- split module, to make each file shorter,
+-- all must have same package name
 
+-- global for all splited
 markup      = lain.util.markup
+
+-- progress bar related widgets -- after global markup
+local config_path = awful.util.getdir("config") .. "/anybox/"
+dofile(config_path .. "lain-diskfree.lua")
+dofile(config_path .. "lain-battery.lua")
+dofile(config_path .. "lain-sound.lua")
+
+
+
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 -- Textclock
@@ -154,11 +165,3 @@ W.mem = lain.widgets.mem({
         widget:set_markup(markup("#e0da37", mem_now.used .. "M "))
     end
 })
-
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
--- progress bar related widgets
-
-dofile(config_path .. "lain-diskfree.lua")
-dofile(config_path .. "lain-battery.lua")
-dofile(config_path .. "lain-sound.lua")
