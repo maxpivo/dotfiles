@@ -36,7 +36,7 @@ function _M.get()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
+    awful.key({ modkey,           }, "w", function () RC.mainmenu:show() end),
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Layout manipulation
@@ -73,7 +73,7 @@ function _M.get()
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
     -- Dropdown terminal
-    awful.key({ modkey,	          }, "z",      function () quakeconsole[mouse.screen]:toggle() end),
+    awful.key({ modkey,	          }, "z",     function () quakeconsole[mouse.screen]:toggle() end),
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Prompt
@@ -82,7 +82,7 @@ function _M.get()
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },
-                  mypromptbox[mouse.screen].widget,
+                  wibox_package.promptbox[mouse.screen].widget,
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
               end),
@@ -102,9 +102,9 @@ function _M.get()
    function (c)
        local curidx = awful.tag.getidx()
        if curidx == 9 then
-           awful.client.movetotag(tags[client.focus.screen][1])
+           awful.client.movetotag(RC.tags[client.focus.screen][1])
        else
-           awful.client.movetotag(tags[client.focus.screen][curidx + 1])
+           awful.client.movetotag(RC.tags[client.focus.screen][curidx + 1])
        end
    end),
 
@@ -128,7 +128,7 @@ function _M.get()
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Menubar
-    -- awful.key({ modkey }, "d", function() awful.util.spawn_with_shell("dmenu_run") end)
+    awful.key({ modkey }, "d", function() awful.util.spawn_with_shell("dmenu_run") end),
     awful.key({ modkey }, "p", function() menubar.show() end)
   )
 

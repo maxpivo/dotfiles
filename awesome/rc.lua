@@ -59,10 +59,10 @@ RC.tags = main.tags()
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
-local mainmenu = awful.menu({ items = main.menu() })
+RC.mainmenu = awful.menu({ items = main.menu() }) -- in globalkeys
 
 RC.launcher = awful.widget.launcher(
-  { image = beautiful.awesome_icon, menu = mainmenu }
+  { image = beautiful.awesome_icon, menu = RC.mainmenu }
 )
 
 -- Menubar configuration
@@ -93,5 +93,12 @@ statusbar()
 
 -- To Do
 --
+-- learn signals
+--
 -- read awesome [wiki, doc, source]
+-- dynamic tagging, and layout keystrokes
+-- http://dotshare.it/category/wms/awesome/
 -- read luabook
+-- https://plus.google.com/communities/105701199238055272871
+-- documentation
+-- blog
