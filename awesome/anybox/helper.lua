@@ -127,8 +127,6 @@ WB.multicolor_widgets_top = function (screen)
   local mcw = multicolor_widget_set
   local mci = multicolor_icon_set
 
-  if screen == 1 then mc:add(wibox.widget.systray()) end
-
   --  wheather
 
   mc:add(WB.arrl_dl)

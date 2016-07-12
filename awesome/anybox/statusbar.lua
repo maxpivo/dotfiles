@@ -13,7 +13,7 @@ local binding = {
 }
 
 -- Custom Local Library
-require("anybox.lain-multicolor")
+require("anybox.lain")
 
 -- }}}
 
@@ -46,6 +46,7 @@ WB.generate_wibox_top = function (s)
   --local top_right_layout = WB.vicious_widgets(s)
   local top_right_layout = WB.multicolor_widgets_top(s)
 
+  if screen == 1 then top_right_layout:add(wibox.widget.systray()) end
   top_right_layout:add(WB.txtlayoutbox[s])
   top_right_layout:add(WB.layoutbox[s])
 

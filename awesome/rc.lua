@@ -9,13 +9,16 @@ local awful     = require("awful")
 local beautiful = require("beautiful")
 -- Required library
 local menubar = require("menubar")
+-- Optional: it can be removed safely
+-- naughtyfication from command line to awesome-client.
+naughty = require('naughty')
 -- }}}
 
 local config_path = awful.util.getdir("config") .. "/"
 -- {{{ Error handling -- }}}
-dofile(config_path .. "main/" .. "error-handling.lua")
+dofile(config_path .. "main/error-handling.lua")
 -- {{{ Themes -- }}}
-dofile(config_path .. "main/" .. "theme.lua")
+dofile(config_path .. "main/theme.lua")
 
 -- Custom Local Library
 local main = {
@@ -41,8 +44,8 @@ local statusbar = require("anybox.statusbar") -- after theme
 
 RC = {} -- global namespace
 
--- os.execute("nm-applet &")
-os.execute("compton &")
+os.execute("nm-applet &")
+os.execute("compton &")    -- xcompmgr
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
@@ -91,14 +94,4 @@ awful.rules.rules = main.rules(
 
 statusbar()
 
--- To Do
---
--- learn signals
---
--- read awesome [wiki, doc, source]
--- dynamic tagging, and layout keystrokes
--- http://dotshare.it/category/wms/awesome/
--- read luabook
--- https://plus.google.com/communities/105701199238055272871
--- documentation
--- blog
+--awful.util.spawn("nm-applet")

@@ -1,4 +1,5 @@
-theme.font            = "Tamsyn 10.5"  -- "Terminus 8" -- "Sans 8"
+theme.font        = "Tamsyn 10"  -- "Terminus 8" -- "Sans 8"
+theme.taglist_font  = "Inconsolata Medium 10"
 
 theme.bg_normal     = "#000000cc"   -- "#1c1c1c99"
 theme.bg_focus      = "#7985A366"

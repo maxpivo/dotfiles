@@ -10,6 +10,9 @@ local terminal = require("main.user-variables").terminal
 
 local _M = {}
 
+-- reading
+-- https://awesomewm.org/wiki/Global_Keybindings
+
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 -- quake terminal -- from lain multicolor
 local quakeconsole = {}
@@ -74,6 +77,10 @@ function _M.get()
 
     -- Dropdown terminal
     awful.key({ modkey,	          }, "z",     function () quakeconsole[mouse.screen]:toggle() end),
+
+    -- screenshots
+    -- https://awesomewm.org/wiki/How_to_take_ScreenShot_with_PrntScr_key
+    awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/Pictures/ 2>/dev/null'") end),
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Prompt

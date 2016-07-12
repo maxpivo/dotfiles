@@ -6,6 +6,9 @@ local beautiful = require("beautiful")
 
 local _M = {}
 
+-- reading
+-- https://awesomewm.org/wiki/Understanding_Rules
+
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 function _M.get(clientkeys, clientbuttons)

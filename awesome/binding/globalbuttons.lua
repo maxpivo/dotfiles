@@ -1,5 +1,3 @@
-module("binding.globalbuttons", package.seeall)
-
 -- Standard awesome library
 local awful = require("awful")
 

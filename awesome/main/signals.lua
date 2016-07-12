@@ -7,6 +7,9 @@ local wibox = require("wibox")
 -- Custom Local Library
 local titlebar = require("anybox.titlebar")
 
+-- reading
+-- https://awesomewm.org/wiki/Signals
+
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
@@ -45,4 +48,6 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+mytextbox.mouse_leave
 -- }}}

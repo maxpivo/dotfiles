@@ -11,8 +11,8 @@ local _M = {
   modkey = "Mod4",
 
   -- user defined wallpaper
-  --wallpaper = nil,
-  wallpaper = "/Pictures/your-custom-wallpaper-here.jpg",
+  wallpaper = nil,
+  --wallpaper = "/Pictures/your-wallpaper-here.jpg",
 
   -- device, used in vicious widget
   wlandev = 'wlan0'

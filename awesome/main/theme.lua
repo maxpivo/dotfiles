@@ -24,5 +24,7 @@ if beautiful.wallpaper then
     end
 end
 
+-- https://awesomewm.org/wiki/Remove_icons
 -- theme.tasklist_disable_icon = true
+
 theme.useless_gap_width = 16

@@ -9,6 +9,9 @@ local menu_blackarch = require("main.menu-blackarch")
 local M = {}  -- menu
 local _M = {} -- module
 
+-- reading
+-- https://awesomewm.org/wiki/Awful.menu
+
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 -- This is used later as the default terminal and editor to run.
@@ -26,6 +29,7 @@ M.awesome = {
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "Terminal", terminal },
+   { "Shutdown/Logout", "oblogout" },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
