@@ -48,4 +48,4 @@ There are three parts here
 [readme-fluxbox]: https://github.com/epsi-rns/dotfiles/blob/master/fluxbox/README.md
 [readme-openbox]: https://github.com/epsi-rns/dotfiles/blob/master/openbox/README.md
 [readme-awesome]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/README.md
-[readme-xmonad]: https://github.com/epsi-rns/dotfiles/blob/master/xmnad/README.md
+[readme-xmonad]: https://github.com/epsi-rns/dotfiles/blob/master/xmonad/README.md
