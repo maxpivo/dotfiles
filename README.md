@@ -29,7 +29,11 @@ There are three parts here
 
 ## Ricing:
 
-* Midnight Commander, Powerline, Termite
+* Midnight Commander
+
+* Powerline
+
+* Termite
 
 -- -- --
 
