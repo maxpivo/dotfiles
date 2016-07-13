@@ -64,7 +64,7 @@ W.textclock = lain.widgets.abase({
 
 -- Calendar
 lain.widgets.calendar:attach(W.textclock,
-  { font_size = 10,fg = "#FFFFFF", position = "bottom_left" })
+  { font_size = 10,fg = "#FFFFFF", position = "top_left" })
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 

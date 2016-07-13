@@ -197,8 +197,9 @@ function WB.add_widgets_monitor (line, screen)
   line:add(setal(mcc.temp,        mcc.bat))
   line:add(setbg(mci.bat,         mcc.bat))
   line:add(setbg(mcw.bat,         mcc.bat))
-  line:add(setal(mcc.bat,         "#ffffff"))
-  line:add(setbg(WB.spacer,       "#ffffff"))
+  mcc.close      = "#c9c925"
+  line:add(setal(mcc.bat,         mcc.close))
+  line:add(setbg(WB.spacer,       mcc.close))
 
   return line
 end
