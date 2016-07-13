@@ -15,7 +15,7 @@ local lain  = require("lain")
 
 local WB = wibox_package
 
-function WB.initdeco()
+function WB.initdeco ()
 
   -- Spacer
   WB.spacer = wibox.widget.textbox(" ")
@@ -38,17 +38,21 @@ end
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 -- Create a wibox for each screen and add it
-WB.top = {}
-WB.bottom = {}
+-- we name it one and two, because both can be switched, top or bottom
+WB.one = {}
+WB.two = {}
+
+--
 WB.promptbox = {}
 WB.layoutbox = {}
 WB.txtlayoutbox = {}
 
 -- Writes a string representation of the current layout in a textbox widget
-function WB.updatelayoutbox(layout, s)
+function WB.updatelayoutbox (layout, s)
     local screen = s or 1
-    local txt_l = beautiful["layout_txt_" .. awful.layout.getname(awful.layout.get(screen))] or ""
-    layout:set_text(txt_l)
+    local name_l = awful.layout.getname(awful.layout.get(screen))
+    local text_l = beautiful["layout_txt_" .. name_l] or ""
+    layout:set_text(text_l)
 end
 
 WB.setup_common_boxes = function (s)
@@ -101,100 +105,92 @@ end
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-WB.vicious_widgets = function (screen)
-  local vic = wibox.layout.fixed.horizontal()
-  local vw = require("anybox.vicious.vicious")
+function WB.add_widgets_main (line, s)
 
-  if screen == 1 then vic:add(wibox.widget.systray()) end
+  line:add(RC.launcher)
+  line:add(WB.taglist[s])
+  line:add(WB.arrl_pre)
+  line:add(WB.promptbox[s])
+  line:add(WB.arrl_post)
 
-  vic:add(vw.cpu)
-  vic:add(vw.hddtemp)
-  vic:add(vw.mem)
-  vic:add(vw.battery)
-  vic:add(vw.net)
---vic:add(vw.mpd)
-  vic:add(vw.date)
---vic:add(WB.arrl_pre)
---vic:add(WB.arrl_post)
-
-  return vic
+  return line
 end
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-WB.multicolor_widgets_top = function (screen)
-  local mc = wibox.layout.fixed.horizontal()
+function WB.add_widgets_bar (line, screen)
+
   local mcw = multicolor_widget_set
   local mci = multicolor_icon_set
 
   --  wheather
 
-  mc:add(WB.arrl_dl)
-  mc:add(wibox.widget.background(mci.weather, beautiful.arrow_color))
-  mc:add(wibox.widget.background(mcw.weather, beautiful.arrow_color))
-  mc:add(WB.arrl_ld)
+  line:add(WB.arrl_dl)
+  line:add(wibox.widget.background(mci.weather, beautiful.arrow_color))
+  line:add(wibox.widget.background(mcw.weather, beautiful.arrow_color))
+  line:add(WB.arrl_ld)
 
 
 -- volume
 
---  mc:add(mci.mpd)     mc:add(mcw.mpd)
---  mc:add(WB.arrl_dl)
+--  line:add(mci.mpd)     line:add(mcw.mpd)
+--  line:add(WB.arrl_dl)
 
---  mc:add(WB.arrl_ld)
---mc:add(mci.volume)     mc:add(mcw.volume)
-  mc:add(mci.volume_dynamic)
-  mc:add(mcw.volume_bar_widget)
+--  line:add(WB.arrl_ld)
+--  line:add(mci.volume)     line:add(mcw.volume)
+  line:add(mci.volume_dynamic)
+  line:add(mcw.volume_bar_widget)
 
 -- disk
 
-  mc:add(mci.disk)
-  mc:add(mcw.disk_bar_widget)
+  line:add(mci.disk)
+  line:add(mcw.disk_bar_widget)
 
 -- battery
 
-  mc:add(mci.battery)
-  mc:add(mcw.battery_bar_widget)
+  line:add(mci.battery)
+  line:add(mcw.battery_bar_widget)
 
 -- end
-  mc:add(WB.arrl_dl)
+  line:add(WB.arrl_dl)
 
-  mc:add(WB.arrl_ld)
-  mc:add(WB.spacer)
+  line:add(WB.arrl_ld)
+  line:add(WB.spacer)
 
-  return mc
+  return line
 end
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-WB.multicolor_widgets_bottom = function (screen)
-  local mc = wibox.layout.fixed.horizontal()
+function WB.add_widgets_monitor (line, screen)
+
   local mcw = multicolor_widget_set
   local mci = multicolor_icon_set
 
-  if screen == 1 then mc:add(wibox.widget.systray()) end
+  if screen == 1 then line:add(wibox.widget.systray()) end
 
 -- time
 
-  mc:add(mci.clock)
-  mc:add(mcw.textclock)  -- calendar attached
---mc:add(mcw.my_textclock)
+  line:add(mci.clock)
+  line:add(mcw.textclock)  -- calendar attached
+--line:add(mcw.my_textclock)
 
 -- net
 
-  mc:add(WB.arrl_dr)
-  mc:add(wibox.widget.background(mci.netdown,     beautiful.arrow_color))
-  mc:add(wibox.widget.background(mcw.netdowninfo, beautiful.arrow_color))
-  mc:add(wibox.widget.background(mci.netup,       beautiful.arrow_color))
-  mc:add(wibox.widget.background(mcw.netupinfo,   beautiful.arrow_color))
-  mc:add(WB.arrl_rd)
+  line:add(WB.arrl_dr)
+  line:add(wibox.widget.background(mci.netdown,     beautiful.arrow_color))
+  line:add(wibox.widget.background(mcw.netdowninfo, beautiful.arrow_color))
+  line:add(wibox.widget.background(mci.netup,       beautiful.arrow_color))
+  line:add(wibox.widget.background(mcw.netupinfo,   beautiful.arrow_color))
+  line:add(WB.arrl_rd)
 
 -- mem, cpu, files system, temp, batt
 
-  mc:add(mci.mem)     mc:add(mcw.mem)
-  mc:add(mci.cpu)     mc:add(mcw.cpu)
---mc:add(mci.fs)      mc:add(mcw.fs)
-  mc:add(mci.temp)    mc:add(mcw.temp)
-  mc:add(mci.bat)     mc:add(mcw.bat)
---mc:add(WB.arrl_dr)
+  line:add(mci.mem)     line:add(mcw.mem)
+  line:add(mci.cpu)     line:add(mcw.cpu)
+--line:add(mci.fs)      line:add(mcw.fs)
+  line:add(mci.temp)    line:add(mcw.temp)
+  line:add(mci.bat)     line:add(mcw.bat)
+--line:add(WB.arrl_dr)
 
-  return mc
+  return line
 end

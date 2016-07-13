@@ -11,10 +11,6 @@ local binding = {
   taglist  = require("binding.taglist"),
   tasklist = require("binding.tasklist")
 }
-
--- Custom Local Library
-require("anybox.lain.lain")
-
 -- }}}
 
 local _M = {}
@@ -26,7 +22,7 @@ wibox_package = WB               -- global object name
 
 -- split module, to make each file shorter,
 -- all must have same package name
-local config_path = awful.util.getdir("config") .. "/anybox/lain/"
+local config_path = awful.util.getdir("config") .. "/anybox/vicious/"
 dofile(config_path .. "helper.lua")
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -41,9 +37,7 @@ function WB.generate_wibox_one (s)
   -- Widgets that are aligned to the top right
   -- in helper.lua
   local l_right = wibox.layout.fixed.horizontal()
-  l_right = WB.add_widgets_bar(l_right, s)
-  l_right:add(WB.txtlayoutbox[s])
-  l_right:add(WB.layoutbox[s])
+  l_right = WB.add_widgets_systray(l_right, s)
 
   local l_mid = wibox.layout.fixed.horizontal()
   l_mid:add(WB.spacer)
@@ -54,7 +48,7 @@ function WB.generate_wibox_one (s)
   layout:set_middle(l_mid)
   layout:set_right(l_right)
 
-  WB.one[s] = awful.wibox({ position = "bottom", screen = s }) -- , height = "28"
+  WB.one[s] = awful.wibox({ position = "top", screen = s }) -- , height = "28"
   WB.one[s]:set_widget(layout)
 end
 
@@ -77,7 +71,7 @@ function WB.generate_wibox_two (s)
   layout:set_middle(l_mid)
   layout:set_right(WB.tasklist[s])
 
-  WB.two[s] = awful.wibox({ position = "top", screen = s })
+  WB.two[s] = awful.wibox({ position = "bottom", screen = s })
   WB.two[s]:set_widget(layout)
 end
 
