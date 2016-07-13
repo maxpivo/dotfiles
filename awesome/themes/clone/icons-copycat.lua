@@ -25,6 +25,18 @@ theme.widget_weather      = icondir .. "dish.png"
 theme.widget_netdown      = icondir .. "net_down.png"
 theme.widget_netup        = icondir .. "net_up.png"
 
+-- override for arrow statusbar
+
+local icondir = theme_path .. "icons/clone/"
+
+theme.widget_temp         = icondir .. "temp.png"
+theme.widget_uptime       = icondir .. "ac.png"
+theme.widget_cpu          = icondir .. "cpu.png"
+theme.widget_fs           = icondir .. "fs.png"
+theme.widget_mem          = icondir .. "mem.png"
+theme.widget_batt         = icondir .. "bat.png"
+theme.widget_clock        = icondir .. "clock.png"
+
 -- copycat-copland
 
 local icondir = theme_path .. "icons/copycat-copland/"

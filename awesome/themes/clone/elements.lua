@@ -34,7 +34,7 @@ theme.taglist_fg_focus = "#000000"
 
 theme.tasklist_bg_normal = "#000000cc"
 --theme.tasklist_bg_normal = "png:" .. theme_path .. "misc/copycat-holo/bg_focus.png"
-theme.tasklist_bg_focus  = "#ffffffcc"
+theme.tasklist_bg_focus  = "#ffffff"
 --theme.tasklist_bg_focus  = "png:" .. theme_path .. "misc/copycat-holo/bg_focus_noline.png"
 theme.tasklist_fg_focus  = "#000000"
 

@@ -11,17 +11,15 @@ local _M = {
   modkey = "Mod4",
 
   -- user defined wallpaper
-  --wallpaper = nil,
+  wallpaper = nil,
   --wallpaper = "/Pictures/your-wallpaper-here.jpg",
-  wallpaper = "/Pictures/white/french_marigold_yellow-wallpaper-1280x800.jpg",
 
   -- device, used in vicious widget
-  -- wlandev = 'wlan0',
-  wlandev = 'wlp0s3f3u2',
+  wlandev = 'wlan0',
 
   -- statusbar module
-  -- choice: simple, vicious, lain
-  statusbarmodule = 'lain'
+  -- choice: simple, vicious, lain, arrow
+  statusbarmodule = 'arrow'
 
 }
 
