@@ -12,8 +12,8 @@ home = os.getenv("HOME")
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 beautiful.init(home .. "/.config/awesome/themes/clone/theme.lua")
 
-if (require("main.user-variables").wallpaper) then
-  local wallpaper = home .. require("main.user-variables").wallpaper
+if (RC.vars.wallpaper) then
+  local wallpaper = home .. RC.vars.wallpaper
   if awful.util.file_readable(wallpaper) then theme.wallpaper = wallpaper end
 end
 

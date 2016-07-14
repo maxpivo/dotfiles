@@ -5,8 +5,8 @@ local menubar = require("menubar")
 -- Lain Library
 local lain = require("lain")
 
-local modkey = require("main.user-variables").modkey
-local terminal = require("main.user-variables").terminal
+local modkey = RC.vars.modkey
+local terminal = RC.vars.terminal
 
 local _M = {}
 

@@ -14,6 +14,9 @@ local menubar = require("menubar")
 naughty = require('naughty')
 -- }}}
 
+RC = {} -- global namespace, on top before require any modules
+RC.vars = require("main.user-variables")
+
 local config_path = awful.util.getdir("config") .. "/"
 -- {{{ Error handling -- }}}
 dofile(config_path .. "main/error-handling.lua")
@@ -35,20 +38,16 @@ local binding = {
   bindtotags    = require("binding.bindtotags"),
   clientkeys    = require("binding.clientkeys")
 }
+
 -- Custom Local Library: Wibox (statusbar or maybe titlebar here)
-local sbm = require("main.user-variables").statusbarmodule
+local sbm = RC.vars.statusbarmodule
 local sbm_name = "anybox." .. sbm .. ".statusbar"
 local statusbar = require(sbm_name) -- after theme
 
-
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
-RC = {} -- global namespace
 
 os.execute("nm-applet &")
 os.execute("compton &")    -- xcompmgr
-
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 -- {{{ Layouts
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -70,7 +69,7 @@ RC.launcher = awful.widget.launcher(
 )
 
 -- Menubar configuration
-menubar.utils.terminal = RC.terminal -- Set the terminal for applications that require it
+menubar.utils.terminal = RC.vars.terminal -- Set the terminal for applications that require it
 
 -- }}}
 

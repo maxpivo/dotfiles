@@ -36,7 +36,7 @@ W.volume = lain.widgets.alsa({
 -- ALSA volume bar
 
 -- global terminal is required in alsabar, unfortunately
-terminal = require("main.user-variables").terminal
+terminal = RC.vars.terminal
 
 -- ALSA volume bar from copycat-rainbow
 --[[

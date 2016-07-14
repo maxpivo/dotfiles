@@ -4,7 +4,7 @@ module("binding.clientbuttons", package.seeall)
 local awful = require("awful")
 
 local _M = {}
-local modkey = require("main.user-variables").modkey
+local modkey = RC.vars.modkey
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 

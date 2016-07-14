@@ -16,7 +16,7 @@ local vicious = require("vicious")
 
 local W = {}
 local hlcolor = "#d7e0ea"
-local wlandev = require("main.user-variables").wlandev
+local wlandev = RC.vars.wlandev
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
