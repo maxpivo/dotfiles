@@ -3,28 +3,6 @@ XMonad
 
 # Screenshots
 
-## Using XMobar
-
-<strong>OS</strong>: Arch<br>
-<strong>WM</strong>: XMonad<br>
-  + Statusbar: XMobar<br>
-  + Run: nload, newsbeuter, tmux[glances,vim], mutt)
-
-![XMobar: Three Column with Gap][picasa-ss-xmobar-threecolumns-gap]
-
-<br/><br/>
-
-## Using DZen2
-
-<strong>OS</strong>: Arch<br>
-<strong>WM</strong>: XMonad<br>
-  + Statusbar: Dzen2<br>
-  + Run: xmonad.hs, man xmonad
-
-![Self Explanatory][picasa-ss-self-explanatory]
-
-<br/><br/>
-
 ## Modularized, Using DZen2
 
 <strong>OS</strong>: Arch/Manjaro<br>
@@ -39,6 +17,28 @@ XMonad
 ![Modularized Haskell XMonad: arch][picasa-ss-xmonad-1]
 <br/><br/>
 ![Modularized Haskell XMonad: manjaro][picasa-ss-xmonad-2]
+
+<br/><br/>
+
+## Using DZen2
+
+<strong>OS</strong>: Arch<br>
+<strong>WM</strong>: XMonad<br>
+  + Statusbar: Dzen2<br>
+  + Run: xmonad.hs, man xmonad
+
+![Self Explanatory][picasa-ss-self-explanatory]
+
+<br/><br/>
+
+## Using XMobar
+
+<strong>OS</strong>: Arch<br>
+<strong>WM</strong>: XMonad<br>
+  + Statusbar: XMobar<br>
+  + Run: nload, newsbeuter, tmux[glances,vim], mutt)
+
+![XMobar: Three Column with Gap][picasa-ss-xmobar-threecolumns-gap]
 
 
 [picasa-ss-xmobar-threecolumns-gap]: https://lh3.googleusercontent.com/-2IkVXzKSn3Q/Vz2mpPdfJiI/AAAAAAAAAPg/-oDI1U8y-DEGrl9UK51udhjF18Nel2WSwCCo/s0/xmonad-xmobar-threecolumn.png
