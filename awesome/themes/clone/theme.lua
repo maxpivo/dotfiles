@@ -23,8 +23,12 @@ theme.awesome_icon       = theme_path .. "launcher/logo20_kali_white.png"
 theme.awesome_subicon    = theme_path .. "launcher/logo20_kali_blue.png"
 
 -- look inside /usr/share/icons/, default: nil (don't use icon theme)
-theme.icon_theme = "Tango"
+-- https://bbs.archlinux.org/viewtopic.php?id=195663
+theme.icon_theme = "Paper" -- "HighContrast" -- "Adwaita" -- "gnome" -- "Tango"
 theme.icon_theme_size = "32x32"
+
+-- https://awesomewm.org/wiki/Remove_icons
+-- theme.tasklist_disable_icon = true
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 -- user custom variables

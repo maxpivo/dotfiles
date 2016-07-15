@@ -111,7 +111,7 @@ function WB.add_widgets_bar (line, screen)
 
   --  wheather
 
-  line:add(separators.arrow_left("alpha", beautiful.arrow_color))
+  line:add(separators.arrow_right("alpha", beautiful.arrow_color))
   line:add(wibox.widget.background(mci.weather, beautiful.arrow_color))
   line:add(wibox.widget.background(mcw.weather, beautiful.arrow_color))
   line:add(separators.arrow_left(beautiful.arrow_color, "alpha"))
@@ -171,35 +171,59 @@ function WB.add_widgets_monitor (line, screen)
   line:add(setar("alpha",         mcc.netdown))
   line:add(setbg(mci.netdown,     mcc.netdown))
   line:add(setbg(mcw.netdowninfo, mcc.netdown))
-  mcc.netup   = "bbbbee" -- "#e54c62"
+  mcc.netup   = "bbbbdd" -- "#e54c62"
 --  line:add(setar(mcc.netdown,     mcc.netup))
   line:add(setbg(mci.netup,       mcc.netup))
   line:add(setbg(mcw.netupinfo,   mcc.netup))
 
 -- mem, cpu, files system, temp, batt
 
-  mcc.mem     = "aaaadd" -- "#e0da37"
+  mcc.mem     = "aaaacc" -- "#e0da37"
   line:add(setar(mcc.netup,       mcc.mem))
   line:add(setbg(mci.mem,         mcc.mem))
   line:add(setbg(mcw.mem,         mcc.mem))
-  mcc.cpu     = "9999cc" -- "#e33a6e"
+  mcc.cpu     = "9999bb" -- "#e33a6e"
   line:add(setar(mcc.mem,         mcc.cpu))
   line:add(setbg(mci.cpu,         mcc.cpu))
   line:add(setbg(mcw.cpu,         mcc.cpu))
---  mcc.fs      = "6868aa" -- "#80d9d8"
---  line:add(setbg(mci.fs,          mcc.fs))
---  line:add(setbg(mcw.fs,          mcc.fs))
-  mcc.temp     = "aaaadd" -- "#f1af5f"
+--mcc.fs      = "6868aa" -- "#80d9d8"
+--line:add(setbg(mci.fs,          mcc.fs))
+--line:add(setbg(mcw.fs,          mcc.fs))
+  mcc.temp    = "aaaacc" -- "#f1af5f"
   line:add(setal(mcc.cpu,         mcc.temp))
   line:add(setbg(mci.temp,        mcc.temp))
   line:add(setbg(mcw.temp,        mcc.temp))
-  mcc.bat      = "bbbbee"
+  mcc.bat     = "bbbbdd"
   line:add(setal(mcc.temp,        mcc.bat))
   line:add(setbg(mci.bat,         mcc.bat))
   line:add(setbg(mcw.bat,         mcc.bat))
-  mcc.close      = "#c9c925"
+  mcc.close   = "#ccccff"
   line:add(setal(mcc.bat,         mcc.close))
   line:add(setbg(WB.spacer,       mcc.close))
+
+  return line
+end
+
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+function WB.add_widgets_custom (line, screen)
+
+  local mcw = arrow_widget_set
+  local mci = arrow_icon_set
+  local mcc = {}
+
+  local setbg = wibox.widget.background
+  local setar = separators.arrow_right
+  local setal = separators.arrow_left
+
+  mcc.spacer  = "#000000"
+  mcc.uptime  = "#ccccff"
+  line:add(setbg(WB.spacer,       mcc.spacer))
+  line:add(setar(mcc.spacer,      mcc.uptime))
+  line:add(setbg(mci.uptime,      mcc.uptime))
+  line:add(setbg(mcw.uptime,      mcc.uptime))
+  line:add(setbg(WB.spacer,       mcc.uptime))
 
   return line
 end

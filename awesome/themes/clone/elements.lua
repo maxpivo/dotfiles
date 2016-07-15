@@ -12,7 +12,7 @@ theme.fg_focus      = "#E4E4E4"
 theme.fg_urgent     = "#ffffff"     -- "#A36666"
 --theme.fg_minimize   = "#ffffff"
 
-theme.border_width  = 3
+theme.border_width  = 7
 theme.border_normal = "#c9c925cc"
 theme.border_focus  = "#5c5dadcc"
 theme.border_marked = "#A3BA8C"
@@ -29,17 +29,17 @@ theme.border_marked = "#A3BA8C"
 
 theme.taglist_bg_focus = "#c9c925"
 --theme.taglist_bg_focus = "png:" .. theme_path .. "misc/copycat-holo/taglist_bg_focus.png"
-theme.taglist_fg_focus = "#000000"
+theme.taglist_fg_focus = "#000000cc"
 
 
-theme.tasklist_bg_normal = "#000000cc"
+theme.tasklist_bg_normal = "#000000"
 --theme.tasklist_bg_normal = "png:" .. theme_path .. "misc/copycat-holo/bg_focus.png"
-theme.tasklist_bg_focus  = "#c9c925"
+theme.tasklist_bg_focus  = "#ccccff" -- "#c9c925"
 --theme.tasklist_bg_focus  = "png:" .. theme_path .. "misc/copycat-holo/bg_focus_noline.png"
-theme.tasklist_fg_focus  = "#000000"
+theme.tasklist_fg_focus  = "#000000cc"
 
 theme.titlebar_bg_focus = "#c9c925cc"
-theme.titlebar_fg_focus = "#000000"
+theme.titlebar_fg_focus = "#000000cc"
 
 -- Display the taglist squares
 theme.taglist_squares_sel   = theme_path .. "taglist/copycat-zenburn/squarefz.png"
@@ -55,8 +55,8 @@ theme.menu_height = 20      -- 15
 theme.menu_width  = 180     -- 100
 --theme.menu_context_height = 20
 
-theme.menu_bg_focus = "#c9c925"     -- "#7985A3"
-theme.menu_fg_focus = "#000000"
+theme.menu_bg_focus = "#c9c925cc"     -- "#7985A3"
+theme.menu_fg_focus = "#000000cc"
 theme.menu_bg_normal = "#454545"
 
 theme.menu_border_color = "#5c5dad" -- "#7985A3"

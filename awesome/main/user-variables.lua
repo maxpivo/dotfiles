@@ -15,7 +15,7 @@ local _M = {
   --wallpaper = "/Pictures/your-wallpaper-here.jpg",
 
   -- device, used in vicious widget
-  wlandev = 'wlan0',
+   wlandev = 'wlan0',
 
   -- statusbar module
   -- choice: simple, vicious, lain, arrow

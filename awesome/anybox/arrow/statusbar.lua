@@ -61,21 +61,21 @@ end
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 function WB.generate_wibox_two (s)
-  -- layout: l_left, l_mid, tasklist
+  -- layout: l_left, tasklist, l_right
 
   -- Widgets that are aligned to the bottom left
   -- in helper.lua
   local l_left = wibox.layout.fixed.horizontal()
   l_left = WB.add_widgets_monitor(l_left, s)
 
-  local l_mid = wibox.layout.fixed.horizontal()
-  l_mid:add(WB.spacer)
+  local l_right = wibox.layout.fixed.horizontal()
+  l_right = WB.add_widgets_custom(l_right, s)
 
   -- Now bring it all together (with the tasklist in the middle)
   local layout = wibox.layout.align.horizontal()
   layout:set_left(l_left)
-  layout:set_middle(l_mid)
-  layout:set_right(WB.tasklist[s])
+  layout:set_middle(WB.tasklist[s])
+  layout:set_right(l_right)
 
   WB.two[s] = awful.wibox({ position = "top", screen = s })
   WB.two[s]:set_widget(layout)
