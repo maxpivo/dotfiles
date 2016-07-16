@@ -2,7 +2,7 @@ local icondir = ""
 
 -- copycat-multicolor
 
-local icondir = theme_path .. "icons/copycat-multicolor/"
+icondir = theme_path .. "icons/copycat-multicolor/"
 
 theme.submenu_icon        = icondir .. "submenu.png"
 theme.widget_temp         = icondir .. "temp.png"

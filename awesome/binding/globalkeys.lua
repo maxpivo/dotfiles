@@ -1,5 +1,6 @@
 -- Standard awesome library
 local awful = require("awful")
+-- local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Menubar library
 local menubar = require("menubar")
 -- Lain Library
@@ -24,6 +25,9 @@ end
 
 function _M.get()
   local globalkeys = awful.util.table.join(
+--  awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
+--            {description="show help", group="awesome"}),  
+
     -- Tag browsing
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
@@ -76,7 +80,10 @@ function _M.get()
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
     -- Dropdown terminal
-    awful.key({ modkey,	          }, "z",     function () quakeconsole[mouse.screen]:toggle() end),
+    -- awful.key({ modkey,	          }, "z",     function () quakeconsole[mouse.screen]:toggle() end),
+
+    -- Hotkeys
+    awful.key({ modkey,	          }, "z",     function () awful.hotkeys_popup.widget.show_help(s) end),
 
     -- screenshots
     -- https://awesomewm.org/wiki/How_to_take_ScreenShot_with_PrntScr_key

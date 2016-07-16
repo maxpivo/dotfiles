@@ -31,6 +31,12 @@ theme.icon_theme_size = "32x32"
 -- theme.tasklist_disable_icon = true
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+-- lain variables
+
+-- not necessarily have to be in theme.lua when theme variable is not set local
+theme.useless_gap_width = 40
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 -- user custom variables
 
 dofile(theme_path .. "icons-copycat.lua")

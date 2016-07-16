@@ -1,15 +1,12 @@
-local awful = require("awful")
-awful.util = require("awful.util")
-
 --local layout_icons = "default-white"
 --local layout_icons = "default-black"
-local layout_icons = "copycat-multicolor"
-
-local layout_path = theme_path .. "layouts/" .. layout_icons .. "/"
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 -- You can use your own layout icons like this:
+
+local layout_icons = "copycat-multicolor"
+local layout_path = theme_path .. "layouts/" .. layout_icons .. "/"
 
 -- default awful related
 theme.layout_dwindle        = layout_path .. "dwindle.png"
@@ -25,8 +22,6 @@ theme.layout_tile           = layout_path .. "tile.png"
 theme.layout_tiletop        = layout_path .. "tiletop.png"
 
 -- lain related
-
-
 theme.layout_termfair          = layout_path .. "fairh.png"
 theme.layout_uselessfair       = layout_path .. "fairv.png"
 theme.layout_uselessfairh      = layout_path .. "fairh.png"
@@ -37,10 +32,16 @@ theme.layout_uselesstileleft   = layout_path .. "tileleft.png"
 theme.layout_uselesstilebottom = layout_path .. "tilebottom.png"
 theme.layout_uselesspiral      = layout_path .. "spiral.png"
 
--- theme.layout_centerfair     = layout_path .. "centerfair.png"
--- theme.layout_centerwork     = layout_path .. "centerwork.png"
--- theme.layout_cascade        = layout_path .. "cascadew.png"
--- theme.layout_cascadetile    = layout_path .. "cascadetilew.png"
+--
+
+layout_icons = "default-lain-white"
+layout_path = theme_path .. "layouts/" .. layout_icons .. "/"
+
+-- lain related
+theme.layout_centerfair     = layout_path .. "centerfair.png"
+theme.layout_centerwork     = layout_path .. "centerwork.png"
+theme.layout_cascade        = layout_path .. "cascade.png"
+theme.layout_cascadetile    = layout_path .. "cascadebrowse.png"
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 

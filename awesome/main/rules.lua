@@ -1,6 +1,5 @@
 -- Standard awesome library
 local awful     = require("awful")
-awful.rules     = require("awful.rules")
 -- Theme handling library
 local beautiful = require("beautiful")
 

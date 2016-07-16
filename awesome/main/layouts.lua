@@ -24,7 +24,7 @@ function _M.get ()
   --    awful.layout.suit.tile.bottom,      -- 4:
   --    awful.layout.suit.tile.top,         -- 5:
 
-      lain.layout.uselessfair,              -- 6:
+      lain.layout.termfair,                 -- 6:
       lain.layout.uselessfair,              -- 7:
 
   --    awful.layout.suit.fair,             -- 6:
@@ -33,12 +33,18 @@ function _M.get ()
       lain.layout.uselesspiral,             -- 8:
       lain.layout.uselesspiral.dwindle,     -- 9:
 
-      awful.layout.suit.spiral,             -- 8:
-      awful.layout.suit.spiral.dwindle,     -- 9:
+  --  awful.layout.suit.spiral,             -- 8:
+  --  awful.layout.suit.spiral.dwindle,     -- 9:
 
       awful.layout.suit.max,                -- 10:
       awful.layout.suit.max.fullscreen,     -- 11:
-      awful.layout.suit.magnifier           -- 12:
+      awful.layout.suit.magnifier,          -- 12:
+
+      lain.layout.centerfair,               -- 13:
+      lain.layout.centerwork,               -- 14:
+      lain.layout.cascade,                  -- 15:
+      lain.layout.cascadetile               -- 16:
+
   }
 
   return layouts

@@ -2,6 +2,8 @@
 -- moved here in module as local variable
 -- }}}
 
+local home = os.getenv("HOME")
+
 local _M = {
   -- This is used later as the default terminal and editor to run.
   -- RC.terminal = "xfce4-terminal"
@@ -12,10 +14,10 @@ local _M = {
 
   -- user defined wallpaper
   wallpaper = nil,
-  --wallpaper = "/Pictures/your-wallpaper-here.jpg",
+  --wallpaper = home .. "/Pictures/your-wallpaper-here.jpg",
 
   -- device, used in vicious widget
-   wlandev = 'wlan0',
+  wlandev = 'wlan0',
 
   -- statusbar module
   -- choice: simple, vicious, lain, arrow

@@ -1,19 +1,19 @@
 -- Standard awesome library
-local gears     = require("gears")
+local gears = require("gears")
 local awful = require("awful")
 
 -- Theme handling library
 local beautiful = require("beautiful")
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-home = os.getenv("HOME")
+local home = os.getenv("HOME")
 
 -- Themes define colours, icons, font and wallpapers.
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 beautiful.init(home .. "/.config/awesome/themes/clone/theme.lua")
 
 if (RC.vars.wallpaper) then
-  local wallpaper = home .. RC.vars.wallpaper
+  local wallpaper = RC.vars.wallpaper
   if awful.util.file_readable(wallpaper) then theme.wallpaper = wallpaper end
 end
 
@@ -23,7 +23,3 @@ if beautiful.wallpaper then
         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
     end
 end
-
-
--- not necessarily have to be in theme.lua
-theme.useless_gap_width = 40

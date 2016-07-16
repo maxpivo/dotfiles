@@ -32,7 +32,7 @@ local config_path = awful.util.getdir("config") .. "/anybox/arrow/"
 dofile(config_path .. "lain-diskfree.lua")
 dofile(config_path .. "lain-battery.lua")
 dofile(config_path .. "lain-sound.lua")
-dofile(config_path .. "lain-custom.lua")
+dofile(config_path .. "custom.lua")
 
 
 

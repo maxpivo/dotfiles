@@ -5,6 +5,8 @@
 -- {{{ Required libraries
 -- Standard Awesome Library
 local awful     = require("awful")
+awful.rules     = require("awful.rules")
+require("awful.autofocus") -- do not delete autofocus
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Required library
@@ -39,7 +41,7 @@ local binding = {
   clientkeys    = require("binding.clientkeys")
 }
 
--- Custom Local Library: Wibox (statusbar or maybe titlebar here)
+-- Custom Dynamic Local Wibox Statusbar Module
 local sbm = RC.vars.statusbarmodule
 local sbm_name = "anybox." .. sbm .. ".statusbar"
 local statusbar = require(sbm_name) -- after theme
@@ -51,12 +53,13 @@ os.execute("compton &")    -- xcompmgr
 
 -- {{{ Layouts
 -- Table of layouts to cover with awful.layout.inc, order matters.
--- local layouts =
+-- a variable needed in main.tags, and statusbar
 RC.layouts = main.layouts()
 -- }}}
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
+-- a variable needed in rules, tasklist, and globalkeys
 RC.tags = main.tags()
 -- }}}
 
@@ -64,6 +67,7 @@ RC.tags = main.tags()
 -- Create a laucher widget and a main menu
 RC.mainmenu = awful.menu({ items = main.menu() }) -- in globalkeys
 
+-- a variable needed in statusbar (helper)
 RC.launcher = awful.widget.launcher(
   { image = beautiful.awesome_icon, menu = RC.mainmenu }
 )

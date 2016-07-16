@@ -1,4 +1,8 @@
-local icondir = theme_path .. "titlebar/"
+local icondir = ""
+
+-- copycat-copland
+
+icondir = theme_path .. "titlebar/"
 --icondir = icondir .. "copycat-zenburn/"
 icondir = icondir .. "copycat-copland/"
 

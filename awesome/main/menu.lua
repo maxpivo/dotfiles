@@ -1,7 +1,8 @@
 -- Standard awesome library
 local awful = require("awful")
+-- local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Theme handling library
-local beautiful = require("beautiful")
+local beautiful = require("beautiful") -- for awesome.icon
 -- Required library
 local menugen = require("modules.menugen")
 local menu_blackarch = require("main.menu-blackarch")
@@ -26,6 +27,7 @@ local editor_cmd = terminal .. " -e " .. editor
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 M.awesome = {
+-- { "hotkeys", function() return false, hotkeys_popup.show_help end},
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "Terminal", terminal },

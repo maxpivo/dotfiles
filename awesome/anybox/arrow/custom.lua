@@ -11,7 +11,6 @@ local beautiful = require("beautiful")
 
 -- Wibox handling library
 local wibox = require("wibox")
-local lain = require("lain")
 local W = arrow_widget_set     -- object name
 local I = arrow_icon_set       -- object name
 
