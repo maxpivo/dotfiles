@@ -59,3 +59,5 @@ W.disk_widget_update = lain.widgets.fs({
 
 W.disk_bar_widget = wibox.widget.background(W.disk_margin)
 W.disk_bar_widget:set_bgimage(beautiful.bar_bg_copland)
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

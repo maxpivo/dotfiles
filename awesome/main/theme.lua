@@ -13,8 +13,8 @@ local home = os.getenv("HOME")
 beautiful.init(home .. "/.config/awesome/themes/clone/theme.lua")
 
 if (RC.vars.wallpaper) then
-  local wallpaper = RC.vars.wallpaper
-  if awful.util.file_readable(wallpaper) then theme.wallpaper = wallpaper end
+    local wallpaper = RC.vars.wallpaper
+    if awful.util.file_readable(wallpaper) then theme.wallpaper = wallpaper end
 end
 
 -- {{{ Wallpaper
@@ -23,3 +23,5 @@ if beautiful.wallpaper then
         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
     end
 end
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

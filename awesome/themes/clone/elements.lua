@@ -66,3 +66,5 @@ theme.menu_border_width = 1
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

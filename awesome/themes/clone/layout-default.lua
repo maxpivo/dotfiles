@@ -74,3 +74,5 @@ theme.layout_txt_uselesstile        = "[ut]"
 theme.layout_txt_uselesstileleft    = "[utl]"
 theme.layout_txt_uselesstiletop     = "[utt]"
 theme.layout_txt_uselesstilebottom  = "[utb]"
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

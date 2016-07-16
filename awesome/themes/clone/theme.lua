@@ -49,3 +49,5 @@ theme.arrow_color         = "#c9c925"  -- "#ad3737" -- "#2980b9"
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 return theme
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

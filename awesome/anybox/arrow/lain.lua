@@ -43,8 +43,8 @@ I.clock = wibox.widget.imagebox(beautiful.widget_clock)
 
 W.my_textclock = awful.widget.textclock(
     markup("#7788af", "%A %d %B ")
-      .. markup("#343639", ">")
-      .. markup("#de5e1e", " %H:%M "))
+        .. markup("#343639", ">")
+        .. markup("#de5e1e", " %H:%M "))
 
 W.textclock = lain.widgets.abase({
     timeout  = 60,
@@ -56,8 +56,8 @@ W.textclock = lain.widgets.abase({
         for i=1,3 do t_output = t_output .. " " .. o_it(i) end
 
         widget:set_markup(markup("#7788af", t_output)
-          .. markup("#343639", " > ")
-          .. markup("#de5e1e", o_it(1)) .. " ")
+            .. markup("#343639", " > ")
+            .. markup("#de5e1e", o_it(1)) .. " ")
     end
 })
 
@@ -169,3 +169,5 @@ W.mem = lain.widgets.mem({
         widget:set_markup(markup(fg_color, mem_now.used .. "M "))
     end
 })
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

@@ -29,3 +29,5 @@ theme.titlebar_maximized_button_normal_inactive = icondir .. "maximized_normal_i
 theme.titlebar_maximized_button_focus_inactive  = icondir .. "maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_active   = icondir .. "maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = icondir .. "maximized_focus_active.png"
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

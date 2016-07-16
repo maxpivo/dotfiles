@@ -73,9 +73,9 @@ local volume_wibox_colors = {
 }
 
 W.volume_wibox = lain.widgets.alsabar({
-  width = 55, ticks = true, ticks_size = 6, step = "2%",
-  settings = volume_wibox_settings,
-  colors = volume_wibox_colors
+    width = 55, ticks = true, ticks_size = 6, step = "2%",
+    settings = volume_wibox_settings,
+    colors = volume_wibox_colors
 })
 
 W.volume_margin = wibox.layout.margin(W.volume_wibox.bar, 2, 7)
@@ -110,6 +110,8 @@ W.mpd = lain.widgets.mpd({
             I.mpd:set_image(nil)
         end
         widget:set_markup(markup("#e54c62", artist)
-          .. markup("#b2b2b2", title))
+            .. markup("#b2b2b2", title))
     end
 })
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

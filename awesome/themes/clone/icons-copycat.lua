@@ -51,3 +51,5 @@ theme.monitor_ac          = icondir .. "ac.png"
 theme.monitor_bat         = icondir .. "bat.png"
 theme.monitor_bat_low     = icondir .. "bat_low.png"
 theme.monitor_bat_no      = icondir .. "bat_no.png"
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

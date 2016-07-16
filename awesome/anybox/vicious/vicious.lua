@@ -25,7 +25,7 @@ local wlandev = RC.vars.wlandev
 W.net = wibox.widget.textbox()
 -- Register widget
 vicious.register(W.net, vicious.widgets.net,
-	'${'.. wlandev .. ' down_kb} ${'.. wlandev .. ' up_kb} ', 3)
+	  '${'.. wlandev .. ' down_kb} ${'.. wlandev .. ' up_kb} ', 3)
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
@@ -36,14 +36,14 @@ vicious.register(W.date, vicious.widgets.date, "%b %d, %R")
 
 W.battery = wibox.widget.textbox()
 vicious.register(W.battery, vicious.widgets.bat,
-	"Bat: <span color='" .. hlcolor .. "'>$1$2</span>",67,"BAT0")
+	  "Bat: <span color='" .. hlcolor .. "'>$1$2</span>",67,"BAT0")
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 W.mem = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
 vicious.register(W.mem, vicious.widgets.mem,
-	"Mem: <span color='" .. hlcolor .. "'>$1%</span> ($2MB/$3MB)", 13)
+	  "Mem: <span color='" .. hlcolor .. "'>$1%</span> ($2MB/$3MB)", 13)
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
@@ -52,7 +52,7 @@ vicious.register(W.mem, vicious.widgets.mem,
 
 W.hddtemp = wibox.widget.textbox()
 vicious.register(W.hddtemp, vicious.widgets.hddtemp,
-	" HDD: <span color='" .. hlcolor .. "'>${/dev/sda}°С</span>",41,"7634")
+	  " HDD: <span color='" .. hlcolor .. "'>${/dev/sda}°С</span>",41,"7634")
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
@@ -73,10 +73,10 @@ W.cpu = awful.widget.graph()
 W.cpu:set_width(50)
 W.cpu:set_background_color("#494B4F")
 W.cpu:set_color({
-  type = "linear",
-  from = { 0, 0 },
-	to = { 50, 0 },
-	stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" }}
+    type = "linear",
+    from = { 0, 0 },
+	  to = { 50, 0 },
+	  stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" }}
 })
 vicious.cache(vicious.widgets.cpu)
 vicious.register(W.cpu, vicious.widgets.cpu, "$1", 3)
@@ -84,3 +84,5 @@ vicious.register(W.cpu, vicious.widgets.cpu, "$1", 3)
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 return W
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

@@ -57,7 +57,7 @@ local disk_widget_settings = function()
         if perc >= 98 then
             W.battery_bar:set_color(green)
         elseif perc > 50 then
-            W.battery_bar:set_color(beautiful.fg_normal)
+            W.battery_bar:set_color(beautiful.fg_nor-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80mal)
         elseif perc > 15 then
             W.battery_bar:set_color(beautiful.fg_normal)
         else
@@ -86,3 +86,5 @@ W.battery_widget_update = lain.widgets.bat({
 
 W.battery_bar_widget = wibox.widget.background(W.battery_margin)
 W.battery_bar_widget:set_bgimage(beautiful.bar_bg_copland)
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

@@ -110,6 +110,8 @@ W.mpd = lain.widgets.mpd({
             I.mpd:set_image(nil)
         end
         widget:set_markup(markup("#e54c62", artist)
-          .. markup("#b2b2b2", title))
+            .. markup("#b2b2b2", title))
     end
 })
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

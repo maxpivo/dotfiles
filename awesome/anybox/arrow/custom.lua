@@ -22,12 +22,14 @@ I.uptime = wibox.widget.imagebox(beautiful.widget_fs)
 W.uptime = wibox.widget.textbox()
 
 W.update_uptime = function()
-  local fg_color = "#000000"
-  local uptime = awful.util.pread("uptime -p")
-  W.uptime:set_markup(markup(fg_color, uptime))
+    local fg_color = "#000000"
+    local uptime = awful.util.pread("uptime -p")
+    W.uptime:set_markup(markup(fg_color, uptime))
 end
 
 W.update_uptime()
 local mytimer = timer({ timeout = 30 })
 mytimer:connect_signal("timeout", W.update_uptime)
 mytimer:start()
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

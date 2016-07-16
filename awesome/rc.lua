@@ -27,18 +27,18 @@ dofile(config_path .. "main/theme.lua")
 
 -- Custom Local Library
 local main = {
-  layouts = require("main.layouts"),
-  tags    = require("main.tags"),
-  menu    = require("main.menu"),
-  rules   = require("main.rules"),
+    layouts = require("main.layouts"),
+    tags    = require("main.tags"),
+    menu    = require("main.menu"),
+    rules   = require("main.rules"),
 }
 -- Custom Local Library: Keys and Mouse Binding
 local binding = {
-  globalbuttons = require("binding.globalbuttons"),
-  clientbuttons = require("binding.clientbuttons"),
-  globalkeys    = require("binding.globalkeys"),
-  bindtotags    = require("binding.bindtotags"),
-  clientkeys    = require("binding.clientkeys")
+    globalbuttons = require("binding.globalbuttons"),
+    clientbuttons = require("binding.clientbuttons"),
+    globalkeys    = require("binding.globalkeys"),
+    bindtotags    = require("binding.bindtotags"),
+    clientkeys    = require("binding.clientkeys")
 }
 
 -- Custom Dynamic Local Wibox Statusbar Module
@@ -92,10 +92,12 @@ root.keys(RC.globalkeys)
 awful.rules.rules = main.rules(
     binding.clientkeys(),
     binding.clientbuttons()
-  )
+)
 -- }}}
 
 
 statusbar()
 
 --awful.util.spawn("nm-applet")
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

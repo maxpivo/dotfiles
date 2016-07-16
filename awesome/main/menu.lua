@@ -37,17 +37,17 @@ M.awesome = {
 }
 
 M.favorite = {
-	{ "firefox", "firefox", awful.util.getdir("config") .. "/firefox.png" },
-	{ "chromium", "chromium" },
-	{ "&firefox", "firefox" },
-	{ "&thunderbird", "thunderbird" },
-	{ "deluge", "deluge" },
-	{ "geany", "geany" },
-	{ "atom", "atom" },
-	{ "thunar", "thunar" },
-	{ "gimp", "gimp" },
-	{ "inkscape", "inkscape" },
-	{ "screenshooter", "xfce4-screenshooter" },
+  	{ "firefox", "firefox", awful.util.getdir("config") .. "/firefox.png" },
+	  { "chromium", "chromium" },
+	  { "&firefox", "firefox" },
+	  { "&thunderbird", "thunderbird" },
+	  { "deluge", "deluge" },
+	  { "geany", "geany" },
+	  { "atom", "atom" },
+	  { "thunar", "thunar" },
+	  { "gimp", "gimp" },
+	  { "inkscape", "inkscape" },
+	  { "screenshooter", "xfce4-screenshooter" },
 }
 
 M.network_main = {
@@ -59,25 +59,27 @@ M.network_main = {
 
 function _M.get()
 
-  --[[
-  -- Main Menu
-  local menu_items = {
-    { "awesome", M.awesome, beautiful.awesome_subicon },
-  	{ "open terminal", terminal },
-  	{ "blackarch", menu_blackarch() },
-    { "network", M.network_main },
-  	{ "favorite", M.favorite }
-  }
-  ]]
+    --[[
+    -- Main Menu
+    local menu_items = {
+        { "awesome", M.awesome, beautiful.awesome_subicon },
+  	    { "open terminal", terminal },
+  	    { "blackarch", menu_blackarch() },
+        { "network", M.network_main },
+  	     { "favorite", M.favorite }
+    }
+    ]]
 
-  local menu_items = require("menugen").build_menu()
-  table.insert(menu_items, 1, { nil, nil })
-  table.insert(menu_items, 1, { "Favorite", M.favorite })
-  table.insert(menu_items, 1, { "Awesome", M.awesome, beautiful.awesome_subicon })
+    local menu_items = require("menugen").build_menu()
+    table.insert(menu_items, 1, { nil, nil })
+    table.insert(menu_items, 1, { "Favorite", M.favorite })
+    table.insert(menu_items, 1, { "Awesome", M.awesome, beautiful.awesome_subicon })
 
-  return menu_items
+    return menu_items
 end
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

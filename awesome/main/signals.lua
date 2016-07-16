@@ -51,3 +51,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 mytextbox.mouse_leave
 -- }}}
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
