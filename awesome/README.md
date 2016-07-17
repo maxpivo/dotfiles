@@ -3,6 +3,28 @@ Awesome
 
 # Screenshots
 
+## Modularized
+
+<strong>OS</strong>: Arch<br/>
+<strong>WM</strong>: Awesome<br/>
+<br/>
+  + <strong>Statusbar</strong>: Lua Wibox<br/>
+  : Top: Horizontal [Left, Mid, Right]<br/>
+  : Bottom: Vertical [Constraint, Constraint]<br/>
+  :.: Bottom.Top.Constraint: [Tasklist]<br/>
+  :.: Bottom.Bottom.Constraint: [Horizontal [Left, Mid, Right]]<br/>
+<br/>
+  + <strong>Theme</strong>: Clone<br/>
+  - Menu Icon: Paper<br/>
+  - Font: Tamsyn<br/>
+<br/>
+  + Terminal: Termite<br/>
+  - ViM<br/>
+  - Ansi Color Pixel Art: Happy Eid Mubarak<br/>
+<br/>
+
+![Awesome Screenshot][picasa-ss-awesome]
+
 ## Old Configuration
 
 <strong>OS</strong>: Arch<br/>
@@ -23,6 +45,8 @@ Awesome
   : ncmpcpp clock<br/>
   : ncmpcpp playlist
 
-![Awesome Screenshot][picasa-ss-awesome]
+![Old Awesome Screenshot][picasa-ss-awesome-old]
+
+[picasa-ss-awesome-old]: https://lh3.googleusercontent.com/-NgcARBSpJEc/Vz2oASMylYI/AAAAAAAAARM/3IssneEeNb8JDV6NUZoS2rPNz5FHp3CQQCCo/s0/awesome.png
 
 [picasa-ss-awesome]: https://lh3.googleusercontent.com/-Dh5_vrOjU_s/V4uZbgMmeMI/AAAAAAAAAdM/e74eomkUtUsnwVPgIt-0GMGt6CeAHFjFwCCo/s0/awesome-modularized-configuration-red-stacked.png
