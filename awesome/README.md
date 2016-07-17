@@ -25,4 +25,4 @@ Awesome
 
 ![Awesome Screenshot][picasa-ss-awesome]
 
-[picasa-ss-awesome]: https://lh3.googleusercontent.com/-NgcARBSpJEc/Vz2oASMylYI/AAAAAAAAARM/3IssneEeNb8JDV6NUZoS2rPNz5FHp3CQQCCo/s0/awesome.png
+[picasa-ss-awesome]: https://lh3.googleusercontent.com/-Dh5_vrOjU_s/V4uZbgMmeMI/AAAAAAAAAdM/e74eomkUtUsnwVPgIt-0GMGt6CeAHFjFwCCo/s0/awesome-modularized-configuration-red-stacked.png

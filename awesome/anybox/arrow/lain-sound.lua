@@ -110,7 +110,7 @@ W.mpd = lain.widgets.mpd({
             I.mpd:set_image(nil)
         end
         widget:set_markup(markup("#e54c62", artist)
-            .. markup("#b2b2b2", title))
+            .. markup("#323232", title))
     end
 })
 
