@@ -19,7 +19,7 @@ dofile(theme_path .. "titlebar-copycat.lua")
 dofile(theme_path .. "layout-default.lua")
 
 theme.wallpaper          = theme_path .. "background.jpg"
-theme.awesome_icon       = theme_path .. "launcher/logo20_kali_white.png"
+theme.awesome_icon       = theme_path .. "launcher/logo20_kali_black.png"
 theme.awesome_subicon    = theme_path .. "launcher/logo20_kali_blue.png"
 
 -- look inside /usr/share/icons/, default: nil (don't use icon theme)

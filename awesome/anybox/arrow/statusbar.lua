@@ -54,8 +54,22 @@ function WB.generate_wibox_one (s)
     layout:set_middle(l_mid)
     layout:set_right(l_right)
 
-    WB.one[s] = awful.wibox({ position = "bottom", screen = s }) -- , height = "28"
-    WB.one[s]:set_widget(layout)
+    local l_bottom = wibox.layout.constraint()
+    l_bottom:set_widget(layout)
+    l_bottom:set_strategy("exact")
+    l_bottom:set_height(24)
+
+    local l_top = wibox.layout.constraint()
+    l_top:set_widget(WB.tasklist[s])
+    l_top:set_strategy("exact")
+    l_top:set_height(16)
+
+    local stacked = wibox.layout.fixed.vertical()
+    stacked:add(l_top)
+    stacked:add(l_bottom)
+
+    WB.one[s] = awful.wibox({ position = "bottom", screen = s, height = "40" }) -- , height = "28"
+    WB.one[s]:set_widget(stacked)
 end
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -68,16 +82,19 @@ function WB.generate_wibox_two (s)
     local l_left = wibox.layout.fixed.horizontal()
     l_left = WB.add_widgets_monitor(l_left, s)
 
+    local l_mid = wibox.layout.fixed.horizontal()
+    l_mid = WB.add_widgets_music(l_mid, s)
+
     local l_right = wibox.layout.fixed.horizontal()
     l_right = WB.add_widgets_custom(l_right, s)
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
     layout:set_left(l_left)
-    layout:set_middle(WB.tasklist[s])
+    layout:set_middle(l_mid)
     layout:set_right(l_right)
 
-    WB.two[s] = awful.wibox({ position = "top", screen = s })
+    WB.two[s] = awful.wibox({ position = "top", screen = s, height = "24" })
     WB.two[s]:set_widget(layout)
 end
 

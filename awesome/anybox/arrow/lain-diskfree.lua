@@ -40,7 +40,7 @@ W.disk_bar:set_background_color(beautiful.bg_normal)
 
 W.disk_margin = wibox.layout.margin(W.disk_bar, 2, 7)
 W.disk_margin:set_top(6)
-W.disk_margin:set_bottom(9)
+W.disk_margin:set_bottom(12)
 
 -- Update bar, also in widgets popups
 local disk_widget_settings = function()

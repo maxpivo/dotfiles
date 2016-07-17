@@ -114,9 +114,6 @@ function WB.add_widgets_bar (line, screen)
 
 --  volume
 
---  line:add(mci.mpd)     line:add(mcw.mpd)
---  line:add(WB.arrl_dl)
-
 --  line:add(WB.arrl_ld)
 --  line:add(mci.volume)     line:add(mcw.volume)
     line:add(mci.volume_dynamic)
@@ -161,37 +158,37 @@ function WB.add_widgets_monitor (line, screen)
 
 --  net
 
-    mcc.netdown = "ccccff" -- "#87af5f"
+    mcc.netdown = "ffaaaa" -- "ccccff" -- "#87af5f"
     line:add(setar("alpha",         mcc.netdown))
     line:add(setbg(mci.netdown,     mcc.netdown))
     line:add(setbg(mcw.netdowninfo, mcc.netdown))
-    mcc.netup   = "bbbbdd" -- "#e54c62"
+    mcc.netup   = "dd8888" -- "bbbbdd" -- "#e54c62"
 --  line:add(setar(mcc.netdown,     mcc.netup))
     line:add(setbg(mci.netup,       mcc.netup))
     line:add(setbg(mcw.netupinfo,   mcc.netup))
 
 --   mem, cpu, files system, temp, batt
 
-    mcc.mem     = "aaaacc" -- "#e0da37"
+    mcc.mem     = "cc6666" -- "aaaacc" -- "#e0da37"
     line:add(setar(mcc.netup,       mcc.mem))
     line:add(setbg(mci.mem,         mcc.mem))
     line:add(setbg(mcw.mem,         mcc.mem))
-    mcc.cpu     = "9999bb" -- "#e33a6e"
+    mcc.cpu     = "bb3333" -- "9999bb" -- "#e33a6e"
     line:add(setar(mcc.mem,         mcc.cpu))
     line:add(setbg(mci.cpu,         mcc.cpu))
     line:add(setbg(mcw.cpu,         mcc.cpu))
 --  mcc.fs      = "6868aa" -- "#80d9d8"
 --  line:add(setbg(mci.fs,          mcc.fs))
 --  line:add(setbg(mcw.fs,          mcc.fs))
-    mcc.temp    = "aaaacc" -- "#f1af5f"
+    mcc.temp    = "cc6666" -- "aaaacc" -- "#f1af5f"
     line:add(setal(mcc.cpu,         mcc.temp))
     line:add(setbg(mci.temp,        mcc.temp))
     line:add(setbg(mcw.temp,        mcc.temp))
-    mcc.bat     = "bbbbdd"
+    mcc.bat     = "dd8888" -- "bbbbdd"
     line:add(setal(mcc.temp,        mcc.bat))
     line:add(setbg(mci.bat,         mcc.bat))
     line:add(setbg(mcw.bat,         mcc.bat))
-    mcc.close   = "#ccccff"
+    mcc.close   = "ffffff" -- "#ccccff"
     line:add(setal(mcc.bat,         mcc.close))
     line:add(setbg(WB.spacer,       mcc.close))
 
@@ -200,6 +197,20 @@ end
 
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+function WB.add_widgets_music (line, screen)
+  local mcw = arrow_widget_set
+  local mci = arrow_icon_set
+  local mcc = {}
+
+  local setbg = wibox.widget.background
+
+  mcc.mpd     = "#ffffff" -- "#000000cc"
+  line:add(setbg(mci.mpd,       mcc.mpd))
+  line:add(setbg(mcw.mpd,       mcc.mpd))
+
+  return line
+end
 
 function WB.add_widgets_custom (line, screen)
     local mcw = arrow_widget_set
@@ -210,8 +221,12 @@ function WB.add_widgets_custom (line, screen)
     local setar = separators.arrow_right
     local setal = separators.arrow_left
 
-    mcc.spacer  = "#000000"
-    mcc.uptime  = "#ccccff"
+--    mcc.mpd     = "#ffffff" -- "#000000cc"
+--    line:add(setbg(mci.mpd,       mcc.mpd))
+--    line:add(setbg(mcw.mpd,       mcc.mpd))
+
+    mcc.spacer  = "#ffffff" -- "#000000cc"
+    mcc.uptime  = "#ffaaaa" -- "#ccccff"
     line:add(setbg(WB.spacer,       mcc.spacer))
     line:add(setar(mcc.spacer,      mcc.uptime))
     line:add(setbg(mci.uptime,      mcc.uptime))

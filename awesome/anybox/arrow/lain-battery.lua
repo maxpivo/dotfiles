@@ -45,7 +45,7 @@ W.battery_bar:set_background_color(beautiful.bg_normal)
 
 W.battery_margin = wibox.layout.margin(W.battery_bar, 2, 7)
 W.battery_margin:set_top(6)
-W.battery_margin:set_bottom(9)
+W.battery_margin:set_bottom(12)
 
 -- Update bar, also in widgets popups
 local disk_widget_settings = function()
