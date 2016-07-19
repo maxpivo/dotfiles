@@ -57,7 +57,7 @@ local disk_widget_settings = function()
         if perc >= 98 then
             W.battery_bar:set_color(green)
         elseif perc > 50 then
-            W.battery_bar:set_color(beautiful.fg_nor-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80mal)
+            W.battery_bar:set_color(beautiful.fg_normal)
         elseif perc > 15 then
             W.battery_bar:set_color(beautiful.fg_normal)
         else
