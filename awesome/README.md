@@ -15,6 +15,8 @@ Awesome
 
 ![Awesome Wibox: Layout, Task and Bar][wibox-layout-bar]
 
+-- -- --
+
 # Screenshots
 
 ## Modularized

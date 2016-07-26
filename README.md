@@ -49,8 +49,8 @@ There are three parts here
 
 -- -- --
 
-| **Disclaimer** | Use it at your own risk |
-| -------------- | ----------------------- |
+| Disclaimer | Use it at your own risk |
+| ---------- | ----------------------- |
 
 [readme-fluxbox]: https://github.com/epsi-rns/dotfiles/blob/master/fluxbox/README.md
 [readme-openbox]: https://github.com/epsi-rns/dotfiles/blob/master/openbox/README.md
