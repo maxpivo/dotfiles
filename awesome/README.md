@@ -1,6 +1,20 @@
 Awesome
 =====================
 
+# Wibox Preview
+
+## Monitor with Arrow Separator
+
+![Awesome Wibox: Monitor with Arrow Separator][wibox-arrow]
+
+## Tags
+
+![Awesome Wibox: Tags][wibox-tags]
+
+## Layout, Task, and Bar
+
+![Awesome Wibox: Layout, Task and Bar][wibox-layout-bar]
+
 # Screenshots
 
 ## Modularized
@@ -50,3 +64,8 @@ Awesome
 [picasa-ss-awesome-old]: https://lh3.googleusercontent.com/-NgcARBSpJEc/Vz2oASMylYI/AAAAAAAAARM/3IssneEeNb8JDV6NUZoS2rPNz5FHp3CQQCCo/s0/awesome.png
 
 [picasa-ss-awesome]: https://lh3.googleusercontent.com/-Dh5_vrOjU_s/V4uZbgMmeMI/AAAAAAAAAdM/e74eomkUtUsnwVPgIt-0GMGt6CeAHFjFwCCo/s0/awesome-modularized-configuration-red-stacked.png
+
+
+[wibox-arrow]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/readme/wibox-arrow.png
+[wibox-tags]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/readme/wibox-tags.png
+[wibox-layout-bar]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/readme/wibox-layout-bar.png
