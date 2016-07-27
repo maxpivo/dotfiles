@@ -3,6 +3,8 @@ XMonad
 
 # DZen2 Statusbar Preview
 
+You can change the color easily by editing lib/MyColor.hs.
+
 ## Top Monitor
 
 ![XMonad DZen2: Monitor on Top][dzen-top]

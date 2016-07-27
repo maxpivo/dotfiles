@@ -5,6 +5,8 @@ Awesome
 
 ## Monitor with Arrow Separator
 
+You can change the color easily by editing arrow/helper.lua.
+
 ![Awesome Wibox: Monitor with Arrow Separator][wibox-arrow]
 
 ## Tags
@@ -12,6 +14,8 @@ Awesome
 ![Awesome Wibox: Tags][wibox-tags]
 
 ## Layout, Task, and Bar
+
+Double Bottom Wibox: Task at the Top, and the rest at the Bottom.
 
 ![Awesome Wibox: Layout, Task and Bar][wibox-layout-bar]
 

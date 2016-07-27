@@ -21,7 +21,11 @@ There are three parts here
 
 * [README Awesome][readme-awesome]
 
+  ![Awesome Wibox][wibox-all]
+
 * [README XMonad][readme-xmonad]
+
+  ![XMonad DZen2][dzen-all]
 
 -- -- --
 
@@ -56,3 +60,6 @@ There are three parts here
 [readme-openbox]: https://github.com/epsi-rns/dotfiles/blob/master/openbox/README.md
 [readme-awesome]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/README.md
 [readme-xmonad]: https://github.com/epsi-rns/dotfiles/blob/master/xmonad/README.md
+
+[wibox-tags]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/readme/wibox-all.png
+[dzen-top]: https://github.com/epsi-rns/dotfiles/blob/master/xmonad/readme/dzen-all.png
