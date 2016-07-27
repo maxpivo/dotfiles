@@ -61,5 +61,5 @@ There are three parts here
 [readme-awesome]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/README.md
 [readme-xmonad]: https://github.com/epsi-rns/dotfiles/blob/master/xmonad/README.md
 
-[wibox-tags]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/readme/wibox-all.png
-[dzen-top]: https://github.com/epsi-rns/dotfiles/blob/master/xmonad/readme/dzen-all.png
+[wibox-all]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/readme/wibox-all.png
+[dzen-all]: https://github.com/epsi-rns/dotfiles/blob/master/xmonad/readme/dzen-all.png
