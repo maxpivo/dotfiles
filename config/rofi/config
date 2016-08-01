@@ -1,0 +1,11 @@
+! Window opacity
+rofi.opacity: 90
+
+! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
+rofi.color-normal: #161616,  #5c5dad,  #000000,  #000000,  #c9c925
+rofi.color-urgent: #161616,  #ad3737,  #000000,  #000000,  #fdf6e3
+rofi.color-active: #161616,  #ffffff,  #000000,  #000000,  #fdf6e3
+
+!                  'background', 'border'
+rofi.color-window: #161616,      #5c5dad
+

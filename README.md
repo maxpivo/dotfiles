@@ -27,6 +27,11 @@ There are three parts here
 
   ![XMonad DZen2][dzen-all]
 
+* [README i3][readme-i3]
+
+  ![i3-gaps i3status Conky Lua JSON][i3status-all]
+
+
 -- -- --
 
 # ~/.config
@@ -63,3 +68,4 @@ There are three parts here
 
 [wibox-all]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/readme/wibox-all.png
 [dzen-all]: https://github.com/epsi-rns/dotfiles/blob/master/xmonad/readme/dzen-all.png
+[i3status-all]: https://github.com/epsi-rns/dotfiles/blob/master/i3/readme/conky-lua-json-both.png
