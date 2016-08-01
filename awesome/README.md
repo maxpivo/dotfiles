@@ -29,10 +29,10 @@ Double Bottom Wibox: Task at the Top, and the rest at the Bottom.
 <strong>WM</strong>: Awesome<br/>
 <br/>
   + <strong>Statusbar</strong>: Lua Wibox<br/>
-  : Top: Horizontal [Left, Mid, Right]<br/>
-  : Bottom: Vertical [Constraint, Constraint]<br/>
-  :.: Bottom.Top.Constraint: [Tasklist]<br/>
-  :.: Bottom.Bottom.Constraint: [Horizontal [Left, Mid, Right]]<br/>
+    - Top: Horizontal [Left, Mid, Right]<br/>
+    - Bottom: Vertical [Constraint, Constraint]<br/>
+      :.: Bottom.Top.Constraint: [Tasklist]<br/>
+      :.: Bottom.Bottom.Constraint: [Horizontal [Left, Mid, Right]]<br/>
 <br/>
   + <strong>Theme</strong>: Clone<br/>
     - Menu Icon: Paper<br/>
@@ -51,19 +51,19 @@ Double Bottom Wibox: Task at the Top, and the rest at the Bottom.
 <strong>WM</strong>: Awesome<br/>
 <br/>
   + <strong>Theme</strong>:<br/>
-  : Color: blue-black-red theme<br/>
-  : Kali Logo<br/>
-  : Bar Transparency<br/>
-  : Wallpaper: crown theme<br/>
+    - Color: blue-black-red theme<br/>
+    - Kali Logo<br/>
+    - Bar Transparency<br/>
+    - Wallpaper: crown theme<br/>
 <br/>
   + <strong>Widget</strong>:<br/>
-  : Vicious: cpuwidget<br/>
+    - Vicious: cpuwidget<br/>
 <br/>
   + <strong>Terminal</strong>:<br/>
-  : glances<br/>
-  : saidar<br/>
-  : ncmpcpp clock<br/>
-  : ncmpcpp playlist
+    - glances<br/>
+    - saidar<br/>
+    - ncmpcpp clock<br/>
+    - ncmpcpp playlist
 
 ![Old Awesome Screenshot][picasa-ss-awesome-old]
 
