@@ -35,12 +35,12 @@ Double Bottom Wibox: Task at the Top, and the rest at the Bottom.
   :.: Bottom.Bottom.Constraint: [Horizontal [Left, Mid, Right]]<br/>
 <br/>
   + <strong>Theme</strong>: Clone<br/>
-  - Menu Icon: Paper<br/>
-  - Font: Tamsyn<br/>
+    - Menu Icon: Paper<br/>
+    - Font: Tamsyn<br/>
 <br/>
   + Terminal: Termite<br/>
-  - ViM<br/>
-  - Ansi Color Pixel Art: Happy Eid Mubarak<br/>
+    - ViM<br/>
+    - Ansi Color Pixel Art: Happy Eid Mubarak<br/>
 <br/>
 
 ![Awesome Screenshot][picasa-ss-awesome]

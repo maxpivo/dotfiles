@@ -1,11 +1,11 @@
-Awesome
+i3
 =====================
 
 # i3status Preview
 
 ## Conky Lua with JSON
 
-You can change the color and easily by editing conky/04.modular/jsonparts.lua.
+You can change the color and easily by editing lua files in conky/04.modular/.
 
 ![i3status: Conky Lua with JSON: Top][i3status-top]
 <br/>
@@ -26,9 +26,9 @@ You can change the color and easily by editing conky/04.modular/jsonparts.lua.
   + Rofi<br/>
 <br/>
   + Terminal: Termite<br/>
-  - ViM: NERDTree<br/>
-  - perl-term-extendedcolor<br/>
-  - ls++<br/>
+    - ViM: NERDTree<br/>
+    - perl-term-extendedcolor<br/>
+    - ls++<br/>
 <br/>
 
 ![i3-gaps Screenshot][picasa-ss-i3gaps-dark]
