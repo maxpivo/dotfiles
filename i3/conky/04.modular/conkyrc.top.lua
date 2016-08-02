@@ -15,26 +15,28 @@ home = os.getenv("HOME")
 dofile(home .. '/.config/i3/conky/04.modular/' .. 'jsonhelper.lua')
 dofile(home .. '/.config/i3/conky/04.modular/' .. 'jsonparts.lua')
 
-enabled = [[
-]] .. parts.mpd .. [[,
-]] .. parts.mem .. [[,
-]] .. parts.uptime .. [[,
-]] .. parts.host .. [[,
-]] .. parts.volume .. [[,
-]] .. parts.machine .. [[,
-]] .. jsonhelper.separator() .. [[
+--[[
+-- if you care about performance, comment-out this variable.
+disabled = ''
+    .. parts.cputemp .. ',' 
+    .. parts.download .. ','
+    .. parts.upload .. ','
+    .. parts.memory .. ','
+    .. parts.cpu0 .. ','
+    .. parts.battery .. ','
+    .. parts.date .. ','
+    .. parts.time
 ]]
 
-disabled = [[
-]] .. parts.cputemp .. [[,
-]] .. parts.download .. [[,
-]] .. parts.upload .. [[,
-]] .. parts.memory .. [[,
-]] .. parts.cpu0 .. [[,
-]] .. parts.battery .. [[,
-]] .. parts.date .. [[, 
-]] .. parts.time .. [[ 
-]]
+enabled = ''
+    .. parts.mpd .. ','
+    .. parts.mem .. ','
+    .. parts.uptime .. ','
+    .. parts.host .. ','
+    .. parts.volume .. ','
+    .. parts.machine .. ','
+    .. jsonhelper.separator()
+
 
 conky.text = [[ 
 [ 

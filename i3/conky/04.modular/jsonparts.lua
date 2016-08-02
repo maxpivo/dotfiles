@@ -11,7 +11,7 @@ http://fontawesome.io/cheatsheet/
 parts = {}
 
 -- user variables
-local wlandev = 'wlp0s3f3u2'
+local wlandev = 'wlan0'
 
 -- shortcut
 local _h = jsonhelper
