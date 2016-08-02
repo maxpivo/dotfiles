@@ -4,12 +4,21 @@
 jsonhelper = {}
 
 -- template variables
-local color_preset = {
+local color_preset_dark = {
   icon      = '#c9c925',
   text      = '#5c5dad',
   separator = '#545454',
   value     = '#aaaaaa'
 }
+
+local color_preset_bright = {
+  icon      = '#5c5dad',
+  text      = '#606040',
+  separator = '#c9c925',
+  value     = '#000000'
+}
+
+local color_preset = color_preset_bright
 
 function jsonhelper.icon(text, color)
   color = color or color_preset.icon

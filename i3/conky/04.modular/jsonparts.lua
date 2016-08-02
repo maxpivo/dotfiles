@@ -11,17 +11,25 @@ http://fontawesome.io/cheatsheet/
 parts = {}
 
 -- user variables
-local wlandev = 'wlan0'
+local wlandev = 'wlp0s3f3u2'
 
 -- shortcut
 local _h = jsonhelper
 
 -- template variables: Color Indicator
-local ci = {
+local color_indicator_dark = {
   good      = '#909737',
-  bad       = '#802828',
-  degraded  = '#b27d12'
+  degraded  = '#b27d12',
+  bad       = '#802828'
 }
+
+local color_indicator_bright = {
+  good      = '#202080',
+  degraded  = '#802080',
+  bad       = '#802020'
+}
+
+local ci = color_indicator_bright
 
 -- Time
 parts.time = _h.common('', nil, '${time %H:%M }')
@@ -65,11 +73,11 @@ parts.machine = _h.common('', nil, machine)
 parts.mpd = [[
 ${if_mpd_playing} 
 ]] .. _h.icon('') .. [[,
-    {"full_text":"${mpd_artist 20}", "color" : "\#5c5dad", 
+    {"full_text":"${mpd_artist 20}", "color" : "\#545454", 
      "separator" : false, "separator_block_width":3 },
     {"full_text":" - ", "color" : "\#909737", 
      "separator" : false, "separator_block_width":3 },
-    {"full_text":"${mpd_title 30}", "color" : "\#545454", 
+    {"full_text":"${mpd_title 30}", "color" : "\#5c5dad", 
      "separator" : false, "separator_block_width":6 }
 ${else} 
     {"full_text":"", "color":"\#c92525", 

@@ -33,7 +33,7 @@ enabled = ''
     .. parts.mem .. ','
     .. parts.uptime .. ','
     .. parts.host .. ','
-    .. parts.volume .. ','
+--  .. parts.volume .. ','
     .. parts.machine .. ','
     .. jsonhelper.separator()
 

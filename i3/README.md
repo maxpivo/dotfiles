@@ -3,14 +3,19 @@ i3
 
 # i3status Preview
 
-## Conky Lua with JSON
+## Conky Lua with JSON (Dark)
 
 You can change the color and easily by editing lua files in conky/04.modular/.
 
-![i3status: Conky Lua with JSON: Top][i3status-top]
+![i3status: Conky Lua with JSON: Dark Top][i3status-dark-top]
 <br/>
-![i3status: Conky Lua with JSON: Bottom][i3status-bottom]
+![i3status: Conky Lua with JSON: Dark Bottom][i3status-dark-bottom]
 
+## Conky Lua with JSON (Bright)
+
+![i3status: Conky Lua with JSON: Bright Top][i3status-bright-top]
+<br/>
+![i3status: Conky Lua with JSON: Bright Bottom][i3status-bright-bottom]
 
 -- -- --
 
@@ -36,5 +41,10 @@ You can change the color and easily by editing lua files in conky/04.modular/.
 
 
 [picasa-ss-i3gaps-dark]: https://lh3.googleusercontent.com/-z2h94mqwszU/V59JN7KCTyI/AAAAAAAAAsI/Dj76UEcWbnkhowZUobnrj8uwC6aA-VcuwCCo/s0/i3gaps-dark.png
-[i3status-top]: https://github.com/epsi-rns/dotfiles/blob/master/i3/readme/conky-lua-json-top.png
-[i3status-bottom]: https://github.com/epsi-rns/dotfiles/blob/master/i3/readme/conky-lua-json-bottom.png
+
+[i3status-dark-top]: https://github.com/epsi-rns/dotfiles/blob/master/i3/readme/conky-lua-json-dark-top.png
+[i3status-dark-bottom]: https://github.com/epsi-rns/dotfiles/blob/master/i3/readme/conky-lua-json-dark-bottom.png
+
+[i3status-bright-top]: https://github.com/epsi-rns/dotfiles/blob/master/i3/readme/conky-lua-json-bright-top.png
+[i3status-bright-bottom]: https://github.com/epsi-rns/dotfiles/blob/master/i3/readme/conky-lua-json-bright-bottom.png
+

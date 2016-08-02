@@ -148,9 +148,9 @@ bindsym $mod+r mode "resize"
 
 # Window Colours
 # class                 border   backgr.  text     indicator
-client.focused          #5c5dad  #5c5dad  #ffffff  #fcc09e
+client.unfocused        #5c5dad  #5c5dad  #ffffff  #fcc09e
 client.focused_inactive #222222  #222222  #999999  #fcc09e
-client.unfocused        #c9c925  #c9c925  #000000  #fcc09e
+client.focused          #c9c925  #c9c925  #000000  #fcc09e
 client.urgent           #a5a5a5  #a5a5a5  #2e3436  #fcc09e
 client.background       #161616
 
@@ -192,7 +192,7 @@ bar {
 # default i3 status config
 #  status_command i3status
 
-# custom i3status config
+# custom i3 status config
 #    status_command i3status --config ~/.config/i3/i3status/custom.conf
 
 # i3blocks
@@ -210,22 +210,24 @@ bar {
 # i3bar, modularized lua json configuration 
     status_command ~/.config/i3/conky/04.modular/json.bottom.sh
 
-
+#   height of the bar in pixels
+    height         25    
 #   separator_symbol ""
 #   font           pango:Consolas 9
-
-    position       bottom  
+    id             bottom-bar
+    i3bar_command  i3bar -t
+    position       bottom    
     
     colors {
-        background #000000
-        statusline #c9c925
-        separator  #ffffff
+        background #ffffff80
+        statusline #5c5dad
+        separator  #000000
               
         # class            border    backgrd   text
-        focused_workspace  #161616   #c9c925   #000000
-        active_workspace   #161616   #5c5dad   #a5a5a5
-        inactive_workspace #161616   #222222   #5c5dad
-        urgent_workspace   #161616   #ad3737   #ffffff
+        focused_workspace  #cccccc   #c9c925   #000000
+        active_workspace   #cccccc   #aaaaaa   #000000
+        inactive_workspace #cccccc   #ffffff   #5c5dad
+        urgent_workspace   #cccccc   #ad3737   #ffffff
     }
 }
 
@@ -234,12 +236,24 @@ bar {
 # i3bar, modularized lua json configuration 
     status_command ~/.config/i3/conky/04.modular/json.top.sh
 
+    height         25    
+    id             top-bar
+    i3bar_command  i3bar -t
     position       top
-    workspace_buttons      no
+    workspace_buttons      no   
 
     colors {
-        background #000000
+        background #ffffff80
+        statusline #5c5dad
+        separator  #000000
+              
+        # class            border    backgrd   text
+        focused_workspace  #cccccc   #c9c925   #000000
+        active_workspace   #cccccc   #aaaaaa   #000000
+        inactive_workspace #cccccc   #ffffff   #5c5dad
+        urgent_workspace   #cccccc   #ad3737   #ffffff
     }
+
 }
 
 exec --no-startup-id xsetroot -solid "#333333"
