@@ -44,6 +44,8 @@ There are three parts here
 
 * Termite
 
+* Rofi
+
 -- -- --
 
 # Userdir
