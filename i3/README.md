@@ -38,9 +38,14 @@ You can change the color and easily by editing lua files in conky/04.modular/.
 
 ![i3-gaps Screenshot][picasa-ss-i3gaps-dark]
 
+<br/>
+
+![i3-gaps Screenshot][picasa-ss-i3gaps-bright]
+
 
 
 [picasa-ss-i3gaps-dark]: https://lh3.googleusercontent.com/-z2h94mqwszU/V59JN7KCTyI/AAAAAAAAAsI/Dj76UEcWbnkhowZUobnrj8uwC6aA-VcuwCCo/s0/i3gaps-dark.png
+[picasa-ss-i3gaps-bright]: https://lh3.googleusercontent.com/-hJsG_VoSktU/V6DGP-pCpYI/AAAAAAAAAto/KhqyjuYpw2wlvqHSWFaClDsUtKYgWtaUgCCo/s0/i3gaps-bright.png 
 
 [i3status-dark-top]: https://github.com/epsi-rns/dotfiles/blob/master/i3/readme/conky-lua-json-dark-top.png
 [i3status-dark-bottom]: https://github.com/epsi-rns/dotfiles/blob/master/i3/readme/conky-lua-json-dark-bottom.png
