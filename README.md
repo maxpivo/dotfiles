@@ -67,7 +67,7 @@ There are three parts here
 [readme-openbox]: https://github.com/epsi-rns/dotfiles/blob/master/openbox/README.md
 [readme-awesome]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/README.md
 [readme-xmonad]: https://github.com/epsi-rns/dotfiles/blob/master/xmonad/README.md
-[readme-i3]: https://github.com/epsi-rns/dotfiles/blob/master/xmonad/README.md
+[readme-i3]: https://github.com/epsi-rns/dotfiles/blob/master/i3/README.md
 
 [wibox-all]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/readme/wibox-all.png
 [dzen-all]: https://github.com/epsi-rns/dotfiles/blob/master/xmonad/readme/dzen-all.png
