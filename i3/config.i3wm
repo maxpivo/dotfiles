@@ -36,6 +36,7 @@ floating_modifier $mod
 # bindsym $mod+Return exec i3-sensible-terminal
 # bindsym Mod1+Return exec xfce4-terminal
 bindsym $mod+Return exec termite
+bindsym $mod+Mod1+t exec xfce4-terminal --drop-down
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -172,7 +173,19 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+mode "Exit" {
+    bindsym h exec gksu "/sbin/shutdown -h now"
+    bindsym r exec gksu "/sbin/shutdown -r now"
+    bindsym x exit
 
+    # back to normal: Enter or Escape                                                                                                                                
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+x mode "Exit"
+
+bindsym $mod+Mod1+z exec "i3-nagbar -t warning -m 'Edit system files' -b 'config' 'nano ~/.config/i3/config'"
 
 
 # Window Colours
@@ -204,9 +217,9 @@ new_window pixel 3
 assign [class="URxvt"] $ws01
 # ws: net
 for_window [class="facebook"] move $ws02
-assign [instance="firefox"] $ws02
-assign [instance="chromium"] $ws02
-assign [instance="thunderbird"] $ws02
+assign [class="Firefox"] $ws02
+#assign [instance="chromium"] $ws02
+#assign [instance="thunderbird"] $ws02
 # ws: edit
 assign [instance="geany"] $ws03
 # ws: place
@@ -249,7 +262,13 @@ exec --no-startup-id xsetroot -solid "#333333"
 exec --no-startup-id compton
 exec --no-startup-id nitrogen --restore
 
-# exec --no-startup-id geany
-# exec --no-startup-id thunar
+exec --no-startup-id nm-applet 
+exec --no-startup-id dunst
+
+exec --no-startup-id termite
+exec --no-startup-id termite
+exec --no-startup-id firefox
+exec --no-startup-id "sh -c 'sleep 10; exec geany'"
+exec --no-startup-id "sh -c 'sleep 15; exec thunar'"
 
 # vim:filetype=i3
