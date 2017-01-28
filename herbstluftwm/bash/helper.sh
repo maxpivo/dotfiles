@@ -150,13 +150,13 @@ hlc_theme() {
     hca theme.tiling.reset 1
     hca theme.floating.reset 1
 
-    hcs frame_border_active_color '#222222'
+    hcs frame_border_active_color $colGrey800
   # hcs frame_bg_active_color '#345F0C'
-    hcs frame_bg_active_color '#c9c925'
+    hcs frame_bg_active_color $colYellow900
 
-    hcs frame_border_normal_color '#101010'
+    hcs frame_border_normal_color $colGrey900
   # hcs frame_bg_normal_color '#565656'
-    hcs frame_bg_normal_color '#5c5dad'
+    hcs frame_bg_normal_color $colBlue500
 
   # hcs frame_border_width 1
     hcs frame_border_width 0
@@ -173,8 +173,8 @@ hlc_theme() {
 
   # hca theme.active.color '#9fbc00'
   # hca theme.normal.color '#454545'
-    hca theme.active.color '#5c5dad'
-    hca theme.normal.color '#202020'
+    hca theme.active.color $colBlue500
+    hca theme.normal.color $colGrey800
     hca theme.urgent.color orange
 
   #hca theme.inner_width 1

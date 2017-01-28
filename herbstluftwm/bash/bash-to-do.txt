@@ -29,16 +29,19 @@
 
 # lemonbar
 
-# http://dotshare.it/dots/1455/
-# http://dotshare.it/dots/1444/
-# http://dotshare.it/dots/1443/
-# http://dotshare.it/dots/1135/
 # http://dotshare.it/dots/1095/
-# http://dotshare.it/dots/736/
+# http://dotshare.it/dots/1455/
+# http://dotshare.it/dots/1444/ -- very cool
+# http://dotshare.it/dots/1443/ 
+# http://dotshare.it/dots/1135/
 
 # no bar
 
 # http://dotshare.it/dots/623/
+
+# unknown
+
+# http://dotshare.it/dots/736/
 
 
 
@@ -46,17 +49,27 @@
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # to do 
 
-# google plus
+# basedir
+# awesome icon
+# arrow
+# bright
+
+
+# lemonbar: powerline arrow, clickable, system tray
+
 
 # read source
 # https://github.com/herbstluftwm/herbstluftwm
 
-# ksh
+
 # urxvt
-# lemonbar
+
+# google plus
 
 # panel
 ## * nm-applet on dzen2
+
+# ksh --pending 
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 

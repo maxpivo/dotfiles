@@ -15,10 +15,15 @@ hc() {
 #           Emits a custom hook to all idling herbstclients.
 hc emit_hook reload
 
-xsetroot -solid '#5A8E3A'
-
 # gap counter
 echo 35 > /tmp/herbstluftwm-gap
+
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# google material colors
+
+. ~/.config/herbstluftwm/bash/assets/gmc.sh
+
+xsetroot -solid "$colBlue500"
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # helpers
@@ -41,8 +46,8 @@ hlc_rules
 
 hc unlock
 
-hc set tree_style '╾│ ├└╼─┐'
-#hc set tree_style '⊙│ ├╰»─╮'
+#hc set tree_style '╾│ ├└╼─┐'
+hc set tree_style '⊙│ ├╰»─╮'
 
 # do multi monitor setup here, e.g.:
 # hc set_monitors 1280x1024+0+0 1280x1024+1280+0
