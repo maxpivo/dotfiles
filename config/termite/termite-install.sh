@@ -30,3 +30,12 @@ sudo cp /usr/local/lib/libvte-2.91.a /usr/local/lib/libvte-2.91.la \
 sudo mkdir -p /lib/terminfo/x; sudo ln -s \
 /usr/local/share/terminfo/x/xterm-termite \
 /lib/terminfo/x/xterm-termite
+
+
+-- --
+
+If you have trouble with xfce4-terminal, simply remove symbolic link.
+
+rm /usr/local/lib/libvte-2.91.la \
+/usr/local/lib/libvte-2.91.so /usr/local/lib/libvte-2.91.so.0 \
+/usr/lib/libvte-2.91.so.0.4400.1
