@@ -1,0 +1,46 @@
+# and this is BASH manual
+# http://tldp.org/LDP/abs/html/
+# https://www.gnu.org/software/bash/manual/html_node/index.html
+
+# reading
+# /usr/share/doc/herbstluftwm/
+# https://wiki.archlinux.org/index.php/Herbstluftwm
+# http://crunchbang.org/forums/viewtopic.php?pid=204358%23p204358#p204358k
+
+# config
+# http://www.dotshare.it/category/wms/herbstluft/
+
+# source
+# https://github.com/herbstluftwm/herbstluftwm
+
+
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# to do 
+
+# dotshare.it panel
+
+# http://dotshare.it/dots/600/
+# http://dotshare.it/dots/352/
+# http://dotshare.it/dots/305/
+# http://dotshare.it/dots/302/
+
+# dotshare.it panel
+
+# http://dotshare.it/dots/720/
+# http://dotshare.it/dots/712/
+
+# google plus
+
+# read source
+# https://github.com/herbstluftwm/herbstluftwm
+
+# ksh
+# urxvt
+# lemonbar
+
+# panel
+## * nm-applet on dzen2
+
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+
+# rewrite in Perl, Python, PHP and Ruby.

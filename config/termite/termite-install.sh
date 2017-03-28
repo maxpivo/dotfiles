@@ -34,7 +34,7 @@ sudo mkdir -p /lib/terminfo/x; sudo ln -s \
 
 -- --
 
-If you have trouble with xfce4-terminal, simply remove symbolic link.
+If you have trouble with xfce4-terminal, simply remove symbolic link, or any vte in /usr/local/lib generated
 
 rm /usr/local/lib/libvte-2.91.la \
 /usr/local/lib/libvte-2.91.so /usr/local/lib/libvte-2.91.so.0 \
