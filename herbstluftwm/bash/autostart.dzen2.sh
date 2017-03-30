@@ -10,7 +10,7 @@ hc() {
     herbstclient "$@"
 }
 
-# I don't know what it means
+# I don't know what it means. It might be reset or something
 #        emit_hook ARGS ...
 #           Emits a custom hook to all idling herbstclients.
 hc emit_hook reload
@@ -41,13 +41,14 @@ hlc_rules
 
 hc unlock
 
-# hc set tree_style '╾│ ├└╼─┐'
-hc set tree_style '⊙│ ├╰»─╮'
+hc set tree_style '╾│ ├└╼─┐'
+#hc set tree_style '⊙│ ├╰»─╮'
 
 # do multi monitor setup here, e.g.:
 # hc set_monitors 1280x1024+0+0 1280x1024+1280+0
 # or simply:
 # hc detect_monitors
+
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # find the panel
@@ -73,17 +74,6 @@ hc unlock
 # load on startup
 
 if hc silent new_attr bool my_not_first_autostart ; then
-
-  # non windowed app
-    compton &
-    dunst &
-    parcellite &
-    nitrogen --restore &
-    
-  # windowed app
-    xfce4-terminal &
-    firefox &
-    geany &
-    thunar &
+    . ~/.config/herbstluftwm/bash/startup.sh
 fi
 

@@ -3,6 +3,18 @@
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # keybindings
 
+
+# if you have a super key you will be much happier with Mod set to Mod4
+# Mod=Mod1    # Use alt as the main modifier
+# Alt=Mod1
+# Mod=Mod4   # Use the super key as the main modifier
+
+# Modifier variables
+s=Shift
+c=Control
+m=Mod4
+a=Mod1
+
 hlc_keybindings() {
 
     hckb() { herbstclient keybind "$@"; }
@@ -11,66 +23,60 @@ hlc_keybindings() {
   # remove all existing keybindings
     hc keyunbind --all
 
-
-  # if you have a super key you will be much happier with Mod set to Mod4
-  # Mod=Mod1    # Use alt as the main modifier
-    Alt=Mod1
-    Mod=Mod4   # Use the super key as the main modifier
-
-    hckb $Mod-Shift-q quit
-    hckb $Mod-Shift-r reload
-    hckb $Mod-Shift-c close
-    hckb $Mod-Return spawn ${TERMINAL:-xfce4-terminal} # use your $TERMINAL with xterm as fallback
+    hckb $m-$s-q quit
+    hckb $m-$s-r reload
+    hckb $m-$s-c close
+    hckb $m-Return spawn ${TERMINAL:-xfce4-terminal} # use your $TERMINAL with xterm as fallback
 
   # epsi
-    hckb $Mod-d spawn dmenu_run_hlwm
-    hckb $Mod-Shift-d spawn rofi -show run -opacity 90
-    hckb $Mod-Shift-x spawn oblogout
+    hckb $m-d spawn dmenu_run_hlwm
+    hckb $m-$s-d spawn rofi -show run -opacity 90
+    hckb $m-$s-x spawn oblogout
 
   # basic movement
 
   # focusing clients
-    hckb $Mod-Left  focus left
-    hckb $Mod-Down  focus down
-    hckb $Mod-Up    focus up
-    hckb $Mod-Right focus right
-    hckb $Mod-h     focus left
-    hckb $Mod-j     focus down
-    hckb $Mod-k     focus up
-    hckb $Mod-l     focus right
+    hckb $m-Left  focus left
+    hckb $m-Down  focus down
+    hckb $m-Up    focus up
+    hckb $m-Right focus right
+    hckb $m-h     focus left
+    hckb $m-j     focus down
+    hckb $m-k     focus up
+    hckb $m-l     focus right
 
   # moving clients
-    hckb $Mod-Shift-Left  shift left
-    hckb $Mod-Shift-Down  shift down
-    hckb $Mod-Shift-Up    shift up
-    hckb $Mod-Shift-Right shift right
-    hckb $Mod-Shift-h     shift left
-    hckb $Mod-Shift-j     shift down
-    hckb $Mod-Shift-k     shift up
-    hckb $Mod-Shift-l     shift right
+    hckb $m-$s-Left  shift left
+    hckb $m-$s-Down  shift down
+    hckb $m-$s-Up    shift up
+    hckb $m-$s-Right shift right
+    hckb $m-$s-h     shift left
+    hckb $m-$s-j     shift down
+    hckb $m-$s-k     shift up
+    hckb $m-$s-l     shift right
 
   # splitting frames
   # create an empty frame at the specified direction
-    hckb $Mod-u       split   bottom  0.5
-    hckb $Mod-o       split   right   0.5
+    hckb $m-u       split   bottom  0.5
+    hckb $m-o       split   right   0.5
   # let the current frame explode into subframes
-    hckb $Mod-Control-space split explode
+    hckb $m-$c-space split explode
 
   # resizing frames
     resizestep=0.05
-    hckb $Mod-Control-h       resize left  +$resizestep
-    hckb $Mod-Control-j       resize down  +$resizestep
-    hckb $Mod-Control-k       resize up    +$resizestep
-    hckb $Mod-Control-l       resize right +$resizestep
-    hckb $Mod-Control-Left    resize left  +$resizestep
-    hckb $Mod-Control-Down    resize down  +$resizestep
-    hckb $Mod-Control-Up      resize up    +$resizestep
-    hckb $Mod-Control-Right   resize right +$resizestep
+    hckb $m-$c-h       resize left  +$resizestep
+    hckb $m-$c-j       resize down  +$resizestep
+    hckb $m-$c-k       resize up    +$resizestep
+    hckb $m-$c-l       resize right +$resizestep
+    hckb $m-$c-Left    resize left  +$resizestep
+    hckb $m-$c-Down    resize down  +$resizestep
+    hckb $m-$c-Up      resize up    +$resizestep
+    hckb $m-$c-Right   resize right +$resizestep
     
     # MPC
-    hckb $Mod-Alt-h spawn mpc toggle
-    hckb $Mod-Alt-t spawn mpc prev
-    hckb $Mod-Alt-n spawn mpc next
+    hckb $m-$a-h spawn mpc toggle
+    hckb $m-$a-t spawn mpc prev
+    hckb $m-$a-n spawn mpc next
     
 }
 
@@ -87,13 +93,13 @@ hlc_tags() {
     tag_names=( {1..9} 0 )        
     tag_keys=( {1..9} 0 )
 
-    hc rename default "${tag_names[0]}" || true
+    hc rename default "${tag_names[0]}" 2>/dev/null || true
     for i in ${!tag_names[@]} ; do
         hc add "${tag_names[$i]}"
         key="${tag_keys[$i]}"
         if ! [ -z "$key" ] ; then
-            hc keybind "$Mod-$key" use_index "$i"
-            hc keybind "$Mod-Shift-$key" move_index "$i"
+            hc keybind "$m-$key" use_index "$i"
+            hc keybind "$m-Shift-$key" move_index "$i"
         fi
      done
 
@@ -102,35 +108,35 @@ hlc_tags() {
 
 
   # cycle through tags
-    hckb $Mod-period use_index +1 --skip-visible
-    hckb $Mod-comma  use_index -1 --skip-visible
+    hckb $m-period use_index +1 --skip-visible
+    hckb $m-comma  use_index -1 --skip-visible
 
   # layouting
-    hckb $Mod-r remove
-    hckb $Mod-s floating toggle
-    hckb $Mod-f fullscreen toggle
-    hckb $Mod-p pseudotile toggle
+    hckb $m-r remove
+    hckb $m-s floating toggle
+    hckb $m-f fullscreen toggle
+    hckb $m-p pseudotile toggle
     
   # The following cycles through the available layouts within a frame, but skips
   # layouts, if the layout change wouldn't affect the actual window positions.
   # I.e. if there are two windows within a frame, the grid layout is skipped.
-    hckb $Mod-space                                                       \
+    hckb $m-space                                                       \
             or , and . compare tags.focus.curframe_wcount = 2                   \
                      . cycle_layout +1 vertical horizontal max vertical grid    \
                , cycle_layout +1
 
   # mouse
     hc mouseunbind --all
-    hc mousebind $Mod-Button1 move
-    hc mousebind $Mod-Button2 zoom
-    hc mousebind $Mod-Button3 resize
+    hc mousebind $m-Button1 move
+    hc mousebind $m-Button2 zoom
+    hc mousebind $m-Button3 resize
 
   # focus
-    hckb $Mod-BackSpace   cycle_monitor
-    hckb $Mod-Tab         cycle_all +1
-    hckb $Mod-Shift-Tab   cycle_all -1
-    hckb $Mod-c cycle
-    hckb $Mod-i jumpto urgent
+    hckb $m-BackSpace   cycle_monitor
+    hckb $m-Tab         cycle_all +1
+    hckb $m-$s-Tab   cycle_all -1
+    hckb $m-c cycle
+    hckb $m-i jumpto urgent
 }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----

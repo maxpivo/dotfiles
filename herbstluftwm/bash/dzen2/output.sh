@@ -50,16 +50,31 @@ output_by_tagnumber() {
     fi
 }
 
-output_leftside() {
+output_leftside_top() {
+    echo -n "$separator"
+}
+
+output_leftside_bottom() {
     echo -n "$separator"
     echo -n "^bg()^fg(#c9c925) ${windowtitle//^/^^}"
 }
 
-output_rightside() {
+output_rightside_top() {
     # small adjustments
     
-    right="$separator^bg() $nowplaying "
-    right+="$separator^bg() $date $separator"
+    right="$separator^bg() $date $separator"
+    
+    right_text_only=$(echo -n "$right" | sed 's.\^[^(]*([^)]*)..g')
+    # get width of right aligned text.. and add some space..
+    width=$($textwidth "$font" "$right_text_only    ")
+    echo -n "^pa($(($panel_width - $width)))$right"
+    echo
+}
+
+output_rightside_bottom() {
+    # small adjustments
+    
+    right="$separator^bg() $nowplaying $separator"
     
     right_text_only=$(echo -n "$right" | sed 's.\^[^(]*([^)]*)..g')
     # get width of right aligned text.. and add some space..

@@ -15,19 +15,36 @@
 
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# to do 
 
 # dotshare.it panel
+
+# dzen2
 
 # http://dotshare.it/dots/600/
 # http://dotshare.it/dots/352/
 # http://dotshare.it/dots/305/
 # http://dotshare.it/dots/302/
-
-# dotshare.it panel
-
-# http://dotshare.it/dots/720/
 # http://dotshare.it/dots/712/
+# http://dotshare.it/dots/720/
+
+# lemonbar
+
+# http://dotshare.it/dots/1455/
+# http://dotshare.it/dots/1444/
+# http://dotshare.it/dots/1443/
+# http://dotshare.it/dots/1135/
+# http://dotshare.it/dots/1095/
+# http://dotshare.it/dots/736/
+
+# no bar
+
+# http://dotshare.it/dots/623/
+
+
+
+
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# to do 
 
 # google plus
 
