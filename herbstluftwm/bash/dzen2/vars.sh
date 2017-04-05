@@ -5,12 +5,24 @@ tag_shows=( "一 ichi" "二 ni" "三 san" "四 shi"
   
 # Four themes: [ 'dark-colorful', 'bright-colorful', 'dark-arrow', 'bright-arrow' ]
 
-theme='dark-arrow'
+theme='bright-arrow'
 
 # initial
 if [ -z $theme ]
 then
     theme='dark-colorful'
+    
+    # dzen panel color
+    bgcolor=$colBlack
+    fgcolor=$colWhite
+    
+    # default theme
+    separator="^bg()^fg($colWhite)|^bg()^fg()"
+
+    preIcon="^fg($colYellow500)$FontAwesome"
+    postIcon="^fn()^fg()"
+    labelColor="^fg($colGrey700)"
+    valueColor="^fg($colBlue300)"
 fi
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
@@ -24,20 +36,6 @@ font_bottom="-*-terminus-bold-*-*-*-10-*-*-*-*-*-*-*"
 font="-*-takaopgothic-medium-*-*-*-12-*-*-*-*-*-*-*"
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# dzen panel color
-
-case $theme in
-    'bright-colorful' | 'bright-arrow') 
-        bgcolor=$colWhite
-        fgcolor=$colBlack
-    ;;
-    *)  # 'dark-colorful' | 'dark-arrow' 
-        bgcolor=$colBlack
-        fgcolor=$colWhite
-    ;;
-esac
-
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
 
 # Powerline Symbol
@@ -48,52 +46,6 @@ left_soft_arrow="^fn(powerlinesymbols-14)^fn()"
 
 # http://fontawesome.io/
 FontAwesome="^fn(FontAwesome-9)"
-
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# theme
-
-case $theme in
-    'bright-arrow') 
-
-         #plain
-         separator="^bg()^fg($colBlack)|^bg()^fg()"
-
-         preIcon="^fg($colYellow500)$FontAwesome"
-         postIcon="^fn()^fg()"
-         labelColor="^fg($colGrey300)"
-         valueColor="^fg($colGrey900)"
-    ;;
-    'dark-arrow')
-
-         #plain
-         separator="^bg()^fg($colWhite)|^bg()^fg()"
-
-         preIcon="^fg($colYellow500)$FontAwesome"
-         postIcon="^fn()^fg()"
-         labelColor="^fg($colGrey900)"
-         valueColor="^fg($colGrey100)"
-    ;;
-    'bright-colorful')
-
-         #plain
-         separator="^bg()^fg($colBlack)|^bg()^fg()"
-
-         preIcon="^fg($colPink700)$FontAwesome"
-         postIcon="^fn()^fg()"
-         labelColor="^fg($colGrey700)"
-         valueColor="^fg($colBlue700)"
-    ;;
-    *)  # 'dark-colorful'
-
-         #plain
-         separator="^bg()^fg($colWhite)|^bg()^fg()"
-
-         preIcon="^fg($colYellow500)$FontAwesome"
-         postIcon="^fn()^fg()"
-         labelColor="^fg($colGrey700)"
-         valueColor="^fg($colBlue300)"
-    ;;
-esac
 
 
 

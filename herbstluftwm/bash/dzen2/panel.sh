@@ -31,6 +31,7 @@ panel_height=24
 . ~/.config/herbstluftwm/bash/dzen2/output.sh
 . ~/.config/herbstluftwm/bash/dzen2/generate.sh
 
+init_theme
 init_segments
 
 # do `man herbsluftclient`, and type \pad to search what it means
