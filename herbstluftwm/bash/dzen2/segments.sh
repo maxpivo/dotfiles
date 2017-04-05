@@ -12,7 +12,30 @@ evDate() {
 }
 
 setDate() {
-    segmentDate=$(date +"^fg($colGrey200)%H:%M^fg($colGrey500), %Y-%m-^fg($colGrey200)%d")
+    local iconDate="$preIcon$postIcon"
+    local date=$(date +"%Y-%m")
+    local day=$(date +"%d")
+    local iconTime="$preIcon$postIcon"
+    local time=$(date +"%H:%M")
+    
+    case $theme in
+      'bright-arrow') 
+         segmentDate=" $iconTime ^fg($colGrey200)$time, "
+         segmentDate+="$iconDate ^fg($colGrey500)$date-^fg($colGrey200)$day"    
+      ;;
+      'dark-arrow')
+         segmentDate=" $iconTime ^fg($colGrey200)$time, "
+         segmentDate+="$iconDate ^fg($colGrey500)$date-^fg($colGrey200)$day" 
+      ;;
+      'bright-colorful')
+         segmentDate=" $iconTime ^fg($colGrey900)$time, "
+         segmentDate+="$iconDate ^fg($colGrey600)$date-^fg($colGrey900)$day"    
+      ;;
+      *)  # 'dark-colorful'
+         segmentDate=" $iconTime ^fg($colGrey200)$time, "
+         segmentDate+="$iconDate ^fg($colGrey500)$date-^fg($colGrey200)$day"    
+      ;;
+    esac    
 }
 
 evVolume() {
@@ -21,26 +44,62 @@ evVolume() {
 }
 
 setVolume() {
-    segmentVolume="^fg($colGrey700) Vol ^fg($colBlue300)$1"
+    local icon="$preIcon$postIcon"
+    segmentVolume="$icon $labelColor Vol $valueColor$1"
 }
 
-setWindowtitle() {    
+setWindowtitle() {
+    local icon="$preIcon$postIcon"
     # "${segmentWindowtitle//^/^^}"
-    segmentWindowtitle="^bg()^fg($colYellow500) $1"    
+    
+    case $theme in
+      'bright-arrow') 
+      ;;
+      'dark-arrow')
+      ;;
+      'bright-colorful')
+         segmentWindowtitle=" $icon ^bg()^fg($colGrey700) $1"
+      ;;
+      *)  # 'dark-colorful'
+         segmentWindowtitle=" $icon ^bg()^fg($colGrey500) $1"
+      ;;
+    esac    
 }
 
 setMPD() {
-    # format="^fg(#$colYellow900)[%artist% ^fg()- ]^fg(#$colBlue500)[%title%|%file%]"
-    format="^fg(#$colYellow900)[%artist% ^fg()- ]^fg(#$colBlue500)[%title%]"
-    segmentMPD=$(mpc current -f "$format")
+    case $theme in
+      'bright-arrow') 
+         local format="^fg(#$colGrey900)[%artist% ^fg()- ]^fg(#$colYellow500)[%title%]"
+      ;;
+      'dark-arrow')
+         local format="^fg(#$colGrey100)[%artist% ^fg()- ]^fg(#$colYellow500)[%title%]"
+      ;;
+      'bright-colorful')
+         local format="^fg(#$colBlue500)[%artist% ^fg()- ]^fg(#$colPink700)[%title%]"
+      ;;
+      *)  # 'dark-colorful'
+         local format="^fg(#$colBlue300)[%artist% ^fg()- ]^fg(#$colYellow500)[%title%]"
+      ;;
+    esac
+
+    local iconPlay="$preIcon$postIcon"
+    local iconPause="$preIcon$postIcon"
+    segmentMPD="$iconPlay "$(mpc current -f "$format")
 }
 
-setWIFI() {  
-    WIFI=$(iw dev | grep Interface | awk '{print $2}')
-  
-    if [ \"$WIFI\" ]; then 
-        SSID=$(iw dev $WIFI link | grep SSID: | awk '{print $2}');
+evSSID() {
+    local wifi=$(iw dev | grep Interface | awk '{print $2}')
+    
+    local value=""
+    if [ \"$wifi\" ]; then 
+        value=$(iw dev $wifi link | grep SSID: | awk '{print $2 $3}')
     fi
+    echo -e "ssid\t$value"
+}
+
+setSSID() {  
+   local icon="$preIcon$postIcon"
+   segmentSSID="$icon $valueColor$1"
 }  
 
 evMemory() {
@@ -51,7 +110,8 @@ evMemory() {
 }
 
 setMemory() {
-    segmentMemory="^fg($colGrey700) Mem ^fg($colBlue300)$1%"
+    local icon="$preIcon$postIcon"
+    segmentMemory="$icon $labelColor Mem $valueColor$1%"
 }
 
 evDisk() {
@@ -60,23 +120,112 @@ evDisk() {
 }
 
 setDisk() {
-    segmentDisk="^fg($colGrey700) Disk ^fg($colBlue300)$1%"
+    local icon="$preIcon$postIcon"
+    segmentDisk="$icon $labelColor Disk $valueColor$1%"
 }
 
 evCPU() {
-    local value=$(sh ~/.config/herbstluftwm/bash/assets/chunk_cpu_usage.sh)
+    helperCPU
+    local value=$cpu_util
     echo -e "cpu\t$value"
 }
 
 setCPU() {
-    segmentCPU="^fg($colGrey700) CPU ^fg($colBlue300)$1%"
+    local icon="$preIcon$postIcon"
+    segmentCPU="$icon $labelColor CPU $valueColor$1%"
 }
 
 evNet() {
-    local value=$(sh ~/.config/herbstluftwm/bash/assets/chunk_net_speed.sh)
+    local value="$RX_text $TX_text"
     echo -e "net\t$value"
 }
 
 setNet() {
-    segmentNet="^fg($colGrey700) Net ^fg($colBlue300)$1"
+    helperNet
+    local iconUp="$preIcon$postIcon"
+    local iconDown="$preIcon$postIcon"
+    segmentNet="$labelColor Net $iconUp $valueColor$TX_text $iconDown $valueColor$RX_text"
+}
+
+evUptime() {
+    local value=$(uptime -p)
+    echo -e "uptime\t$value"
+}
+
+setUptime() {
+    #  Uptime
+    local icon="$preIcon$postIcon"
+    segmentUptime="$icon $labelColor Uptime $valueColor$1"
+}
+
+evHost() {
+    # I prefer $(uname -r)
+    local value=$(uname -n)
+    echo -e "host\t$value"
+}
+
+setHost() {
+    #  Machine
+    #  Home
+    local icon="$preIcon$postIcon"
+    segmentHost="$icon $labelColor Host $valueColor$1"
+}
+
+evUpdates() {
+    local value=$(pacman -Qu | wc -l)
+    echo -e "updates\t$value"
+}
+
+setUpdates() {
+    local icon="$preIcon$postIcon"
+    segmentUpdates="$icon $labelColor Updates $valueColor$1"
+}
+
+helperNet() {
+  local interface=$(iw dev | grep Interface | awk '{print $2}')
+
+  if [ "$interface" ]; then 
+
+    # Read first datapoint
+    read TX_prev < /sys/class/net/$interface/statistics/tx_bytes
+    read RX_prev < /sys/class/net/$interface/statistics/rx_bytes
+
+    sleep 1
+
+    # Read second datapoint
+
+    read TX_curr < /sys/class/net/$interface/statistics/tx_bytes
+    read RX_curr < /sys/class/net/$interface/statistics/rx_bytes
+
+    # compute 
+    local TX_diff=$((TX_curr-TX_prev))
+    local RX_diff=$((RX_curr-RX_prev))
+
+    # printout var
+    TX_text=$(echo "scale=1; $TX_diff/1024" | bc | awk '{printf "%.1f", $0}')
+    RX_text=$(echo "scale=1; $RX_diff/1024" | bc | awk '{printf "%.1f", $0}')
+  fi; 
+}
+
+helperCPU() {
+  # Read /proc/stat file (for first datapoint)
+  read cpu user nice system idle iowait irq softirq steal guest< /proc/stat
+
+  # compute active and total utilizations
+  local cpu_active_prev=$((user+system+nice+softirq+steal))
+  local cpu_total_prev=$((user+system+nice+softirq+steal+idle+iowait))
+
+  # echo 'cpu_active_prev = '.cpu_active_prev
+
+  sleep 1
+
+  # Read /proc/stat file (for second datapoint)
+  read cpu user nice system idle iowait irq softirq steal guest< /proc/stat
+
+  # compute active and total utilizations
+  local cpu_active_cur=$((user+system+nice+softirq+steal))
+  local cpu_total_cur=$((user+system+nice+softirq+steal+idle+iowait))
+
+  # compute CPU utilization (%)
+  cpu_util=$((100*( cpu_active_cur-cpu_active_prev ) / (cpu_total_cur-cpu_total_prev) ))
 }

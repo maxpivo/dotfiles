@@ -31,15 +31,7 @@ panel_height=24
 . ~/.config/herbstluftwm/bash/dzen2/output.sh
 . ~/.config/herbstluftwm/bash/dzen2/generate.sh
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# Initial Value
-
-setDate
-setWindowtitle ""
-setTagValue
-setMPD
-#setMemory
-#setDisk
+init_segments
 
 # do `man herbsluftclient`, and type \pad to search what it means
 hc pad $monitor $panel_height 0 $panel_height 0
@@ -66,5 +58,5 @@ event_generator_top 2> /dev/null | generated_output_top 2> /dev/null | dzen2 $dz
 
 event_generator_bottom 2> /dev/null | generated_output_bottom 2> /dev/null | dzen2 $dzen2_bottom_parameters &
 
-sleep 1 && exec `(transset-df .8 -n dzentop >/dev/null 2>&1 &)` &
 sleep 1 && exec `(transset-df .8 -n dzenbottom >/dev/null 2>&1 &)` &
+sleep 2 && exec `(transset-df .8 -n dzentop >/dev/null 2>&1 &)` &

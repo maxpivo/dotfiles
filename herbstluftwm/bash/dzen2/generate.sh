@@ -20,7 +20,7 @@ event_generator_top() {
         evDate
         sleep 1 || break
     done > >(uniq_linebuffered) &
-    date_pid=$!
+    local date_pid=$!
     
   # hlwm events
     hc --idle
@@ -33,7 +33,7 @@ event_generator_bottom() {
       
   # player (mpd)
     mpc idleloop player &
-    mpc_pid=$!
+    local mpc_pid=$!
 
   # batch
     while true ; do
@@ -41,16 +41,27 @@ event_generator_bottom() {
         evMemory
         evDisk
         evCPU
+        evSSID
         evNet
+        evUptime
+        evHost
         sleep 1 || break
     done &
-    batch_pid=$!
+    local batch_pid=$!
+
+  # updates in 
+  # while true ; do
+  #     evUpdates
+  #     sleep 1m || break
+  # done &
+  # updates_pid=$!
 
   # hlwm events
     hc --idle
     
   # exiting; kill stray event-emitting processes
     kill $mpc_pid $batch_pid 
+    # kill $updates_pid
 } 
 
 generated_output_top() {   
@@ -61,8 +72,9 @@ generated_output_top() {
 
         # draw tags
         for i in "${tags[@]}" ; do
-            output_by_tagmark $i
-            output_by_tagnumber $i            
+            output_by_tagmark_pre $i
+            output_by_tagnumber $i
+            output_by_tagmark_post $i
         done
         
         output_leftside_top
@@ -142,8 +154,34 @@ handle_cmd_event() {
         cpu)
             setCPU "${cmd[@]:1}"
             ;;
+        ssid)
+            setSSID "${cmd[@]:1}"
+            ;;
         net)
-            setNet "${cmd[@]:1}"
+            setNet
+            ;;
+        uptime)
+            setUptime "${cmd[@]:1}"
+            ;;
+        host)
+            setHost "${cmd[@]:1}"
+            ;;
+        updates)
+            setUpdates "${cmd[@]:1}"
             ;;
     esac
+}
+
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# Initial Value
+
+init_segments() {
+    setDate
+    setWindowtitle ""
+    setTagValue
+    setMPD
+    #setMemory
+    #setDisk
+    helperCPU
+    helperNet
 }

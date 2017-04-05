@@ -49,10 +49,10 @@
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # to do 
 
-# basedir
-# awesome icon
-# arrow
-# bright
+
+# bright and dark
+# restructure by theme
+# bg fg terbalik (standarisasi penulisan)
 
 
 # lemonbar: powerline arrow, clickable, system tray
