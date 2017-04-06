@@ -1,20 +1,14 @@
 #!/usr/bin/env bash
 
-init_theme() {  
-    case $theme in
-      'bright-arrow')
-         . ~/.config/herbstluftwm/bash/dzen2/themes/bright-arrow.sh
-      ;;
-      'dark-arrow')
-         . ~/.config/herbstluftwm/bash/dzen2/themes/dark-arrow.sh
-      ;;
-      'bright-colorful')
-         . ~/.config/herbstluftwm/bash/dzen2/themes/bright-colorful.sh
-      ;;
-      *)  # 'dark-colorful'
-         . ~/.config/herbstluftwm/bash/dzen2/themes/dark-colorful.sh
-      ;;
-    esac    
+init_theme() { 
+
+theme_config_default=~/.config/herbstluftwm/bash/dzen2/themes/dark-colorful.sh
+theme_config=~/.config/herbstluftwm/bash/dzen2/themes/${theme}.sh
+
+[ -x "$theme_config" ] || theme_config=$theme_config_default
+
+. $theme_config
+  
 }
 
 

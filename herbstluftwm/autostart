@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-~/.config/herbstluftwm/bash/autostart.dzen2.sh
 
+~/.config/herbstluftwm/bash/autostart.sh
+
+
+# ~/.config/herbstluftwm/dotshare736/autostart.sh
 
 

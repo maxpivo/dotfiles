@@ -54,8 +54,10 @@ setWindowtitle() {
     
     case $theme in
       'bright-arrow') 
+         segmentWindowtitle=" $icon ^bg()^fg($colGrey700) $1"
       ;;
       'dark-arrow')
+         segmentWindowtitle=" $icon ^bg()^fg($colGrey500) $1"
       ;;
       'bright-colorful')
          segmentWindowtitle=" $icon ^bg()^fg($colGrey700) $1"
@@ -69,7 +71,7 @@ setWindowtitle() {
 setMPD() {
     case $theme in
       'bright-arrow') 
-         local format="^fg(#$colGrey900)[%artist% ^fg()- ]^fg(#$colYellow500)[%title%]"
+         local format="^fg(#$colGrey900)[%artist% ^fg()- ]^fg(#$colGrey300)[%title%]"
       ;;
       'dark-arrow')
          local format="^fg(#$colGrey100)[%artist% ^fg()- ]^fg(#$colYellow500)[%title%]"

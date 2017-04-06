@@ -50,9 +50,9 @@
 # to do 
 
 
-# bright and dark
 # restructure by theme
 # bg fg terbalik (standarisasi penulisan)
+# slow process
 
 
 # lemonbar: powerline arrow, clickable, system tray

@@ -5,8 +5,6 @@ tag_shows=( "一 ichi" "二 ni" "三 san" "四 shi"
   
 # Four themes: [ 'dark-colorful', 'bright-colorful', 'dark-arrow', 'bright-arrow' ]
 
-theme='bright-arrow'
-
 # initial
 if [ -z $theme ]
 then
@@ -15,14 +13,6 @@ then
     # dzen panel color
     bgcolor=$colBlack
     fgcolor=$colWhite
-    
-    # default theme
-    separator="^bg()^fg($colWhite)|^bg()^fg()"
-
-    preIcon="^fg($colYellow500)$FontAwesome"
-    postIcon="^fn()^fg()"
-    labelColor="^fg($colGrey700)"
-    valueColor="^fg($colBlue300)"
 fi
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----

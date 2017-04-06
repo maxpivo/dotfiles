@@ -34,6 +34,27 @@ event_generator_bottom() {
   # player (mpd)
     mpc idleloop player &
     local mpc_pid=$!
+    
+  # host
+    while true ; do
+        evHost
+        sleep 1h || break
+    done &
+    local host_pid=$!
+    
+  # cpu
+    while true ; do
+        evCPU
+        sleep 3 || break
+    done &
+    local cpu_pid=$!
+    
+  # net
+    while true ; do
+        evNet
+        sleep 7 || break
+    done &
+    local net_pid=$!
 
   # batch
     while true ; do
@@ -44,8 +65,7 @@ event_generator_bottom() {
         evSSID
         evNet
         evUptime
-        evHost
-        sleep 1 || break
+        sleep 1m || break
     done &
     local batch_pid=$!
 
@@ -60,7 +80,7 @@ event_generator_bottom() {
     hc --idle
     
   # exiting; kill stray event-emitting processes
-    kill $mpc_pid $batch_pid 
+    kill $mpc_pid $host_id $cpu_id $net_id $batch_pid 
     # kill $updates_pid
 } 
 
@@ -122,6 +142,7 @@ handle_cmd_event() {
     # find out event origin
     case "${cmd[0]}" in
         reload)
+            pkill dzen2
             exit
             ;;
         quit_panel)

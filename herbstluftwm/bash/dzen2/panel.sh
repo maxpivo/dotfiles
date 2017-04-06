@@ -2,6 +2,14 @@
 
 hc() { "${herbstclient_command[@]:-herbstclient}" "$@" ;}
 
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# theme
+
+# Four themes: [ 'dark-colorful', 'bright-colorful', 'dark-arrow', 'bright-arrow' ]
+
+theme='bright-arrow'
+
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # geometry calculation
 
 monitor=${1:-0}
@@ -55,7 +63,7 @@ dzen2_bottom_parameters+=" -title-name dzenbottom"
 # 2> /dev/null
 
 event_generator_top 2> /dev/null | generated_output_top 2> /dev/null | dzen2 $dzen2_top_parameters \
-    -e 'button3=;button4=exec:herbstclient use_index -1;button5=exec:herbstclient use_index +1' &
+   -e 'button3=;button4=exec:herbstclient use_index -1;button5=exec:herbstclient use_index +1' &
 
 event_generator_bottom 2> /dev/null | generated_output_bottom 2> /dev/null | dzen2 $dzen2_bottom_parameters &
 
