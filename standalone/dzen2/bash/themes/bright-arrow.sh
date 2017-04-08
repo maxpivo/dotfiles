@@ -42,8 +42,9 @@ theme_show() {
   # text+=" $segmentUpdates "
   # text+=" $segmentDate "  
   # text+=" $segmentMPD "
-    text+=" ^bg($colWhite)^fg($colRed900)$right_hard_arrow"
+    text+=" ^bg($colRed900)^fg($colRed800)$right_hard_arrow"
     text+=" "
+    text+=" ^bg($colWhite)^fg($colRed900)$right_hard_arrow"
     
     echo -n $text
 }
