@@ -79,11 +79,11 @@ setDate() {
     local time=$(date +'%H:%M:%S')
     
     case $theme in
-      'bright-arrow') 
+      'bright-arrow' | 'bright-deco') 
          segmentDate=" $iconTime ^fg($colGrey200)$time, "
          segmentDate+="$iconDate ^fg($colGrey500)$date-^fg($colGrey200)$day"    
       ;;
-      'dark-arrow')
+      'dark-arrow' | 'dark-deco')
          segmentDate=" $iconTime ^fg($colGrey200)$time, "
          segmentDate+="$iconDate ^fg($colGrey500)$date-^fg($colGrey200)$day" 
       ;;
@@ -96,10 +96,10 @@ setDate() {
 
 setMPD() {
     case $theme in
-      'bright-arrow') 
+      'bright-arrow' | 'bright-deco') 
          local format="^fg(#$colGrey900)[%artist% ^fg()- ]^fg(#$colGrey300)[%title%]"
       ;;
-      'dark-arrow')
+      'dark-arrow' | 'dark-deco')
          local format="^fg(#$colGrey100)[%artist% ^fg()- ]^fg(#$colYellow500)[%title%]"
       ;;
       'bright-colorful')

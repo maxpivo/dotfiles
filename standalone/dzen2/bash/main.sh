@@ -6,7 +6,7 @@
 # Four themes: [ 'dark-colorful', 
 #      'bright-colorful', 'dark-arrow', 'bright-arrow' ]
 
-theme='bright-arrow'
+theme='bright-deco'
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # include

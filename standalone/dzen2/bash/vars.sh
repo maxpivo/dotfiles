@@ -20,6 +20,21 @@ left_soft_arrow="^fn(powerlinesymbols-14)^fn()"
 # http://fontawesome.io/
 FontAwesome="^fn(FontAwesome-9)"
 
+# Glyph Icon Decoration
+decopath="Documents/standalone/dzen2/assets/xbm"
+
+# diagonal corner
+deco_dc_tl="^i($decopath/dc-024-tl.xbm)"
+deco_dc_tr="^i($decopath/dc-024-tr.xbm)"
+deco_dc_bl="^i($decopath/dc-024-bl.xbm)"
+deco_dc_br="^i($decopath/dc-024-br.xbm)"
+
+# single arrow and double arrow
+deco_sa_l="^i($decopath/sa-024-l.xbm)"
+deco_sa_r="^i($decopath/sa-024-r.xbm)"
+deco_da_l="^i($decopath/da-024-l.xbm)"
+deco_da_r="^i($decopath/da-024-r.xbm)"
+
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # theme
 
