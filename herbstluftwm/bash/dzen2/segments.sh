@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# note: 
+# * Debian/ubuntu based use /sbin/iw instead of /iw
+
 setTagValue() {
   # http://wiki.bash-hackers.org/commands/builtin/read
   # http://wiki.bash-hackers.org/syntax/shellvars#ifs

@@ -24,7 +24,12 @@ pkill dzen2
 # execute dzen
 generated_output | dzen2 $parameters &
 
-sleep 1 && exec `(transset-df .8 -n dzentop >/dev/null 2>&1 &)` &
+# optional transparency
+# https://github.com/wildefyr/transset-df
+# sleep 1 && exec `(transset-df .8 -n dzentop >/dev/null 2>&1 &)` &
+
+# you may use xorg-transset instead of transset-df
+sleep 1 && exec `(transset .8 -n dzentop >/dev/null 2>&1 &)` &
 
 
 
