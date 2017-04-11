@@ -60,14 +60,18 @@ Segment
 
 -- date
 dateIcon     = ' ' .. preIcon .. '' .. postIcon .. ' '
-datePre      = '^bg(' .. colIndigo500 .. ')^fg(' .. colYellow500 .. ')'
+datePre      = '^bg(' .. colIndigo500 .. ')'
+    .. '^fg(' .. colYellow500 .. ')'
 dateCommand  = '^fg(' .. colWhite .. ')${time %a %b %d} '
 datePost     = '^bg()^fg()'
 
-dateDecoPre  = '^bg(' .. colIndigo500 .. ')^fg(' .. colWhite .. ')' .. decoCornerTopLeft
-dateDecoPost = '^bg(' .. colWhite .. ')^fg(' .. colIndigo500 .. ')' .. decoCornerBottomLeft
+dateDecoPre  = '^bg(' .. colIndigo500 .. ')'
+    .. '^fg(' .. colWhite .. ')' .. decoCornerTopLeft
+dateDecoPost = '^bg(' .. colWhite .. ')'
+    .. '^fg(' .. colIndigo500 .. ')' .. decoCornerBottomLeft
 
-dateText     = dateDecoPre .. datePre .. dateIcon .. dateCommand .. datePost .. dateDecoPost
+dateText     = dateDecoPre .. datePre .. dateIcon 
+    .. dateCommand .. datePost .. dateDecoPost
 
 -- time
 timeIcon     = ' ' .. preIcon .. '' .. postIcon .. ' '
@@ -75,10 +79,13 @@ timePre      = '^bg(' .. colPink500 .. ')'
 timeCommand  = '^fg(' .. colWhite .. ')${time %H:%M:%S} '
 timePost     = '^bg()'
 
-timeDecoPre  = '^bg(' .. colWhite .. ')^fg(' .. colPink500 .. ')' .. decoDoubleArrowLeft
-timeDecoPost = '^bg(' .. colWhite .. ')^fg(' .. colPink500 .. ')' .. decoDoubleArrowRight
+timeDecoPre  = '^bg(' .. colWhite .. ')'
+    .. '^fg(' .. colPink500 .. ')' .. decoDoubleArrowLeft
+timeDecoPost = '^bg(' .. colWhite .. ')'
+    .. '^fg(' .. colPink500 .. ')' .. decoDoubleArrowRight
 
-timeText     = timeDecoPre .. timePre .. timeIcon .. timeCommand .. timePost .. timeDecoPost
+timeText     = timeDecoPre .. timePre .. timeIcon 
+    .. timeCommand .. timePost .. timeDecoPost
 
 --[[
 Execute Conky
@@ -89,10 +96,3 @@ conky.text = [[\
   \
 ]] .. timeText ..[[\
 ]]
-
-
-
-
-
-
-

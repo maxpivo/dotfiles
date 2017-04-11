@@ -5,7 +5,7 @@ generated_output() {
 }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# paremeters
+# parameters
 
 xpos=0
 ypos=0
@@ -31,6 +31,3 @@ generated_output | dzen2 $parameters &
 
 # optional transparency
 sleep 1 && exec `(transset .8 -n dzentop >/dev/null 2>&1 &)` & 
-
-
-
