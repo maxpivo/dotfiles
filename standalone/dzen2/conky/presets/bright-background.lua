@@ -1,6 +1,6 @@
 -- vim: ts=4 sw=4 noet ai cindent syntax=lua
 
--- for use whit bright dzen2 panel
+-- for use with bright dzen2 panel
 
 colorPreset = {
   icon       = colYellow500,
