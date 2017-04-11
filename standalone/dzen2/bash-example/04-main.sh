@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+# remove all dzen2 instance
+pkill dzen2
+
 # include
-. ~/Documents/standalone/dzen2/bash/example-03-output.sh
+. ~/Documents/standalone/dzen2/bash-example/04-output.sh
 
 # dzen2
 

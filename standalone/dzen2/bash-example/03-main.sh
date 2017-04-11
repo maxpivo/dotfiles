@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # include
-. ~/Documents/standalone/dzen2/bash/example-02-output.sh
+. ~/Documents/standalone/dzen2/bash-example/03-output.sh
 
 # dzen2
 
