@@ -1,9 +1,5 @@
 -- vim: ts=4 sw=4 noet ai cindent syntax=lua
 
--- for use white bright dzen2 panel
-
-deco = helper.decoDoubleArrowLeft
-
 --[[
 disabled = ''
     .. parts.mpd()
