@@ -32,9 +32,9 @@ lu = helper.lemonUnderline
 lr = helper.lemonReset
 
 conky.text = [[\
-%{r} \
+%{r}\
 ]] .. lr() .. lf(colRed500) .. [[  \
-%{l} \
+%{l}\
 ]] .. lr() .. lf(colRed500) .. [[  \
 %{c}\
 ]] .. lr() .. lf(colGreen300) .. [[\
