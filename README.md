@@ -30,7 +30,12 @@ There are three parts here
 * [README i3][readme-i3]
 
   ![i3-gaps i3status Conky Lua JSON][i3status-all]
+  
+* [README Standalone][readme-standalone]
 
+  ![Dzen2 Conky][dzen2-conky]
+
+  ![CLI Conky][cli-conky]
 
 -- -- --
 
@@ -63,12 +68,16 @@ There are three parts here
 | Disclaimer | Use it at your own risk |
 | ---------- | ----------------------- |
 
-[readme-fluxbox]: https://github.com/epsi-rns/dotfiles/blob/master/fluxbox/README.md
-[readme-openbox]: https://github.com/epsi-rns/dotfiles/blob/master/openbox/README.md
-[readme-awesome]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/README.md
-[readme-xmonad]: https://github.com/epsi-rns/dotfiles/blob/master/xmonad/README.md
-[readme-i3]: https://github.com/epsi-rns/dotfiles/blob/master/i3/README.md
+[readme-standalone]: https://github.com/epsi-rns/dotfiles/blob/master/standalone/README.md
+[readme-fluxbox]:    https://github.com/epsi-rns/dotfiles/blob/master/fluxbox/README.md
+[readme-openbox]:    https://github.com/epsi-rns/dotfiles/blob/master/openbox/README.md
+[readme-awesome]:    https://github.com/epsi-rns/dotfiles/blob/master/awesome/README.md
+[readme-xmonad]:     https://github.com/epsi-rns/dotfiles/blob/master/xmonad/README.md
+[readme-i3]:         https://github.com/epsi-rns/dotfiles/blob/master/i3/README.md
 
-[wibox-all]: https://github.com/epsi-rns/dotfiles/blob/master/awesome/readme/wibox-all.png
-[dzen-all]: https://github.com/epsi-rns/dotfiles/blob/master/xmonad/readme/dzen-all.png
-[i3status-all]: https://github.com/epsi-rns/dotfiles/blob/master/i3/readme/conky-lua-json-dark-both.png
+[wibox-all]:         https://github.com/epsi-rns/dotfiles/blob/master/awesome/readme/wibox-all.png
+[dzen-all]:          https://github.com/epsi-rns/dotfiles/blob/master/xmonad/readme/dzen-all.png
+[i3status-all]:      https://github.com/epsi-rns/dotfiles/blob/master/i3/readme/conky-lua-json-dark-both.png
+
+[cli-conky]:         https://github.com/epsi-rns/dotfiles/blob/master/standalone/readme/cli-conky-lua.png
+[dzen2-conky]:       https://github.com/epsi-rns/dotfiles/blob/master/standalone/readme/dzen2-bash-red-deco.png
