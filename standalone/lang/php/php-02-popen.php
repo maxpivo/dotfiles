@@ -6,7 +6,6 @@
 $path    = __dir__."/../assets";
 $cmdin   = 'conky -c '.$path.'/conky.lua';
 $cmdout  = 'less'; # or 'dzen2'
-$cmd     = $cmdin.' | '.$cmdout;
 
 # handle
 $pipein  = popen($cmdin,  "r");
