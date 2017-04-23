@@ -1,3 +1,6 @@
+import System.Process
+import System.IO
+
 import Data.Time.LocalTime
 import Data.Time.Format
 
@@ -16,15 +19,29 @@ wFormatTime myUtcTime = formatTime
 wSleep :: Int -> IO ()
 wSleep mySecond = threadDelay (div 1000000 mySecond)
 
-printDate = do
+printDate pipein = do
      now <- getZonedTime
      let nowFmt = wFormatTime now
-     putStrLn nowFmt
+
+     hPutStrLn pipein nowFmt
+     hFlush pipein
+
      wSleep 1
+
+cmdout = "less" -- or dzen2
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ---
 -- main
 
-main = forever $ printDate
+main = do
+    (Just pipein, _, _, ph)  <- 
+        createProcess (System.Process.proc cmdout []) 
+        { std_in = CreatePipe }
+    
+    forever $ printDate pipein
+    hClose pipein
+    
+    putStrLn ""
+  
 
 
