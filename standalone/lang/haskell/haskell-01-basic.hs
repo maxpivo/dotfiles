@@ -14,7 +14,7 @@ wFormatTime myUtcTime = formatTime
   Data.Time.Format.defaultTimeLocale myTimeFormat myUtcTime
 
 wSleep :: Int -> IO ()
-wSleep mySecond = threadDelay (div 1000000 mySecond)
+wSleep mySecond = threadDelay (1000000 * mySecond)
 
 printDate = do
      now <- getZonedTime

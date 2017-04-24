@@ -9,9 +9,7 @@ conky.config = {
     out_to_console = true,
     short_units = true,
     update_interval = 1
-}
-
---[[
+}--[[
 Execute Conky
 ]]
 

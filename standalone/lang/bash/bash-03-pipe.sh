@@ -11,6 +11,3 @@ generated_output() {
 cmdout="less" # or dzen2
 
 generated_output | $cmdout
-
-
-

@@ -18,7 +18,7 @@ cmdout = "less" -- or dzen2
 main = do
     dirname <- getCurrentDirectory
     let cmdin = wGetCmdIn dirname
-    system (cmdin ++ " | " ++ cmdout)
+    system $ cmdin ++ " | " ++ cmdout
   
 
 

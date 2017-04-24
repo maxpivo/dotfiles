@@ -10,16 +10,15 @@ import Control.Monad
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ---
 -- wrap Funktion
 
-myTimeFormat = "%a %b %d %H:%M:%S"
-
 wFormatTime :: FormatTime t => t -> String
 wFormatTime myUtcTime = formatTime 
-  Data.Time.Format.defaultTimeLocale myTimeFormat myUtcTime
+        Data.Time.Format.defaultTimeLocale myTimeFormat myUtcTime
+    where myTimeFormat = "%a %b %d %H:%M:%S"
 
 wSleep :: Int -> IO ()
-wSleep mySecond = threadDelay (div 1000000 mySecond)
+wSleep mySecond = threadDelay (1000000 * mySecond)
 
-printDate pipein = do
+generatedOutput pipein = do
      now <- getZonedTime
      let nowFmt = wFormatTime now
 
@@ -38,10 +37,10 @@ main = do
         createProcess (System.Process.proc cmdout []) 
         { std_in = CreatePipe }
     
-    forever $ printDate pipein
+    forever $ generatedOutput pipein
     hClose pipein
     
-    putStrLn ""
+    putStr ""
   
 
 

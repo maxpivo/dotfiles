@@ -7,7 +7,3 @@ cmdin="conky -c $path/conky.lua"
 cmdout="less" # or dzen2
 
 $cmdin | $cmdout
-
-
-
-
