@@ -1,84 +1,67 @@
 #!/usr/bin/env bash
+# this is a modularized config for herbstluftwm
 
-# this is a simple config for herbstluftwm
+. ~/.config/herbstluftwm/bash/assets/gmc.sh
+. ~/.config/herbstluftwm/bash/config.sh
+. ~/.config/herbstluftwm/bash/helper.sh
+. ~/.config/herbstluftwm/bash/startup.sh
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# main
 
+# background before wallpaper
+xsetroot -solid "${color['blue500']}"
 
-hc() {
-    # http://www.thegeekstuff.com/2010/05/bash-shell-special-parameters/
-    herbstclient "$@"
-}
-
-# I don't know what it means. It might be reset or something
-#        emit_hook ARGS ...
-#           Emits a custom hook to all idling herbstclients.
+# Read the manual in $ man herbstluftwm
 hc emit_hook reload
 
 # gap counter
 echo 35 > /tmp/herbstluftwm-gap
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# google material colors
-
-. ~/.config/herbstluftwm/bash/assets/gmc.sh
-
-xsetroot -solid "$colBlue500"
-
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# helpers
-
-. ~/.config/herbstluftwm/bash/helper.sh
-
-hlc_keybindings
-
-hlc_tags
-
-hlc_theme
-
-hlc_rules
-
-# deprecated, use nitrogen instead
-# hlc_feh_wallpaper
-
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# unlock, just to be sure
-
-hc unlock
-
-#hc set tree_style '╾│ ├└╼─┐'
-hc set tree_style '⊙│ ├╰»─╮'
-
-# do multi monitor setup here, e.g.:
-# hc set_monitors 1280x1024+0+0 1280x1024+1280+0
-# or simply:
-# hc detect_monitors
-
-
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# find the panel
-
-panel=~/.config/herbstluftwm/bash/dzen2/panel.sh
-[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
-for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
-    # start it on each monitor
-    "$panel" $monitor &
-done
-
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# $ man herbstluftwm
-
+# do not repaint until unlock
 hc lock
+
+# standard
+# remove all existing keybindings
+hc keyunbind --all
+hc mouseunbind --all
+hc unrule -F
+
+set_tags_with_name
+
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# do hash config
+# hack associative array function argument passing using declare -p
+
+do_config "keybind"   "$(declare -p keybinds)"
+do_config "keybind"   "$(declare -p tagskeybinds)"
+do_config "mousebind" "$(declare -p mousebinds)"
+do_config "attr"      "$(declare -p attributes)"
+do_config "set"       "$(declare -p sets)"
+do_config "rule"      "$(declare -p rules)"
+
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# finishing, some extra miles
+
+# I'm not sure what in this is
+bind_cycle_layout
+
+# example of custom layout
+layout='(split horizontal:0.5:0 '
+layout+='(clients vertical:0) (clients vertical:0))'
+hc load ${tag_names[0]} "$layout"
 
 # tag number 5
 hc floating 5 on
 
+# hc set tree_style '╾│ ├└╼─┐'
+hc set tree_style '⊙│ ├╰»─╮'
+
+# unlock, just to be sure
 hc unlock
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# launch statusbar panel (e.g. dzen2 or lemonbar)
+do_panel
+
 # load on startup
-
-if hc silent new_attr bool my_not_first_autostart ; then
-    . ~/.config/herbstluftwm/bash/startup.sh
-fi
-
+startup_run
