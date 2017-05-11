@@ -26,16 +26,16 @@ def set_tags_with_name()
 
     hc("rename default '#{tag_names[0]}' 2>/dev/null || true")
     
-    tag_names.each_with_index do |tag_name, i|
-        hc("add '#{tag_names[i]}'")
+    tag_names.each_with_index do |tag_name, index|
+        hc("add '#{tag_names[index]}'")
         
         # uncomment to debug in terminal
         # puts i
 
-        key = tag_keys[i]                
+        key = tag_keys[index]                
         unless key.to_s.empty?
-            hc("keybind Mod4-#{key} use_index '#{i}'");
-            hc("keybind Mod4-Shift-#{key} move_index '#{i}'");
+            hc("keybind Mod4-#{key} use_index '#{index}'");
+            hc("keybind Mod4-Shift-#{key} move_index '#{index}'");
         end
     end
 end

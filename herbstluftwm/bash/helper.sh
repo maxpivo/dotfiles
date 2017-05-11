@@ -18,7 +18,7 @@ function do_config()
 
     # loop over hash    
     for key in "${!hash[@]}"; do
-        value=${hash[$key]}        
+        local value=${hash[$key]}        
         hc $command $key $value
         
         # uncomment to debug in terminal
@@ -32,16 +32,16 @@ function do_config()
 function set_tags_with_name() {
     hc rename default "${tag_names[0]}" 2>/dev/null || true
     
-    for i in ${!tag_names[@]} ; do
-        hc add "${tag_names[$i]}"
+    for index in ${!tag_names[@]} ; do
+        hc add "${tag_names[$index]}"
         
         # uncomment to debug in terminal
-        # echo $i
+        # echo $index
 
-        key="${tag_keys[$i]}"
+        local key="${tag_keys[$index]}"
         if ! [ -z "$key" ] ; then
-            hc keybind "$m-$key" use_index "$i"
-            hc keybind "$m-Shift-$key" move_index "$i"
+            hc keybind "$m-$key" use_index "$index"
+            hc keybind "$m-Shift-$key" move_index "$index"
         fi
     done
 }
@@ -72,7 +72,7 @@ function bind_cycle_layout() {
 # find the panel
 
 function do_panel() {
-    panel=~/.config/herbstluftwm/bash/dzen2/panel.sh
+    local panel=~/.config/herbstluftwm/bash/dzen2/panel.sh
     [ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
     for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
         # start it on each monitor

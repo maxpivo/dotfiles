@@ -23,20 +23,20 @@ setDate() {
     
     case $theme in
       'bright-arrow') 
-         segmentDate=" $iconTime ^fg($colGrey200)$time, "
-         segmentDate+="$iconDate ^fg($colGrey500)$date-^fg($colGrey200)$day"    
+         segmentDate=" $iconTime ^fg(${color['grey200']})$time, "
+         segmentDate+="$iconDate ^fg(${color['grey500']})$date-^fg(${color['grey200']})$day"
       ;;
       'dark-arrow')
-         segmentDate=" $iconTime ^fg($colGrey200)$time, "
-         segmentDate+="$iconDate ^fg($colGrey500)$date-^fg($colGrey200)$day" 
+         segmentDate=" $iconTime ^fg(${color['grey200']})$time, "
+         segmentDate+="$iconDate ^fg(${color['grey500']})$date-^fg(${color['grey200']})$day"
       ;;
       'bright-colorful')
-         segmentDate=" $iconTime ^fg($colGrey900)$time, "
-         segmentDate+="$iconDate ^fg($colGrey600)$date-^fg($colGrey900)$day"    
+         segmentDate=" $iconTime ^fg(${color['grey900']})$time, "
+         segmentDate+="$iconDate ^fg(${color['grey600']})$date-^fg(${color['grey900']})$day"
       ;;
       *)  # 'dark-colorful'
-         segmentDate=" $iconTime ^fg($colGrey200)$time, "
-         segmentDate+="$iconDate ^fg($colGrey500)$date-^fg($colGrey200)$day"    
+         segmentDate=" $iconTime ^fg(${color['grey200']})$time, "
+         segmentDate+="$iconDate ^fg(${color['grey500']})$date-^fg(${color['grey200']})$day"
       ;;
     esac    
 }
@@ -57,16 +57,16 @@ setWindowtitle() {
     
     case $theme in
       'bright-arrow') 
-         segmentWindowtitle=" $icon ^bg()^fg($colGrey700) $1"
+         segmentWindowtitle=" $icon ^bg()^fg(${color['grey700']}) $1"
       ;;
       'dark-arrow')
-         segmentWindowtitle=" $icon ^bg()^fg($colGrey500) $1"
+         segmentWindowtitle=" $icon ^bg()^fg(${color['grey500']}) $1"
       ;;
       'bright-colorful')
-         segmentWindowtitle=" $icon ^bg()^fg($colGrey700) $1"
+         segmentWindowtitle=" $icon ^bg()^fg(${color['grey700']}) $1"
       ;;
       *)  # 'dark-colorful'
-         segmentWindowtitle=" $icon ^bg()^fg($colGrey500) $1"
+         segmentWindowtitle=" $icon ^bg()^fg(${color['grey500']}) $1"
       ;;
     esac    
 }
@@ -74,16 +74,16 @@ setWindowtitle() {
 setMPD() {
     case $theme in
       'bright-arrow') 
-         local format="^fg(#$colGrey900)[%artist% ^fg()- ]^fg(#$colGrey300)[%title%]"
+         local format="^fg(#${color['grey900']})[%artist% ^fg()- ]^fg(#${color['grey300']})[%title%]"
       ;;
       'dark-arrow')
-         local format="^fg(#$colGrey100)[%artist% ^fg()- ]^fg(#$colYellow500)[%title%]"
+         local format="^fg(#${color['grey100']})[%artist% ^fg()- ]^fg(#${color['yellow500']})[%title%]"
       ;;
       'bright-colorful')
-         local format="^fg(#$colBlue500)[%artist% ^fg()- ]^fg(#$colPink700)[%title%]"
+         local format="^fg(#${color['blue500']})[%artist% ^fg()- ]^fg(#${color['pink700']})[%title%]"
       ;;
       *)  # 'dark-colorful'
-         local format="^fg(#$colBlue300)[%artist% ^fg()- ]^fg(#$colYellow500)[%title%]"
+         local format="^fg(#${color['blue300']})[%artist% ^fg()- ]^fg(#${color['yellow500']})[%title%]"
       ;;
     esac
 

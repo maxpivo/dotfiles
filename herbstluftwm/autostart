@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-
-~/.config/herbstluftwm/bash/autostart.sh
-
-
-# ~/.config/herbstluftwm/dotshare736/autostart.sh
-
-
+#~/.config/herbstluftwm/bash/autostart.sh
+#~/.config/herbstluftwm/perl/autostart.pl
+#~/.config/herbstluftwm/python/autostart.py
+#~/.config/herbstluftwm/ruby/autostart.rb
+#~/.config/herbstluftwm/php/autostart.php
+~/.config/herbstluftwm/lua/autostart.lua

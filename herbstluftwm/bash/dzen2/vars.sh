@@ -11,8 +11,8 @@ then
     theme='dark-colorful'
     
     # dzen panel color
-    bgcolor=$colBlack
-    fgcolor=$colWhite
+    bgcolor=${color['black']}
+    fgcolor=${color['white']}
 fi
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----

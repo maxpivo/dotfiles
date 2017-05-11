@@ -43,6 +43,7 @@ init_theme
 init_segments
 
 # do `man herbsluftclient`, and type \pad to search what it means
+# hc pad $monitor $panel_height 0 $panel_height 0
 hc pad $monitor $panel_height 0 $panel_height 0
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
@@ -65,7 +66,7 @@ dzen2_bottom_parameters+=" -title-name dzenbottom"
 event_generator_top 2> /dev/null | generated_output_top 2> /dev/null | dzen2 $dzen2_top_parameters \
    -e 'button3=;button4=exec:herbstclient use_index -1;button5=exec:herbstclient use_index +1' &
 
-event_generator_bottom 2> /dev/null | generated_output_bottom 2> /dev/null | dzen2 $dzen2_bottom_parameters &
+# event_generator_bottom 2> /dev/null | generated_output_bottom 2> /dev/null | dzen2 $dzen2_bottom_parameters &
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # optional transparency
@@ -75,5 +76,5 @@ event_generator_bottom 2> /dev/null | generated_output_bottom 2> /dev/null | dze
 # sleep 2 && exec `(transset-df .8 -n dzentop >/dev/null 2>&1 &)` &
 
 # you may use xorg-transset instead of transset-df
-sleep 1 && exec `(transset .8 -n dzenbottom >/dev/null 2>&1 &)` &
+# sleep 1 && exec `(transset .8 -n dzenbottom >/dev/null 2>&1 &)` &
 sleep 2 && exec `(transset .8 -n dzentop >/dev/null 2>&1 &)` &

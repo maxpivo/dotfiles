@@ -1,25 +1,16 @@
-#!/usr/bin/perl
-# this is a modularized config for herbstluftwm
+#!/usr/bin/php56  
+<?php 
 
-# See here for more sophisticated code
-# https://github.com/ypnos/hlwm/blob/master/autostart
-
-use warnings;
-use strict;
-
-use File::Basename;
-use lib dirname(__FILE__);
-
-use assets::gmc;
-use helper;
-use config;
-use startup;
+require_once('assets/gmc.php');
+require_once('helper.php');
+require_once('config.php');
+require_once('startup.php');
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main
 
 # background before wallpaper
-system("xsetroot -solid '$color{'blue500'}'");
+system("xsetroot -solid '${color['blue500']}'");
 
 # Read the manual in $ man herbstluftwm
 hc('emit_hook reload');
@@ -36,27 +27,27 @@ hc('keyunbind --all');
 hc("mouseunbind --all");
 hc("unrule -F");
 
-helper::set_tags_with_name();
+set_tags_with_name($tag_names, $tag_keys);
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # do hash config
 
-helper::do_config("keybind",   %config::keybinds);
-helper::do_config("keybind",   %config::tagskeybinds);
-helper::do_config("mousebind", %config::mousebinds);
-helper::do_config("attr",      %config::attributes);
-helper::do_config("set",       %config::sets);
-helper::do_config("rule",      %config::rules);
+do_config("keybind",   $keybinds);
+do_config("keybind",   $tagskeybinds);
+do_config("mousebind", $mousebinds);
+do_config("attr",      $attributes);
+do_config("set",       $sets);
+do_config("rule",      $rules);
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # finishing, some extra miles
 
 # I'm not sure what in this is
-helper::bind_cycle_layout();
+bind_cycle_layout();
 
 # example of custom layout
-my $layout = "(split horizontal:0.5:0 "
-            ."(clients vertical:0) (clients vertical:0))";
+$layout = "(split horizontal:0.5:0 "
+         ."(clients vertical:0) (clients vertical:0))";
 hc("load $tag_names[0] '$layout'");
 
 # tag number 5
@@ -69,7 +60,9 @@ hc("set tree_style '⊙│ ├╰»─╮'");
 hc("unlock");
 
 # launch statusbar panel (e.g. dzen2 or lemonbar)
-helper::do_panel();
+do_panel();
 
 # load on startup
-startup::run();
+startup_run();
+
+

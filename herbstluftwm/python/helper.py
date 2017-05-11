@@ -24,16 +24,18 @@ def do_config(command, dictionary):
 def set_tags_with_name():
     hc("rename default '" + str(tag_names[0]) + "' 2>/dev/null || true")
     
-    for i, tag_name in enumerate(tag_names):
-        hc("add '" + str(tag_names[i]) + "'")
+    for index, tag_name in enumerate(tag_names):
+        hc("add '" + str(tag_names[index]) + "'")
         
         # uncomment to debug in terminal
-        # print(i)
+        # print(index)
 
-        key = tag_keys[i];
+        key = tag_keys[index];
         if key:
-            hc("keybind Mod4-" + str(key) + " use_index '" + str(i) + "'")
-            hc("keybind Mod4-Shift-" + str(key) + " move_index '" + str(i) + "'")
+            hc("keybind Mod4-" + str(key) 
+                + " use_index '" + str(index) + "'")
+            hc("keybind Mod4-Shift-" + str(key) 
+                + " move_index '" + str(index) + "'")
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # miscellanous

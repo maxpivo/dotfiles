@@ -39,32 +39,32 @@ event_generator_bottom() {
     while true ; do
         evHost
         sleep 1h || break
-    done &
+    done > >(uniq_linebuffered) &
     local host_pid=$!
     
   # cpu
     while true ; do
         evCPU
         sleep 3 || break
-    done &
+    done > >(uniq_linebuffered) &
     local cpu_pid=$!
     
   # net
     while true ; do
         evNet
         sleep 7 || break
-    done &
+    done > >(uniq_linebuffered) &
     local net_pid=$!
 
   # batch
     while true ; do
-        evVolume
-        evMemory
-        evDisk
+#        evVolume
+#        evMemory
+#        evDisk
         evCPU
         evSSID
         evNet
-        evUptime
+#        evUptime
         sleep 1m || break
     done &
     local batch_pid=$!

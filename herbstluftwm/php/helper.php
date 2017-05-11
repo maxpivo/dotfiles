@@ -1,51 +1,38 @@
-package helper;
-
-use warnings;
-use strict;
-
-use config;
-
-use Exporter;
-our @ISA = 'Exporter';
-our @EXPORT = qw(hc);
-
-use File::Basename;
-use lib dirname(__FILE__);
+<?php 
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # helpers
 
-sub hc {
-    system("herbstclient @_");
+function hc($arguments) {
+    system("herbstclient $arguments");
 }
 
-sub do_config($\%) {
-    my ($command, $ref2hash) = @_;
-    my %hash = %$ref2hash;
-
+function do_config($command, $hash) {
     # loop over hash
-    while(my ($key, $value) = each %hash) { 
-        hc("$command $key $value");
-        
+    foreach ($hash as $key => $value) {
+        hc($command.' '.$key.' '.$value);
+
         # uncomment to debug in terminal
-        # print("$command $key $value \n")
+        # echo $command.' '.$key.' '.$value."\n";
     }
 }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # tags related
 
-sub set_tags_with_name() {
+# Must pass the array as parameters,
+# since PHP can't read local array variable outside function.
+function set_tags_with_name($tag_names, $tag_keys) {
     hc("rename default '$tag_names[0]' 2>/dev/null || true");
     
-    for my $index (0 .. $#tag_names) {
-        hc("add '$tag_names[$index]'");
+    foreach($tag_names as $index=>$value) {
+        hc("add '$value'");
         
         # uncomment to debug in terminal
-        # print $index."\n";
+        # echo $index."\n";
 
-        my $key = $tag_keys[$index];
-        if ("$key" ne "") {
+        $key = $tag_keys[$index];
+        if (!empty($key)) {
             hc("keybind Mod4-$key use_index '$index'");
             hc("keybind Mod4-Shift-$key move_index '$index'");
         }
@@ -55,8 +42,7 @@ sub set_tags_with_name() {
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # miscellanous
 
-# I don't understand what this is
-sub bind_cycle_layout() {
+function bind_cycle_layout() {
     # The following cycles through the available layouts
     # within a frame, but skips layouts, if the layout change 
     # wouldn't affect the actual window positions.
@@ -77,21 +63,17 @@ sub bind_cycle_layout() {
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # find the panel
 
-sub do_panel() {
-    my $dirname = dirname(__FILE__);
-    my $panel   = "$dirname/../bash/dzen2/panel.sh";
-    if (not -x $panel) { $panel = "/etc/xdg/herbstluftwm/panel.sh"; }
+function do_panel() {
+    $panel   = __dir__."/../bash/dzen2/panel.sh";
+    if (!is_executable($panel))
+        $panel = "/etc/xdg/herbstluftwm/panel.sh";
 
-    my $monitor_qx = qx(herbstclient list_monitors | cut -d: -f1);
-    my @monitors = split /\n/, $monitor_qx;
+    $raw = shell_exec('herbstclient list_monitors | cut -d: -f1');
+    $monitors = explode("\n", trim($raw));
 
-    for my $monitor (@monitors) {
+    foreach ($monitors as $monitor) {
         # start it on each monitor
-        system("$panel $monitor &");
+        system("$panel $monitor > /dev/null &"); // no $output
     }
 }
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# end of perl module
-
-1;

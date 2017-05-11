@@ -26,6 +26,7 @@ hc("lock");
 hc('keyunbind --all')
 hc("mouseunbind --all")
 hc("unrule -F")
+
 set_tags_with_name()
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
