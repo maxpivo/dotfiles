@@ -1,5 +1,5 @@
 #!/usr/bin/lua
--- this is a modularized config for herbstluftwm
+-- This is a modularized config for herbstluftwm
 
 local dirname  = debug.getinfo(1).source:match("@?(.*/)")
 package.path = package.path .. ';' .. dirname .. '?.lua;'
@@ -12,13 +12,13 @@ local startup = require(".startup")
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- main
 
----- background before wallpaper
+-- background before wallpaper
 os.execute("xsetroot -solid '" .. gmc.color["blue500"] .. "'")
 
----- Read the manual in $ man herbstluftwm
+-- Read the manual in $ man herbstluftwm
 helper.hc('emit_hook reload')
 
----- gap counter
+-- gap counter
 os.execute("echo 35 > /tmp/herbstluftwm-gap")
 
 -- do not repaint until unlock
@@ -27,26 +27,26 @@ helper.hc("lock")
 -- standard
 -- remove all existing keybindings
 helper.hc('keyunbind --all')
-helper.hc("mouseunbind --all")
-helper.hc("unrule -F")
+helper.hc('mouseunbind --all')
+helper.hc('unrule -F')
 
 helper.set_tags_with_name()
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 -- do hash config
 
-helper.do_config("keybind",   config.keybinds)
-helper.do_config("keybind",   config.tagskeybinds)
-helper.do_config("mousebind", config.mousebinds)
-helper.do_config("attr",      config.attributes)
-helper.do_config("set",       config.sets)
-helper.do_config("rule",      config.rules)
+helper.do_config('keybind',   config.keybinds)
+helper.do_config('keybind',   config.tagskeybinds)
+helper.do_config('mousebind', config.mousebinds)
+helper.do_config('attr',      config.attributes)
+helper.do_config('set',       config.sets)
+helper.do_config('rule',      config.rules)
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 -- finishing, some extra miles
 
 -- I'm not sure what in this is
-helper.bind_cycle_layout();
+helper.bind_cycle_layout()
 
 -- example of custom layout
 local layout = "(split horizontal:0.5:0 "
@@ -67,10 +67,3 @@ helper.do_panel()
 
 -- load on startup
 startup.run()
-
-
-
-
-
-
-

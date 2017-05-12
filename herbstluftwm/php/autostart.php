@@ -1,5 +1,6 @@
 #!/usr/bin/php56  
 <?php 
+# This is a modularized config for herbstluftwm
 
 require_once('assets/gmc.php');
 require_once('helper.php');

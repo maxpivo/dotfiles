@@ -3,7 +3,7 @@ local helper  = require('.helper')
 local _M = {}
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
--- startup
+-- load on startup
 
 function _M.run()
     -- redirect stderror to stdout, then capture the result

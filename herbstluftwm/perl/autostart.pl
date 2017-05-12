@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# this is a modularized config for herbstluftwm
+# This is a modularized config for herbstluftwm
 
 # See here for more sophisticated code
 # https://github.com/ypnos/hlwm/blob/master/autostart

@@ -7,13 +7,19 @@ local gmc    = require ".assets/gmc"
 
 _M.tag_names = {}; _M.tag_keys = {} -- new array
 
+-- alternative 1
+
 -- for name = 1,9 do table.insert(_M.tag_names, name) end
 -- for name = 1,9 do table.insert(_M.tag_keys, name)  end
 -- table.insert(_M.tag_keys, 0)
 
+-- alternative 2
 for i = 1,9 do _M.tag_names[i-1]=i end
 for i = 1,9 do _M.tag_keys[i-1]=i  end
 _M.tag_keys[9] = 0
+
+-- alternative 3
+-- http://lua-users.org/wiki/RangeIterator
 
 -- uncomment to debug
 -- for key, value in pairs(_M.tag_keys) do print(key.." | "..value) end

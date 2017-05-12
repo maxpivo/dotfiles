@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-# this is a modularized config for herbstluftwm
+# This is a modularized config for herbstluftwm
 
 require_relative 'assets/gmc'
 require_relative 'helper'

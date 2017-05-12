@@ -1,5 +1,8 @@
 import os
 
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# load on startup
+
 def run():
     command = 'silent new_attr bool my_not_first_autostart'
     exitcode = os.system('herbstclient ' + command)

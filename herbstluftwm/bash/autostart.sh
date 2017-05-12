@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# this is a modularized config for herbstluftwm
+# This is a modularized config for herbstluftwm
 
 . ~/.config/herbstluftwm/bash/assets/gmc.sh
 . ~/.config/herbstluftwm/bash/config.sh

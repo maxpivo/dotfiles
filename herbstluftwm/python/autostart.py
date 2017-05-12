@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# this is a modularized config for herbstluftwm
+# This is a modularized config for herbstluftwm
 
 import os
 
