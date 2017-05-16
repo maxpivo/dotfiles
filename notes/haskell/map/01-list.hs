@@ -23,3 +23,8 @@ main = do
     -- loop over an array/ list
     mapM_ print list
     putStrLn ""
+
+    mapM_ (putStr . (": " ++) . show ) ([1..9] ++ [0])
+    putStrLn ""
+    
+    putStrLn (concatMap ((": " ++) . show ) ([1..9] ++ [0]) )
