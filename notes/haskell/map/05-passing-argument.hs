@@ -1,4 +1,4 @@
--- Accessing Associative Array in Haskell
+-- Passing Argument with Map in Haskell
 
 import System.Process
 

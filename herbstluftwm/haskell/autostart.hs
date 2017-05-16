@@ -13,7 +13,6 @@ import MyStartup
 main = do
     -- background before wallpaper
     system $ "xsetroot -solid '" ++ myColor "blue500" ++ "'"
-    --putStrLn $ "xsetroot -solid '" ++ myColor "blue500" ++ "'"
 
     -- Read the manual in $ man herbstluftwm
     hc "emit_hook reload"
@@ -67,7 +66,3 @@ main = do
 
     -- load on startup
     startup_run
-
-
-
-

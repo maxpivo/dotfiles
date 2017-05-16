@@ -3,7 +3,7 @@
 -- alternative 1
 
 type Pair = (String, String)
-pair :: (String, String)
+pair :: Pair
 pair = ("key", "value")
 
 -- note: no constructor, give error

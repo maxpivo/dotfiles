@@ -3,8 +3,6 @@
 
 import os
 
-#import subprocess
-
 from assets.gmc import color
 
 import helper
@@ -73,5 +71,3 @@ helper.do_panel()
 
 # load on startup
 startup.run()
-
-
