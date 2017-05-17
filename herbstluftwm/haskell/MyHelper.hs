@@ -36,39 +36,28 @@ do_config command pairs = do
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- tags related
 
-get_indices :: [Int] -> [Int]
-get_indices l = [0 .. (length l) - 1]
-
--- Pattern Matching
-keybind_keytag :: Int -> Maybe Int -> IO ()
-keybind_keytag index Nothing = do return ()
-keybind_keytag index (Just key) = do
-        hc("keybind Mod4-" ++ show(key) 
-                ++ " use_index '" ++ show(index) ++ "'")
-        hc("keybind Mod4-Shift-" ++ show(key) 
-                ++ " move_index '" ++ show(index) ++ "'")
-        return ()
-
-set_tag :: Int -> IO ()
-set_tag index = do
-    hc("add '" ++ show(tag_names !! index) ++ "'")
-    
-    -- uncomment to debug in terminal
-    -- putStrLn $ show index
-
-    let key = tag_keys !! index
-    keybind_keytag index (Just key)
-    
-    return ()
-
 set_tags_with_name :: IO ()
 set_tags_with_name = do
     hc("rename default '" 
         ++ show (tag_names !! 0) ++ "' 2>/dev/null || true")
 
-    mapM_ set_tag (get_indices tag_names)
+    mapM_ (\index -> do
+            hc("add '" ++ show(tag_names !! index) ++ "'")
     
-    return ()
+            -- uncomment to debug in terminal
+            -- putStrLn $ show index
+
+            let key = tag_keys !! index
+            case (Just key) of
+                Nothing   -> do return()
+                Just akey -> do
+                    hc("keybind Mod4-" ++ show(akey) 
+                        ++ " use_index '" ++ show(index) ++ "'")
+                    hc("keybind Mod4-Shift-" ++ show(akey) 
+                        ++ " move_index '" ++ show(index) ++ "'")
+                    return ()
+
+        ) ([0 .. (length tag_names) - 1]) -- indices
     
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- miscellanous
@@ -94,16 +83,16 @@ bind_cycle_layout = do
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- find the panel
 
--- poorly designed, need more refactoring
--- and migrate imperative thinking to functional
-do_panel :: IO ()
-do_panel = do
-    -- Source directory is irrelevant in Haskell
-    -- So hardcoded, for the sake of learning
-    let path = "/.config/herbstluftwm/bash/dzen2/panel.sh"
+-- Source directory is irrelevant in Haskell
+-- So hardcoded, for the sake of learning
+customFilename :: String -> String
+customFilename home = home ++ path 
+    where path = "/.config/herbstluftwm/bash/dzen2/panel.sh"
     
+panelFilename :: IO String
+panelFilename = do
     home <- getHomeDirectory
-    let file = home ++ path
+    let file = customFilename home
 
     isExist <- doesFileExist file
     permission <- getPermissions file
@@ -116,7 +105,11 @@ do_panel = do
     
     -- uncomment to debug in terminal
     -- putStrLn panel
-     
+    
+    return panel
+
+listMonitors :: IO [String]
+listMonitors = do
     (_, Just pipeout, _, _) <- 
         createProcess (proc "herbstclient" ["list_monitors"])
         { std_out = CreatePipe } 
@@ -128,9 +121,16 @@ do_panel = do
     raw <- hGetContents cutout   
     _ <- waitForProcess ph
 
-    -- uncomment to debug in terminal       
+    -- uncomment to debug in terminal     
     -- putStrLn raw
-    let monitors = lines raw
+    let monitors = lines raw  -- or splitOn instead
+
+    return monitors
+
+do_panel :: IO ()
+do_panel = do
+    panel <- panelFilename
+    monitors <- listMonitors
     
     mapM_ (\monitor -> do
             system(panel ++ " " ++ show(monitor) ++ " &")
