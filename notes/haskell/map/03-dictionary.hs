@@ -1,7 +1,5 @@
 -- Accessing Associative Array in Haskell
 
-import System.Process
-
 -- google material colors
 -- https://material.io/guidelines/style/color.html
 
@@ -24,12 +22,22 @@ putPairLn :: (String, String) -> IO ()
 putPairLn (key, value) = do
     putStrLn(key ++ " | " ++ value)
 
+-- function
+pairStr :: (String, String) -> String
+pairStr (key, value) = key ++ " | " ++ value
+
+
 main = do
     print (colorSchemes !! 2)
     putStrLn ""
 
-    -- loop over a hash dictionary of tuples
+    -- loop over a hash dictionary of tuples      
+    -- using side effect only (using IO)
     mapM_ print colorSchemes
+    putStrLn ""
+    
+    -- producing new list (no IO), print raw
+    print $ map fst colorSchemes
     putStrLn ""
 
     mapM_ (print . fst) colorSchemes
@@ -38,6 +46,10 @@ main = do
     mapM_ (putStrLn . snd) colorSchemes
     putStrLn ""
     
+    -- using side effect only (using IO)
     mapM_ putPairLn colorSchemes
     putStrLn ""
-    
+
+    -- producing new list first
+    mapM_ putStrLn (map pairStr colorSchemes)
+    putStrLn ""    

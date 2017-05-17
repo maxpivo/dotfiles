@@ -1,7 +1,5 @@
 -- Passing Argument with Map in Haskell
 
-import System.Process
-
 type Pair = (String, String)
 
 pair :: Pair
@@ -34,7 +32,6 @@ dumpHash1 :: String -> [Pair] -> IO ()
 dumpHash1 text dictionary = do
     -- loop over a hash dictionary of tuples
     mapM_ (dumpPair text) dictionary
-    -- where
   
 -- IO action procedure
 dumpHash2 :: String -> [Pair] -> IO ()
@@ -53,9 +50,22 @@ dumpHash3 text dictionary = do
             putStrLn(text ++ ": " ++ key ++ " | " ++ value)
         ) dictionary       
 
+-- IO action procedure
+dumpHash4 :: String -> [Pair] -> IO ()
+dumpHash4 text dictionary = do
+    -- loop over a hash dictionary of tuples
+    mapM_ (\(key, value) -> do 
+            let message = text ++ ": " ++ key ++ " | " ++ value
+            
+            putStrLn message
+
+            -- uncomment to debug in terminal
+            -- putStrLn ("Debug [" ++ message ++ "]")
+        ) dictionary       
+
 main = do
     dumpPair "Test" ("Key", "Value")
     putStrLn ""
 
-    dumpHash3 "Name" colorSchemes
+    dumpHash4 "Name" colorSchemes
     putStrLn ""
