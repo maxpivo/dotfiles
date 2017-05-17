@@ -26,6 +26,9 @@ putPairLn (key, value) = do
 pairStr :: (String, String) -> String
 pairStr (key, value) = key ++ " | " ++ value
 
+-- action procedure
+pairStrIO :: (String, String) -> IO String
+pairStrIO (key, value) = do return (key ++ " | " ++ value)
 
 main = do
     print (colorSchemes !! 2)
@@ -45,7 +48,7 @@ main = do
     
     mapM_ (putStrLn . snd) colorSchemes
     putStrLn ""
-    
+       
     -- using side effect only (using IO)
     mapM_ putPairLn colorSchemes
     putStrLn ""
@@ -53,3 +56,12 @@ main = do
     -- producing new list first
     mapM_ putStrLn (map pairStr colorSchemes)
     putStrLn ""    
+
+    -- IO example 
+    myPair <- pairStrIO ("myKey", "myValue")
+    putStrLn myPair
+    
+    myMapResult <- mapM pairStrIO colorSchemes
+    putStrLn $ show myMapResult
+    putStrLn ""  
+    
