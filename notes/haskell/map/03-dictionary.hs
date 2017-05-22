@@ -61,7 +61,13 @@ main = do
     myPair <- pairStrIO ("myKey", "myValue")
     putStrLn myPair
     
+    pairStrIO ("myKey", "myValue") >>= putStrLn 
+    putStrLn =<< pairStrIO ("myKey", "myValue") 
+    
     myMapResult <- mapM pairStrIO colorSchemes
     putStrLn $ show myMapResult
     putStrLn ""  
     
+    (mapM pairStrIO colorSchemes) >>= (putStrLn . show)
+    (putStrLn . show) =<< (mapM pairStrIO colorSchemes)
+    putStrLn ""      
