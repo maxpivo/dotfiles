@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # This is a modularized config for herbstluftwm
 
-. ~/.config/herbstluftwm/bash/assets/gmc.sh
-. ~/.config/herbstluftwm/bash/config.sh
-. ~/.config/herbstluftwm/bash/helper.sh
-. ~/.config/herbstluftwm/bash/startup.sh
+DIR=$(dirname "$0")
+
+. ${DIR}/assets/gmc.sh
+. ${DIR}/config.sh
+. ${DIR}/helper.sh
+. ${DIR}/startup.sh
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main
