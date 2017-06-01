@@ -16,7 +16,7 @@ my $pipein  = IO::Pipe->new();
 my $hnd_in  = $pipein->reader($cmdin);
 
 my $pipeout = IO::Pipe->new();
-my $hnd_out = $pipeout->writer($cmdout);
+my $hnd_ou  = $pipeout->writer($cmdout);
 
 while(<$pipein>) {
     print $pipeout $_;

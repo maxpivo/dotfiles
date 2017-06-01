@@ -59,7 +59,7 @@ function detach_transset() {
     $pid = pcntl_fork();
     if ($pid == 0) { 
         sleep(1);
-        system('transset .8 -n dzentop >/dev/null 2');
+        system('transset .8 -n dzentop >/dev/null');
     }
 }
 

@@ -46,7 +46,7 @@ end
 def detach_transset()
     pid = fork do
         sleep(1)
-        system('transset .8 -n dzentop >/dev/null 2')        
+        system('transset .8 -n dzentop >/dev/null')        
     end
     
     Process.detach(pid)

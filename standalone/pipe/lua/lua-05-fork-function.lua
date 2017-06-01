@@ -13,18 +13,6 @@ function sleep (n)
     end
 end
 
-function exec (command)
-    local file = assert(io.popen(command, 'r'))
-    local s = file:read('*all')
-    file:close()
-
-    s = string.gsub(s, '^%s+', '') 
-    s = string.gsub(s, '%s+$', '') 
-    s = string.gsub(s, '[\n\r]+', ' ')
-
-    return s
-end
-
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ---
 -- application related function
 
@@ -83,7 +71,7 @@ end
 -- main
 
 -- remove all dzen2 instance
-exec('pkill dzen2')
+os.execute('pkill dzen2')
 
 -- run process in the background
 detach_dzen2()

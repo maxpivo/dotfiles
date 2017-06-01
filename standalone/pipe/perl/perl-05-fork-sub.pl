@@ -1,7 +1,4 @@
 #!/usr/bin/perl
-# https://github.com/chromatic/modern_perl_book
-# http://www.perlmonks.org/?node_id=690463
-# http://perltricks.com/article/162/2015/3/27/Gzipping-data-directly-from-Perl/
 
 use warnings;
 use strict;

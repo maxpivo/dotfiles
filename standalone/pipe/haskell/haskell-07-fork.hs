@@ -54,7 +54,7 @@ detachDzen2 = do
 
 detachTransset = forkProcess $ do    
     wSleep 1
-    system "transset .8 -n dzentop >/dev/null 2"
+    system "transset .8 -n dzentop >/dev/null"
     putStr ""
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ---

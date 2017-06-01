@@ -69,7 +69,7 @@ def detach_transset():
     if pid == 0:
         try:
             time.sleep(1)
-            os.system('transset .8 -n dzentop >/dev/null 2')
+            os.system('transset .8 -n dzentop >/dev/null')
             os._exit(1)
         finally:
             os.kill(pid, signal.SIGTERM)

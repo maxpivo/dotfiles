@@ -41,6 +41,3 @@ main = do
     hClose pipein
     
     putStr ""
-  
-
-

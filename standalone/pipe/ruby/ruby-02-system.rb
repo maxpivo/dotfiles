@@ -6,8 +6,4 @@ cmdin   = 'conky -c ' + path + '/conky.lua'
 cmdout  = 'less' # or 'dzen2'
 cmd     = cmdin + ' | ' + cmdout
 
-system(cmd) 
-
-
-
-
+system(cmd)

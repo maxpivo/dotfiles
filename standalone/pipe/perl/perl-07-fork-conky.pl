@@ -1,7 +1,4 @@
 #!/usr/bin/perl
-# https://github.com/chromatic/modern_perl_book
-# http://www.perlmonks.org/?node_id=690463
-# http://perltricks.com/article/162/2015/3/27/Gzipping-data-directly-from-Perl/
 
 use warnings;
 use strict;
@@ -67,7 +64,7 @@ sub detach_transset {
     return if $pid;     # in the parent process
     
     sleep 1;
-    system('transset .8 -n dzentop >/dev/null 2');
+    system('transset .8 -n dzentop >/dev/null');
     
     exit; 
 }
