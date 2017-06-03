@@ -6,7 +6,7 @@ import datetime
 import time
 import subprocess
 import os
-
+import signal
 
 def get_dzen2_parameters():
     xpos    = '0'

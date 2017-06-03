@@ -12,8 +12,8 @@ import Control.Monad
 
 wFormatTime :: FormatTime t => t -> String
 wFormatTime myUtcTime = formatTime 
-        Data.Time.Format.defaultTimeLocale myTimeFormat myUtcTime
-    where myTimeFormat = "%a %b %d %H:%M:%S"
+    Data.Time.Format.defaultTimeLocale myTimeFormat myUtcTime
+  where myTimeFormat = "%a %b %d %H:%M:%S"
 
 wSleep :: Int -> IO ()
 wSleep mySecond = threadDelay (1000000 * mySecond)

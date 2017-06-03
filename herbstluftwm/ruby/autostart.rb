@@ -16,7 +16,7 @@ system("xsetroot -solid '#{GMC::Color['blue500']}'")
 hc('emit_hook reload')
 
 # gap counter
-system("echo 35 > /tmp/herbstluftwm-gap");
+system("echo 35 > /tmp/herbstluftwm-gap")
 
 # do not repaint until unlock
 hc("lock");

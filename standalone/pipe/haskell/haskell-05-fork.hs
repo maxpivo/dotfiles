@@ -14,28 +14,28 @@ import Control.Monad
 cmdout = "dzen2"
 
 getDzen2Parameters = [
-        "-x", xpos,  "-y", ypos,
-        "-w", width, "-h", height,
-        "-fn", font,
-        "-ta", "c",
-        "-bg", bgcolor,
-        "-fg", fgcolor,
-        "-title-name", "dzentop"
-     ]
-    where    
-        xpos    = "0"
-        ypos    = "0"
-        width   = "640"
-        height  = "24"
-        fgcolor = "#000000"
-        bgcolor = "#ffffff"
-        font    = "-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
+      "-x", xpos,  "-y", ypos,
+      "-w", width, "-h", height,
+      "-fn", font,
+      "-ta", "c",
+      "-bg", bgcolor,
+      "-fg", fgcolor,
+      "-title-name", "dzentop"
+    ]
+  where    
+    xpos    = "0"
+    ypos    = "0"
+    width   = "640"
+    height  = "24"
+    fgcolor = "#000000"
+    bgcolor = "#ffffff"
+    font    = "-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
 
 
 wFormatTime :: FormatTime t => t -> String
 wFormatTime myUtcTime = formatTime 
-        Data.Time.Format.defaultTimeLocale myTimeFormat myUtcTime
-    where myTimeFormat = "%a %b %d %H:%M:%S"
+    Data.Time.Format.defaultTimeLocale myTimeFormat myUtcTime
+  where myTimeFormat = "%a %b %d %H:%M:%S"
 
 
 wSleep :: Int -> IO ()
@@ -44,7 +44,7 @@ wSleep mySecond = threadDelay (1000000 * mySecond)
 generatedOutput pipein = do
      now <- getZonedTime
      let nowFmt = wFormatTime now
-
+     
      hPutStrLn pipein nowFmt
      hFlush pipein
 

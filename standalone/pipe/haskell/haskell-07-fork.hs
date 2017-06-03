@@ -18,22 +18,22 @@ wConkyFileName :: String -> String
 wConkyFileName dirName = dirName ++ "/../assets" ++ "/conky.lua"
 
 getDzen2Parameters = [
-        "-x", xpos,  "-y", ypos,
-        "-w", width, "-h", height,
-        "-fn", font,
-        "-ta", "c",
-        "-bg", bgcolor,
-        "-fg", fgcolor,
-        "-title-name", "dzentop"
-     ]
-    where    
-        xpos    = "0"
-        ypos    = "0"
-        width   = "640"
-        height  = "24"
-        fgcolor = "#000000"
-        bgcolor = "#ffffff"
-        font    = "-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
+      "-x", xpos,  "-y", ypos,
+      "-w", width, "-h", height,
+      "-fn", font,
+      "-ta", "c",
+      "-bg", bgcolor,
+      "-fg", fgcolor,
+      "-title-name", "dzentop"
+    ]
+  where    
+    xpos    = "0"
+    ypos    = "0"
+    width   = "640"
+    height  = "24"
+    fgcolor = "#000000"
+    bgcolor = "#ffffff"
+    font    = "-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
 
 wSleep :: Int -> IO ()
 wSleep mySecond = threadDelay (1000000 * mySecond)

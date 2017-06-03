@@ -2,7 +2,8 @@
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # load on startup
 
-function startup_run() {
+function startup_run() 
+{
     $command = 'silent new_attr bool my_not_first_autostart';
     system("herbstclient $command", $exitcode);
 

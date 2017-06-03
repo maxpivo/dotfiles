@@ -3,7 +3,8 @@
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # helpers
 
-function hc($arguments) {
+function hc($arguments) 
+{
     system("herbstclient $arguments");
 }
 
@@ -22,7 +23,8 @@ function do_config($command, $hash) {
 
 # Must pass the array as parameters,
 # since PHP can't read local array variable outside function.
-function set_tags_with_name($tag_names, $tag_keys) {
+function set_tags_with_name($tag_names, $tag_keys) 
+{
     hc("rename default '$tag_names[0]' 2>/dev/null || true");
     
     foreach($tag_names as $index=>$value) {
@@ -42,7 +44,8 @@ function set_tags_with_name($tag_names, $tag_keys) {
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # miscellanous
 
-function bind_cycle_layout() {
+function bind_cycle_layout() 
+{
     # The following cycles through the available layouts
     # within a frame, but skips layouts, if the layout change 
     # wouldn't affect the actual window positions.
@@ -63,7 +66,8 @@ function bind_cycle_layout() {
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # find the panel
 
-function do_panel() {
+function do_panel() 
+{
     $panel   = __dir__."/../bash/dzen2/panel.sh";
     if (!is_executable($panel))
         $panel = "/etc/xdg/herbstluftwm/panel.sh";
