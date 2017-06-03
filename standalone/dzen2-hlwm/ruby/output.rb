@@ -97,8 +97,7 @@ end
 
 def set_tag_value(monitor)
   raw = IO.popen('herbstclient tag_status ' + monitor.to_s).read()
-  raw = raw.strip
-  @tags_status = raw.split("\t")
+  @tags_status = raw.strip.split("\t")
 end
 
 def set_windowtitle(windowtitle)
