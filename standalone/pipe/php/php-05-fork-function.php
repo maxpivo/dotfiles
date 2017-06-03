@@ -1,5 +1,5 @@
-#!/usr/bin/php56  
-<?php 
+#!/usr/bin/php 
+<?php # using PHP7
 
 function get_dzen2_parameters() 
 { 

@@ -1,5 +1,5 @@
-#!/usr/bin/php56  
-<?php 
+#!/usr/bin/php
+<?php # using PHP7
 # This is a modularized config for herbstluftwm
 
 require_once('assets/gmc.php');

@@ -1,4 +1,4 @@
-<?php 
+<?php # using PHP7
 require_once('assets/gmc.php');
 
 $tag_names = range(1, 9);

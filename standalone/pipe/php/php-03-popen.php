@@ -1,5 +1,5 @@
-#!/usr/bin/php56  
-<?php 
+#!/usr/bin/php
+<?php # using PHP7
 
 $timeformat = '%a %b %d %H:%M:%S';
 
