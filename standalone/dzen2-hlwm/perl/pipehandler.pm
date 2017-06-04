@@ -39,22 +39,31 @@ sub handle_command_event {
     }    
 }
 
-sub do_content {
+sub init_content {
     my $monitor = shift;
-    my $pipe_out = shift;     
-    
+    my $pipe_out = shift;
+
     # initialize statusbar before loop
     output::set_tag_value($monitor);
+    output::set_windowtitle('');
+
     my $text = output::get_statusbar_text($monitor);
     print $pipe_out $text."\n";
     flush $pipe_out;
+}
 
+sub walk_content {
+    my $monitor = shift;
+    my $pipe_out = shift;    
+    
     # start a pipe
     my $pipe_in  = IO::Pipe->new();
     my $command = 'herbstclient --idle';
     my $handle  = $pipe_in->reader($command);
 
-    my $event = '';    
+    my $text = '';
+    my $event = '';
+
     while(<$pipe_in>) {
         # wait for next event
         $event = $_;        
@@ -76,7 +85,8 @@ sub run_dzen2 {
     my $command = "dzen2 $parameters";
     my $handle = $pipe_out->writer($command);
 
-    do_content($monitor, $pipe_out);
+    init_content($monitor, $pipe_out);
+    walk_content($monitor, $pipe_out); # loop for each event
     $pipe_out->close();
 }
 
@@ -97,7 +107,7 @@ sub detach_transset {
     
     sleep 1;
     
-    # you may use either xorg-transset instead or transset-df
+    # you may use either xorg-transset or transset-df instead
     # https://github.com/wildefyr/transset-df
     system('transset .8 -n dzentop >/dev/null');
     

@@ -24,13 +24,16 @@ def handle_command_event(monitor, event):
     elif origin in title_cmds:
         output.set_windowtitle(column[2])
 
-def do_content(monitor, pipe_out):
+def init_content(monitor, pipe_out):
     # initialize statusbar before loop
     output.set_tag_value(monitor)
+    output.set_windowtitle('')
+        
     text = output.get_statusbar_text(monitor)
     pipe_out.stdin.write(text + '\n')
     pipe_out.stdin.flush()
-    
+
+def walk_content(monitor, pipe_out):    
     # start a pipe
     command_in = 'herbstclient --idle'  
     pipe_in = subprocess.Popen(
@@ -41,8 +44,6 @@ def do_content(monitor, pipe_out):
             shell  = True,
             universal_newlines = True
         )
-
-    event = '' 
     
     # wait for each event  
     for event in pipe_in.stdout:  
@@ -64,7 +65,8 @@ def run_dzen2(monitor, parameters):
             universal_newlines=True
         )
 
-    do_content(monitor, pipe_out)
+    init_content(monitor, pipe_out)
+    walk_content(monitor, pipe_out) # loop for each event
 
     pipe_out.stdin.close()
     outputs, errors = pipe_out.communicate()
@@ -90,7 +92,7 @@ def detach_transset():
         try:
             time.sleep(1)
             
-            # you may use either xorg-transset instead or transset-df
+            # you may use either xorg-transset or transset-df instead
             # https://github.com/wildefyr/transset-df
             os.system('transset .8 -n dzentop >/dev/null')
             

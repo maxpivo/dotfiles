@@ -4,11 +4,11 @@ require_once(__DIR__.'/gmc.php');
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # initialize
 
-# custom tag names
+// custom tag names
 $tag_shows = ['一 ichi', '二 ni', '三 san', '四 shi', 
   '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū'];
 
-# initialize variable segment
+// initialize variable segment
 $segment_windowtitle = '';
 $tags_status = [];
 
@@ -17,16 +17,16 @@ $tags_status = [];
 
 $separator = "^bg()^fg(${color['black']})|^bg()^fg()";
 
-# http://fontawesome.io/
+// http://fontawesome.io/
 $font_awesome = '^fn(FontAwesome-9)';
 
-# Powerline Symbol
+// Powerline Symbol
 $right_hard_arrow = '^fn(powerlinesymbols-14)^fn()';
 $right_soft_arrow = '^fn(powerlinesymbols-14)^fn()';
 $left_hard_arrow  = '^fn(powerlinesymbols-14)^fn()';
 $left_soft_arrow  = '^fn(powerlinesymbols-14)^fn()';
 
-# theme
+// theme
 $pre_icon    = "^fg(${color['yellow500']})${font_awesome}";
 $post_icon   = "^fn()^fg()";
 
@@ -38,12 +38,12 @@ function get_statusbar_text($monitor)
     global $tags_status;
     $text = '';
     
-    # draw tags
+    // draw tags
     foreach ($tags_status as $tag_status) {
         $text .= output_by_tag($monitor, $tag_status);
      }
     
-    # draw window title    
+    // draw window title    
     $text .= output_leftside_top();
   
     return $text;
@@ -85,8 +85,8 @@ function output_by_tag($monitor, $tag_status)
 
     # ----- tag by number
     
-    # assuming using dzen2_svn
-    # clickable tags if using SVN dzen
+    // assuming using dzen2_svn
+    // clickable tags if using SVN dzen
     $text .= "^ca(1,herbstclient focus_monitor \"${monitor}\" && " 
           .  "herbstclient use \"${tag_index}\") ${tag_name} ^ca()";
 

@@ -11,7 +11,7 @@ require_once(__DIR__.'/pipehandler.php');
 $panel_height = 24;
 $monitor = get_monitor($argv);
 
-# do `man herbsluftclient`, and type \pad to search what it means
+// do `man herbsluftclient`, and type \pad to search what it means
 system("herbstclient pad $monitor $panel_height 0 $panel_height 0");
 
 $dzen2_parameters = get_dzen2_parameters($monitor, $panel_height);
@@ -19,11 +19,11 @@ $dzen2_parameters = get_dzen2_parameters($monitor, $panel_height);
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main
 
-# remove all dzen2 instance
+// remove all dzen2 instance
 system('pkill dzen2');
 
-# run process in the background
+// run process in the background
 detach_dzen2($monitor, $dzen2_parameters);
 
-# optional transparency
+// optional transparency
 detach_transset();

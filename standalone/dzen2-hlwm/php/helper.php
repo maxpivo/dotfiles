@@ -3,10 +3,10 @@
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # helpers
 
-# script arguments
+// script arguments
 function get_monitor($arguments)
 {
-    # ternary operator
+    // ternary operator
     return count($arguments) > 0 ? (int)$arguments[0] : 0;
 }
 
@@ -27,14 +27,14 @@ function get_geometry($monitor)
 
 function get_top_panel_geometry($height, $geometry)
 {
-    # geometry has the format X Y W H
+    // geometry has the format X Y W H
     return array(
         $geometry[0], $geometry[1], $geometry[2], $height);
 }
 
 function get_bottom_panel_geometry($height, $geometry)
 {
-    # geometry has the format X Y W H
+    // geometry has the format X Y W H
     return array(
         $geometry[0], ($geometry[3]-$height), $geometry[2], $height);
 }

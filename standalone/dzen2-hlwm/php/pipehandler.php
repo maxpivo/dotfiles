@@ -7,7 +7,7 @@ require_once(__DIR__.'/output.php');
 
 function handle_command_event($monitor, $event)
 {
-    # find out event origin
+    // find out event origin
     $column = explode("\t", $event);
     $origin = $column[0];
 
@@ -30,22 +30,24 @@ function handle_command_event($monitor, $event)
     }
 }
 
-function do_content($monitor, $process)
+function init_content($monitor, $process)
 {   
-    # initialize statusbar before loop
+    // initialize statusbar before loop
     set_tag_value($monitor);
+    set_windowtitle('');
+        
     $text = get_statusbar_text($monitor);
     fwrite($process, $text."\n");
     flush();
-    
-    # start a pipe
-    $command_in = 'herbstclient --idle';
-    $event = '' ;
+}
 
-    $pipe_in  = popen($command_in,  "r"); # handle
+function walk_content($monitor, $process)
+{       
+    // start a pipe
+    $command_in = 'herbstclient --idle';
+    $pipe_in  = popen($command_in,  "r"); // handle
     
     while(!feof($pipe_in)) {
-
         # read next event
         $event = fgets($pipe_in);
         handle_command_event($monitor, $event);
@@ -63,7 +65,8 @@ function run_dzen2($monitor, $parameters)
     $command_out  = "dzen2 $parameters";
     $pipe_out = popen($command_out, "w");
 
-    do_content($monitor, $pipe_out);
+    init_content($monitor, $pipe_out);
+    walk_content($monitor, $pipe_out); // loop for each event
 
     pclose($pipe_out);
 }
@@ -83,13 +86,14 @@ function detach_dzen2($monitor, $parameters)
     }    
 }
 
-function detach_transset() { 
+function detach_transset() 
+{ 
     $pid = pcntl_fork();
     if ($pid == 0) { 
         sleep(1);
 
-        # you may use either xorg-transset instead or transset-df
-        # https://github.com/wilfunctionyr/transset-df 
+        // you may use either xorg-transset or transset-df instead
+        // https://github.com/wilfunctionyr/transset-df 
         system('transset .8 -n dzentop >/dev/null');
     }
 }
