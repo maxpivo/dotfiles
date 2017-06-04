@@ -91,9 +91,6 @@ function detach_transset()
     $pid = pcntl_fork();
     if ($pid == 0) { 
         sleep(1);
-
-        // you may use either xorg-transset or transset-df instead
-        // https://github.com/wilfunctionyr/transset-df 
         system('transset .8 -n dzentop >/dev/null');
     }
 }

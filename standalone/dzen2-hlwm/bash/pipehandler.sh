@@ -1,0 +1,87 @@
+# #!/usr/bin/env bash
+
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# pipe
+
+function handle_command_event() {
+    local monitor=$1
+    shift
+    local event=$@    
+    
+    # find out event origin
+    IFS=' ' read -r -a column <<< "$event"
+    origin=${column[0]}
+    
+    # find out event origin
+    case $origin in
+        reload)
+            pkill dzen2
+            ;;
+        quit_panel)
+            exit
+            ;;
+        tag*)
+            # http://www.tldp.org/LDP/abs/html/x17837.html#HERESTRINGSREF
+            # echo "resetting tags" >&2
+            set_tag_value $monitor
+            ;;
+        focus_changed|window_title_changed)
+            set_windowtitle "${column[2]}"
+            ;;
+    esac 
+}
+
+function init_content() {
+    monitor=$1
+
+    # initialize statusbar before loop
+    set_tag_value $monitor
+    set_windowtitle ''
+
+    get_statusbar_text $monitor
+    echo $buffer
+}
+
+function walk_content() {
+    monitor=$1
+
+    # start a pipe
+    command_in='herbstclient --idle'
+
+    # wait for each event     
+    $command_in | while read event; do
+        handle_command_event $monitor "$event"
+        
+        get_statusbar_text $monitor
+        echo $buffer
+    done    
+}
+
+function run_dzen2() { 
+    monitor=$1
+    shift
+    parameters=$@
+    
+    command_out="dzen2 $parameters"
+    
+    {
+       init_content $monitor
+       walk_content $monitor # loop for each event
+    } | $command_out
+
+}
+
+function detach_dzen2() { 
+    monitor=$1
+    shift
+    parameters=$@
+    
+    run_dzen2 $monitor $parameters &
+}
+
+function detach_transset() { 
+    {
+        sleep 1  
+        exec `(transset .8 -n dzentop >/dev/null)`
+    } &
+}

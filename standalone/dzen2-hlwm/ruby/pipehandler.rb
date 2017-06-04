@@ -70,9 +70,6 @@ end
 def detach_transset()
   pid = fork do
     sleep(1)
-
-    # you may use either xorg-transset or transset-df instead
-    # https://github.com/wildefyr/transset-df
     system('transset .8 -n dzentop >/dev/null')        
   end
     

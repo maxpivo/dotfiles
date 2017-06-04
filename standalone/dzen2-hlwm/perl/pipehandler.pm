@@ -106,9 +106,6 @@ sub detach_transset {
     return if $pid;     # in the parent process
     
     sleep 1;
-    
-    # you may use either xorg-transset or transset-df instead
-    # https://github.com/wildefyr/transset-df
     system('transset .8 -n dzentop >/dev/null');
     
     exit; 

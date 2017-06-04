@@ -82,9 +82,6 @@ function _M.detach_transset()
 
     if pid == 0 then -- this is the child process
         common.sleep(1)
-        
-        -- you may use either xorg-transset or transset-df instead
-        -- https://github.com/wilfunctionyr/transset-df 
         os.execute('transset .8 -n dzentop >/dev/null') 
     else             -- this is the parent process
         -- nothing

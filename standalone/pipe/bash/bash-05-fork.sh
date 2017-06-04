@@ -1,6 +1,22 @@
 #!/usr/bin/env bash
 
-generated_output() {
+function get_dzen2_parameters() { 
+    xpos=0
+    ypos=0
+    width=640
+    height=24
+
+    fgcolor="#000000"
+    bgcolor="#ffffff"
+    font="-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
+
+    parameters="  -x $xpos -y $ypos -w $width -h $height" 
+    parameters+=" -fn $font"
+    parameters+=" -ta c -bg $bgcolor -fg $fgcolor"
+    parameters+=" -title-name dzentop"
+}
+
+function generated_output() {
     # endless loop
     while :; do 
       date +'%a %b %d %H:%M:%S'
@@ -8,18 +24,18 @@ generated_output() {
     done
 }
 
-xpos=0
-ypos=0
-width=640
-height=24
-fgcolor="#000000"
-bgcolor="#ffffff"
-font="-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
+function run_dzen2() {
+    get_dzen2_parameters    
+    command_out="dzen2 $parameters"
+    
+    {
+        generated_output 
+    } | $command_out
+}
 
-parameters="  -x $xpos -y $ypos -w $width -h $height" 
-parameters+=" -fn $font"
-parameters+=" -ta c -bg $bgcolor -fg $fgcolor"
-parameters+=" -title-name dzentop"
+function detach_dzen2() {    
+    run_dzen2 &
+}
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main
@@ -27,5 +43,5 @@ parameters+=" -title-name dzentop"
 # remove all dzen2 instance
 pkill dzen2
 
-generated_output | dzen2 $parameters &
-
+# run process in the background
+detach_dzen2

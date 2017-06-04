@@ -91,11 +91,8 @@ def detach_transset():
     if pid == 0:
         try:
             time.sleep(1)
-            
-            # you may use either xorg-transset or transset-df instead
-            # https://github.com/wildefyr/transset-df
-            os.system('transset .8 -n dzentop >/dev/null')
-            
+            os.system('transset .8 -n dzentop >/dev/null')            
             os._exit(1)
         finally:
+            import signal
             os.kill(pid, signal.SIGTERM)
