@@ -56,7 +56,6 @@ function output_by_tag($monitor, $tag_status)
 {
     global $tag_shows;
     global $color, $right_hard_arrow;
-    $text = '';
 
     $tag_index  = substr($tag_status, 1, 1);
     $tag_mark   = substr($tag_status, 0, 1);
@@ -66,37 +65,41 @@ function output_by_tag($monitor, $tag_status)
 
     switch ($tag_mark) {
     case "#":
-        $text .= "^bg(${color['blue500']})^fg(${color['black']})";
-        $text .= $right_hard_arrow;
-        $text .= "^bg(${color['blue500']})^fg(${color['white']})";
+        $text_pre = "^bg(${color['blue500']})^fg(${color['black']})"
+                  . $right_hard_arrow
+                  . "^bg(${color['blue500']})^fg(${color['white']})";
         break;
     case "+":
-        $text .= "^bg(${color['yellow500']})^fg(${color['grey400']})";       
+        $text_pre = "^bg(${color['yellow500']})"
+                  . "^fg(${color['grey400']})";       
         break;
     case ":":
-        $text .= "^bg()^fg(${color['white']})";
+        $text_pre = "^bg()^fg(${color['white']})";
         break;
     case "!":
-        $text .= "^bg(${color['red500']})^fg(${color['white']})";
+        $text_pre = "^bg(${color['red500']})"
+                  . "^fg(${color['white']})";
         break;
     default:
-        $text .= "^bg()^fg(${color['grey600']})";
+        $text_pre = "^bg()^fg(${color['grey600']})";
     }
 
     # ----- tag by number
     
     // assuming using dzen2_svn
     // clickable tags if using SVN dzen
-    $text .= "^ca(1,herbstclient focus_monitor \"${monitor}\" && " 
-          .  "herbstclient use \"${tag_index}\") ${tag_name} ^ca()";
+    $text_name = "^ca(1,herbstclient focus_monitor \"${monitor}\" && " 
+               . "herbstclient use \"${tag_index}\") ${tag_name} ^ca()";
 
     # ----- post tag
 
     if ($tag_mark == '#')
-        $text .= "^bg(${color['black']})^fg(${color['blue500']})" 
-              . $right_hard_arrow;
+        $text_post = "^bg(${color['black']})^fg(${color['blue500']})" 
+                   . $right_hard_arrow;
+    else
+        $text_post = "";
      
-    return $text;
+    return $text_pre . $text_name . $text_post;
 }
 
 function output_leftside_top()

@@ -50,8 +50,6 @@ def get_statusbar_text(monitor):
 # each segments
 
 def output_by_tag(monitor, tag_status):
-    text = ''
-
     tag_index  = tag_status[1:2]
     tag_mark   = tag_status[0:1]
     tag_name   = tag_shows[int(tag_index) - 1] # zero based
@@ -59,36 +57,39 @@ def output_by_tag(monitor, tag_status):
     # ----- pre tag
 
     if tag_mark == '#':
-        text += '^bg(' + color['blue500'] + ')'   \
-                '^fg(' + color['black'] + ')' + right_hard_arrow
-        text += '^bg(' + color['blue500'] + ')'   \
-                '^fg(' + color['white'] + ')'
+        text_pre = '^bg(' + color['blue500'] + ')'   \
+                   '^fg(' + color['black'] + ')' + right_hard_arrow + \
+                   '^bg(' + color['blue500'] + ')'   \
+                   '^fg(' + color['white'] + ')'
     elif tag_mark == '+':
-        text += '^bg(' + color['yellow500'] + ')' \
-                '^fg(' + color['grey400'] + ')'
+        text_pre = '^bg(' + color['yellow500'] + ')' \
+                   '^fg(' + color['grey400'] + ')'
     elif tag_mark == ':':
-        text += '^bg()^fg(' + color['white'] + ')'
+        text_pre = '^bg()^fg(' + color['white'] + ')'
     elif tag_mark == '!':
-        text += '^bg(' + color['red500'] + ')'    \
-                '^fg(' + color['white'] + ')'
+        text_pre = '^bg(' + color['red500'] + ')'    \
+                   '^fg(' + color['white'] + ')'
     else:
-        text += '^bg()^fg(' + color['grey600'] + ')'
+        text_pre = '^bg()^fg(' + color['grey600'] + ')'
 
    
     # ----- tag by number
    
     # assuming using dzen2_svn
     # clickable tags if using SVN dzen
-    text += '^ca(1,herbstclient focus_monitor "' + str(monitor) + '" && '
-    text += 'herbstclient use "' + tag_index + '") ' + tag_name + ' ^ca() '
+    text_name = '^ca(1,herbstclient focus_monitor "' \
+              + str(monitor) + '" && ' + 'herbstclient use "' \
+              + tag_index + '") ' + tag_name + ' ^ca() '
     
     # ----- post tag
 
     if tag_mark == '#':
-        text += '^bg(' + color['black'] + ')' \
-                '^fg(' + color['blue500'] + ')' + right_hard_arrow
+        text_post = '^bg(' + color['black'] + ')' \
+                    '^fg(' + color['blue500'] + ')' + right_hard_arrow
+    else: 
+        text_post = ''
      
-    return text
+    return (text_pre + text_name + text_post)
 
 def output_leftside_top():
     text  = ' ^r(5x0) ' + separator + ' ^r(5x0) '

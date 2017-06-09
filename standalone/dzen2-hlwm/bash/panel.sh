@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# This is a modularized config for herbstluftwm tags in dzen2 statusbar
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # libraries
@@ -21,8 +22,6 @@ herbstclient pad $monitor $panel_height 0 $panel_height 0
 
 get_dzen2_parameters $monitor $panel_height
 
-# init_segments
-
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # pipe
 
@@ -31,11 +30,6 @@ pkill dzen2
 
 # run process in the background
 detach_dzen2 $monitor $dzen2_parameters
-
-# By redirecting stderr to /dev/null,
-# you effectively suppress these messages.
-# 2> /dev/null
-#hc --idle 2> /dev/null | content 2> /dev/null | dzen2 $dzen2_parameters &
 
 # optional transparency
 detach_transset

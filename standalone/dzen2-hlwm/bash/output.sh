@@ -1,4 +1,4 @@
-# #!/usr/bin/env bash
+#!/usr/bin/env bash
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # initialize
@@ -55,8 +55,7 @@ function get_statusbar_text() {
 
 function output_by_tag() {
     local    monitor=$1    
-    local tag_status=$2
-    local text=''
+    local tag_status=$2    
         
     local  tag_index=${tag_status:1:1}
     local   tag_mark=${tag_status:0:1}
@@ -64,19 +63,20 @@ function output_by_tag() {
 
     # ----- pre tag
 
+    local text_pre=''
     case $tag_mark in
         '#') 
-             text+="^bg(${color['blue500']})^fg(${color['black']})"
-             text+=$right_hard_arrow
-             text+="^bg(${color['blue500']})^fg(${color['white']})"     
+             text_pre+="^bg(${color['blue500']})^fg(${color['black']})"
+             text_pre+=$right_hard_arrow
+             text_pre+="^bg(${color['blue500']})^fg(${color['white']})"     
         ;;
-        '+') text+="^bg(${color['yellow500']})^fg(${color['grey400']})" 
+        '+') text_pre+="^bg(${color['yellow500']})^fg(${color['grey400']})" 
         ;;
-        ':') text+="^bg()^fg(${color['white']})"
+        ':') text_pre+="^bg()^fg(${color['white']})"
         ;;
-        '!') text+="^bg(${color['red500']})^fg(${color['white']})"
+        '!') text_pre+="^bg(${color['red500']})^fg(${color['white']})"
         ;;
-        *)   text+="^bg()^fg(${color['grey600']})"              
+        *)   text_pre+="^bg()^fg(${color['grey600']})"              
         ;;
     esac
 
@@ -84,18 +84,20 @@ function output_by_tag() {
   
     # assuming using dzen2_svn
     # clickable tags if using SVN dzen
-    text+="^ca(1,herbstclient focus_monitor \"$monitor\" && "
-    text+="herbstclient use \"$tag_index\") $tag_name ^ca() "
+    local text_name=''
+    text_name+="^ca(1,herbstclient focus_monitor \"$monitor\" && "
+    text_name+="herbstclient use \"$tag_index\") $tag_name ^ca() "
     
     # ----- post tag
 
+    local text_post=''
     if [ $tag_mark = '#' ]
     then
-        text+="^bg(${color['black']})^fg(${color['blue500']})"
-        text+=$right_hard_arrow;
+        text_post+="^bg(${color['black']})^fg(${color['blue500']})"
+        text_post+=$right_hard_arrow;
     fi
      
-    buffer=$text
+    buffer="$text_pre$text_name$text_post"
 }
 
 function output_leftside_top() {

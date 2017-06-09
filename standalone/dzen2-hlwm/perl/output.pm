@@ -59,8 +59,7 @@ sub get_statusbar_text {
 # each segments
 
 sub output_by_tag {
-    my $monitor = shift;
-    my $text = '';
+    my $monitor = shift;    
     
     my $tag_status = shift;
     my $tag_index  = substr($tag_status, 1, 1);
@@ -69,34 +68,37 @@ sub output_by_tag {
 
     # ----- pre tag
 
+    my $text_pre = '';
     if ($tag_mark eq '#') {
-        $text .= "^bg($color{'blue500'})^fg($color{'black'})";
-        $text .= $right_hard_arrow;
-        $text .= "^bg($color{'blue500'})^fg($color{'white'})";
+        $text_pre = "^bg($color{'blue500'})^fg($color{'black'})"
+                  . $right_hard_arrow
+                  . "^bg($color{'blue500'})^fg($color{'white'})";
     } elsif ($tag_mark eq '+') {
-        $text .= "^bg($color{'yellow500'})^fg($color{'grey400'})";
+        $text_pre = "^bg($color{'yellow500'})^fg($color{'grey400'})";
     } elsif ($tag_mark eq ':') {
-        $text .= "^bg()^fg($color{'white'})";
+        $text_pre = "^bg()^fg($color{'white'})";
     } elsif ($tag_mark eq '!') {
-        $text .= "^bg($color{'red500'})^fg($color{'white'})";
+        $text_pre = "^bg($color{'red500'})^fg($color{'white'})";
     } else {
-        $text .= "^bg()^fg($color{'grey600'})";
+        $text_pre = "^bg()^fg($color{'grey600'})";
     }
    
     # ----- tag by number
    
     # assuming using dzen2_svn
     # clickable tags if using SVN dzen
-    $text .= "^ca(1,herbstclient focus_monitor \"$monitor\" && ";
-    $text .= "herbstclient use \"$tag_index\") $tag_name ^ca() ";
+    my $text_name = "^ca(1,herbstclient focus_monitor \"$monitor\" && "
+                  . "herbstclient use \"$tag_index\") $tag_name ^ca() ";
     
     # ----- post tag
-
+    
+    my $text_post = "";
     if ($tag_mark eq '#') {
-        $text .= "^bg($color{'black'})^fg($color{'blue500'})$right_hard_arrow";
-    }
+        $text_post = "^bg($color{'black'})^fg($color{'blue500'})"
+                      . $right_hard_arrow;
+    } 
      
-    return $text;
+    return $text_pre . $text_name . $text_post;
 }
 
 sub output_leftside_top {
@@ -121,7 +123,8 @@ sub set_windowtitle {
     my $windowtitle = shift;  
     my $icon = "$pre_icon$post_icon";
       
-    $segment_windowtitle = " $icon ^bg()^fg($color{'grey700'}) $windowtitle";
+    $segment_windowtitle = " $icon "
+                         . "^bg()^fg($color{'grey700'}) $windowtitle";
 }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----

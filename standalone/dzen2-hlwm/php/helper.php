@@ -52,10 +52,10 @@ function get_dzen2_parameters($monitor, $panel_height)
     $fgcolor = '#ffffff';
     $font    = '-*-takaopgothic-medium-*-*-*-12-*-*-*-*-*-*-*';
   
-    $parameters  = "  -x $xpos -y $ypos -w $width -h $height";
-    $parameters .= " -fn '$font'";
-    $parameters .= " -ta l -bg '$bgcolor' -fg '$fgcolor'";
-    $parameters .= " -title-name dzentop";
+    $parameters  = "  -x $xpos -y $ypos -w $width -h $height"
+                 . " -fn '$font'"
+                 . " -ta l -bg '$bgcolor' -fg '$fgcolor'"
+                 . " -title-name dzentop";
     
     return $parameters;
 }

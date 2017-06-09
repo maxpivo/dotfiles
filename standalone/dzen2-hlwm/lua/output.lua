@@ -55,53 +55,54 @@ end
 -- each segments
 
 function _M.output_by_tag(monitor, tag_status)
-    local text = ''
-    
     local tag_index  = string.sub(tag_status, 2, 2)
     local tag_mark   = string.sub(tag_status, 1, 1)
     local index      = tonumber(tag_index)-- not a zero based array
     local tag_name   = _M.tag_shows[index]
 
     -- ----- pre tag
-    
+
+    local text_pre = ''
     if tag_mark == '#' then
-        text = text .. '^bg(' .. gmc.color['blue500'] .. ')'
-                    .. '^fg(' .. gmc.color['black'] .. ')'
-                    .. _M.right_hard_arrow
-        text = text .. '^bg(' .. gmc.color['blue500'] .. ')'
-                    .. '^fg(' .. gmc.color['white'] .. ')'
+        text_pre = '^bg(' .. gmc.color['blue500'] .. ')'
+                .. '^fg(' .. gmc.color['black'] .. ')'
+                .. _M.right_hard_arrow
+                .. '^bg(' .. gmc.color['blue500'] .. ')'
+                .. '^fg(' .. gmc.color['white'] .. ')'
     elseif tag_mark == '+' then
-        text = text .. '^bg(' .. gmc.color['yellow500'] .. ')'
-                    .. '^fg(' .. gmc.color['grey400'] .. ')'
+        text_pre = '^bg(' .. gmc.color['yellow500'] .. ')'
+                .. '^fg(' .. gmc.color['grey400'] .. ')'
     elseif tag_mark == ':' then
-        text = text .. '^bg()'
-                    .. '^fg(' .. gmc.color['white'] .. ')'
+        text_pre = '^bg()'
+                 .. '^fg(' .. gmc.color['white'] .. ')'
     elseif tag_mark == '!' then
-        text = text .. '^bg(' .. gmc.color['red500'] .. ')'
-                    .. '^fg(' .. gmc.color['white'] .. ')'
+        text_pre = '^bg(' .. gmc.color['red500'] .. ')'
+                .. '^fg(' .. gmc.color['white'] .. ')'
     else
-        text = text .. '^bg()'
-                    .. '^fg(' .. gmc.color['grey600'] .. ')'
+        text_pre = '^bg()'
+                .. '^fg(' .. gmc.color['grey600'] .. ')'
     end
 
     -- ----- tag by number
     
     -- assuming using dzen2_svn
     -- clickable tags if using SVN dzen
-    text = text .. '^ca(1,herbstclient focus_monitor '
-                .. '"' .. monitor .. '" && '
-                .. 'herbstclient use "' .. tag_index .. '")'
-                .. ' ' .. tag_name ..' ^ca()'
+    local text_name = '^ca(1,herbstclient focus_monitor '
+                   .. '"' .. monitor .. '" && '
+                   .. 'herbstclient use "' .. tag_index .. '")'
+                   .. ' ' .. tag_name ..' ^ca()'
 
     -- ----- post tag
 
+    local text_post = ""
     if (tag_mark == '#') then
-        text = text .. '^bg(' .. gmc.color['black'] .. ')'
-                    .. '^fg(' .. gmc.color['blue500'] .. ')'
-                    .. _M.right_hard_arrow
+        text_post = '^bg(' .. gmc.color['black'] .. ')'
+                       .. '^fg(' .. gmc.color['blue500'] .. ')'
+                       .. _M.right_hard_arrow
     end
+
      
-    return text
+    return text_pre .. text_name .. text_post
 end
 
 function _M.output_leftside_top()

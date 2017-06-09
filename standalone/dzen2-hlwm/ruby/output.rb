@@ -48,8 +48,6 @@ end
 # each segments
 
 def output_by_tag(monitor, tag_status)
-  text = ''
-
   tag_index  = tag_status[1..1]
   tag_mark   = tag_status[0..0]
   tag_name   = @tag_shows[tag_index.to_i - 1] # zero based
@@ -58,33 +56,36 @@ def output_by_tag(monitor, tag_status)
     
   case tag_mark
   when '#'
-    text << "^bg(#{Color['blue500']})^fg(#{Color['black']})#{@right_hard_arrow}"
-    text << "^bg(#{Color['blue500']})^fg(#{Color['white']})"
+    text_pre = "^bg(#{Color['blue500']})^fg(#{Color['black']})" \
+             + @right_hard_arrow \
+             + "^bg(#{Color['blue500']})^fg(#{Color['white']})"
   when '+'
-    text << "^bg(#{Color['yellow500']})^fg(#{Color['grey400']})";
+    text_pre = "^bg(#{Color['yellow500']})^fg(#{Color['grey400']})"
   when ':'
-    text << "^bg()^fg(#{Color['white']})"
+    text_pre = "^bg()^fg(#{Color['white']})"
   when '!'
-    text << "^bg(#{Color['red500']})^fg(#{Color['white']})"
+    text_pre = "^bg(#{Color['red500']})^fg(#{Color['white']})"
   else
-    text << "^bg()^fg(#{Color['grey600']})"
+    text_pre = "^bg()^fg(#{Color['grey600']})"
   end
    
   # ----- tag by number
     
   # assuming using dzen2_svn
   # clickable tags if using SVN dzen
-  text << "^ca(1,herbstclient focus_monitor \"#{monitor}\" && " \
-        + "herbstclient use \"#{tag_index}\") #{tag_name} ^ca() "
+  text_name = "^ca(1,herbstclient focus_monitor \"#{monitor}\" && " \
+            + "herbstclient use \"#{tag_index}\") #{tag_name} ^ca() "
     
   # ----- post tag
 
   if tag_mark == '#'
-    text << "^bg(#{Color['black']})^fg(#{Color['blue500']})" \
-          + @right_hard_arrow
+    text_post = "^bg(#{Color['black']})^fg(#{Color['blue500']})" \
+              + @right_hard_arrow
+  else
+    text_post = ""        
   end
      
-  text
+  text_pre + text_name + text_post
 end
 
 def output_leftside_top()

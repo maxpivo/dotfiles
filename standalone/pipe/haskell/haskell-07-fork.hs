@@ -2,6 +2,7 @@ import System.Process
 import System.Directory
 import System.IO
 import System.Posix.Process
+import System.Posix.Types
 
 import Control.Concurrent
 import Control.Monad
@@ -17,6 +18,7 @@ cmdout = "dzen2"
 wConkyFileName :: String -> String
 wConkyFileName dirName = dirName ++ "/../assets" ++ "/conky.lua"
 
+getDzen2Parameters :: [String]
 getDzen2Parameters = [
       "-x", xpos,  "-y", ypos,
       "-w", width, "-h", height,
@@ -38,6 +40,7 @@ getDzen2Parameters = [
 wSleep :: Int -> IO ()
 wSleep mySecond = threadDelay (1000000 * mySecond)
 
+detachDzen2 :: IO ()
 detachDzen2 = do
     dirName <- getCurrentDirectory
     let conkyFileName = wConkyFileName dirName  
@@ -52,10 +55,11 @@ detachDzen2 = do
       
     hClose pipeout
 
+detachTransset :: IO ProcessID
 detachTransset = forkProcess $ do    
     wSleep 1
     system "transset .8 -n dzentop >/dev/null"
-    putStr ""
+    return ()
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ---
 -- main
@@ -70,4 +74,4 @@ main = do
     -- optional transparency
     detachTransset
     
-    putStr ""
+    return ()

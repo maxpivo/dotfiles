@@ -38,16 +38,16 @@ def get_bottom_panel_geometry(height, geometry):
 def get_dzen2_parameters(monitor, panel_height):  
     geometry = get_geometry(monitor)
     xpos, ypos, width, height = get_top_panel_geometry(
-       panel_height, geometry); 
+       panel_height, geometry)
     
     bgcolor = '#000000'
     fgcolor = '#ffffff'
     font    = '-*-takaopgothic-medium-*-*-*-12-*-*-*-*-*-*-*'
 
-    parameters  = '  -x '+str(xpos)+' -y '+str(ypos)
-    parameters += ' -w '+str(width)+' -h '+ str(height)
-    parameters += " -fn '"+font+"'"
-    parameters += " -ta l -bg '"+bgcolor+"' -fg '"+fgcolor+"'"
-    parameters += ' -title-name dzentop'
+    parameters  = '  -x '+str(xpos)+' -y '+str(ypos) \
+                + ' -w '+str(width)+' -h '+ str(height) \
+                +  " -fn '"+font+"'" \
+                +  " -ta l -bg '"+bgcolor+"' -fg '"+fgcolor+"'" \
+                +  ' -title-name dzentop'
 
     return parameters
