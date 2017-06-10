@@ -19,7 +19,7 @@ lemon_parameters = get_lemon_parameters(monitor, panel_height)
 # main
 
 # remove all lemonbar instance
-system('pkill lemon')
+system('pkill lemonbar')
 
 # run process in the background
 detach_lemon(monitor, lemon_parameters)

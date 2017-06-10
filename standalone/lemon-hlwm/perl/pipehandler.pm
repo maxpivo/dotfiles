@@ -54,7 +54,7 @@ sub init_content {
 
 sub walk_content {
     my $monitor = shift;
-    my $pipe_out = shift;    
+    my $pipe_out = shift;
     
     # start a pipe
     my $pipe_in  = IO::Pipe->new();
@@ -70,7 +70,7 @@ sub walk_content {
         handle_command_event($monitor, $event);
         
         $text = output::get_statusbar_text($monitor);     
-        print $pipe_out $text;
+        print $pipe_out $text."\n";
         flush $pipe_out;
     }
     
@@ -80,7 +80,7 @@ sub walk_content {
 sub run_lemon { 
     my $monitor = shift;
     my $parameters = shift;
-    
+
     my $pipe_out = IO::Pipe->new();
     my $command = "lemonbar $parameters";
     my $handle = $pipe_out->writer($command);

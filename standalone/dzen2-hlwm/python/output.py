@@ -42,7 +42,7 @@ def get_statusbar_text(monitor):
         text += output_by_tag(monitor, tag_status)
     
     # draw window title    
-    text += output_leftside_top()
+    text += output_by_title()
     
     return text
 
@@ -58,8 +58,9 @@ def output_by_tag(monitor, tag_status):
 
     if tag_mark == '#':
         text_pre = '^bg(' + color['blue500'] + ')'   \
-                   '^fg(' + color['black'] + ')' + right_hard_arrow + \
-                   '^bg(' + color['blue500'] + ')'   \
+                   '^fg(' + color['black'] + ')' \
+                 + right_hard_arrow \
+                 + '^bg(' + color['blue500'] + ')'   \
                    '^fg(' + color['white'] + ')'
     elif tag_mark == '+':
         text_pre = '^bg(' + color['yellow500'] + ')' \
@@ -91,7 +92,7 @@ def output_by_tag(monitor, tag_status):
      
     return (text_pre + text_name + text_post)
 
-def output_leftside_top():
+def output_by_title():
     text  = ' ^r(5x0) ' + separator + ' ^r(5x0) '
     text += segment_windowtitle
 

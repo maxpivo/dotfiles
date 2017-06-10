@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# This is a modularized config for herbstluftwm tags in dzen2 statusbar
+# This is a modularized config for herbstluftwm tags in lemonbar
 
 use warnings;
 use strict;

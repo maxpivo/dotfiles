@@ -41,7 +41,7 @@ def get_statusbar_text(monitor)
     text << output_by_tag(monitor, tag_status) }
     
   # draw window title    
-  text << output_leftside_top()
+  text << output_by_title()
 end
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
@@ -88,7 +88,7 @@ def output_by_tag(monitor, tag_status)
   text_pre + text_name + text_post
 end
 
-def output_leftside_top()
+def output_by_title()
   text  = " ^r(5x0) #{@separator} ^r(5x0) "  
   text << @segment_windowtitle
 end

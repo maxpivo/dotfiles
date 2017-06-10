@@ -44,7 +44,7 @@ function get_statusbar_text() {
     done
     
     # draw window title
-    output_leftside_top
+    output_by_title
     text+=$buffer
     
     buffer=$text
@@ -99,7 +99,7 @@ function output_by_tag() {
     buffer="$text_pre$text_name$text_post"
 }
 
-function output_leftside_top() {
+function output_by_title() {
     local text=" ^r(5x0) $separator ^r(5x0) "
     text+="$segment_windowtitle" 
     buffer=$text

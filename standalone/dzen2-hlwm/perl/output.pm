@@ -50,7 +50,7 @@ sub get_statusbar_text {
     }
     
     # draw window title    
-    $text .= output_leftside_top();
+    $text .= output_by_title();
     
     return $text;
 }
@@ -101,7 +101,7 @@ sub output_by_tag {
     return $text_pre . $text_name . $text_post;
 }
 
-sub output_leftside_top {
+sub output_by_title {
     my $text = " ^r(5x0) $separator ^r(5x0) ";
     $text   .= $segment_windowtitle;
 

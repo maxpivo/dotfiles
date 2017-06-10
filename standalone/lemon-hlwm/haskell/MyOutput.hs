@@ -34,38 +34,35 @@ tagsStatus = unsafePerformIO $ newIORef []
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- decoration
 
-separator = "^bg()^fg(" ++ myColor "black" ++ ")|^bg()^fg()"
-
--- http://fontawesome.io/
-fontAwesome = "^fn(FontAwesome-9)"
+separator = "%{B-}%{F" ++ myColor "yellow500" ++ "}|%{B-}%{F-}"
 
 -- Powerline Symbol
-rightHardArrow = "^fn(powerlinesymbols-14)\57520^fn()"
-rightSoftArrow = "^fn(powerlinesymbols-14)\57521^fn()"
-leftHardArrow  = "^fn(powerlinesymbols-14)\57522^fn()"
-leftSoftArrow  = "^fn(powerlinesymbols-14)\57523^fn()"
+rightHardArrow = "\57520"
+rightSoftArrow = "\57521"
+leftHardArrow  = "\57522"
+leftSoftArrow  = "\57523"
 
 -- theme
-preIcon    = "^fg(" ++ myColor "yellow500" ++ ")" ++ fontAwesome
-postIcon   = "^fn()^fg()"
+preIcon    = "%{F" ++ myColor "yellow500" ++ "}"
+postIcon   = "%{F-}"
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- main
 
-
 getStatusbarText :: Int -> IO String
-getStatusbarText monitor = do    
+getStatusbarText monitor = do
     tags <- readIORef tagsStatus
-    let tagText = join $ map (outputByTag monitor) tags
-    let titleText = outputByTitle
-    let text = (tagText ++) <$> titleText 
+    let tagText =  "%{l}" ++ (join $ map (outputByTag monitor) tags)
+    let titleText = ("%{r}" ++) <$> outputByTitle
+    let text = (tagText ++) <$> titleText
     text
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- each segments
 
 outputByTag :: Int -> String -> String
-outputByTag monitor tagStatus = textPre ++ textName ++ textPost
+outputByTag monitor tagStatus = 
+    textPre ++ textName ++ textPost ++ textClear
   where
     -- text = ''
 
@@ -77,38 +74,44 @@ outputByTag monitor tagStatus = textPre ++ textName ++ textPost
     ----- pre tag
     
     textPre   = case tagMark of
-        "#" -> "^bg(" ++ myColor "blue500" ++ ")"
-            ++ "^fg(" ++ myColor "black" ++ ")"
+        "#" -> "%{B" ++ myColor "blue500" ++ "}"
+            ++ "%{F" ++ myColor "black" ++ "}"
+            ++ "%{U" ++ myColor "white" ++ "}%{+u}" 
             ++ rightHardArrow
-            ++ "^bg(" ++ myColor "blue500" ++ ")"
-            ++ "^fg(" ++ myColor "white" ++ ")"
-        "+" -> "^bg(" ++ myColor "yellow500" ++ ")"
-            ++ "^fg(" ++ myColor "grey400" ++ ")"
-        ":" -> "^bg()^fg(" ++ myColor "white" ++ ")"
-        "!" -> "^bg(" ++ myColor "red500" ++ ")"
-            ++ "^fg(" ++ myColor "white" ++ ")"
-        _   -> "^bg()^fg(" ++ myColor "grey600" ++ ")"
+            ++ "%{B" ++ myColor "blue500" ++ "}"
+            ++ "%{F" ++ myColor "white" ++ "}"
+            ++ "%{U" ++ myColor "white" ++ "}%{+u}"
+        "+" -> "%{B" ++ myColor "yellow500" ++ "}"
+            ++ "%{F" ++ myColor "grey400" ++ "}"
+        ":" -> "%{B-}"
+            ++"%{F" ++ myColor "white" ++ "}"
+            ++ "%{U" ++ myColor "red500" ++ "}%{+u}"
+        "!" -> "%{B" ++ myColor "red500" ++ "}"
+            ++ "%{F" ++ myColor "white" ++ "}"
+            ++ "%{U" ++ myColor "white" ++ "}%{+u}"
+        _   -> "%{B-}"
+            ++ "%{F" ++ myColor "grey600" ++ "}%{-u}"
 
     ----- tag by number
    
-    -- assuming using dzen2_svn
-    -- clickable tags if using SVN dzen
-    textName  = "^ca(1,herbstclient focus_monitor \"" 
-        ++ show(monitor) ++ "\" && " ++ "herbstclient use \"" 
-        ++ tagIndex ++ "\") " ++ tagName ++ " ^ca() "
+    -- non clickable tags
+    textName = " " ++ tagName ++ " "
 
     ----- post tag
 
     textPost  = if (tagMark == "#")
-                    then "^bg(" ++ myColor "black" ++ ")"
-                      ++ "^fg(" ++ myColor "blue500" ++ ")"
+                    then "%{B-}"
+                      ++ "%{F" ++ myColor "blue500" ++ "}"
+                      ++ "%{U" ++ myColor "red500" ++ "}%{+u}"
                       ++ rightHardArrow
                     else ""
+    
+    textClear = "%{B-}%{F-}%{-u}"
 
 outputByTitle :: IO String
 outputByTitle = do
     segment <- readIORef segmentWindowtitle
-    let text  = " ^r(5x0) " ++ separator ++ " ^r(5x0) " ++ segment
+    let text  = segment ++ " " ++ separator ++ "  "
 
     return text
 
@@ -133,6 +136,6 @@ setTagValue monitor = do
 setWindowtitle :: String -> IO ()
 setWindowtitle windowtitle = do
     let icon = preIcon ++ "\61444" ++ postIcon
-    let text = " " ++ icon ++ " ^bg()"
-               ++ "^fg(" ++ myColor "grey700" ++ ") " ++ windowtitle
+    let text = " " ++ icon ++ " %{B-}"
+               ++ "%{F" ++ myColor "grey700" ++ "} " ++ windowtitle
     writeIORef segmentWindowtitle text

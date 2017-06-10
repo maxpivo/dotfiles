@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# This is a modularized config for herbstluftwm tags in dzen2 statusbar
+# This is a modularized config for herbstluftwm tags in lemonbar
 
 import os
 import sys
@@ -23,7 +23,7 @@ lemon_parameters = helper.get_lemon_parameters(monitor, panel_height)
 # main
 
 # remove all lemonbar instance
-os.system('pkill lemon')
+os.system('pkill lemonbar')
 
 # run process in the background
 pipehandler.detach_lemon(monitor, lemon_parameters);

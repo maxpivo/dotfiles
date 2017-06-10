@@ -15,20 +15,17 @@ $tags_status = [];
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
 
-$separator = "^bg()^fg(${color['black']})|^bg()^fg()";
-
-// http://fontawesome.io/
-$font_awesome = '^fn(FontAwesome-9)';
+$separator = "%{B-}%{F${color['yellow500']}}|%{B-}%{F-}";
 
 // Powerline Symbol
-$right_hard_arrow = '^fn(powerlinesymbols-14)^fn()';
-$right_soft_arrow = '^fn(powerlinesymbols-14)^fn()';
-$left_hard_arrow  = '^fn(powerlinesymbols-14)^fn()';
-$left_soft_arrow  = '^fn(powerlinesymbols-14)^fn()';
+$right_hard_arrow = "";
+$right_soft_arrow = "";
+$left_hard_arrow  = "";
+$left_soft_arrow  = "";
 
 // theme
-$pre_icon    = "^fg(${color['yellow500']})${font_awesome}";
-$post_icon   = "^fn()^fg()";
+$pre_icon    = "%{F${color['yellow500']}}";
+$post_icon   = "%{F-}";
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main
@@ -39,13 +36,15 @@ function get_statusbar_text($monitor)
     $text = '';
     
     // draw tags
+    $text .= '%{l}';
     foreach ($tags_status as $tag_status) {
         $text .= output_by_tag($monitor, $tag_status);
      }
     
-    // draw window title    
+    // draw window title
+    $text .= '%{r}';
     $text .= output_by_title();
-  
+
     return $text;
 }
 
@@ -65,41 +64,43 @@ function output_by_tag($monitor, $tag_status)
 
     switch ($tag_mark) {
     case "#":
-        $text_pre = "^bg(${color['blue500']})^fg(${color['black']})"
-                  . $right_hard_arrow
-                  . "^bg(${color['blue500']})^fg(${color['white']})";
+        $text_pre = "%{B${color['blue500']}}%{F${color['black']}}"
+                  . "%{U${color['white']}}%{+u}$right_hard_arrow"
+                  . "%{B${color['blue500']}}%{F${color['white']}}"
+                  . "%{U${color['white']}}%{+u}";
         break;
     case "+":
-        $text_pre = "^bg(${color['yellow500']})"
-                  . "^fg(${color['grey400']})";       
+        $text_pre = "%{B${color['yellow500']}}%{F${color['grey400']}}";      
         break;
     case ":":
-        $text_pre = "^bg()^fg(${color['white']})";
+        $text_pre = $text_pre = "%{B-}%{F${color['white']}}"
+                  . "%{U${color['red500']}}%{+u}";
         break;
     case "!":
-        $text_pre = "^bg(${color['red500']})"
-                  . "^fg(${color['white']})";
+        $text_pre = "%{B${color['red500']}}%{F${color['white']}}"
+                  . "%{U${color['white']}}%{+u}";
         break;
     default:
-        $text_pre = "^bg()^fg(${color['grey600']})";
+        $text_pre = "%{B-}%{F" . $color['grey600'] . "}%{-u}";
     }
 
     # ----- tag by number
     
-    // assuming using dzen2_svn
-    // clickable tags if using SVN dzen
-    $text_name = "^ca(1,herbstclient focus_monitor \"${monitor}\" && " 
-               . "herbstclient use \"${tag_index}\") ${tag_name} ^ca()";
+    # non clickable tags
+    $text_name = " $tag_name ";
 
     # ----- post tag
 
     if ($tag_mark == '#')
-        $text_post = "^bg(${color['black']})^fg(${color['blue500']})" 
+        $text_post = "%{B-}%{F${color['blue500']}}"
+                   . "%{U${color['red500']}}%{+u}"
                    . $right_hard_arrow;
     else
         $text_post = "";
+
+    $text_clear = '%{B-}%{F-}%{-u}';
      
-    return $text_pre . $text_name . $text_post;
+    return $text_pre . $text_name . $text_post . $text_clear;
 }
 
 function output_by_title()
@@ -107,8 +108,7 @@ function output_by_title()
     global $separator;
     global $segment_windowtitle;
     
-    $text  = " ^r(5x0) $separator ^r(5x0) ";
-    $text .= $segment_windowtitle;
+    $text  = "$segment_windowtitle $separator  ";
     
     return $text;
 }
@@ -130,7 +130,9 @@ function set_windowtitle($windowtitle)
     global $color, $pre_icon, $post_icon;
 
     $icon = "${pre_icon}${post_icon}";
+    
+    $windowtitle = trim($windowtitle);
       
-    $segment_windowtitle = " ${icon} ^bg()"
-        . "^fg(${color['grey700']}) ${windowtitle}";
+    $segment_windowtitle = " ${icon} %{B-}"
+        . "%{F${color['grey700']}} ${windowtitle}";
 }

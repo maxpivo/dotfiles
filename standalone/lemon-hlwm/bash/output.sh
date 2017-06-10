@@ -43,7 +43,7 @@ function get_statusbar_text() {
     
     # draw window title
     text+='%{r}'
-    output_leftside_top    
+    output_by_title    
     text+=$buffer
     
     buffer=$text
@@ -82,9 +82,14 @@ function output_by_tag() {
     esac
 
     # ----- tag by number
+    
+    # clickable tags
+    local text_name=''
+    text_name+="%{A:herbstclient focus_monitor \"$monitor\" && "
+    text_name+="herbstclient use \"$tag_index\":} $tag_name %{A} "
   
     # non clickable tags
-    local text_name=" $tag_name "
+    # local text_name=" $tag_name "
     
     # ----- post tag
 
@@ -94,12 +99,13 @@ function output_by_tag() {
         text_post+="%{B-}%{F${color['blue500']}}"
         text_post+="%{U${color['red500']}}%{+u}${right_hard_arrow}";
     fi
-    text_post+='%{B-}%{F-}%{-u}'
+    
+    text_clear='%{B-}%{F-}%{-u}'
      
-    buffer="$text_pre$text_name$text_post"
+    buffer="$text_pre$text_name$text_post$text_clear"
 }
 
-function output_leftside_top() {
+function output_by_title() {
     local text="$segment_windowtitle $separator  "
     buffer=$text
 }

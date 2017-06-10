@@ -41,8 +41,7 @@ def get_statusbar_text(monitor):
     
     # draw window title    
     text += '%{r}'
-    text += output_leftside_top()
-    text += "\n"
+    text += output_by_title()
     
     return text
 
@@ -57,9 +56,12 @@ def output_by_tag(monitor, tag_status):
     # ----- pre tag
 
     if tag_mark == '#':
-        text_pre = '%{B' + color['blue500'] + '}%{F' + color['black'] + '}' \
-                   '%{U' + color['white'] + '}%{+u}' + right_hard_arrow \
-                 + '%{B' + color['blue500'] + '}%{F' + color['white'] + '}' \
+        text_pre = '%{B' + color['blue500'] + '}' \
+                   '%{F' + color['black'] + '}' \
+                   '%{U' + color['white'] + '}%{+u}' \
+                 + right_hard_arrow \
+                 + '%{B' + color['blue500'] + '}' \
+                   '%{F' + color['white'] + '}' \
                    '%{U' + color['white'] + '}%{+u}'
     elif tag_mark == '+':
         text_pre = '%{B' + color['yellow500'] + '}' \
@@ -89,11 +91,11 @@ def output_by_tag(monitor, tag_status):
     else: 
         text_post = ''
     
-    text_post += '%{B-}%{F-}%{-u}';
+    text_clear = '%{B-}%{F-}%{-u}';
      
-    return (text_pre + text_name + text_post)
+    return (text_pre + text_name + text_post + text_clear)
 
-def output_leftside_top():
+def output_by_title():
     text = segment_windowtitle + ' ' + separator + '  '
 
     return text

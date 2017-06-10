@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This is a modularized config for herbstluftwm tags in dzen2 statusbar
+# This is a modularized config for herbstluftwm tags in lemonbar
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # libraries

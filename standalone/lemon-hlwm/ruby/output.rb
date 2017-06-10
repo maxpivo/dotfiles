@@ -40,8 +40,7 @@ def get_statusbar_text(monitor)
     
   # draw window title
   text << '%{r}'
-  text << output_leftside_top()
-  text << "\n"
+  text << output_by_title()
 end
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
@@ -87,12 +86,12 @@ def output_by_tag(monitor, tag_status)
     text_post = ""        
   end
   
-  text_post << '%{B-}%{F-}%{-u}'
+  text_clear = '%{B-}%{F-}%{-u}'
      
-  text_pre + text_name + text_post
+  text_pre + text_name + text_post + text_clear
 end
 
-def output_leftside_top()
+def output_by_title()
   text = "#{@segment_windowtitle} #{@separator}  ";
 end
 

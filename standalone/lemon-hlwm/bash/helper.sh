@@ -61,7 +61,7 @@ function get_lemon_parameters() {
     get_top_panel_geometry $panel_height "${geometry[@]}"
     
     # geometry: -g widthxheight+x+y
-    g_res="${width}x${height}+${xpos}+${ypos}"
+    geom_res="${width}x${height}+${xpos}+${ypos}"
     
     # color, with transparency
     local bgcolor="#aa000000"
@@ -74,7 +74,7 @@ function get_lemon_parameters() {
     local font_awesome="FontAwesome-9"
 
     # finally
-    lemon_parameters="  -g $g_res -u 2"
+    lemon_parameters="  -g $geom_res -u 2"
     lemon_parameters+=" -B $bgcolor -F $fgcolor" 
     lemon_parameters+=" -f $font_takaop -f $font_awesome -f $font_symbol" 
 }

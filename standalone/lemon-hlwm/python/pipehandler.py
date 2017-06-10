@@ -16,7 +16,7 @@ def handle_command_event(monitor, event):
     title_cmds = ['window_title_changed', 'focus_changed']
 
     if origin == 'reload':
-        os.system('pkill lemon')
+        os.system('pkill lemonbar')
     elif origin == 'quit_panel':
         exit()
     elif origin in tag_cmds:
@@ -50,7 +50,7 @@ def walk_content(monitor, pipe_out):
         handle_command_event(monitor, event)
         
         text = output.get_statusbar_text(monitor)
-        pipe_out.stdin.write(text)
+        pipe_out.stdin.write(text + '\n')
         pipe_out.stdin.flush()
     
     pipe_in.stdout.close()

@@ -18,21 +18,17 @@ _M.tags_status = {}
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- decoration
 
-_M.separator = '^bg()^fg(' .. gmc.color['black'] .. ')|^bg()^fg()'
-
--- http://fontawesome.io/
-_M.font_awesome = '^fn(FontAwesome-9)'
+_M.separator = '%{B-}%{F' .. gmc.color['yellow500'] .. '}|%{B-}%{F-}'
 
 -- Powerline Symbol
-_M.right_hard_arrow = '^fn(powerlinesymbols-14)^fn()'
-_M.right_soft_arrow = '^fn(powerlinesymbols-14)^fn()'
-_M.left_hard_arrow  = '^fn(powerlinesymbols-14)^fn()'
-_M.left_soft_arrow  = '^fn(powerlinesymbols-14)^fn()'
+_M.right_hard_arrow = ""
+_M.right_soft_arrow = ""
+_M.left_hard_arrow  = ""
+_M.left_soft_arrow  = ""
 
 -- theme
-_M.pre_icon    = '^fg(' .. gmc.color['yellow500'] .. ')' 
-              .. _M.font_awesome
-_M.post_icon   = '^fn()^fg()'
+_M.pre_icon    = '%{F' .. gmc.color['yellow500'] .. '}'
+_M.post_icon   = '%{F-}'
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- main
@@ -41,11 +37,13 @@ function _M.get_statusbar_text(monitor)
     local text = ''
     
     -- draw tags, zero based
+    text = text .. '%{l}'
     for index = 0, #(_M.tags_status)-1 do
         text = text .. _M.output_by_tag(monitor, _M.tags_status[index])
     end
     
-    -- draw window title    
+    -- draw window title 
+    text = text .. '%{r}'
     text = text .. _M.output_by_title()
   
     return text
@@ -64,50 +62,50 @@ function _M.output_by_tag(monitor, tag_status)
 
     local text_pre = ''
     if tag_mark == '#' then
-        text_pre = '^bg(' .. gmc.color['blue500'] .. ')'
-                .. '^fg(' .. gmc.color['black'] .. ')'
+        text_pre = '%{B' .. gmc.color['blue500'] .. '}'
+                .. '%{F' .. gmc.color['black'] .. '}'
+                .. '%{U' .. gmc.color['white'] .. '}%{+u}' 
                 .. _M.right_hard_arrow
-                .. '^bg(' .. gmc.color['blue500'] .. ')'
-                .. '^fg(' .. gmc.color['white'] .. ')'
+                .. '%{B' .. gmc.color['blue500'] .. '}'
+                .. '%{F' .. gmc.color['white'] .. '}'
+                .. '%{U' .. gmc.color['white'] .. '}%{+u}'
     elseif tag_mark == '+' then
-        text_pre = '^bg(' .. gmc.color['yellow500'] .. ')'
-                .. '^fg(' .. gmc.color['grey400'] .. ')'
+        text_pre = '%{B' .. gmc.color['yellow500'] .. '}'
+                .. '%{F' .. gmc.color['grey400'] .. '}'
     elseif tag_mark == ':' then
-        text_pre = '^bg()'
-                 .. '^fg(' .. gmc.color['white'] .. ')'
+        text_pre = '%{B-}%{F' .. gmc.color['white'] .. '}'
+                .. '%{U' .. gmc.color['red500'] .. '}%{+u}'
     elseif tag_mark == '!' then
-        text_pre = '^bg(' .. gmc.color['red500'] .. ')'
-                .. '^fg(' .. gmc.color['white'] .. ')'
+        text_pre = '%{B' .. gmc.color['red500'] .. '}'
+                .. '%{F' .. gmc.color['white'] .. '}'
+                .. '%{U' .. gmc.color['white'] .. '}%{+u}'
     else
-        text_pre = '^bg()'
-                .. '^fg(' .. gmc.color['grey600'] .. ')'
+        text_pre = '%{B-}%{F' .. gmc.color['grey600'] .. '}%{-u}'
     end
 
     -- ----- tag by number
     
-    -- assuming using dzen2_svn
-    -- clickable tags if using SVN dzen
-    local text_name = '^ca(1,herbstclient focus_monitor '
-                   .. '"' .. monitor .. '" && '
-                   .. 'herbstclient use "' .. tag_index .. '")'
-                   .. ' ' .. tag_name ..' ^ca()'
+    -- non clickable tags
+    local text_name = ' ' .. tag_name .. ' '
 
     -- ----- post tag
 
     local text_post = ""
     if (tag_mark == '#') then
-        text_post = '^bg(' .. gmc.color['black'] .. ')'
-                       .. '^fg(' .. gmc.color['blue500'] .. ')'
-                       .. _M.right_hard_arrow
+        text_post = '%{B-}' 
+                 .. '%{F' .. gmc.color['blue500'] .. '}' 
+                 .. '%{U' .. gmc.color['red500'] .. '}%{+u}' 
+                 .. _M.right_hard_arrow
     end
 
+    text_clear = '%{B-}%{F-}%{-u}'
+
      
-    return text_pre .. text_name .. text_post
+    return text_pre .. text_name .. text_post .. text_clear
 end
 
 function _M.output_by_title()
-    local text = ' ^r(5x0) ' .. _M.separator .. ' ^r(5x0) '
-               .. _M.segment_windowtitle
+    local text = _M.segment_windowtitle .. ' ' .. _M.separator .. '  '
 
     return text
 end
@@ -129,9 +127,11 @@ function _M.set_windowtitle(windowtitle)
     local icon = _M.pre_icon .. '' .. _M.post_icon
 
     if (windowtitle == nil) then windowtitle = '' end
+    
+    windowtitle = common.trim1(windowtitle)
       
     _M.segment_windowtitle = ' ' .. icon ..
-        ' ^bg()^fg(' .. gmc.color['grey700'] .. ') ' .. windowtitle
+        ' %{B-}%{F' .. gmc.color['grey700'] .. '} ' .. windowtitle
 end
 
 

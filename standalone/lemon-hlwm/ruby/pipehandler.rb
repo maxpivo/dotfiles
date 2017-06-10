@@ -13,7 +13,7 @@ def handle_command_event(monitor, event)
 
   case origin
   when 'reload'
-    os.system('pkill dzen2')
+    os.system('pkill lemonbar')
   when 'quit_panel'
     exit
   when *tag_cmds       # splat operator
@@ -43,7 +43,7 @@ def walk_content(monitor, stdin)
       handle_command_event(monitor, event)
         
       text = get_statusbar_text(monitor)
-      stdin.write(text)
+      stdin.puts(text)
     end
     f.close()    
   end

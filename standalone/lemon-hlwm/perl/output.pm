@@ -49,8 +49,7 @@ sub get_statusbar_text {
     
     # draw window title
     $text .= '%{r}';
-    $text .= output_leftside_top();
-    $text .= "\n";
+    $text .= output_by_title();
     
     return $text;
 }
@@ -88,8 +87,12 @@ sub output_by_tag {
 
     # ----- tag by number
 
+    # clickable tags
+    my $text_name = "%{A:herbstclient focus_monitor \"$monitor\" && "
+                  . "herbstclient use \"$tag_index\":} $tag_name %{A} ";
+                  
     # non clickable tags
-    my $text_name = " $tag_name ";
+    # my $text_name = " $tag_name ";
 
     # ----- post tag
     
@@ -98,13 +101,14 @@ sub output_by_tag {
         $text_post = "%{B-}%{F$color{'blue500'}}"
                    . "%{U$color{'red500'}}%{+u}"
                    . $right_hard_arrow;
-    } 
-    $text_post .= '%{B-}%{F-}%{-u}';
+    }
+    
+    my $text_clear = '%{B-}%{F-}%{-u}';
      
-    return $text_pre . $text_name . $text_post;
+    return $text_pre . $text_name . $text_post . $text_clear;
 }
 
-sub output_leftside_top {
+sub output_by_title {
     my $text = "$segment_windowtitle $separator  ";
 
     return $text;
@@ -124,7 +128,8 @@ sub set_tag_value {
 sub set_windowtitle {
     my $windowtitle = shift;  
     my $icon = "$pre_icon$post_icon";
-      
+
+    # trim both ends
     $windowtitle =~ s/^\s+|\s+$//g;
       
     $segment_windowtitle = " $icon "
