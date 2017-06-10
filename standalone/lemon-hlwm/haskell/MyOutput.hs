@@ -93,9 +93,14 @@ outputByTag monitor tagStatus =
             ++ "%{F" ++ myColor "grey600" ++ "}%{-u}"
 
     ----- tag by number
+    
+    -- clickable tags
+    textName  = "%{A:herbstclient focus_monitor \"" 
+        ++ show(monitor) ++ "\" && " ++ "herbstclient use \"" 
+        ++ tagIndex ++ "\":} " ++ tagName ++ " %{A} "
    
     -- non clickable tags
-    textName = " " ++ tagName ++ " "
+    -- textName = " " ++ tagName ++ " "
 
     ----- post tag
 

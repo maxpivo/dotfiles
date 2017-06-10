@@ -77,9 +77,14 @@ def output_by_tag(monitor, tag_status):
         text_pre = '%{B-}%{F' + color['grey600'] + '}%{-u}'
 
     # ----- tag by number
+    
+    # clickable tags
+    text_name = '%{A:herbstclient focus_monitor "' \
+              + str(monitor) + '" && ' + 'herbstclient use "' \
+              + tag_index + '":} ' + tag_name + ' %{A} '
 
     # non clickable tags
-    text_name = ' ' + tag_name + ' '
+    # text_name = ' ' + tag_name + ' '
     
     # ----- post tag
 

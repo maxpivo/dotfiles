@@ -84,9 +84,15 @@ function _M.output_by_tag(monitor, tag_status)
     end
 
     -- ----- tag by number
+
+    -- clickable tags
+    local text_name = '%{A:herbstclient focus_monitor '
+                   .. '"' .. monitor .. '" && '
+                   .. 'herbstclient use "' .. tag_index .. '":}'
+                   .. ' ' .. tag_name ..' %{A} '
     
     -- non clickable tags
-    local text_name = ' ' .. tag_name .. ' '
+    -- local text_name = ' ' .. tag_name .. ' '
 
     -- ----- post tag
 

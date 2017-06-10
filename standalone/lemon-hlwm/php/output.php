@@ -86,8 +86,12 @@ function output_by_tag($monitor, $tag_status)
 
     # ----- tag by number
     
+    // clickable tags
+    $text_name = "%{A:herbstclient focus_monitor \"${monitor}\" && " 
+               . "herbstclient use \"${tag_index}\":} ${tag_name} %{A}";
+    
     # non clickable tags
-    $text_name = " $tag_name ";
+    #$text_name = " $tag_name ";
 
     # ----- post tag
 
