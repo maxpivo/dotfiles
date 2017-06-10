@@ -69,10 +69,6 @@ def run_dzen2(monitor, parameters):
     walk_content(monitor, pipe_out) # loop for each event
 
     pipe_out.stdin.close()
-    outputs, errors = pipe_out.communicate()
-    
-    # avoid zombie apocalypse
-    pipeout.wait()
 
 def detach_dzen2(monitor, parameters):
     pid = os.fork()
