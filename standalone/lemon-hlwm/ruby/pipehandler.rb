@@ -51,7 +51,7 @@ end
 
 def run_lemon(monitor, parameters)
   command_out  = 'lemonbar ' + parameters
-  IO.popen(command_out, "r+") do |f| 
+  IO.popen(command_out, 'r+') do |f| 
   
     pid = fork do 
       init_content(monitor, f)
@@ -59,7 +59,7 @@ def run_lemon(monitor, parameters)
     end
     Process.detach(pid)  
 
-    IO.popen('sh', "w") do |sh|
+    IO.popen('sh', 'w') do |sh|
       while f do
         sh.puts f.gets
       end
