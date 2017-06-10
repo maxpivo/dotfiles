@@ -33,21 +33,30 @@ def get_bottom_panel_geometry(height, geometry):
     return (geometry[0], geometry[3]-height, geometry[2], height)
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# dzen Parameters
+# lemon Parameters
 
-def get_dzen2_parameters(monitor, panel_height):  
+def get_lemon_parameters(monitor, panel_height):  
+    # calculate geometry
     geometry = get_geometry(monitor)
     xpos, ypos, width, height = get_top_panel_geometry(
        panel_height, geometry)
-    
-    bgcolor = '#000000'
-    fgcolor = '#ffffff'
-    font    = '-*-takaopgothic-medium-*-*-*-12-*-*-*-*-*-*-*'
 
-    parameters  = '  -x '+str(xpos)+' -y '+str(ypos) \
-                + ' -w '+str(width)+' -h '+str(height) \
-                +  " -fn '"+font+"'" \
-                +  " -ta l -bg '"+bgcolor+"' -fg '"+fgcolor+"'" \
-                +  ' -title-name dzentop'
+    # geometry: -g widthxheight+x+y
+    g_res = str(width)+'x'+str(height)+'+'+str(xpos)+'+'+str(xpos)
+
+    # color, with transparency    
+    bgcolor = "'#aa000000'"
+    fgcolor = "'#ffffff'"
+    
+    # XFT: require lemonbar_xft_git 
+    font_takaop  = "takaopgothic-9"
+    font_bottom  = "monospace-9"
+    font_symbol  = "PowerlineSymbols-11"
+    font_awesome = "FontAwesome-9"
+
+    # finally
+    parameters  = '  -g '+g_res+' -u 2 ' \
+                + ' -B '+bgcolor+' -F '+fgcolor \
+                + ' -f '+font_takaop+' -f '+font_awesome+' -f '+font_symbol
 
     return parameters

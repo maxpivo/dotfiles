@@ -14,20 +14,17 @@ tags_status=();         # empty array
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
 
-separator="^bg()^fg(${color['black']})|^bg()^fg()"
+separator="%{B-}%{F${color['yellow500']}}|%{B-}%{F-}"
 
 # Powerline Symbol
-right_hard_arrow="^fn(powerlinesymbols-14)^fn()"
-right_soft_arrow="^fn(powerlinesymbols-14)^fn()"
- left_hard_arrow="^fn(powerlinesymbols-14)^fn()"
- left_soft_arrow="^fn(powerlinesymbols-14)^fn()"
-
-# http://fontawesome.io/
-font_awesome="^fn(FontAwesome-9)"
+right_hard_arrow=""
+right_soft_arrow=""
+ left_hard_arrow=""
+ left_soft_arrow=""
 
 # theme
-pre_icon="^fg(${color['yellow500']})$font_awesome"
-post_icon="^fn()^fg()"
+ pre_icon="%{F${color['yellow500']}}"
+post_icon="%{F-}"
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main
@@ -37,6 +34,7 @@ function get_statusbar_text() {
     local text=''
 
     # draw tags
+    text+='%{l}'
     for tag_status in "${tags_status[@]}"
     do
         output_by_tag $monitor $tag_status
@@ -44,7 +42,8 @@ function get_statusbar_text() {
     done
     
     # draw window title
-    output_leftside_top
+    text+='%{r}'
+    output_leftside_top    
     text+=$buffer
     
     buffer=$text
@@ -65,43 +64,43 @@ function output_by_tag() {
 
     local text_pre=''
     case $tag_mark in
-        '#') text_pre+="^bg(${color['blue500']})^fg(${color['black']})"
-             text_pre+=$right_hard_arrow
-             text_pre+="^bg(${color['blue500']})^fg(${color['white']})"     
+        '#') text_pre+="%{B${color['blue500']}}%{F${color['black']}}"
+             text_pre+="%{U${color['white']}}%{+u}$right_hard_arrow"
+             text_pre+="%{B${color['blue500']}}%{F${color['white']}}"
+             text_pre+="%{U${color['white']}}%{+u}"
         ;;
-        '+') text_pre+="^bg(${color['yellow500']})^fg(${color['grey400']})" 
+        '+') text_pre+="%{B${color['yellow500']}}%{F${color['grey400']}}"
         ;;
-        ':') text_pre+="^bg()^fg(${color['white']})"
+        ':') text_pre+="%{B-}%{F${color['white']}}"
+             text_pre+="%{U${color['red500']}}%{+u}"
         ;;
-        '!') text_pre+="^bg(${color['red500']})^fg(${color['white']})"
+        '!') text_pre+="%{B${color['red500']}}%{F${color['white']}}"
+             text_pre+="%{U${color['white']}}%{+u}"
         ;;
-        *)   text_pre+="^bg()^fg(${color['grey600']})"              
+        *)   text_pre+="%{B-}%{F${color['grey600']}}%{-u}"
         ;;
     esac
 
     # ----- tag by number
   
-    # assuming using dzen2_svn
-    # clickable tags if using SVN dzen
-    local text_name=''
-    text_name+="^ca(1,herbstclient focus_monitor \"$monitor\" && "
-    text_name+="herbstclient use \"$tag_index\") $tag_name ^ca() "
+    # non clickable tags
+    local text_name=" $tag_name "
     
     # ----- post tag
 
     local text_post=''
     if [ $tag_mark = '#' ]
-    then
-        text_post+="^bg(${color['black']})^fg(${color['blue500']})"
-        text_post+=$right_hard_arrow;
+    then        
+        text_post+="%{B-}%{F${color['blue500']}}"
+        text_post+="%{U${color['red500']}}%{+u}${right_hard_arrow}";
     fi
+    text_post+='%{B-}%{F-}%{-u}'
      
     buffer="$text_pre$text_name$text_post"
 }
 
 function output_leftside_top() {
-    local text=" ^r(5x0) $separator ^r(5x0) "
-    text+="$segment_windowtitle" 
+    local text="$segment_windowtitle $separator  "
     buffer=$text
 }
 
@@ -120,5 +119,5 @@ function set_windowtitle() {
     local icon="$pre_icon$post_icon"
     # "${segmentWindowtitle//^/^^}"
     
-    segment_windowtitle=" $icon ^bg()^fg(${color['grey700']}) $windowtitle"      
+    segment_windowtitle=" $icon %{B-}%{F${color['grey700']}} $windowtitle"
 }

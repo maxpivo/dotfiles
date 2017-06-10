@@ -9,13 +9,13 @@ function handle_command_event() {
     local event=$@    
     
     # find out event origin
-    IFS=$'\t'  column=($event);
+    IFS=$'\t' column=($event);
     origin=${column[0]}
     
     # find out event origin
     case $origin in
         reload)
-            pkill dzen2
+            pkill lemonbar
             ;;
         quit_panel)
             exit
@@ -25,7 +25,7 @@ function handle_command_event() {
             # echo "resetting tags" >&2
             set_tag_value $monitor
             ;;
-        focus_changed|window_title_changed)
+        focus_changed|window_title_changed)            
             set_windowtitle "${column[2]}"
             ;;
     esac 
@@ -57,12 +57,12 @@ function walk_content() {
     done    
 }
 
-function run_dzen2() { 
+function run_lemon() { 
     monitor=$1
     shift
     parameters=$@
     
-    command_out="dzen2 $parameters"
+    command_out="lemonbar $parameters"
     
     {
        init_content $monitor
@@ -71,17 +71,10 @@ function run_dzen2() {
 
 }
 
-function detach_dzen2() { 
+function detach_lemon() { 
     monitor=$1
     shift
     parameters=$@
     
-    run_dzen2 $monitor $parameters &
-}
-
-function detach_transset() { 
-    {
-        sleep 1  
-        exec `(transset .8 -n dzentop >/dev/null)`
-    } &
+    run_lemon $monitor $parameters &
 }

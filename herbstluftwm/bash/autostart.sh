@@ -35,18 +35,22 @@ set_tags_with_name
 # do hash config
 # hack associative array function argument passing using declare -p
 
-do_config "keybind"   "$(declare -p keybinds)"
-do_config "keybind"   "$(declare -p tagskeybinds)"
-do_config "mousebind" "$(declare -p mousebinds)"
-do_config "attr"      "$(declare -p attributes)"
-do_config "set"       "$(declare -p sets)"
-do_config "rule"      "$(declare -p rules)"
+do_config 'keybind'   "$(declare -p keybinds)"
+do_config 'keybind'   "$(declare -p tagskeybinds)"
+do_config 'mousebind' "$(declare -p mousebinds)"
+do_config 'attr'      "$(declare -p attributes)"
+do_config 'set'       "$(declare -p sets)"
+do_config 'rule'      "$(declare -p rules)"
+
+# avoid tilde problem, not using helper
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # finishing, some extra miles
 
 # I'm not sure what in this is
-bind_cycle_layout
+#bind_cycle_layout
 
 # example of custom layout
 layout='(split horizontal:0.5:0 '
