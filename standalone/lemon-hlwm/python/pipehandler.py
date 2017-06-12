@@ -60,7 +60,7 @@ def run_lemon(monitor, parameters):
 
     pipe_out = subprocess.Popen(
             [command_out], 
-            stdout = subprocess.PIPE, # for use with shell
+            stdout = subprocess.PIPE, # for use with shell, note this
             stdin  = subprocess.PIPE, # for use with content processing
             shell  = True,
             universal_newlines=True

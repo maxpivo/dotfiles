@@ -45,7 +45,7 @@ function walk_content($monitor, $process)
 {       
     // start a pipe
     $command_in = 'herbstclient --idle';
-    $pipe_in  = popen($command_in,  "r"); // handle
+    $pipe_in  = popen($command_in,  'r'); // handle
     
     while(!feof($pipe_in)) {
         # read next event
@@ -63,7 +63,7 @@ function walk_content($monitor, $process)
 function run_dzen2($monitor, $parameters) 
 { 
     $command_out  = "dzen2 $parameters";
-    $pipe_out = popen($command_out, "w");
+    $pipe_out = popen($command_out, 'w');
 
     init_content($monitor, $pipe_out);
     walk_content($monitor, $pipe_out); // loop for each event

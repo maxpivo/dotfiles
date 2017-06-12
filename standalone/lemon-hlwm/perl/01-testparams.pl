@@ -8,7 +8,6 @@ use File::Basename;
 use lib dirname(__FILE__);
 
 use helper;
-use pipehandler;
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # initialize
@@ -22,11 +21,4 @@ system("herbstclient pad $monitor $panel_height 0 $panel_height 0");
 my $lemon_parameters = helper::get_lemon_parameters(
     $monitor, $panel_height);
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# main
-
-# remove all lemonbar instance
-system('pkill lemonbar');
-
-# run process in the background
-pipehandler::detach_lemon($monitor, $lemon_parameters);
+print $lemon_parameters."\n";

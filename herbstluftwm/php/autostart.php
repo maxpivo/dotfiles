@@ -28,7 +28,7 @@ hc('keyunbind --all');
 hc("mouseunbind --all");
 hc("unrule -F");
 
-set_tags_with_name($tag_names, $tag_keys);
+set_tags_with_name();
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # do hash config

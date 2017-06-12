@@ -51,6 +51,8 @@ end
 
 def run_lemon(monitor, parameters)
   command_out  = 'lemonbar ' + parameters
+  
+  # note the r+ mode
   IO.popen(command_out, 'r+') do |f| 
   
     pid = fork do 

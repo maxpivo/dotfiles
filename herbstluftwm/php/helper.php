@@ -21,10 +21,10 @@ function do_config($command, $hash) {
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # tags related
 
-# Must pass the array as parameters,
-# since PHP can't read local array variable outside function.
-function set_tags_with_name($tag_names, $tag_keys) 
+function set_tags_with_name() 
 {
+    global $tag_names, $tag_keys;
+
     hc("rename default '$tag_names[0]' 2>/dev/null || true");
     
     foreach($tag_names as $index=>$value) {

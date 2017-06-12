@@ -42,7 +42,7 @@ def get_lemon_parameters(monitor, panel_height):
        panel_height, geometry)
 
     # geometry: -g widthxheight+x+y
-    geom_res = str(width)+'x'+str(height)+'+'+str(xpos)+'+'+str(xpos)
+    geom_res = str(640)+'x'+str(height)+'+'+str(xpos)+'+'+str(xpos)
 
     # color, with transparency    
     bgcolor = "'#aa000000'"
