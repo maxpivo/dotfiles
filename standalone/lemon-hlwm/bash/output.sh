@@ -7,27 +7,27 @@
 # 	#1	:2	:3	:4	.5	.6	.7	.8	.9
 
 # custom tag names
-tag_shows=( "一 ichi" "二 ni" "三 san" "四 shi" 
+readonly tag_shows=( "一 ichi" "二 ni" "三 san" "四 shi" 
   "五 go" "六 roku" "七 shichi" "八 hachi" "九 kyū" "十 jū")
 
 # initialize variable segment
-segment_windowtitle='';
+segment_windowtitle=''; # empty string
 tags_status=();         # empty array
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
 
-separator="%{B-}%{F${color['yellow500']}}|%{B-}%{F-}"
+readonly separator="%{B-}%{F${color['yellow500']}}|%{B-}%{F-}"
 
 # Powerline Symbol
-right_hard_arrow=""
-right_soft_arrow=""
- left_hard_arrow=""
- left_soft_arrow=""
+readonly right_hard_arrow=""
+readonly right_soft_arrow=""
+readonly  left_hard_arrow=""
+readonly  left_soft_arrow=""
 
 # theme
- pre_icon="%{F${color['yellow500']}}"
-post_icon="%{F-}"
+readonly  pre_icon="%{F${color['yellow500']}}"
+readonly post_icon="%{F-}"
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main

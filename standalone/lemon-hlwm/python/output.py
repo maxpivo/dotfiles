@@ -9,7 +9,7 @@ from gmc import color
 # 	#1	:2	:3	:4	.5	.6	.7	.8	.9
 
 # custom tag names
-tag_shows = ['一 ichi', '二 ni', '三 san', '四 shi', 
+TAG_SHOWS = ['一 ichi', '二 ni', '三 san', '四 shi', 
     '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū']
 
 # initialize variable segment
@@ -19,17 +19,17 @@ tags_status = []
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
 
-separator = '%{B-}%{F' + color['yellow500'] + '}|%{B-}%{F-}'
+SEPARATOR = '%{B-}%{F' + color['yellow500'] + '}|%{B-}%{F-}'
 
 # Powerline Symbol
-right_hard_arrow = ""
-right_soft_arrow = ""
-left_hard_arrow  = ""
-left_soft_arrow  = ""
+RIGHT_HARD_ARROW = ""
+RIGHT_SOFT_ARROW = ""
+LEFT_HARD_ARROW  = ""
+LEFT_SOFT_ARROW  = ""
 
 # theme
-pre_icon    = '%{F' + color['yellow500'] + '}'
-post_icon   = '%{F-}'
+PRE_ICON    = '%{F' + color['yellow500'] + '}'
+POST_ICON   = '%{F-}'
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main
@@ -54,7 +54,7 @@ def get_statusbar_text(monitor):
 def output_by_tag(monitor, tag_status):
     tag_index  = tag_status[1:2]
     tag_mark   = tag_status[0:1]
-    tag_name   = tag_shows[int(tag_index) - 1] # zero based
+    tag_name   = TAG_SHOWS[int(tag_index) - 1] # zero based
 
     # ----- pre tag
 
@@ -62,7 +62,7 @@ def output_by_tag(monitor, tag_status):
         text_pre = '%{B' + color['blue500'] + '}' \
                    '%{F' + color['black'] + '}' \
                    '%{U' + color['white'] + '}%{+u}' \
-                 + right_hard_arrow \
+                 + RIGHT_HARD_ARROW \
                  + '%{B' + color['blue500'] + '}' \
                    '%{F' + color['white'] + '}' \
                    '%{U' + color['white'] + '}%{+u}'
@@ -95,7 +95,7 @@ def output_by_tag(monitor, tag_status):
         text_post = '%{B-}' \
                     '%{F' + color['blue500'] + '}' \
                     '%{U' + color['red500'] + '}%{+u}' \
-                  + right_hard_arrow
+                  + RIGHT_HARD_ARROW
     else: 
         text_post = ''
     
@@ -104,7 +104,7 @@ def output_by_tag(monitor, tag_status):
     return (text_pre + text_name + text_post + text_clear)
 
 def output_by_title():
-    text = segment_windowtitle + ' ' + separator + '  '
+    text = segment_windowtitle + ' ' + SEPARATOR + '  '
 
     return text
 
@@ -120,7 +120,7 @@ def set_tag_value(monitor):
 
 def set_windowtitle(windowtitle):
     global segment_windowtitle
-    icon = pre_icon + '' + post_icon
+    icon = PRE_ICON + '' + POST_ICON
     
     windowtitle = windowtitle.strip()
       

@@ -8,7 +8,7 @@ require_once(__DIR__.'/gmc.php');
 // 	#1	:2	:3	:4	.5	.6	.7	.8	.9
 
 // custom tag names
-$tag_shows = ['一 ichi', '二 ni', '三 san', '四 shi', 
+const TAG_SHOWS = ['一 ichi', '二 ni', '三 san', '四 shi', 
   '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū'];
 
 // initialize variable segment
@@ -18,17 +18,17 @@ $tags_status = [];
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
 
-$separator = "%{B-}%{F${color['yellow500']}}|%{B-}%{F-}";
+const SEPARATOR = "%{B-}%{F".COLOR['yellow500']."}|%{B-}%{F-}";
 
 // Powerline Symbol
-$right_hard_arrow = "";
-$right_soft_arrow = "";
-$left_hard_arrow  = "";
-$left_soft_arrow  = "";
+const RIGHT_HARD_ARROW = "";
+const RIGHT_SOFT_ARROW = "";
+const LEFT_HARD_ARROW  = "";
+const LEFT_SOFT_ARROW  = "";
 
 // theme
-$pre_icon    = "%{F${color['yellow500']}}";
-$post_icon   = "%{F-}";
+const PRE_ICON    = "%{F".COLOR['yellow500']."}";
+const POST_ICON   = "%{F-}";
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main
@@ -56,35 +56,32 @@ function get_statusbar_text($monitor)
 
 function output_by_tag($monitor, $tag_status)
 {
-    global $tag_shows;
-    global $color, $right_hard_arrow;
-
     $tag_index  = substr($tag_status, 1, 1);
     $tag_mark   = substr($tag_status, 0, 1);
-    $tag_name   = $tag_shows[(int)$tag_index - 1]; # zero based
+    $tag_name   = TAG_SHOWS[(int)$tag_index - 1]; # zero based
 
     # ----- pre tag
 
     switch ($tag_mark) {
     case "#":
-        $text_pre = "%{B${color['blue500']}}%{F${color['black']}}"
-                  . "%{U${color['white']}}%{+u}$right_hard_arrow"
-                  . "%{B${color['blue500']}}%{F${color['white']}}"
-                  . "%{U${color['white']}}%{+u}";
+        $text_pre = "%{B".COLOR['blue500']."}%{F".COLOR['black']."}"
+                  . "%{U".COLOR['white']."}%{+u}".RIGHT_HARD_ARROW
+                  . "%{B".COLOR['blue500']."}%{F".COLOR['white']."}"
+                  . "%{U".COLOR['white']."}%{+u}";
         break;
     case "+":
-        $text_pre = "%{B${color['yellow500']}}%{F${color['grey400']}}";      
+        $text_pre = "%{B".COLOR['yellow500']."}%{F".COLOR['grey400']."}";
         break;
     case ":":
-        $text_pre = $text_pre = "%{B-}%{F${color['white']}}"
-                  . "%{U${color['red500']}}%{+u}";
+        $text_pre = $text_pre = "%{B-}%{F".COLOR['white']."}"
+                  . "%{U".COLOR['red500']."}%{+u}";
         break;
     case "!":
-        $text_pre = "%{B${color['red500']}}%{F${color['white']}}"
-                  . "%{U${color['white']}}%{+u}";
+        $text_pre = "%{B".COLOR['red500']."}%{F".COLOR['white']."}"
+                  . "%{U".COLOR['white']."}%{+u}";
         break;
     default:
-        $text_pre = "%{B-}%{F" . $color['grey600'] . "}%{-u}";
+        $text_pre = "%{B-}%{F".COLOR['grey600']."}%{-u}";
     }
 
     # ----- tag by number
@@ -99,9 +96,9 @@ function output_by_tag($monitor, $tag_status)
     # ----- post tag
 
     if ($tag_mark == '#')
-        $text_post = "%{B-}%{F${color['blue500']}}"
-                   . "%{U${color['red500']}}%{+u}"
-                   . $right_hard_arrow;
+        $text_post = "%{B-}%{F".COLOR['blue500']."}"
+                   . "%{U".COLOR['red500']."}%{+u}"
+                   . RIGHT_HARD_ARROW;
     else
         $text_post = "";
 
@@ -112,10 +109,8 @@ function output_by_tag($monitor, $tag_status)
 
 function output_by_title()
 {
-    global $separator;
-    global $segment_windowtitle;
-    
-    $text  = "$segment_windowtitle $separator  ";
+    global $segment_windowtitle;    
+    $text  = "$segment_windowtitle ".SEPARATOR."  ";
     
     return $text;
 }
@@ -134,12 +129,11 @@ function set_tag_value($monitor)
 function set_windowtitle($windowtitle)
 {
     global $segment_windowtitle;
-    global $color, $pre_icon, $post_icon;
 
-    $icon = "${pre_icon}${post_icon}";
+    $icon = PRE_ICON."".POST_ICON;
     
     $windowtitle = trim($windowtitle);
       
     $segment_windowtitle = " ${icon} %{B-}"
-        . "%{F${color['grey700']}} ${windowtitle}";
+        . "%{F".COLOR['grey700']."} ${windowtitle}";
 }

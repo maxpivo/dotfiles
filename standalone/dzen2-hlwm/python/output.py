@@ -9,7 +9,7 @@ from gmc import color
 # 	#1	:2	:3	:4	.5	.6	.7	.8	.9
 
 # custom tag names
-tag_shows = ['一 ichi', '二 ni', '三 san', '四 shi', 
+TAG_SHOWS = ['一 ichi', '二 ni', '三 san', '四 shi', 
     '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū']
 
 # initialize variable segment
@@ -19,20 +19,20 @@ tags_status = []
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
 
-separator = '^bg()^fg(' + color['black'] + ')|^bg()^fg()'
+SEPARATOR = '^bg()^fg(' + color['black'] + ')|^bg()^fg()'
 
 # http://fontawesome.io/
-font_awesome = '^fn(FontAwesome-9)'
+FONT_AWESOME = '^fn(FontAwesome-9)'
 
 # Powerline Symbol
-right_hard_arrow = '^fn(powerlinesymbols-14)^fn()'
-right_soft_arrow = '^fn(powerlinesymbols-14)^fn()'
-left_hard_arrow  = '^fn(powerlinesymbols-14)^fn()'
-left_soft_arrow  = '^fn(powerlinesymbols-14)^fn()'
+RIGHT_HARD_ARROW = '^fn(powerlinesymbols-14)^fn()'
+RIGHT_SOFT_ARROW = '^fn(powerlinesymbols-14)^fn()'
+LEFT_HARD_ARROW  = '^fn(powerlinesymbols-14)^fn()'
+LEFT_SOFT_ARROW  = '^fn(powerlinesymbols-14)^fn()'
 
 # theme
-pre_icon    = '^fg(' + color['yellow500'] + ')' + font_awesome
-post_icon   = '^fn()^fg()'
+PRE_ICON    = '^fg(' + color['yellow500'] + ')' + FONT_AWESOME
+POST_ICON   = '^fn()^fg()'
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main
@@ -55,14 +55,14 @@ def get_statusbar_text(monitor):
 def output_by_tag(monitor, tag_status):
     tag_index  = tag_status[1:2]
     tag_mark   = tag_status[0:1]
-    tag_name   = tag_shows[int(tag_index) - 1] # zero based
+    tag_name   = TAG_SHOWS[int(tag_index) - 1] # zero based
 
     # ----- pre tag
 
     if tag_mark == '#':
         text_pre = '^bg(' + color['blue500'] + ')'   \
                    '^fg(' + color['black'] + ')' \
-                 + right_hard_arrow \
+                 + RIGHT_HARD_ARROW \
                  + '^bg(' + color['blue500'] + ')'   \
                    '^fg(' + color['white'] + ')'
     elif tag_mark == '+':
@@ -89,14 +89,14 @@ def output_by_tag(monitor, tag_status):
 
     if tag_mark == '#':
         text_post = '^bg(' + color['black'] + ')' \
-                    '^fg(' + color['blue500'] + ')' + right_hard_arrow
+                    '^fg(' + color['blue500'] + ')' + RIGHT_HARD_ARROW
     else: 
         text_post = ''
      
     return (text_pre + text_name + text_post)
 
 def output_by_title():
-    text  = ' ^r(5x0) ' + separator + ' ^r(5x0) '
+    text  = ' ^r(5x0) ' + SEPARATOR + ' ^r(5x0) '
     text += segment_windowtitle
 
     return text
@@ -113,7 +113,7 @@ def set_tag_value(monitor):
 
 def set_windowtitle(windowtitle):
     global segment_windowtitle
-    icon = pre_icon + '' + post_icon
+    icon = PRE_ICON + '' + POST_ICON
       
     segment_windowtitle = ' ' + icon + \
         ' ^bg()^fg(' + color['grey700'] + ') ' + windowtitle

@@ -7,7 +7,7 @@ module GMC
   # Associative Array (Hash)
   # http://ruby-doc.org/core-2.4.1/Hash.html
 
-  Color = {
+  COLOR = {
     'white' => '#ffffff',
     'black' => '#000000',
 

@@ -7,7 +7,7 @@
 # 	#1	:2	:3	:4	.5	.6	.7	.8	.9
 
 # custom tag names
-tag_shows=( "一 ichi" "二 ni" "三 san" "四 shi" 
+readonly tag_shows=( "一 ichi" "二 ni" "三 san" "四 shi" 
   "五 go" "六 roku" "七 shichi" "八 hachi" "九 kyū" "十 jū")
 
 # initialize variable segment
@@ -17,20 +17,20 @@ tags_status=();         # empty array
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
 
-separator="^bg()^fg(${color['black']})|^bg()^fg()"
+readonly separator="^bg()^fg(${color['black']})|^bg()^fg()"
 
 # Powerline Symbol
-right_hard_arrow="^fn(powerlinesymbols-14)^fn()"
-right_soft_arrow="^fn(powerlinesymbols-14)^fn()"
- left_hard_arrow="^fn(powerlinesymbols-14)^fn()"
- left_soft_arrow="^fn(powerlinesymbols-14)^fn()"
+readonly right_hard_arrow="^fn(powerlinesymbols-14)^fn()"
+readonly right_soft_arrow="^fn(powerlinesymbols-14)^fn()"
+readonly  left_hard_arrow="^fn(powerlinesymbols-14)^fn()"
+readonly  left_soft_arrow="^fn(powerlinesymbols-14)^fn()"
 
 # http://fontawesome.io/
-font_awesome="^fn(FontAwesome-9)"
+readonly font_awesome="^fn(FontAwesome-9)"
 
 # theme
-pre_icon="^fg(${color['yellow500']})$font_awesome"
-post_icon="^fn()^fg()"
+readonly pre_icon="^fg(${color['yellow500']})$font_awesome"
+readonly post_icon="^fn()^fg()"
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main

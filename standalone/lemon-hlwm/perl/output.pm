@@ -15,8 +15,8 @@ use gmc;
 # 	#1	:2	:3	:4	.5	.6	.7	.8	.9
 
 # custom tag names
-my @tag_shows = ('一 ichi', '二 ni', '三 san', '四 shi', 
-    '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū');
+use constant TAG_SHOWS => ['一 ichi', '二 ni', '三 san', '四 shi', 
+    '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū'];
 
 # initialize variable segment
 my $segment_windowtitle = '';
@@ -25,17 +25,17 @@ my @tags_status = [];
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
 
-my $separator = "%{B-}%{F$color{'yellow500'}}|%{B-}%{F-}";
+use constant SEPARATOR => "%{B-}%{F$color{'yellow500'}}|%{B-}%{F-}";
 
 # Powerline Symbol
-my $right_hard_arrow = "";
-my $right_soft_arrow = "";
-my $left_hard_arrow  = "";
-my $left_soft_arrow  = "";
+use constant RIGHT_HARD_ARROW => "";
+use constant RIGHT_SOFT_ARROW => "";
+use constant LEFT_HARD_ARROW  => "";
+use constant LEFT_SOFT_ARROW  => "";
 
 # theme
-my $pre_icon  = "%{F$color{'yellow500'}}";
-my $post_icon = "%{F-}";
+use constant PRE_ICON  => "%{F$color{'yellow500'}}";
+use constant POST_ICON => "%{F-}";
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main
@@ -66,14 +66,14 @@ sub output_by_tag {
     my $tag_status = shift;
     my $tag_index  = substr($tag_status, 1, 1);
     my $tag_mark   = substr($tag_status, 0, 1);
-    my $tag_name   = $tag_shows[$tag_index - 1]; # zero based
+    my $tag_name   = TAG_SHOWS->[$tag_index - 1]; # zero based
 
     # ----- pre tag
 
     my $text_pre = '';
     if ($tag_mark eq '#') {
         $text_pre = "%{B$color{'blue500'}}%{F$color{'black'}}"
-                  . "%{U$color{'white'}}%{+u}$right_hard_arrow"
+                  . "%{U$color{'white'}}%{+u}".RIGHT_HARD_ARROW
                   . "%{B$color{'blue500'}}%{F$color{'white'}}"
                   . "%{U$color{'white'}}%{+u}";
     } elsif ($tag_mark eq '+') {
@@ -103,7 +103,7 @@ sub output_by_tag {
     if ($tag_mark eq '#') {
         $text_post = "%{B-}%{F$color{'blue500'}}"
                    . "%{U$color{'red500'}}%{+u}"
-                   . $right_hard_arrow;
+                   . RIGHT_HARD_ARROW;
     }
     
     my $text_clear = '%{B-}%{F-}%{-u}';
@@ -112,7 +112,7 @@ sub output_by_tag {
 }
 
 sub output_by_title {
-    my $text = "$segment_windowtitle $separator  ";
+    my $text = "$segment_windowtitle ".SEPARATOR."  ";
 
     return $text;
 }
@@ -130,7 +130,7 @@ sub set_tag_value {
 
 sub set_windowtitle {
     my $windowtitle = shift;  
-    my $icon = "$pre_icon$post_icon";
+    my $icon = PRE_ICON."".POST_ICON;
 
     # trim both ends
     $windowtitle =~ s/^\s+|\s+$//g;

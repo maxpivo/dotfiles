@@ -8,7 +8,7 @@ require_once(__DIR__.'/gmc.php');
 // 	#1	:2	:3	:4	.5	.6	.7	.8	.9
 
 // custom tag names
-$tag_shows = ['一 ichi', '二 ni', '三 san', '四 shi', 
+const TAG_SHOWS = ['一 ichi', '二 ni', '三 san', '四 shi', 
   '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū'];
 
 // initialize variable segment
@@ -18,20 +18,20 @@ $tags_status = [];
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
 
-$separator = "^bg()^fg(${color['black']})|^bg()^fg()";
+const SEPARATOR = "^bg()^fg(".COLOR['black'].")|^bg()^fg()";
 
 // http://fontawesome.io/
-$font_awesome = '^fn(FontAwesome-9)';
+const FONT_AWESOME = '^fn(FontAwesome-9)';
 
 // Powerline Symbol
-$right_hard_arrow = '^fn(powerlinesymbols-14)^fn()';
-$right_soft_arrow = '^fn(powerlinesymbols-14)^fn()';
-$left_hard_arrow  = '^fn(powerlinesymbols-14)^fn()';
-$left_soft_arrow  = '^fn(powerlinesymbols-14)^fn()';
+const RIGHT_HARD_ARROW = '^fn(powerlinesymbols-14)^fn()';
+const RIGHT_SOFT_ARROW = '^fn(powerlinesymbols-14)^fn()';
+const LEFT_HARD_ARROW  = '^fn(powerlinesymbols-14)^fn()';
+const LEFT_SOFT_ARROW  = '^fn(powerlinesymbols-14)^fn()';
 
 // theme
-$pre_icon    = "^fg(${color['yellow500']})${font_awesome}";
-$post_icon   = "^fn()^fg()";
+const PRE_ICON    = "^fg(".COLOR['yellow500'].")".FONT_AWESOME;
+const POST_ICON   = "^fn()^fg()";
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main
@@ -57,34 +57,31 @@ function get_statusbar_text($monitor)
 
 function output_by_tag($monitor, $tag_status)
 {
-    global $tag_shows;
-    global $color, $right_hard_arrow;
-
     $tag_index  = substr($tag_status, 1, 1);
     $tag_mark   = substr($tag_status, 0, 1);
-    $tag_name   = $tag_shows[(int)$tag_index - 1]; # zero based
+    $tag_name   = TAG_SHOWS[(int)$tag_index - 1]; # zero based
 
     # ----- pre tag
 
     switch ($tag_mark) {
     case "#":
-        $text_pre = "^bg(${color['blue500']})^fg(${color['black']})"
-                  . $right_hard_arrow
-                  . "^bg(${color['blue500']})^fg(${color['white']})";
+        $text_pre = "^bg(".COLOR['blue500'].")^fg(".COLOR['black'].")"
+                  . RIGHT_HARD_ARROW
+                  . "^bg(".COLOR['blue500'].")^fg(".COLOR['white'].")";
         break;
     case "+":
-        $text_pre = "^bg(${color['yellow500']})"
-                  . "^fg(${color['grey400']})";       
+        $text_pre = "^bg(".COLOR['yellow500'].")"
+                  . "^fg(".COLOR['grey400'].")";       
         break;
     case ":":
-        $text_pre = "^bg()^fg(${color['white']})";
+        $text_pre = "^bg()^fg(".COLOR['white'].")";
         break;
     case "!":
-        $text_pre = "^bg(${color['red500']})"
-                  . "^fg(${color['white']})";
+        $text_pre = "^bg(".COLOR['red500'].")"
+                  . "^fg(".COLOR['white'].")";
         break;
     default:
-        $text_pre = "^bg()^fg(${color['grey600']})";
+        $text_pre = "^bg()^fg(".COLOR['grey600'].")";
     }
 
     # ----- tag by number
@@ -97,8 +94,8 @@ function output_by_tag($monitor, $tag_status)
     # ----- post tag
 
     if ($tag_mark == '#')
-        $text_post = "^bg(${color['black']})^fg(${color['blue500']})" 
-                   . $right_hard_arrow;
+        $text_post = "^bg(".COLOR['black'].")^fg(".COLOR['blue500'].")" 
+                   . RIGHT_HARD_ARROW;
     else
         $text_post = "";
      
@@ -107,10 +104,9 @@ function output_by_tag($monitor, $tag_status)
 
 function output_by_title()
 {
-    global $separator;
     global $segment_windowtitle;
     
-    $text  = " ^r(5x0) $separator ^r(5x0) ";
+    $text  = " ^r(5x0) ".SEPARATOR." ^r(5x0) ";
     $text .= $segment_windowtitle;
     
     return $text;
@@ -130,10 +126,9 @@ function set_tag_value($monitor)
 function set_windowtitle($windowtitle)
 {
     global $segment_windowtitle;
-    global $color, $pre_icon, $post_icon;
 
-    $icon = "${pre_icon}${post_icon}";
+    $icon = PRE_ICON."".POST_ICON;
       
     $segment_windowtitle = " ${icon} ^bg()"
-        . "^fg(${color['grey700']}) ${windowtitle}";
+        . "^fg(".COLOR['grey700'].") ${windowtitle}";
 }

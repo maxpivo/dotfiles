@@ -6,7 +6,7 @@
 
 # Associative Array (Hash)
 
-$color = array(
+const COLOR = array(
     'white' => '#ffffff',
     'black' => '#000000',
 
