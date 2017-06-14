@@ -30,9 +30,9 @@ function get_top_panel_geometry() {
    local geometry=("$@")
    
    # geometry has the format X Y W H
-   xpos=${geometry[0]}
-   ypos=${geometry[1]}
-   width=${geometry[2]}
+     xpos=${geometry[0]}
+     ypos=${geometry[1]}
+    width=${geometry[2]}
    height=$panel_height
 }
 
@@ -42,9 +42,9 @@ function get_bottom_panel_geometry() {
    local geometry=("$@")
    
    # geometry has the format X Y W H
-   xpos=${geometry[0]}
-   ypos=${geometry[3]}-$panel_height
-   width=${geometry[2]}
+     xpos=${geometry[0]}
+     ypos=$(( ${geometry[3]} - $panel_height ))
+    width=${geometry[2]}
    height=$panel_height
 }
 

@@ -16,8 +16,5 @@ DIR=$(dirname "$0")
 panel_height=24
 get_monitor ${@}
 
-# do `man herbsluftclient`, and type \pad to search what it means
-herbstclient pad $monitor $panel_height 0 $panel_height 0
-
 get_lemon_parameters $monitor $panel_height
 echo $lemon_parameters 
