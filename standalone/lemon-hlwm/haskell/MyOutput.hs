@@ -17,6 +17,9 @@ import MyGMC
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- initialize
 
+-- assuming $ herbstclient tag_status
+-- 	#1	:2	:3	:4	.5	.6	.7	.8	.9
+
 -- custom tag names
 tagShows :: [String] 
 tagShows = ["一 ichi", "二 ni", "三 san", "四 shi", 

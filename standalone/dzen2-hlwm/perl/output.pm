@@ -11,6 +11,9 @@ use gmc;
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # initialize
 
+# assuming $ herbstclient tag_status
+# 	#1	:2	:3	:4	.5	.6	.7	.8	.9
+
 # custom tag names
 my @tag_shows = ('一 ichi', '二 ni', '三 san', '四 shi', 
     '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū');
