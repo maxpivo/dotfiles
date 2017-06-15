@@ -36,7 +36,8 @@ function get_bottom_panel_geometry($height, $geometry)
 {
     // geometry has the format X Y W H
     return array(
-        $geometry[0], ($geometry[3]-$height), $geometry[2], $height);
+        $geometry[0] + 0, ($geometry[3] - $height), 
+        $geometry[2] - 0, $height);
 }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
@@ -53,9 +54,9 @@ function get_dzen2_parameters($monitor, $panel_height)
     $font    = '-*-takaopgothic-medium-*-*-*-12-*-*-*-*-*-*-*';
   
     $parameters  = "  -x $xpos -y $ypos -w $width -h $height"
-                 . " -fn '$font'"
                  . " -ta l -bg '$bgcolor' -fg '$fgcolor'"
-                 . " -title-name dzentop";
-    
+                 . " -title-name dzentop"
+                 . " -fn '$font'";
+
     return $parameters;
 }

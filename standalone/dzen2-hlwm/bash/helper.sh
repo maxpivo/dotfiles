@@ -42,12 +42,11 @@ function get_bottom_panel_geometry() {
    local geometry=("$@")
    
    # geometry has the format X Y W H
-     xpos=${geometry[0]}
+     xpos=$(( ${geometry[0]} + 0 ))
      ypos=$(( ${geometry[3]} - $panel_height ))
-    width=${geometry[2]}
+    width=$(( ${geometry[2]} - 0 ))
    height=$panel_height
 }
-
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # dzen Parameters
 
@@ -63,7 +62,7 @@ function get_dzen2_parameters() {
     local font="-*-takaopgothic-medium-*-*-*-12-*-*-*-*-*-*-*"
 
     dzen2_parameters="  -x $xpos -y $ypos -w $width -h $height" 
-    dzen2_parameters+=" -fn $font"
     dzen2_parameters+=" -ta l -bg $bgcolor -fg $fgcolor"
     dzen2_parameters+=" -title-name dzentop"
+    dzen2_parameters+=" -fn $font"
 }

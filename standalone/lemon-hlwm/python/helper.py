@@ -31,8 +31,8 @@ def get_top_panel_geometry(height, geometry):
 
 def get_bottom_panel_geometry(height, geometry):
     # geometry has the format X Y W H
-    return (int(geometry[0]), int(geometry[3])-height, 
-            int(geometry[2]), height )
+    return (int(geometry[0]) + 0, int(geometry[3]) - height, 
+            int(geometry[2]) - 0, height )
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # lemon Parameters

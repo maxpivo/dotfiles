@@ -33,12 +33,14 @@ end
 
 function _M.get_top_panel_geometry(height, geometry)
     -- geometry has the format X Y W H
-    return geometry[0], geometry[1], geometry[2], height
+    return tonumber(geometry[1]), tonumber(geometry[2]),
+           tonumber(geometry[3]), height
 end
 
 function _M.get_bottom_panel_geometry(height, geometry)
     -- geometry has the format X Y W H
-    return geometry[0], (geometry[3]-height), geometry[2], height
+    return tonumber(geometry[1]) + 0, tonumber(geometry[4]) - height, 
+           tonumber(geometry[3]) - 0, height
 end
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
@@ -54,11 +56,11 @@ function _M.get_dzen2_parameters(monitor, panel_height)
     local font    = '-*-takaopgothic-medium-*-*-*-12-*-*-*-*-*-*-*'
   
     local parameters = ""
-        .. " -x "..xpos.." -y "..ypos
-        .. " -w "..width.." -h "..height
-        .. " -fn '"..font.."'"
-        .. " -ta l -bg '"..bgcolor.."' -fg '"..fgcolor.."'"
+        .. " -x " .. tostring(xpos)  .. " -y " .. tostring(ypos)
+        .. " -w " .. tostring(width) .. " -h " .. tostring(height)
+        .. " -ta l -bg '" .. bgcolor .. "' -fg '" .. fgcolor .. "'"
         .. " -title-name dzentop"
+        .. " -fn '" .. font .. "'"
 
     return parameters
 end

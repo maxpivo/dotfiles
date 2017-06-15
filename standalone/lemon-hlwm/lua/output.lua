@@ -39,7 +39,7 @@ _M.post_icon   = '%{F-}'
 function _M.get_statusbar_text(monitor)
     local text = ''
     
-    -- draw tags, zero based
+    -- draw tags, non zero based
     text = text .. '%{l}'
     for index = 1, #(_M.tags_status) do
         text = text .. _M.output_by_tag(monitor, _M.tags_status[index])

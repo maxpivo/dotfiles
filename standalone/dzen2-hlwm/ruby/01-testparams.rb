@@ -2,7 +2,6 @@
 # This is a modularized config for herbstluftwm tags in dzen2 statusbar
 
 require_relative 'helper'
-require_relative 'pipehandler'
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # initialize

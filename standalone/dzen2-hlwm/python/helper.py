@@ -26,11 +26,13 @@ def get_geometry(monitor):
 
 def get_top_panel_geometry(height, geometry):
     # geometry has the format X Y W H
-    return (geometry[0], geometry[1], geometry[2], height)
+    return (int(geometry[0]), int(geometry[1]),
+            int(geometry[2]), height)
 
 def get_bottom_panel_geometry(height, geometry):
     # geometry has the format X Y W H
-    return (geometry[0], geometry[3]-height, geometry[2], height)
+    return (int(geometry[0]) + 0, int(geometry[3]) - height, 
+            int(geometry[2]) - 0, height )
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # dzen Parameters
@@ -46,8 +48,8 @@ def get_dzen2_parameters(monitor, panel_height):
 
     parameters  = '  -x '+str(xpos)+' -y '+str(ypos) \
                 + ' -w '+str(width)+' -h '+str(height) \
-                +  " -fn '"+font+"'" \
                 +  " -ta l -bg '"+bgcolor+"' -fg '"+fgcolor+"'" \
-                +  ' -title-name dzentop'
+                +  ' -title-name dzentop' \
+                +  " -fn '"+font+"'"
 
     return parameters

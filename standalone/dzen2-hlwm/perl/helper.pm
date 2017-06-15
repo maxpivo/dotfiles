@@ -47,7 +47,8 @@ sub get_bottom_panel_geometry {
     my @geometry = @_;
 
     # geometry has the format X Y W H
-    return ($geometry[0], $geometry[3]-$height, $geometry[2], $height);
+    return ($geometry[0] + 0, $geometry[3] - $height, 
+            $geometry[2] - 0, $height);
 }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
@@ -66,9 +67,9 @@ sub get_dzen2_parameters {
     my $font    = '-*-takaopgothic-medium-*-*-*-12-*-*-*-*-*-*-*';
 
     my $parameters = "  -x $xpos -y $ypos -w $width -h $height"
-                   . " -fn '$font'"
                    . " -ta l -bg '$bgcolor' -fg '$fgcolor'"
-                   . " -title-name dzentop";
+                   . " -title-name dzentop"
+                   . " -fn '$font'";
 
     return $parameters;
 }

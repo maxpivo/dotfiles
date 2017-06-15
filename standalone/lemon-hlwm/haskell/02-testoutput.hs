@@ -2,11 +2,10 @@
 
 import System.Environment
 import System.Process
-
-import MyHelper
-
 import System.IO
 import GHC.IO.Handle
+
+import MyHelper
 import MyOutput
 
 -- initialize

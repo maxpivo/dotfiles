@@ -5,7 +5,6 @@
 # libraries
 
 DIR=$(dirname "$0")
-
 . ${DIR}/gmc.sh
 . ${DIR}/helper.sh
 . ${DIR}/output.sh
@@ -14,11 +13,11 @@ DIR=$(dirname "$0")
 # process handler
 
 function test_lemon() { 
-    monitor=$1
+    local monitor=$1
     shift
-    parameters=$@
+    local parameters=$@
     
-    command_out="lemonbar $parameters -p"
+    local command_out="lemonbar $parameters -p"
     
     {
       # initialize statusbar

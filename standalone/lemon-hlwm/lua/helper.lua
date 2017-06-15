@@ -39,8 +39,8 @@ end
 
 function _M.get_bottom_panel_geometry(height, geometry)
     -- geometry has the format X Y W H
-    return tonumber(geometry[1]), tonumber(geometry[4])-height, 
-           tonumber(geometry[3]), height
+    return tonumber(geometry[1]) + 0, tonumber(geometry[4]) - height, 
+           tonumber(geometry[3]) - 0, height
 end
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----

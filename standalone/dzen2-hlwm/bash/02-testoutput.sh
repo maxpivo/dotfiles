@@ -5,21 +5,19 @@
 # libraries
 
 DIR=$(dirname "$0")
-
 . ${DIR}/gmc.sh
 . ${DIR}/helper.sh
 . ${DIR}/output.sh
-. ${DIR}/pipehandler.sh
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # process handler
 
 function test_dzen2() { 
-    monitor=$1
+    local monitor=$1
     shift
-    parameters=$@
+    local parameters=$@
     
-    command_out="dzen2 $parameters -p"
+    local command_out="dzen2 $parameters -p"
     
     {
         # initialize statusbar
@@ -37,14 +35,13 @@ function test_dzen2() {
 
 panel_height=24
 get_monitor ${@}
-
-# do `man herbsluftclient`, and type \pad to search what it means
-herbstclient pad $monitor $panel_height 0 $panel_height 0
-
 get_dzen2_parameters $monitor $panel_height
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # test
+
+# do `man herbsluftclient`, and type \pad to search what it means
+herbstclient pad $monitor $panel_height 0 $panel_height 0
 
 # run process 
 test_dzen2  $monitor $dzen2_parameters

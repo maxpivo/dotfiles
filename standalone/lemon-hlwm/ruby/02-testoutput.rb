@@ -25,9 +25,9 @@ end
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # initialize
 
-local panel_height = 24
-local monitor = get_monitor(ARGV)
-local lemon_parameters = get_lemon_parameters(monitor, panel_height)
+panel_height = 24
+monitor = get_monitor(ARGV)
+lemon_parameters = get_lemon_parameters(monitor, panel_height)
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # test

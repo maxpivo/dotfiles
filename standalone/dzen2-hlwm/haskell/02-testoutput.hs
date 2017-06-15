@@ -2,11 +2,10 @@
 
 import System.Environment
 import System.Process
-
-import MyHelper
-
 import System.IO
 import GHC.IO.Handle
+
+import MyHelper
 import MyOutput
 
 -- initialize
@@ -43,15 +42,15 @@ main = do
     
     args <- getArgs
     let monitor = getMonitor args
-
-    -- do `man herbsluftclient`, and type \pad to search what it means
-    system $ "herbstclient pad " ++ show(monitor) ++ " "
-        ++ show(panelHeight) ++ " 0 " ++ show(panelHeight) ++ " 0"
         
     geometry <- getGeometry monitor
     let dzen2Parameters = getDzen2Parameters panelHeight geometry
     
     -- test
+
+    -- do `man herbsluftclient`, and type \pad to search what it means
+    system $ "herbstclient pad " ++ show(monitor) ++ " "
+        ++ show(panelHeight) ++ " 0 " ++ show(panelHeight) ++ " 0"
 
     -- run process
     testDzen2 monitor dzen2Parameters

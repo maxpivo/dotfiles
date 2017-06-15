@@ -25,13 +25,14 @@ end
 
 def get_top_panel_geometry(height, geometry)
   # geometry has the format X Y W H
-  return geometry[0].to_i, geometry[1].to_i, geometry[2].to_i, height
+  return geometry[0].to_i, geometry[1].to_i, 
+         geometry[2].to_i, height
 end
 
 def get_bottom_panel_geometry(height, geometry)
   # geometry has the format X Y W H
-  return geometry[0].to_i, (geometry[3].to_i - height), 
-         geometry[2].to_i, height
+  return geometry[0].to_i + 0, (geometry[3].to_i - height), 
+         geometry[2].to_i - 0, height
 end
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----

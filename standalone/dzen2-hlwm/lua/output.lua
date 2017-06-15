@@ -43,8 +43,8 @@ _M.post_icon   = '^fn()^fg()'
 function _M.get_statusbar_text(monitor)
     local text = ''
     
-    -- draw tags, zero based
-    for index = 0, #(_M.tags_status)-1 do
+    -- draw tags, non zero based
+    for index = 1, #(_M.tags_status) do
         text = text .. _M.output_by_tag(monitor, _M.tags_status[index])
     end
     

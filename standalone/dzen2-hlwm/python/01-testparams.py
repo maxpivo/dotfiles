@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # This is a modularized config for herbstluftwm tags in dzen2 statusbar
 
-import os
 import sys
-
 import helper
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----

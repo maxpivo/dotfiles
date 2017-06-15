@@ -55,9 +55,9 @@ getTopPanelGeometry
 getBottomPanelGeometry :: Int -> [Int] -> XYWH
 getBottomPanelGeometry 
     height geometry = XYWH 
-                      (show (geometry !! 0))
+                      (show ((geometry !! 0) + 0))
                       (show ((geometry !! 3) - height))
-                      (show (geometry !! 2))
+                      (show ((geometry !! 2) - 0))
                       (show height)
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
@@ -68,11 +68,11 @@ getDzen2Parameters
     panelHeight geometry = [
           "-x", xpos,  "-y", ypos,
           "-w", width, "-h", height,
-          "-fn", font,
           "-ta", "l",
           "-bg", bgcolor,
           "-fg", fgcolor,
-          "-title-name", "dzentop"
+          "-title-name", "dzentop",
+          "-fn", font
         ]
       where
         XYWH xpos ypos width height = getTopPanelGeometry 

@@ -39,7 +39,8 @@ sub get_top_panel_geometry {
     my @geometry = @_;
 
     # geometry has the format X Y W H
-    return ($geometry[0], $geometry[1], $geometry[2], $height);
+    return ($geometry[0], $geometry[1], 
+            $geometry[2], $height);
 }
 
 sub get_bottom_panel_geometry {
@@ -47,7 +48,8 @@ sub get_bottom_panel_geometry {
     my @geometry = @_;
 
     # geometry has the format X Y W H
-    return ($geometry[0], $geometry[3]-$height, $geometry[2], $height);
+    return ($geometry[0] + 0, $geometry[3] - $height, 
+            $geometry[2] - 0, $height);
 }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----

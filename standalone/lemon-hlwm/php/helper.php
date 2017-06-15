@@ -36,7 +36,8 @@ function get_bottom_panel_geometry($height, $geometry)
 {
     // geometry has the format X Y W H
     return array(
-        $geometry[0], ($geometry[3]-$height), $geometry[2], $height);
+        $geometry[0] + 0, ($geometry[3] - $height), 
+        $geometry[2] - 0, $height);
 }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----

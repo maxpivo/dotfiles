@@ -12,12 +12,11 @@ local pipehandler = require('.pipehandler')
 
 panel_height = 24
 monitor = helper.get_monitor(arg)
+dzen2_parameters = helper.get_dzen2_parameters(monitor, panel_height)
 
 -- do `man herbsluftclient`, and type \pad to search what it means
 os.execute('herbstclient pad ' .. monitor .. ' ' 
     .. panel_height .. ' 0 ' .. panel_height .. ' 0')
-
-dzen2_parameters = helper.get_dzen2_parameters(monitor, panel_height)
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- main

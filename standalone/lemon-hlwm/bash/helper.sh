@@ -42,9 +42,9 @@ function get_bottom_panel_geometry() {
    local geometry=("$@")
    
    # geometry has the format X Y W H
-     xpos=${geometry[0]}
+     xpos=$(( ${geometry[0]} + 0 ))
      ypos=$(( ${geometry[3]} - $panel_height ))
-    width=${geometry[2]}
+    width=$(( ${geometry[2]} - 0 ))
    height=$panel_height
 }
 
