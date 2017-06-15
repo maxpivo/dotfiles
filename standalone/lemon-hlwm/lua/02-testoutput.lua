@@ -29,16 +29,17 @@ end
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- initialize
 
-panel_height = 24
-monitor = helper.get_monitor(arg)
+local panel_height = 24
+local monitor = helper.get_monitor(arg)
+local lemon_parameters = helper.get_lemon_parameters(
+    monitor, panel_height)
+
+-- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+-- test
 
 -- do `man herbsluftclient`, and type \pad to search what it means
 os.execute('herbstclient pad ' .. monitor .. ' ' 
     .. panel_height .. ' 0 ' .. panel_height .. ' 0')
 
-lemon_parameters = helper.get_lemon_parameters(monitor, panel_height)
-
--- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
--- test
-
+-- run process
 test_lemon(monitor, lemon_parameters)

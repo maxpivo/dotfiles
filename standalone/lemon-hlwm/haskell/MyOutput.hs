@@ -29,10 +29,10 @@ tagShows = ["一 ichi", "二 ni", "三 san", "四 shi",
 -- simulate global variable using unsafe
 
 segmentWindowtitle :: IORef String
-segmentWindowtitle = unsafePerformIO $ newIORef ""
+segmentWindowtitle = unsafePerformIO $ newIORef "" -- empty string
 
 tagsStatus :: IORef [String]
-tagsStatus = unsafePerformIO $ newIORef []
+tagsStatus = unsafePerformIO $ newIORef []         -- empty string list
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- decoration

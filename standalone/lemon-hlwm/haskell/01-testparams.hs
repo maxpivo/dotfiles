@@ -1,7 +1,6 @@
 -- This is a modularized config for herbstluftwm tags in lemonbar
 
 import System.Environment
-import System.Process
 import Data.List
 
 import MyHelper
@@ -22,4 +21,4 @@ main = do
     geometry <- getGeometry monitor
     let lemonParameters = getLemonParameters panelHeight geometry
     
-    print $ intercalate " " $ lemonParameters
+    putStrLn $ intercalate " " $ lemonParameters

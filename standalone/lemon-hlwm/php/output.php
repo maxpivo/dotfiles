@@ -12,8 +12,8 @@ const TAG_SHOWS = ['一 ichi', '二 ni', '三 san', '四 shi',
   '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū'];
 
 // initialize variable segment
-$segment_windowtitle = '';
-$tags_status = [];
+$segment_windowtitle = ''; # empty string
+$tags_status = [];         # empty array
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration

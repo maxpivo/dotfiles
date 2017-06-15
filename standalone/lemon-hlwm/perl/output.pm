@@ -19,8 +19,8 @@ use constant TAG_SHOWS => ['一 ichi', '二 ni', '三 san', '四 shi',
     '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū'];
 
 # initialize variable segment
-my $segment_windowtitle = '';
-my @tags_status = [];
+my $segment_windowtitle = ''; # empty string
+my @tags_status = [];         # empty array
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration

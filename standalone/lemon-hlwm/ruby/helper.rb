@@ -25,12 +25,13 @@ end
 
 def get_top_panel_geometry(height, geometry)
   # geometry has the format X Y W H
-  return geometry[0], geometry[1], geometry[2], height
+  return geometry[0].to_i, geometry[1].to_i, geometry[2].to_i, height
 end
 
 def get_bottom_panel_geometry(height, geometry)
   # geometry has the format X Y W H
-  return geometry[0], (geometry[3]-height), geometry[2], height
+  return geometry[0].to_i, (geometry[3].to_i - height), 
+         geometry[2].to_i, height
 end
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
@@ -43,7 +44,7 @@ def get_lemon_parameters(monitor, panel_height)
     panel_height, geometry)
 
   # geometry: -g widthxheight+x+y
-  geom_res = "#{width}x#{height}+#{xpos}+#{ypos}";
+  geom_res = "#{width}x#{height}+#{xpos}+#{ypos}"
 
   # color, with transparency    
   bgcolor = "'#aa000000'"

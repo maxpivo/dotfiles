@@ -15,8 +15,8 @@ _M.tag_shows = {'一 ichi', '二 ni', '三 san', '四 shi',
   '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū'}
 
 -- initialize variable segment
-_M.segment_windowtitle = ''
-_M.tags_status = {}
+_M.segment_windowtitle = '' -- empty string
+_M.tags_status = {}         -- empty table
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- decoration
@@ -41,7 +41,7 @@ function _M.get_statusbar_text(monitor)
     
     -- draw tags, zero based
     text = text .. '%{l}'
-    for index = 0, #(_M.tags_status)-1 do
+    for index = 1, #(_M.tags_status) do
         text = text .. _M.output_by_tag(monitor, _M.tags_status[index])
     end
     
@@ -142,7 +142,6 @@ function _M.set_windowtitle(windowtitle)
     _M.segment_windowtitle = ' ' .. icon ..
         ' %{B-}%{F' .. gmc.color['grey700'] .. '} ' .. windowtitle
 end
-
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- return

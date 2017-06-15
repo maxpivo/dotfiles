@@ -57,7 +57,7 @@ sub walk_content {
     my $wh_out = shift;
     
     # start a pipe
-     my $command_in = 'herbstclient --idle';
+    my $command_in = 'herbstclient --idle';
     
     my ($rh_in, $wh_in);
     my $pid_in  = open2 ($rh_in,  $wh_in,  $command_in)

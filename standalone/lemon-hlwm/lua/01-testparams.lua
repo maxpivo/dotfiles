@@ -9,8 +9,8 @@ local helper      = require('.helper')
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- initialize
 
-panel_height = 24
-monitor = helper.get_monitor(arg)
+local panel_height = 24
+local monitor = helper.get_monitor(arg)
 
-lemon_parameters = helper.get_lemon_parameters(monitor, panel_height)
+local lemon_parameters = helper.get_lemon_parameters(monitor, panel_height)
 print(lemon_parameters)

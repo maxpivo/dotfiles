@@ -5,10 +5,7 @@
 # libraries
 
 DIR=$(dirname "$0")
-
-. ${DIR}/gmc.sh
 . ${DIR}/helper.sh
-. ${DIR}/output.sh
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # initialize

@@ -36,14 +36,13 @@ function test_lemon() {
 
 panel_height=24
 get_monitor ${@}
-
-# do `man herbsluftclient`, and type \pad to search what it means
-herbstclient pad $monitor $panel_height 0 $panel_height 0
-
 get_lemon_parameters $monitor $panel_height
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # test
+
+# do `man herbsluftclient`, and type \pad to search what it means
+herbstclient pad $monitor $panel_height 0 $panel_height 0
 
 # run process
 test_lemon $monitor $lemon_parameters

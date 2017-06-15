@@ -1,6 +1,9 @@
 module MyHelper
 ( getMonitor
 , getGeometry
+, XYWH (XYWH)
+, getTopPanelGeometry
+, getBottomPanelGeometry
 , getLemonParameters
 ) where
 
@@ -55,9 +58,9 @@ getTopPanelGeometry
 getBottomPanelGeometry :: Int -> [Int] -> XYWH
 getBottomPanelGeometry 
     height geometry = XYWH 
-                      (show (geometry !! 0))
+                      (show ((geometry !! 0) + 0))
                       (show ((geometry !! 3) - height))
-                      (show (geometry !! 2))
+                      (show ((geometry !! 2) - 0))
                       (show height)
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
@@ -79,7 +82,7 @@ getLemonParameters
 
         -- geometry: -g widthxheight++y
         geom_res = width ++ "x" ++ height
-            ++ "+" ++ xpos ++ "+" ++ xpos
+            ++ "+" ++ xpos ++ "+" ++ ypos
 
         -- color, with transparency    
         bgcolor = "#aa000000"

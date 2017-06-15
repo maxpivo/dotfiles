@@ -8,8 +8,8 @@ include GMC
 # 	#1	:2	:3	:4	.5	.6	.7	.8	.9
 
 # initialize variable segment
-segment_windowtitle = ''
-tags_status = []
+segment_windowtitle = '' # empty string
+tags_status = []         # empty array
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration

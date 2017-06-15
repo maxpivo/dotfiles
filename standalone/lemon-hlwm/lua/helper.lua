@@ -27,18 +27,20 @@ function _M.get_geometry(monitor)
         
     local raw = common.trim1(result)  
     local geometry = common.split(raw, ' ')
-    
+
     return geometry
 end
 
 function _M.get_top_panel_geometry(height, geometry)
     -- geometry has the format X Y W H
-    return geometry[0], geometry[1], geometry[2], height
+    return tonumber(geometry[1]), tonumber(geometry[2]),
+           tonumber(geometry[3]), height
 end
 
 function _M.get_bottom_panel_geometry(height, geometry)
     -- geometry has the format X Y W H
-    return geometry[0], (geometry[3]-height), geometry[2], height
+    return tonumber(geometry[1]), tonumber(geometry[4])-height, 
+           tonumber(geometry[3]), height
 end
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
@@ -51,8 +53,8 @@ function _M.get_lemon_parameters(monitor, panel_height)
         panel_height, geometry)
 
     -- geometry: -g widthxheight+x+y
-    local geom_res = width .. 'x' .. height 
-        .. '+' .. xpos .. '+' .. xpos
+    local geom_res = tostring(width) .. 'x' .. tostring(height)
+           .. '+' .. tostring(xpos)  .. '+' .. tostring(ypos)
 
     -- color, with transparency    
     local bgcolor = "'#aa000000'"
