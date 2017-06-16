@@ -6,19 +6,26 @@ import subprocess
 import os
 import signal
 
-def get_dzen2_parameters():
-    xpos    = '0'
-    ypos    = '0'
-    width   = '640'
-    height  = '24'
-    fgcolor = '#000000'
-    bgcolor = '#ffffff'
-    font    = '-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*'
+def get_lemon_parameters():
+    # geometry: -g widthxheight+x+y
+    xpos     = '0'
+    ypos     = '0'
+    width    = '640'
+    height   = '24'
 
-    parameters  = '  -x '+xpos+' -y '+ypos+' -w '+width+' -h '+ height
-    parameters += " -fn '"+font+"'"
-    parameters += " -ta c -bg '"+bgcolor+"' -fg '"+fgcolor+"'"
-    parameters += ' -title-name dzentop'
+    geom_res = width + 'x' + height + '+' + xpos + '+' + ypos
+
+    # color, with transparency
+    fgcolor  = "'#000000'"
+    bgcolor  = "'#aaffffff'"
+
+    # XFT: require lemonbar_xft_git 
+    font     = "monospace-9"
+
+    # finally
+    parameters  = ' -g ' + geom_res + ' -u 2 ' \
+                + ' -B ' + bgcolor  + ' -F ' + fgcolor \
+                + ' -f ' + font
 
     return parameters
 
@@ -35,8 +42,8 @@ def generated_output(pipeout):
             universal_newlines = True
         )
 
-def run_dzen2():
-    cmdout  = 'dzen2 '+get_dzen2_parameters()
+def run_lemon():
+    cmdout  = 'lemonbar '+get_lemon_parameters()
 
     pipeout = subprocess.Popen(
             [cmdout], 
@@ -53,35 +60,22 @@ def run_dzen2():
     # avoid zombie apocalypse
     pipeout.wait()
 
-def detach_dzen2():
+def detach_lemon():
     pid = os.fork()
     
     if pid == 0:
         try:
-            run_dzen2()
+            run_lemon()
             os._exit(1)
         finally:
-            os.kill(pid, signal.SIGTERM)
-
-def detach_transset():
-    pid = os.fork()
-    
-    if pid == 0:
-        try:
-            time.sleep(1)
-            os.system('transset .8 -n dzentop >/dev/null')
-            os._exit(1)
-        finally:
+            import signal
             os.kill(pid, signal.SIGTERM)
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main
 
-# remove all dzen2 instance
-os.system('pkill dzen2')
+# remove all lemon instance
+os.system('pkill lemonbar')
 
 # run process in the background
-detach_dzen2()
-
-# optional transparency
-detach_transset()
+detach_lemon()

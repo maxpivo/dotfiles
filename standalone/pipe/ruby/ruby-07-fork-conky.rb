@@ -23,7 +23,7 @@ def generated_output(stdin)
     while f do
       stdin.puts f.gets
     end
-  f.close()    
+    f.close()    
   end
 end
 

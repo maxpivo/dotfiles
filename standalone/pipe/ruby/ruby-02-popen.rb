@@ -7,8 +7,8 @@ def generated_output(stdin)
   cmdin   = 'conky -c ' + path + '/conky.lua'
     
   IO.popen(cmdin, "r") do |f| 
-     while f do
-       stdin.puts f.gets
+    while f do
+      stdin.puts f.gets
     end
     f.close()    
   end

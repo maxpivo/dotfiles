@@ -18,8 +18,7 @@ sub get_dzen2_parameters {
     $parameters   .= " -fn '$font'";
     $parameters   .= " -ta c -bg '$bgcolor' -fg '$fgcolor'";
     $parameters   .= " -title-name dzentop";
-
-    # print $parameters . "\n";    
+    
     return $parameters;
 }
 
