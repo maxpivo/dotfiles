@@ -67,7 +67,8 @@ function run_lemon() {
     {
        init_content $monitor
        walk_content $monitor # loop for each event
-    } | $command_out
+    } | $command_out | sh
+
 }
 
 function detach_lemon() { 

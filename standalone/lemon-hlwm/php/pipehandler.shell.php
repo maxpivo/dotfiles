@@ -53,6 +53,7 @@ function walk_content($monitor, $lemon_stdin)
     $command_in = 'herbstclient --idle';
     $proc_in  = proc_open($command_in,  $descriptorspec, $pipe_in);
     
+    
     while(!feof($pipe_in[1])) {
         # read next event
         $event = fgets($pipe_in[1]);
@@ -76,9 +77,24 @@ function run_lemon($monitor, $parameters)
     
     $command_out  = "lemonbar $parameters";
     $proc_out = proc_open($command_out, $descriptorspec, $pipe_lemon);
+    $proc_sh  = proc_open('sh', $descriptorspec, $pipe_sh);
     
-    init_content($monitor, $pipe_lemon[0]);
-    walk_content($monitor, $pipe_lemon[0]); // loop for each event
+    $pid = pcntl_fork();
+    
+    switch($pid) {         
+    case -1 : // fork errror         
+        die('could not fork');
+    case 0  : // we are the child
+        init_content($monitor, $pipe_lemon[0]);
+        walk_content($monitor, $pipe_lemon[0]); // loop for each event
+        break;
+    default : // we are the parent
+        while(!feof($pipe_lemon[1])) {
+            $buffer = fgets($pipe_lemon[1]);
+            fwrite($pipe_sh[0], $buffer);
+        }
+        return $pid;
+    } 
 
     pclose($pipe_lemon);
 }

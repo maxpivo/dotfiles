@@ -46,7 +46,7 @@ def get_lemon_parameters(monitor, panel_height):
     # geometry: -g widthxheight+x+y
     geom_res = str(width)+'x'+str(height)+'+'+str(xpos)+'+'+str(ypos)
 
-    # color, with transparency    
+    # color, with transparency
     bgcolor = "'#aa000000'"
     fgcolor = "'#ffffff'"
     
@@ -57,7 +57,7 @@ def get_lemon_parameters(monitor, panel_height):
     font_awesome = "FontAwesome-9"
 
     # finally
-    parameters  = '  -g '+geom_res+' -u 2 ' \
+    parameters  = ' -g '+geom_res+' -u 2 ' \
                 + ' -B '+bgcolor+' -F '+fgcolor \
                 + ' -f '+font_takaop+' -f '+font_awesome+' -f '+font_symbol
 

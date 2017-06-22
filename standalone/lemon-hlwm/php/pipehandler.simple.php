@@ -53,6 +53,7 @@ function walk_content($monitor, $lemon_stdin)
     $command_in = 'herbstclient --idle';
     $proc_in  = proc_open($command_in,  $descriptorspec, $pipe_in);
     
+    
     while(!feof($pipe_in[1])) {
         # read next event
         $event = fgets($pipe_in[1]);

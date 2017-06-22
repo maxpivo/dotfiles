@@ -25,4 +25,4 @@ os.system('herbstclient pad ' + str(monitor) + ' '
 os.system('pkill lemonbar')
 
 # run process in the background
-pipehandler.detach_lemon(monitor, lemon_parameters);
+pipehandler.detach_lemon(monitor, lemon_parameters)

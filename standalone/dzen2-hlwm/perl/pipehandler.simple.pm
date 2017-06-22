@@ -3,7 +3,7 @@ package pipehandler;
 use warnings;
 use strict;
 
-use IPC::Open2;
+use IO::Pipe;
 
 use File::Basename;
 use lib dirname(__FILE__);
@@ -22,7 +22,7 @@ sub handle_command_event {
     my $origin = $column[0];
 
     if ($origin eq 'reload') {
-        system('pkill lemonbar');
+        system('pkill dzen2');
     } elsif ($origin eq 'quit_panel') {
         exit;
     } elsif (  # avoiding the unstable ~~ smartmatch operator
@@ -54,53 +54,60 @@ sub init_content {
 
 sub walk_content {
     my $monitor = shift;
-    my $wh_out = shift;
+    my $pipe_out = shift;    
     
     # start a pipe
-    my $command_in = 'herbstclient --idle';
-    
-    my ($rh_in, $wh_in);
-    my $pid_in  = open2 ($rh_in,  $wh_in,  $command_in)
-        or die "can't pipe in: $!";
+    my $pipe_in  = IO::Pipe->new();
+    my $command = 'herbstclient --idle';
+    my $handle  = $pipe_in->reader($command);
 
     my $text = '';
     my $event = '';
 
-    while($event = <$rh_in>) {
+    while(<$pipe_in>) {
         # wait for next event
+        $event = $_;        
         handle_command_event($monitor, $event);
         
         $text = output::get_statusbar_text($monitor);     
-        print $wh_out $text."\n";
-        flush $wh_out;
+        print $pipe_out $text;
+        flush $pipe_out;
     }
     
-    waitpid( $pid_in,  0 );
+    $pipe_in->close();
 }
 
-sub run_lemon { 
+sub run_dzen2 { 
     my $monitor = shift;
     my $parameters = shift;
+    
+    my $pipe_out = IO::Pipe->new();
+    my $command = "dzen2 $parameters";
+    my $handle = $pipe_out->writer($command);
 
-    my $command_out = "lemonbar $parameters";
-    my ($rh_out, $wh_out);
-    my $pid_out = open2 ($rh_out, $wh_out, $command_out) 
-        or die "can't pipe out: $!";
-
-    init_content($monitor, $wh_out);
-    walk_content($monitor, $wh_out); # loop for each event
-
-     waitpid( $pid_out, 0 );
+    init_content($monitor, $pipe_out);
+    walk_content($monitor, $pipe_out); # loop for each event
+    $pipe_out->close();
 }
 
-sub detach_lemon { 
+sub detach_dzen2 { 
     my $monitor = shift;
     my $parameters = shift;
 
     my $pid = fork;
     return if $pid;     # in the parent process
     
-    run_lemon($monitor, $parameters);
+    run_dzen2($monitor, $parameters);
+    exit; 
+}
+
+sub detach_transset { 
+    my $pid = fork;
+    return if $pid;     # in the parent process
+    
+    sleep 1;
+    system('transset .8 -n dzentop >/dev/null');
+    
     exit; 
 }
 

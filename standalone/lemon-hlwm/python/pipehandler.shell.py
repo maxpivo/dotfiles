@@ -60,7 +60,15 @@ def run_lemon(monitor, parameters):
 
     pipe_out = subprocess.Popen(
             [command_out], 
+            stdout = subprocess.PIPE, # for use with shell, note this
             stdin  = subprocess.PIPE, # for use with content processing
+            shell  = True,
+            universal_newlines=True
+        )
+
+    pipe_sh = subprocess.Popen(
+            ['sh'], 
+            stdin  = pipe_out.stdout,
             shell  = True,
             universal_newlines=True
         )
@@ -69,6 +77,7 @@ def run_lemon(monitor, parameters):
     walk_content(monitor, pipe_out) # loop for each event
 
     pipe_out.stdin.close()
+    pipe_sh.stdin.close()
 
 def detach_lemon(monitor, parameters):
     pid = os.fork()

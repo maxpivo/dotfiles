@@ -13,7 +13,7 @@ function handle_command_event($monitor, $event)
 
     switch($origin) {
     case 'reload':
-        system('pkill lemonbar');
+        system('pkill dzen2');
         break;
     case 'quit_panel':
         exit(1);
@@ -30,60 +30,48 @@ function handle_command_event($monitor, $event)
     }
 }
 
-function init_content($monitor, $lemon_stdin)
+function init_content($monitor, $process)
 {   
     // initialize statusbar before loop
     set_tag_value($monitor);
     set_windowtitle('');
         
     $text = get_statusbar_text($monitor);
-    fwrite($lemon_stdin, $text."\n");
+    fwrite($process, $text."\n");
     flush();
 }
 
-function walk_content($monitor, $lemon_stdin)
+function walk_content($monitor, $process)
 {       
     // start a pipe
-    $descriptorspec = array(
-        0 => array('pipe', 'r'),  // stdin
-        1 => array('pipe', 'w'),  // stdout
-        2 => array('pipe', 'w',)  // stderr
-    );
-
     $command_in = 'herbstclient --idle';
-    $proc_in  = proc_open($command_in,  $descriptorspec, $pipe_in);
+    $pipe_in  = popen($command_in,  'r'); // handle
     
-    while(!feof($pipe_in[1])) {
+    while(!feof($pipe_in)) {
         # read next event
-        $event = fgets($pipe_in[1]);
+        $event = fgets($pipe_in);
         handle_command_event($monitor, $event);
         
         $text = get_statusbar_text($monitor);
-        fwrite($lemon_stdin, $text."\n");
+        fwrite($process, $text);
         flush();
     }
     
     pclose($pipe_in);
 }
 
-function run_lemon($monitor, $parameters) 
+function run_dzen2($monitor, $parameters) 
 { 
-    $descriptorspec = array(
-        0 => array('pipe', 'r'),  // stdin
-        1 => array('pipe', 'w'),  // stdout
-        2 => array('pipe', 'w',)  // stderr
-    );
-    
-    $command_out  = "lemonbar $parameters";
-    $proc_out = proc_open($command_out, $descriptorspec, $pipe_lemon);
-    
-    init_content($monitor, $pipe_lemon[0]);
-    walk_content($monitor, $pipe_lemon[0]); // loop for each event
+    $command_out  = "dzen2 $parameters";
+    $pipe_out = popen($command_out, 'w');
 
-    pclose($pipe_lemon);
+    init_content($monitor, $pipe_out);
+    walk_content($monitor, $pipe_out); // loop for each event
+
+    pclose($pipe_out);
 }
 
-function detach_lemon($monitor, $parameters)
+function detach_dzen2($monitor, $parameters)
 { 
     $pid = pcntl_fork();
     
@@ -91,9 +79,18 @@ function detach_lemon($monitor, $parameters)
     case -1 : // fork errror         
         die('could not fork');
     case 0  : // we are the child
-        run_lemon($monitor, $parameters); 
+        run_dzen2($monitor, $parameters); 
         break;
     default : // we are the parent             
         return $pid;
     }    
+}
+
+function detach_transset() 
+{ 
+    $pid = pcntl_fork();
+    if ($pid == 0) { 
+        sleep(1);
+        system('transset .8 -n dzentop >/dev/null');
+    }
 }

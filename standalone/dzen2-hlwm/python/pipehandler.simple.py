@@ -16,7 +16,7 @@ def handle_command_event(monitor, event):
     title_cmds = ['window_title_changed', 'focus_changed']
 
     if origin == 'reload':
-        os.system('pkill lemonbar')
+        os.system('pkill dzen2')
     elif origin == 'quit_panel':
         exit()
     elif origin in tag_cmds:
@@ -50,17 +50,17 @@ def walk_content(monitor, pipe_out):
         handle_command_event(monitor, event)
         
         text = output.get_statusbar_text(monitor)
-        pipe_out.stdin.write(text + '\n')
+        pipe_out.stdin.write(text)
         pipe_out.stdin.flush()
     
     pipe_in.stdout.close()
     
-def run_lemon(monitor, parameters):  
-    command_out  = 'lemonbar ' + parameters
+def run_dzen2(monitor, parameters):  
+    command_out  = 'dzen2 ' + parameters
 
     pipe_out = subprocess.Popen(
             [command_out], 
-            stdin  = subprocess.PIPE, # for use with content processing
+            stdin  = subprocess.PIPE,
             shell  = True,
             universal_newlines=True
         )
@@ -70,12 +70,24 @@ def run_lemon(monitor, parameters):
 
     pipe_out.stdin.close()
 
-def detach_lemon(monitor, parameters):
+def detach_dzen2(monitor, parameters):
     pid = os.fork()
     
     if pid == 0:
         try:
-            run_lemon(monitor, parameters)
+            run_dzen2(monitor, parameters)
+            os._exit(1)
+        finally:
+            import signal
+            os.kill(pid, signal.SIGTERM)
+
+def detach_transset():
+    pid = os.fork()
+    
+    if pid == 0:
+        try:
+            time.sleep(1)
+            os.system('transset .8 -n dzentop >/dev/null')            
             os._exit(1)
         finally:
             import signal

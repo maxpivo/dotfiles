@@ -87,10 +87,26 @@ sub run_lemon {
     my $pid_out = open2 ($rh_out, $wh_out, $command_out) 
         or die "can't pipe out: $!";
 
-    init_content($monitor, $wh_out);
-    walk_content($monitor, $wh_out); # loop for each event
+    my ($rh_sh, $wh_sh);
+    my $pid_sh = open2 ($rh_sh, $wh_sh, 'sh') 
+        or die "can't pipe sh: $!";
+
+    my $pid = fork;
+    if ($pid) {
+        # in the parent process
+        my $lines = '';
+        while($lines = <$rh_out>) {
+            print $wh_sh $lines;
+            flush $wh_sh;
+        }        
+    } else {
+        # in the child process
+        init_content($monitor, $wh_out);
+        walk_content($monitor, $wh_out); # loop for each event
+    }
 
      waitpid( $pid_out, 0 );
+     waitpid( $pid_sh, 0 );
 }
 
 sub detach_lemon { 

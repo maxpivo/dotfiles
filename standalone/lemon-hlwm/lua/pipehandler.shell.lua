@@ -58,7 +58,8 @@ function _M.walk_content(monitor, process)
 end
 
 function _M.run_lemon(monitor, parameters) 
-    local command_out  = 'lemonbar ' .. parameters
+    -- no bidirectional in Lua, using shell pipe instead
+    local command_out  = 'lemonbar ' .. parameters .. ' | sh'
     local pipe_out = assert(io.popen(command_out, 'w'))
     
     _M.init_content(monitor, pipe_out)

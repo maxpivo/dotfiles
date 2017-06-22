@@ -13,7 +13,7 @@ def handle_command_event(monitor, event)
 
   case origin
   when 'reload'
-    os.system('pkill lemonbar')
+    os.system('pkill dzen2')
   when 'quit_panel'
     exit
   when *tag_cmds       # splat operator
@@ -43,17 +43,15 @@ def walk_content(monitor, stdin)
       handle_command_event(monitor, event)
         
       text = get_statusbar_text(monitor)
-      stdin.puts(text)
+      stdin.write(text)
     end
     f.close()    
   end
 end
 
-def run_lemon(monitor, parameters)
-  command_out  = 'lemonbar ' + parameters
-
-  IO.popen(command_out, 'w') do |f| 
-  
+def run_dzen2(monitor, parameters)
+  command_out  = 'dzen2 ' + parameters
+  IO.popen(command_out, "w") do |f| 
     init_content(monitor, f)
     walk_content(monitor, f) # loop for each event
         
@@ -61,10 +59,19 @@ def run_lemon(monitor, parameters)
   end
 end
 
-def detach_lemon(monitor, parameters)
+def detach_dzen2(monitor, parameters)
   # warning: Signal.trap is application wide
   Signal.trap("PIPE", "EXIT")
     
-  pid = fork { run_lemon(monitor, parameters) }
+  pid = fork { run_dzen2(monitor, parameters) }
+  Process.detach(pid)
+end
+
+def detach_transset()
+  pid = fork do
+    sleep(1)
+    system('transset .8 -n dzentop >/dev/null')        
+  end
+    
   Process.detach(pid)
 end

@@ -78,14 +78,19 @@ runLemon :: Int -> [String] -> IO ()
 runLemon monitor parameters = do
     let command_out = "lemonbar"
 
-    (Just pipe_in, _, _, ph)  <- 
+    (Just pipe_in, Just pipe_out, _, ph)  <- 
         createProcess (proc command_out parameters) 
-        { std_in = CreatePipe }
+        { std_in = CreatePipe, std_out = CreatePipe }
+
+    (_, _, _, ph)  <- 
+        createProcess (proc "sh" []) 
+        { std_in = UseHandle pipe_out }
 
     initContent monitor pipe_in
     walkContent monitor pipe_in  -- loop for each event
     
     hClose pipe_in
+    hClose pipe_out
 
 detachLemon :: Int -> [String] -> IO ProcessID
 detachLemon monitor parameters = forkProcess 

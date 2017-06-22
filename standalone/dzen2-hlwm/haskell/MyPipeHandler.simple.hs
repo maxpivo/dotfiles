@@ -1,5 +1,6 @@
 module MyPipeHandler
-( detachLemon
+( detachDzen2
+, detachTransset
 ) where
 
 import System.Process
@@ -31,7 +32,7 @@ wSleep mySecond = threadDelay (1000000 * mySecond)
 
 handleCommandEvent :: Int -> String -> IO ()
 handleCommandEvent monitor event
-  | origin == "reload"      = do system("pkill lemonbar"); return ()
+  | origin == "reload"      = do system("pkill dzen2"); return ()
   | origin == "quit_panel"  = do exitSuccess; return ()
   | elem origin tagCmds     = do setTagValue monitor
   | elem origin titleCmds   = do setWindowtitle (column !! 2)
@@ -74,19 +75,25 @@ walkContent monitor pipe_in = do
 
     hClose pipe_out
 
-runLemon :: Int -> [String] -> IO ()
-runLemon monitor parameters = do
-    let command_out = "lemonbar"
+runDzen2 :: Int -> [String] -> IO ()
+runDzen2 monitor parameters = do
+    let command_out = "dzen2"
 
     (Just pipe_in, _, _, ph)  <- 
         createProcess (proc command_out parameters) 
         { std_in = CreatePipe }
-
+       
     initContent monitor pipe_in
     walkContent monitor pipe_in  -- loop for each event
     
     hClose pipe_in
 
-detachLemon :: Int -> [String] -> IO ProcessID
-detachLemon monitor parameters = forkProcess 
-    $ runLemon monitor parameters 
+detachDzen2 :: Int -> [String] -> IO ProcessID
+detachDzen2 monitor parameters = forkProcess 
+    $ runDzen2 monitor parameters 
+    
+detachTransset :: IO ProcessID
+detachTransset = forkProcess $ do    
+    wSleep 1
+    system "transset .8 -n dzentop >/dev/null"
+    return ()
