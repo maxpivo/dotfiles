@@ -30,20 +30,6 @@ wSleep mySecond = threadDelay (1000000 * mySecond)
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- pipe 
 
-handleCommandEvent :: Int -> String -> IO ()
-handleCommandEvent monitor event
-  | origin == "reload"      = do system("pkill dzen2"); return ()
-  | origin == "quit_panel"  = do exitSuccess; return ()
-  | elem origin tagCmds     = do setTagValue monitor
-  | elem origin titleCmds   = do setWindowtitle (column !! 2)
-  where
-    tagCmds   = ["tag_changed", "tag_flags", "tag_added", "tag_removed"]
-    titleCmds = ["window_title_changed", "focus_changed"]
-
-    -- find out event origin
-    column = splitOn "\t" event
-    origin = column !! 0
-
 contentInit :: Int -> Handle -> IO ()
 contentInit monitor pipe_dzen2_in = do
     -- initialize statusbar before loop
@@ -55,37 +41,15 @@ contentInit monitor pipe_dzen2_in = do
     hPutStrLn pipe_dzen2_in text
     hFlush pipe_dzen2_in
 
-contentWalk :: Int -> Handle -> IO ()
-contentWalk monitor pipe_dzen2_in = do
-    let command_in = "herbstclient"
-
-    (_, Just pipe_idle_out, _, ph)  <- 
-        createProcess (proc command_in ["--idle"]) 
-        { std_out = CreatePipe }
-
-    forever $ do
-        -- wait for next event 
-        event <- hGetLine pipe_idle_out 
-        handleCommandEvent monitor event
- 
-        text <- getStatusbarText monitor
-
-        hPutStrLn pipe_dzen2_in text
-        hFlush pipe_dzen2_in
-
-    hClose pipe_idle_out
-
 runDzen2 :: Int -> [String] -> IO ()
 runDzen2 monitor parameters = do
     let command_out = "dzen2"
 
     (Just pipe_dzen2_in, _, _, ph)  <- 
-        createProcess (proc command_out parameters) 
+        createProcess (proc command_out (parameters ++ ["-p"])) 
         { std_in = CreatePipe }
        
     contentInit monitor pipe_dzen2_in
-    contentWalk monitor pipe_dzen2_in  -- loop for each event
-    
     hClose pipe_dzen2_in
 
 detachDzen2 :: Int -> [String] -> IO ProcessID

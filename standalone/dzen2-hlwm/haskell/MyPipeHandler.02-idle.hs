@@ -20,10 +20,10 @@ import Data.List.Split
 
 import MyOutput
 
-
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- helper
 
+-- for use with transset
 wSleep :: Int -> IO ()
 wSleep mySecond = threadDelay (1000000 * mySecond)
 
@@ -44,49 +44,49 @@ handleCommandEvent monitor event
     column = splitOn "\t" event
     origin = column !! 0
 
-initContent :: Int -> Handle -> IO ()
-initContent monitor pipe_in = do
+contentInit :: Int -> Handle -> IO ()
+contentInit monitor pipe_dzen2_in = do
     -- initialize statusbar before loop
     setTagValue monitor 
     setWindowtitle ""
     
     text <- getStatusbarText monitor
 
-    hPutStrLn pipe_in text
-    hFlush pipe_in
+    hPutStrLn pipe_dzen2_in text
+    hFlush pipe_dzen2_in
 
-walkContent :: Int -> Handle -> IO ()
-walkContent monitor pipe_in = do
+contentWalk :: Int -> Handle -> IO ()
+contentWalk monitor pipe_dzen2_in = do
     let command_in = "herbstclient"
 
-    (_, Just pipe_out, _, ph)  <- 
+    (_, Just pipe_idle_out, _, ph)  <- 
         createProcess (proc command_in ["--idle"]) 
         { std_out = CreatePipe }
 
     forever $ do
         -- wait for next event 
-        event <- hGetLine pipe_out 
+        event <- hGetLine pipe_idle_out 
         handleCommandEvent monitor event
  
         text <- getStatusbarText monitor
 
-        hPutStrLn pipe_in text
-        hFlush pipe_in
+        hPutStrLn pipe_dzen2_in text
+        hFlush pipe_dzen2_in
 
-    hClose pipe_out
+    hClose pipe_idle_out
 
 runDzen2 :: Int -> [String] -> IO ()
 runDzen2 monitor parameters = do
     let command_out = "dzen2"
 
-    (Just pipe_in, _, _, ph)  <- 
+    (Just pipe_dzen2_in, _, _, ph)  <- 
         createProcess (proc command_out parameters) 
         { std_in = CreatePipe }
        
-    initContent monitor pipe_in
-    walkContent monitor pipe_in  -- loop for each event
+    contentInit monitor pipe_dzen2_in
+    contentWalk monitor pipe_dzen2_in  -- loop for each event
     
-    hClose pipe_in
+    hClose pipe_dzen2_in
 
 detachDzen2 :: Int -> [String] -> IO ProcessID
 detachDzen2 monitor parameters = forkProcess 

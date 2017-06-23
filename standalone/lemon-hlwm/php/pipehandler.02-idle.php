@@ -30,41 +30,34 @@ function handle_command_event($monitor, $event)
     }
 }
 
-function init_content($monitor, $lemon_stdin)
+function content_init($monitor, $pipe_lemon_stdin)
 {   
     // initialize statusbar before loop
     set_tag_value($monitor);
     set_windowtitle('');
         
     $text = get_statusbar_text($monitor);
-    fwrite($lemon_stdin, $text."\n");
+    fwrite($pipe_lemon_stdin, $text."\n");
     flush();
 }
 
-function walk_content($monitor, $lemon_stdin)
+function content_walk($monitor, $pipe_lemon_stdin)
 {       
     // start a pipe
-    $descriptorspec = array(
-        0 => array('pipe', 'r'),  // stdin
-        1 => array('pipe', 'w'),  // stdout
-        2 => array('pipe', 'w',)  // stderr
-    );
-
-    $command_in = 'herbstclient --idle';
-    $proc_in  = proc_open($command_in,  $descriptorspec, $pipe_in);
+    $command_in    = 'herbstclient --idle';
+    $pipe_idle_in  = popen($command_in,  'r'); // handle
     
-    
-    while(!feof($pipe_in[1])) {
+    while(!feof($pipe_idle_in)) {
         # read next event
-        $event = fgets($pipe_in[1]);
+        $event = fgets($pipe_idle_in);
         handle_command_event($monitor, $event);
         
         $text = get_statusbar_text($monitor);
-        fwrite($lemon_stdin, $text."\n");
+        fwrite($pipe_lemon_stdin, $text."\n");
         flush();
     }
     
-    pclose($pipe_in);
+    pclose($pipe_idle_in);
 }
 
 function run_lemon($monitor, $parameters) 
@@ -75,28 +68,13 @@ function run_lemon($monitor, $parameters)
         2 => array('pipe', 'w',)  // stderr
     );
     
-    $command_out  = "lemonbar $parameters";
-    $proc_out = proc_open($command_out, $descriptorspec, $pipe_lemon);
-    $proc_sh  = proc_open('sh', $descriptorspec, $pipe_sh);
+    $command_out = "lemonbar $parameters";
+    $proc_lemon = proc_open($command_out, $descriptorspec, $pipe_lemon);
     
-    $pid = pcntl_fork();
-    
-    switch($pid) {         
-    case -1 : // fork errror         
-        die('could not fork');
-    case 0  : // we are the child
-        init_content($monitor, $pipe_lemon[0]);
-        walk_content($monitor, $pipe_lemon[0]); // loop for each event
-        break;
-    default : // we are the parent
-        while(!feof($pipe_lemon[1])) {
-            $buffer = fgets($pipe_lemon[1]);
-            fwrite($pipe_sh[0], $buffer);
-        }
-        return $pid;
-    } 
+    content_init($monitor, $pipe_lemon[0]);
+    content_walk($monitor, $pipe_lemon[0]); // loop for each event
 
-    pclose($pipe_lemon);
+    pclose($pipe_lemon[0]);
 }
 
 function detach_lemon($monitor, $parameters)

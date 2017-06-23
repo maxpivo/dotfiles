@@ -23,39 +23,39 @@ def handle_command_event(monitor, event)
   end
 end
 
-def init_content(monitor, stdin)
+def content_init(monitor, dzen2_stdin)
   # initialize statusbar before loop
   set_tag_value(monitor)
   set_windowtitle('')
       
   text = get_statusbar_text(monitor)
-  stdin.puts(text)
+  dzen2_stdin.puts(text)
 end
 
-def walk_content(monitor, stdin)    
-  # start a pipe
+def content_walk(monitor, dzen2_stdin)
+  # start a io
   command_in = 'herbstclient --idle'
   
-  IO.popen(command_in, "r") do |f|     
-    while f do 
+  IO.popen(command_in, "r") do |io_idle|
+    while io_idle do 
       # read next event
-      event = f.gets
+      event = io_idle.gets
       handle_command_event(monitor, event)
         
       text = get_statusbar_text(monitor)
-      stdin.write(text)
+      dzen2_stdin.write(text)
     end
-    f.close()    
+    io_idle.close()    
   end
 end
 
 def run_dzen2(monitor, parameters)
   command_out  = 'dzen2 ' + parameters
-  IO.popen(command_out, "w") do |f| 
-    init_content(monitor, f)
-    walk_content(monitor, f) # loop for each event
+  IO.popen(command_out, "w") do |io_dzen2| 
+    content_init(monitor, io_dzen2)
+    content_walk(monitor, io_dzen2) # loop for each event
         
-    f.close()    
+    io_dzen2.close()    
   end
 end
 

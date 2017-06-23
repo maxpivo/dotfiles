@@ -23,41 +23,53 @@ def handle_command_event(monitor, event)
   end
 end
 
-def init_content(monitor, stdin)
+def content_init(monitor, lemon_stdin)
   # initialize statusbar before loop
   set_tag_value(monitor)
   set_windowtitle('')
       
   text = get_statusbar_text(monitor)
-  stdin.puts(text)
+  lemon_stdin.puts(text)
 end
 
-def walk_content(monitor, stdin)    
-  # start a pipe
+def content_walk(monitor, lemon_stdin)
+  # start a io
   command_in = 'herbstclient --idle'
   
-  IO.popen(command_in, "r") do |f|     
-    while f do 
+  IO.popen(command_in, "r") do |io_idle|
+    while io_idle do 
       # read next event
-      event = f.gets
+      event = io_idle.gets
       handle_command_event(monitor, event)
         
       text = get_statusbar_text(monitor)
-      stdin.puts(text)
+      lemon_stdin.puts(text)
     end
-    f.close()    
+    io_idle.close()
   end
 end
 
 def run_lemon(monitor, parameters)
   command_out  = 'lemonbar ' + parameters
 
-  IO.popen(command_out, 'w') do |f| 
-  
-    init_content(monitor, f)
-    walk_content(monitor, f) # loop for each event
+  # note the r+ mode
+  IO.popen(command_out, 'r+') do |io_lemon| 
+
+    pid = fork do 
+      content_init(monitor, io_lemon)
+      content_walk(monitor, io_lemon) # loop for each event
+    end
+    Process.detach(pid)  
+
+    IO.popen('sh', 'w') do |io_sh|
+      while io_lemon do
+        io_sh.puts io_lemon.gets
+      end
         
-    f.close()    
+      io_sh.close()
+    end
+ 
+    io_lemon.close()
   end
 end
 

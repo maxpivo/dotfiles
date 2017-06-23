@@ -24,19 +24,19 @@ def handle_command_event(monitor, event):
     elif origin in title_cmds:
         output.set_windowtitle(column[2])
 
-def init_content(monitor, pipe_out):
+def content_init(monitor, pipe_dzen2_out):
     # initialize statusbar before loop
     output.set_tag_value(monitor)
     output.set_windowtitle('')
         
     text = output.get_statusbar_text(monitor)
-    pipe_out.stdin.write(text + '\n')
-    pipe_out.stdin.flush()
+    pipe_dzen2_out.stdin.write(text + '\n')
+    pipe_dzen2_out.stdin.flush()
 
-def walk_content(monitor, pipe_out):    
+def content_walk(monitor, pipe_dzen2_out):
     # start a pipe
     command_in = 'herbstclient --idle'  
-    pipe_in = subprocess.Popen(
+    pipe_idle_in = subprocess.Popen(
             [command_in], 
             # stdout = pipe_out.stdin,
             stdout = subprocess.PIPE,
@@ -46,29 +46,29 @@ def walk_content(monitor, pipe_out):
         )
     
     # wait for each event  
-    for event in pipe_in.stdout:  
+    for event in pipe_idle_in.stdout:  
         handle_command_event(monitor, event)
         
         text = output.get_statusbar_text(monitor)
-        pipe_out.stdin.write(text)
-        pipe_out.stdin.flush()
+        pipe_dzen2_out.stdin.write(text)
+        pipe_dzen2_out.stdin.flush()
     
-    pipe_in.stdout.close()
+    pipe_idle_in.stdout.close()
     
 def run_dzen2(monitor, parameters):  
     command_out  = 'dzen2 ' + parameters
 
-    pipe_out = subprocess.Popen(
+    pipe_dzen2_out = subprocess.Popen(
             [command_out], 
             stdin  = subprocess.PIPE,
             shell  = True,
             universal_newlines=True
         )
 
-    init_content(monitor, pipe_out)
-    walk_content(monitor, pipe_out) # loop for each event
+    content_init(monitor, pipe_dzen2_out)
+    content_walk(monitor, pipe_dzen2_out) # loop for each event
 
-    pipe_out.stdin.close()
+    pipe_dzen2_out.stdin.close()
 
 def detach_dzen2(monitor, parameters):
     pid = os.fork()

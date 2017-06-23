@@ -24,19 +24,19 @@ def handle_command_event(monitor, event):
     elif origin in title_cmds:
         output.set_windowtitle(column[2])
 
-def init_content(monitor, pipe_out):
+def content_init(monitor, pipe_lemon_out):
     # initialize statusbar before loop
     output.set_tag_value(monitor)
     output.set_windowtitle('')
         
     text = output.get_statusbar_text(monitor)
-    pipe_out.stdin.write(text + '\n')
-    pipe_out.stdin.flush()
+    pipe_lemon_out.stdin.write(text + '\n')
+    pipe_lemon_out.stdin.flush()
 
-def walk_content(monitor, pipe_out):    
+def content_walk(monitor, pipe_lemon_out):    
     # start a pipe
     command_in = 'herbstclient --idle'  
-    pipe_in = subprocess.Popen(
+    pipe_idle_in = subprocess.Popen(
             [command_in], 
             # stdout = pipe_out.stdin,
             stdout = subprocess.PIPE,
@@ -46,29 +46,39 @@ def walk_content(monitor, pipe_out):
         )
     
     # wait for each event  
-    for event in pipe_in.stdout:  
+    for event in pipe_idle_in.stdout:  
         handle_command_event(monitor, event)
         
         text = output.get_statusbar_text(monitor)
-        pipe_out.stdin.write(text + '\n')
-        pipe_out.stdin.flush()
+        pipe_lemon_out.stdin.write(text + '\n')
+        pipe_lemon_out.stdin.flush()
     
-    pipe_in.stdout.close()
+    pipe_idle_in.stdout.close()
     
 def run_lemon(monitor, parameters):  
     command_out  = 'lemonbar ' + parameters
 
-    pipe_out = subprocess.Popen(
+    pipe_lemon_out = subprocess.Popen(
             [command_out], 
+            stdout = subprocess.PIPE, # for use with shell, note this
             stdin  = subprocess.PIPE, # for use with content processing
             shell  = True,
             universal_newlines=True
         )
+    
+    pipe_sh = subprocess.Popen(
+            ['sh'], 
+            stdin  = pipe_lemon_out.stdout,
+            shell  = True,
+            universal_newlines=True
+        )
 
-    init_content(monitor, pipe_out)
-    walk_content(monitor, pipe_out) # loop for each event
+    content_init(monitor, pipe_lemon_out)
+    content_walk(monitor, pipe_lemon_out) # loop for each event
 
-    pipe_out.stdin.close()
+    pipe_lemon_out.stdin.close()
+    pipe_sh.stdin.close()
+
 
 def detach_lemon(monitor, parameters):
     pid = os.fork()

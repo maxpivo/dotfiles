@@ -29,17 +29,17 @@ function _M.handle_command_event(monitor, event)
     end
 end
 
-function _M.init_content(monitor, process)
+function _M.content_init(monitor, pipe_lemon_out)
     -- initialize statusbar before loop
     output.set_tag_value(monitor)
     output.set_windowtitle('')
 
     local text = output.get_statusbar_text(monitor)
-    process:write(text .. "\n")
-    process:flush()
+    pipe_lemon_out:write(text .. "\n")
+    pipe_lemon_out:flush()
 end
 
-function _M.walk_content(monitor, process)    
+function _M.content_walk(monitor, pipe_lemon_out)    
     -- start a pipe
     command_in = 'herbstclient --idle'
     local pipe_in  = assert(io.popen(command_in,  'r'))
@@ -50,21 +50,22 @@ function _M.walk_content(monitor, process)
         _M.handle_command_event(monitor, event)    
     
         text = output.get_statusbar_text(monitor)
-        process:write(text .. "\n")
-        process:flush()
+        pipe_lemon_out:write(text .. "\n")
+        pipe_lemon_out:flush()
     end -- for loop
    
     pipein:close()
 end
 
 function _M.run_lemon(monitor, parameters) 
-    local command_out  = 'lemonbar ' .. parameters
-    local pipe_out = assert(io.popen(command_out, 'w'))
+    -- no bidirectional in Lua, using shell pipe instead
+    local command_out  = 'lemonbar ' .. parameters .. ' | sh'
+    local pipe_lemon_out = assert(io.popen(command_out, 'w'))
     
-    _M.init_content(monitor, pipe_out)
-    _M.walk_content(monitor, pipe_out) -- loop for each event
+    _M.content_init(monitor, pipe_lemon_out)
+    _M.content_walk(monitor, pipe_lemon_out) -- loop for each event
         
-    pipe_out:close()
+    pipe_lemon_out:close()
 end
 
 function _M.detach_lemon(monitor, parameters)

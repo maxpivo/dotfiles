@@ -30,30 +30,30 @@ function handle_command_event($monitor, $event)
     }
 }
 
-function init_content($monitor, $process)
+function content_init($monitor, $pipe_dzen2_out)
 {   
     // initialize statusbar before loop
     set_tag_value($monitor);
     set_windowtitle('');
         
     $text = get_statusbar_text($monitor);
-    fwrite($process, $text."\n");
+    fwrite($pipe_dzen2_out, $text."\n");
     flush();
 }
 
-function walk_content($monitor, $process)
+function content_walk($monitor, $pipe_dzen2_out)
 {       
     // start a pipe
-    $command_in = 'herbstclient --idle';
-    $pipe_in  = popen($command_in,  'r'); // handle
+    $command_in    = 'herbstclient --idle';
+    $pipe_idle_in  = popen($command_in,  'r'); // handle
     
-    while(!feof($pipe_in)) {
+    while(!feof($pipe_idle_in)) {
         # read next event
-        $event = fgets($pipe_in);
+        $event = fgets($pipe_idle_in);
         handle_command_event($monitor, $event);
         
         $text = get_statusbar_text($monitor);
-        fwrite($process, $text);
+        fwrite($pipe_dzen2_out, $text);
         flush();
     }
     
@@ -62,13 +62,13 @@ function walk_content($monitor, $process)
 
 function run_dzen2($monitor, $parameters) 
 { 
-    $command_out  = "dzen2 $parameters";
-    $pipe_out = popen($command_out, 'w');
+    $command_out    = "dzen2 $parameters";
+    $pipe_dzen2_out = popen($command_out, 'w');
 
-    init_content($monitor, $pipe_out);
-    walk_content($monitor, $pipe_out); // loop for each event
+    content_init($monitor, $pipe_dzen2_out);
+    content_walk($monitor, $pipe_dzen2_out); // loop for each event
 
-    pclose($pipe_out);
+    pclose($pipe_dzen2_out);
 }
 
 function detach_dzen2($monitor, $parameters)

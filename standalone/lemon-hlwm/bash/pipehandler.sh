@@ -31,7 +31,7 @@ function handle_command_event() {
     esac 
 }
 
-function init_content() {
+function content_init() {
     monitor=$1
 
     # initialize statusbar before loop
@@ -42,7 +42,7 @@ function init_content() {
     echo $buffer
 }
 
-function walk_content() {
+function content_walk() {
     monitor=$1
 
     # start a pipe
@@ -65,9 +65,9 @@ function run_lemon() {
     command_out="lemonbar $parameters"
     
     {
-       init_content $monitor
-       walk_content $monitor # loop for each event
-    } | $command_out
+       content_init $monitor
+       content_walk $monitor # loop for each event
+    } | $command_out | sh
 }
 
 function detach_lemon() { 

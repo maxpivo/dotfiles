@@ -3,7 +3,9 @@ package pipehandler;
 use warnings;
 use strict;
 
-use IPC::Open2;
+# for tutorial purpose, we use two libraries
+use IO::Pipe;   # unidirectional
+use IPC::Open2; #  bidirectional
 
 use File::Basename;
 use lib dirname(__FILE__);
@@ -39,43 +41,41 @@ sub handle_command_event {
     }    
 }
 
-sub init_content {
+sub content_init {
     my $monitor = shift;
-    my $pipe_out = shift;
+    my $pipe_lemon_out = shift;
 
     # initialize statusbar before loop
     output::set_tag_value($monitor);
     output::set_windowtitle('');
 
     my $text = output::get_statusbar_text($monitor);
-    print $pipe_out $text."\n";
-    flush $pipe_out;
+    print $pipe_lemon_out $text."\n";
+    flush $pipe_lemon_out;
 }
 
-sub walk_content {
+sub content_walk {
     my $monitor = shift;
-    my $wh_out = shift;
+    my $pipe_lemon_out = shift; 
     
     # start a pipe
-    my $command_in = 'herbstclient --idle';
-    
-    my ($rh_in, $wh_in);
-    my $pid_in  = open2 ($rh_in,  $wh_in,  $command_in)
-        or die "can't pipe in: $!";
+    my $pipe_idle_in = IO::Pipe->new();
+    my $command = 'herbstclient --idle';
+    my $handle  = $pipe_idle_in->reader($command);
 
     my $text = '';
     my $event = '';
 
-    while($event = <$rh_in>) {
-        # wait for next event
+    # wait for each event
+    while($event = <$pipe_idle_in>) {     
         handle_command_event($monitor, $event);
         
         $text = output::get_statusbar_text($monitor);     
-        print $wh_out $text."\n";
-        flush $wh_out;
+        print $pipe_lemon_out $text."\n";
+        flush $pipe_lemon_out;
     }
     
-    waitpid( $pid_in,  0 );
+    $pipe_idle_in->close();
 }
 
 sub run_lemon { 
@@ -83,14 +83,31 @@ sub run_lemon {
     my $parameters = shift;
 
     my $command_out = "lemonbar $parameters";
-    my ($rh_out, $wh_out);
-    my $pid_out = open2 ($rh_out, $wh_out, $command_out) 
-        or die "can't pipe out: $!";
+    my ($rh_lemon_out, $wh_lemon_out);
+    my $pid_lemon_out = open2 (
+            $rh_lemon_out, $wh_lemon_out, $command_out) 
+        or die "can't pipe lemon out: $!";
+        
+    my ($rh_sh, $wh_sh);
+    my $pid_sh = open2 ($rh_sh, $wh_sh, 'sh') 
+        or die "can't pipe sh: $!";
 
-    init_content($monitor, $wh_out);
-    walk_content($monitor, $wh_out); # loop for each event
+    my $pid = fork;
+    if ($pid) {
+        # in the parent process
+        my $line_clickable = '';
+        while($line_clickable = <$rh_lemon_out>) {
+            print $wh_sh $line_clickable;
+            flush $wh_sh;
+        }        
+    } else {
+        # in the child process
+        content_init($monitor, $wh_lemon_out);
+        content_walk($monitor, $wh_lemon_out); # loop for each event
+    }
 
-     waitpid( $pid_out, 0 );
+    waitpid( $pid_lemon_out, 0 );
+    waitpid( $pid_sh, 0 );
 }
 
 sub detach_lemon { 

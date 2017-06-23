@@ -29,42 +29,42 @@ function _M.handle_command_event(monitor, event)
     end
 end
 
-function _M.init_content(monitor, process)
+function _M.content_init(monitor, pipe_dzen2_out)
     -- initialize statusbar before loop
     output.set_tag_value(monitor)
     output.set_windowtitle('')
 
     local text = output.get_statusbar_text(monitor)
-    process:write(text .. "\n")
-    process:flush()
+    pipe_dzen2_out:write(text .. "\n")
+    pipe_dzen2_out:flush()
 end
 
-function _M.walk_content(monitor, process)    
+function _M.content_walk(monitor, pipe_dzen2_out)    
     -- start a pipe
     command_in = 'herbstclient --idle'
-    local pipe_in  = assert(io.popen(command_in,  'r'))
+    local pipe_idle_in  = assert(io.popen(command_in,  'r'))
     local text = ''
   
     -- wait for each event 
-    for event in pipe_in:lines() do
+    for event in pipe_idle_in:lines() do
         _M.handle_command_event(monitor, event)    
     
         text = output.get_statusbar_text(monitor)
-        process:write(text .. "\n")
-        process:flush()
+        pipe_dzen2_out:write(text .. "\n")
+        pipe_dzen2_out:flush()
     end -- for loop
    
-    pipein:close()
+    pipe_idle_in:close()
 end
 
 function _M.run_dzen2(monitor, parameters) 
-    local command_out  = 'dzen2 ' .. parameters
-    local pipe_out = assert(io.popen(command_out, 'w'))
+    local command_out    = 'dzen2 ' .. parameters
+    local pipe_dzen2_out = assert(io.popen(command_out, 'w'))
     
-    _M.init_content(monitor, pipe_out)
-    _M.walk_content(monitor, pipe_out) -- loop for each event
+    _M.content_init(monitor, pipe_dzen2_out)
+    _M.content_walk(monitor, pipe_dzen2_out) -- loop for each event
         
-    pipe_out:close()
+    pipe_dzen2_out:close()
 end
 
 function _M.detach_dzen2(monitor, parameters)

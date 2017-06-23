@@ -3,6 +3,8 @@ package output;
 use warnings;
 use strict;
 
+use Time::Piece;
+
 use File::Basename;
 use lib dirname(__FILE__);
 
@@ -20,7 +22,8 @@ use constant TAG_SHOWS => ['一 ichi', '二 ni', '三 san', '四 shi',
 
 # initialize variable segment
 my $segment_windowtitle = '';
-my @tags_status = [];
+my @tags_status         = [];
+my $segment_datetime    = '';
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
@@ -51,6 +54,9 @@ sub get_statusbar_text {
     foreach my $tag_status (@tags_status) {
         $text .= output_by_tag($monitor, $tag_status);
     }
+
+    # draw window title    
+    # $text .= output_by_datetime();
     
     # draw window title    
     $text .= output_by_title();
@@ -111,6 +117,13 @@ sub output_by_title {
     return $text;
 }
 
+sub output_by_datetime {
+    my $text = " ^r(5x0) ".SEPARATOR." ^r(5x0) ";
+    $text   .= $segment_datetime;
+
+    return $text;
+}
+
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # setting variables, response to event handler
 
@@ -123,11 +136,25 @@ sub set_tag_value {
 }
 
 sub set_windowtitle {
-    my $windowtitle = shift;  
+    my $windowtitle = shift;
     my $icon = PRE_ICON."".POST_ICON;
-      
+ 
     $segment_windowtitle = " $icon "
                          . "^bg()^fg($color{'grey700'}) $windowtitle";
+}
+
+sub set_datetime {
+    my $date_icon = PRE_ICON."".POST_ICON;
+    my $date_format = '%a %b %d';
+    my $date_str = localtime->strftime($date_format);      
+    my $date_text = "$date_icon ^bg()^fg($color{'grey700'}) $date_str";
+
+    my $time_icon = PRE_ICON."".POST_ICON;
+    my $time_format = '%H:%M:%S';
+    my $time_str = localtime->strftime($time_format);
+    my $time_text = "$date_icon ^bg()^fg($color{'blue500'}) $time_str";
+
+    $segment_datetime = "$date_text $time_text";
 }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----

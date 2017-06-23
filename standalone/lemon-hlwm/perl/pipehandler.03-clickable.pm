@@ -3,7 +3,9 @@ package pipehandler;
 use warnings;
 use strict;
 
-use IO::Pipe;
+# for tutorial purpose, we use two libraries
+use IO::Pipe;   # unidirectional
+use IPC::Open2; #  bidirectional
 
 use File::Basename;
 use lib dirname(__FILE__);
@@ -22,7 +24,7 @@ sub handle_command_event {
     my $origin = $column[0];
 
     if ($origin eq 'reload') {
-        system('pkill dzen2');
+        system('pkill lemonbar');
     } elsif ($origin eq 'quit_panel') {
         exit;
     } elsif (  # avoiding the unstable ~~ smartmatch operator
@@ -39,75 +41,83 @@ sub handle_command_event {
     }    
 }
 
-sub init_content {
+sub content_init {
     my $monitor = shift;
-    my $pipe_out = shift;
+    my $pipe_lemon_out = shift;
 
     # initialize statusbar before loop
     output::set_tag_value($monitor);
     output::set_windowtitle('');
 
     my $text = output::get_statusbar_text($monitor);
-    print $pipe_out $text."\n";
-    flush $pipe_out;
+    print $pipe_lemon_out $text."\n";
+    flush $pipe_lemon_out;
 }
 
-sub walk_content {
+sub content_walk {
     my $monitor = shift;
-    my $pipe_out = shift;    
+    my $pipe_lemon_out = shift; 
     
     # start a pipe
-    my $pipe_in  = IO::Pipe->new();
+    my $pipe_idle_in = IO::Pipe->new();
     my $command = 'herbstclient --idle';
-    my $handle  = $pipe_in->reader($command);
+    my $handle  = $pipe_idle_in->reader($command);
 
     my $text = '';
     my $event = '';
 
-    while(<$pipe_in>) {
-        # wait for next event
-        $event = $_;        
+    # wait for each event
+    while($event = <$pipe_idle_in>) {     
         handle_command_event($monitor, $event);
         
         $text = output::get_statusbar_text($monitor);     
-        print $pipe_out $text;
-        flush $pipe_out;
+        print $pipe_lemon_out $text."\n";
+        flush $pipe_lemon_out;
     }
     
-    $pipe_in->close();
+    $pipe_idle_in->close();
 }
 
-sub run_dzen2 { 
+sub run_lemon { 
     my $monitor = shift;
     my $parameters = shift;
-    
-    my $pipe_out = IO::Pipe->new();
-    my $command = "dzen2 $parameters";
-    my $handle = $pipe_out->writer($command);
 
-    init_content($monitor, $pipe_out);
-    walk_content($monitor, $pipe_out); # loop for each event
-    $pipe_out->close();
+    my $command_out = "lemonbar $parameters";
+    my ($rh_lemon_out, $wh_lemon_out);
+    my $pid_lemon_out = open2 (
+            $rh_lemon_out, $wh_lemon_out, $command_out) 
+        or die "can't pipe lemon out: $!";
+        
+    my ($rh_sh, $wh_sh);
+    my $pid_sh = open2 ($rh_sh, $wh_sh, 'sh') 
+        or die "can't pipe sh: $!";
+
+    my $pid = fork;
+    if ($pid) {
+        # in the parent process
+        my $line_clickable = '';
+        while($line_clickable = <$rh_lemon_out>) {
+            print $wh_sh $line_clickable;
+            flush $wh_sh;
+        }        
+    } else {
+        # in the child process
+        content_init($monitor, $wh_lemon_out);
+        content_walk($monitor, $wh_lemon_out); # loop for each event
+    }
+
+    waitpid( $pid_lemon_out, 0 );
+    waitpid( $pid_sh, 0 );
 }
 
-sub detach_dzen2 { 
+sub detach_lemon { 
     my $monitor = shift;
     my $parameters = shift;
 
     my $pid = fork;
     return if $pid;     # in the parent process
     
-    run_dzen2($monitor, $parameters);
-    exit; 
-}
-
-sub detach_transset { 
-    my $pid = fork;
-    return if $pid;     # in the parent process
-    
-    sleep 1;
-    system('transset .8 -n dzentop >/dev/null');
-    
+    run_lemon($monitor, $parameters);
     exit; 
 }
 
