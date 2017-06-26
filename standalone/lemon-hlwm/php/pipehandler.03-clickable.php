@@ -72,9 +72,9 @@ function run_lemon($monitor, $parameters)
     $proc_lemon = proc_open($command_out, $descriptorspec, $pipe_lemon);
     $proc_sh    = proc_open('sh', $descriptorspec, $pipe_sh);
     
-    $pid = pcntl_fork();
+    $pid_content = pcntl_fork();
     
-    switch($pid) {         
+    switch($pid_content) {         
     case -1 : // fork errror         
         die('could not fork');
     case 0  : // we are the child
@@ -86,7 +86,7 @@ function run_lemon($monitor, $parameters)
             $buffer = fgets($pipe_lemon[1]);
             fwrite($pipe_sh[0], $buffer);
         }
-        return $pid;
+        return $pid_content;
     } 
 
     pclose($pipe_lemon[0]);
@@ -94,15 +94,15 @@ function run_lemon($monitor, $parameters)
 
 function detach_lemon($monitor, $parameters)
 { 
-    $pid = pcntl_fork();
+    $pid_lemon = pcntl_fork();
     
-    switch($pid) {         
+    switch($pid_lemon) {         
     case -1 : // fork errror         
         die('could not fork');
     case 0  : // we are the child
         run_lemon($monitor, $parameters); 
         break;
     default : // we are the parent             
-        return $pid;
+        return $pid_lemon;
     }    
 }

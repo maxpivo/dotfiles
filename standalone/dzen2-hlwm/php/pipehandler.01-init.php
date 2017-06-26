@@ -26,23 +26,23 @@ function run_dzen2($monitor, $parameters)
 
 function detach_dzen2($monitor, $parameters)
 { 
-    $pid = pcntl_fork();
+    $pid_dzen2 = pcntl_fork();
     
-    switch($pid) {         
+    switch($pid_dzen2) {         
     case -1 : // fork errror         
         die('could not fork');
     case 0  : // we are the child
         run_dzen2($monitor, $parameters); 
         break;
     default : // we are the parent             
-        return $pid;
+        return $pid_dzen2;
     }    
 }
 
 function detach_transset() 
 { 
-    $pid = pcntl_fork();
-    if ($pid == 0) { 
+    $pid_transset = pcntl_fork();
+    if ($pid_transset == 0) { 
         sleep(1);
         system('transset .8 -n dzentop >/dev/null');
     }

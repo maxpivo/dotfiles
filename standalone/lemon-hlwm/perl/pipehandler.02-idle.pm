@@ -98,8 +98,8 @@ sub detach_lemon {
     my $monitor = shift;
     my $parameters = shift;
 
-    my $pid = fork;
-    return if $pid;     # in the parent process
+    my $pid_lemon = fork;
+    return if $pid_lemon;     # in the parent process
     
     run_lemon($monitor, $parameters);
     exit; 

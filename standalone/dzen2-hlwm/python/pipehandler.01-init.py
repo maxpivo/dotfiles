@@ -29,24 +29,24 @@ def run_dzen2(monitor, parameters):
     pipe_dzen2_out.stdin.close()
 
 def detach_dzen2(monitor, parameters):
-    pid = os.fork()
+    pid_dzen2 = os.fork()
     
-    if pid == 0:
+    if pid_dzen2 == 0:
         try:
             run_dzen2(monitor, parameters)
             os._exit(1)
         finally:
             import signal
-            os.kill(pid, signal.SIGTERM)
+            os.kill(pid_dzen2, signal.SIGTERM)
 
 def detach_transset():
-    pid = os.fork()
+    pid_transset = os.fork()
     
-    if pid == 0:
+    if pid_transset == 0:
         try:
             time.sleep(1)
             os.system('transset .8 -n dzentop >/dev/null')            
             os._exit(1)
         finally:
             import signal
-            os.kill(pid, signal.SIGTERM)
+            os.kill(pid_transset, signal.SIGTERM)

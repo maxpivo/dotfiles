@@ -55,11 +55,11 @@ def run_lemon(monitor, parameters)
   # note the r+ mode
   IO.popen(command_out, 'r+') do |io_lemon| 
 
-    pid = fork do 
+    pid_content = fork do 
       content_init(monitor, io_lemon)
       content_walk(monitor, io_lemon) # loop for each event
     end
-    Process.detach(pid)  
+    Process.detach(pid_content)
 
     IO.popen('sh', 'w') do |io_sh|
       while io_lemon do
@@ -77,6 +77,6 @@ def detach_lemon(monitor, parameters)
   # warning: Signal.trap is application wide
   Signal.trap("PIPE", "EXIT")
     
-  pid = fork { run_lemon(monitor, parameters) }
-  Process.detach(pid)
+  pid_lemon = fork { run_lemon(monitor, parameters) }
+  Process.detach(pid_lemon)
 end

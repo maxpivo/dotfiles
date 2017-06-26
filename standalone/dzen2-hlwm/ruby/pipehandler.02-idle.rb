@@ -63,15 +63,15 @@ def detach_dzen2(monitor, parameters)
   # warning: Signal.trap is application wide
   Signal.trap("PIPE", "EXIT")
     
-  pid = fork { run_dzen2(monitor, parameters) }
-  Process.detach(pid)
+  pid_dzen2 = fork { run_dzen2(monitor, parameters) }
+  Process.detach(pid_dzen2)
 end
 
 def detach_transset()
-  pid = fork do
+  pid_transset = fork do
     sleep(1)
     system('transset .8 -n dzentop >/dev/null')        
   end
     
-  Process.detach(pid)
+  Process.detach(pid_transset)
 end

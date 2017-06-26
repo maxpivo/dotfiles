@@ -92,8 +92,8 @@ sub run_lemon {
     my $pid_sh = open2 ($rh_sh, $wh_sh, 'sh') 
         or die "can't pipe sh: $!";
 
-    my $pid = fork;
-    if ($pid) {
+    my $pid_content = fork;
+    if ($pid_content) {
         # in the parent process
         my $line_clickable = '';
         while($line_clickable = <$rh_lemon_out>) {
@@ -114,8 +114,8 @@ sub detach_lemon {
     my $monitor = shift;
     my $parameters = shift;
 
-    my $pid = fork;
-    return if $pid;     # in the parent process
+    my $pid_lemon = fork;
+    return if $pid_lemon;     # in the parent process
     
     run_lemon($monitor, $parameters);
     exit; 

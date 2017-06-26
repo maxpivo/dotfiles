@@ -65,6 +65,6 @@ def detach_lemon(monitor, parameters)
   # warning: Signal.trap is application wide
   Signal.trap("PIPE", "EXIT")
     
-  pid = fork { run_lemon(monitor, parameters) }
-  Process.detach(pid)
+  pid_lemon = fork { run_lemon(monitor, parameters) }
+  Process.detach(pid_lemon)
 end

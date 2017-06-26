@@ -28,9 +28,9 @@ function _M.run_dzen2(monitor, parameters)
 end
 
 function _M.detach_dzen2(monitor, parameters)
-    local pid = posix.fork()
+    local pid_dzen2 = posix.fork()
 
-    if pid == 0 then -- this is the child process
+    if pid_dzen2 == 0 then -- this is the child process
         _M.run_dzen2(monitor, parameters)
     else             -- this is the parent process
         -- nothing
@@ -38,12 +38,12 @@ function _M.detach_dzen2(monitor, parameters)
 end
 
 function _M.detach_transset()
-    local pid = posix.fork()
+    local pid_transset = posix.fork()
 
-    if pid == 0 then -- this is the child process
+    if pid_transset == 0 then -- this is the child process
         common.sleep(1)
         os.execute('transset .8 -n dzentop >/dev/null') 
-    else             -- this is the parent process
+    else                      -- this is the parent process
         -- nothing
     end
 end

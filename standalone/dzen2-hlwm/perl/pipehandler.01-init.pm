@@ -41,16 +41,16 @@ sub detach_dzen2 {
     my $monitor = shift;
     my $parameters = shift;
 
-    my $pid = fork;
-    return if $pid;     # in the parent process
+    my $pid_dzen2 = fork;
+    return if $pid_dzen2;     # in the parent process
     
     run_dzen2($monitor, $parameters);
     exit; 
 }
 
 sub detach_transset { 
-    my $pid = fork;
-    return if $pid;     # in the parent process
+    my $pid_transset = fork;
+    return if $pid_transset;     # in the parent process
     
     sleep 1;
     system('transset .8 -n dzentop >/dev/null');

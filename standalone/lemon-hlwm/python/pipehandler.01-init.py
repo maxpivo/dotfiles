@@ -29,12 +29,12 @@ def run_lemon(monitor, parameters):
     pipe_lemon_out.stdin.close()
 
 def detach_lemon(monitor, parameters):
-    pid = os.fork()
+    pid_lemon = os.fork()
     
-    if pid == 0:
+    if pid_lemon == 0:
         try:
             run_lemon(monitor, parameters)
             os._exit(1)
         finally:
             import signal
-            os.kill(pid, signal.SIGTERM)
+            os.kill(pid_lemon, signal.SIGTERM)

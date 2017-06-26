@@ -79,15 +79,15 @@ function run_lemon($monitor, $parameters)
 
 function detach_lemon($monitor, $parameters)
 { 
-    $pid = pcntl_fork();
+    $pid_lemon = pcntl_fork();
     
-    switch($pid) {         
+    switch($pid_lemon) {         
     case -1 : // fork errror         
         die('could not fork');
     case 0  : // we are the child
         run_lemon($monitor, $parameters); 
         break;
     default : // we are the parent             
-        return $pid;
+        return $pid_lemon;
     }    
 }

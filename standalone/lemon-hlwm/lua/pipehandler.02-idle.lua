@@ -68,9 +68,9 @@ function _M.run_lemon(monitor, parameters)
 end
 
 function _M.detach_lemon(monitor, parameters)
-    local pid = posix.fork()
+    local pid_lemon = posix.fork()
 
-    if pid == 0 then -- this is the child process
+    if pid_lemon == 0 then -- this is the child process
         _M.run_lemon(monitor, parameters)
     else             -- this is the parent process
         -- nothing
