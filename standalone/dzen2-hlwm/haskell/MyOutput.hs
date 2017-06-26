@@ -1,6 +1,7 @@
 module MyOutput
-( setWindowtitle
-, setTagValue
+( setTagValue
+, setWindowtitle
+, setDatetime
 , getStatusbarText
 ) where
 
@@ -11,6 +12,9 @@ import System.Process
 import System.IO
 
 import Control.Monad
+
+import Data.Time.LocalTime
+import Data.Time.Format
 
 import MyGMC
 
@@ -29,10 +33,13 @@ tagShows = ["一 ichi", "二 ni", "三 san", "四 shi",
 -- simulate global variable using unsafe
 
 segmentWindowtitle :: IORef String
-segmentWindowtitle = unsafePerformIO $ newIORef ""
+segmentWindowtitle = unsafePerformIO $ newIORef "" -- empty string
 
 tagsStatus :: IORef [String]
-tagsStatus = unsafePerformIO $ newIORef []
+tagsStatus = unsafePerformIO $ newIORef []         -- empty string list
+
+segmentDatetime :: IORef String
+segmentDatetime = unsafePerformIO $ newIORef ""    -- empty string
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- decoration
@@ -53,16 +60,25 @@ preIcon    = "^fg(" ++ myColor "yellow500" ++ ")" ++ fontAwesome
 postIcon   = "^fn()^fg()"
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
--- main
+-- helper
+ 
+wFormatTime :: FormatTime t => t -> String -> String
+wFormatTime myUtcTime myTimeFormat = formatTime 
+    Data.Time.Format.defaultTimeLocale myTimeFormat myUtcTime
 
+-- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+-- main
 
 getStatusbarText :: Int -> IO String
 getStatusbarText monitor = do    
     tags <- readIORef tagsStatus
     let tagText = join $ map (outputByTag monitor) tags
-    let titleText = outputByTitle
-    let text = (tagText ++) <$> titleText 
-    text
+
+    timeText  <- outputByDatetime
+    titleText <- outputByTitle
+
+    let text = tagText ++ timeText ++ titleText
+    return text
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- each segments
@@ -115,6 +131,13 @@ outputByTitle = do
 
     return text
 
+outputByDatetime :: IO String
+outputByDatetime = do
+    segment <- readIORef segmentDatetime
+    let text  = " ^r(5x0) " ++ separator ++ " ^r(5x0) " ++ segment
+
+    return text
+
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- setting variables, response to event handler
 --import Data.IORef
@@ -139,3 +162,23 @@ setWindowtitle windowtitle = do
     let text = " " ++ icon ++ " ^bg()"
                ++ "^fg(" ++ myColor "grey700" ++ ") " ++ windowtitle
     writeIORef segmentWindowtitle text
+
+formatDatetime :: ZonedTime -> String
+formatDatetime now = dateText ++ "  " ++ timeText
+  where
+    dateStr = wFormatTime now "%a %b %d"
+    timeStr = wFormatTime now "%H:%M:%S"
+     
+    dateIcon = preIcon ++ "\61555" ++ postIcon
+    timeIcon = preIcon ++ "\61463" ++ postIcon
+
+    dateText = " " ++ dateIcon ++ " ^bg()"
+               ++ "^fg(" ++ myColor "grey700" ++ ") " ++ dateStr
+
+    timeText = " " ++ timeIcon ++ " ^bg()"
+               ++ "^fg(" ++ myColor "blue500" ++ ") " ++ timeStr
+
+setDatetime :: IO ()
+setDatetime = do
+    now <- getZonedTime     
+    writeIORef segmentDatetime $ formatDatetime now

@@ -15,8 +15,9 @@ _M.tag_shows = {'一 ichi', '二 ni', '三 san', '四 shi',
   '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū'}
 
 -- initialize variable segment
-_M.segment_windowtitle = ''
-_M.tags_status = {}
+_M.segment_windowtitle = '' -- empty string
+_M.tags_status         = {} -- empty table
+_M.segment_datetime    = '' -- empty string
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- decoration
@@ -47,7 +48,10 @@ function _M.get_statusbar_text(monitor)
     for index = 1, #(_M.tags_status) do
         text = text .. _M.output_by_tag(monitor, _M.tags_status[index])
     end
-    
+
+    -- draw date and time
+    text = text .. _M.output_by_datetime()
+
     -- draw window title    
     text = text .. _M.output_by_title()
   
@@ -115,6 +119,13 @@ function _M.output_by_title()
     return text
 end
 
+function _M.output_by_datetime()
+    local text = ' ^r(5x0) ' .. _M.separator .. ' ^r(5x0) '
+               .. _M.segment_datetime
+
+    return text
+end
+
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- setting variables, response to event handler
 
@@ -130,13 +141,25 @@ end
 
 function _M.set_windowtitle(windowtitle)
     local icon = _M.pre_icon .. '' .. _M.post_icon
-
     if (windowtitle == nil) then windowtitle = '' end
       
     _M.segment_windowtitle = ' ' .. icon ..
         ' ^bg()^fg(' .. gmc.color['grey700'] .. ') ' .. windowtitle
 end
 
+function _M.set_datetime()
+    local date_icon = _M.pre_icon .. '' .. _M.post_icon
+    local date_str  = os.date('%a %b %d')     
+    local date_text = date_icon .. ' ^bg()'
+        .. '^fg(' .. gmc.color['grey700'] .. ') ' .. date_str
+
+    local time_icon = _M.pre_icon .. '' .. _M.post_icon
+    local time_str  = os.date('%H:%M:%S')
+    local time_text = time_icon .. ' ^bg()'
+        .. '^fg(' .. gmc.color['blue500'] .. ') ' .. time_str
+
+    _M.segment_datetime = date_text .. '  ' .. time_text
+end
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- return

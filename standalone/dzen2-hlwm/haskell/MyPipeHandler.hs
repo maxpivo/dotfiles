@@ -36,6 +36,7 @@ handleCommandEvent monitor event
   | origin == "quit_panel"  = do exitSuccess; return ()
   | elem origin tagCmds     = do setTagValue monitor
   | elem origin titleCmds   = do setWindowtitle (column !! 2)
+  | origin == "interval"    = do setDatetime
   where
     tagCmds   = ["tag_changed", "tag_flags", "tag_added", "tag_removed"]
     titleCmds = ["window_title_changed", "focus_changed"]
@@ -49,23 +50,51 @@ contentInit monitor pipe_dzen2_in = do
     -- initialize statusbar before loop
     setTagValue monitor 
     setWindowtitle ""
+    setDatetime
     
     text <- getStatusbarText monitor
 
     hPutStrLn pipe_dzen2_in text
     hFlush pipe_dzen2_in
 
-contentWalk :: Int -> Handle -> IO ()
-contentWalk monitor pipe_dzen2_in = do
+contentEventIdle :: Handle -> IO ()
+contentEventIdle pipe_cat_in = do
     let command_in = "herbstclient"
 
-    (_, Just pipe_idle_out, _, ph)  <- 
+    (_, Just pipe_idle_out, _, ph) <- 
         createProcess (proc command_in ["--idle"]) 
         { std_out = CreatePipe }
 
     forever $ do
         -- wait for next event 
-        event <- hGetLine pipe_idle_out 
+        event <- hGetLine pipe_idle_out
+
+        hPutStrLn pipe_cat_in event
+        hFlush pipe_cat_in
+
+    hClose pipe_idle_out
+
+contentEventInterval :: Handle -> IO ()
+contentEventInterval pipe_cat_in = forever $ do
+     let timeText = "interval"
+
+     hPutStrLn pipe_cat_in timeText
+     hFlush pipe_cat_in
+
+     wSleep 1
+
+contentWalk :: Int -> Handle -> IO ()
+contentWalk monitor pipe_dzen2_in = do
+    (Just pipe_cat_in, Just pipe_cat_out, _, ph) <- 
+        createProcess (proc "cat" []) 
+        { std_in = CreatePipe, std_out = CreatePipe }
+
+    forkProcess $ contentEventIdle(pipe_cat_in)
+    forkProcess $ contentEventInterval(pipe_cat_in)
+    
+    forever $ do
+        -- wait for next event 
+        event <- hGetLine pipe_cat_out
         handleCommandEvent monitor event
  
         text <- getStatusbarText monitor
@@ -73,7 +102,8 @@ contentWalk monitor pipe_dzen2_in = do
         hPutStrLn pipe_dzen2_in text
         hFlush pipe_dzen2_in
 
-    hClose pipe_idle_out
+    hClose pipe_cat_out
+    hClose pipe_cat_in
 
 runDzen2 :: Int -> [String] -> IO ()
 runDzen2 monitor parameters = do

@@ -49,7 +49,7 @@ function content_walk($monitor, $pipe_lemon_stdin)
     
     while(!feof($pipe_idle_in)) {
         # read next event
-        $event = fgets($pipe_idle_in);
+        $event = trim(fgets($pipe_idle_in));
         handle_command_event($monitor, $event);
         
         $text = get_statusbar_text($monitor);

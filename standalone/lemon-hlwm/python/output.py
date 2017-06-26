@@ -1,4 +1,6 @@
 import os
+import datetime
+import time
 
 from gmc import color
 
@@ -14,7 +16,8 @@ TAG_SHOWS = ['一 ichi', '二 ni', '三 san', '四 shi',
 
 # initialize variable segment
 segment_windowtitle = '' # empty string
-tags_status = []         # empty list
+tags_status         = [] # empty list
+segment_datetime    = '' # empty string
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
@@ -41,7 +44,11 @@ def get_statusbar_text(monitor):
     text += '%{l}'
     for tag_status in tags_status:
         text += output_by_tag(monitor, tag_status)
-    
+
+    # draw date and time
+    text += '%{c}'
+    text += output_by_datetime()
+
     # draw window title    
     text += '%{r}'
     text += output_by_title()
@@ -108,6 +115,9 @@ def output_by_title():
 
     return text
 
+def output_by_datetime():
+    return segment_datetime
+
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # setting variables, response to event handler
 
@@ -121,8 +131,24 @@ def set_tag_value(monitor):
 def set_windowtitle(windowtitle):
     global segment_windowtitle
     icon = PRE_ICON + '' + POST_ICON
-    
-    windowtitle = windowtitle.strip()
-      
+
     segment_windowtitle = ' ' + icon + \
         ' %{B-}%{F' + color['grey700'] + '} ' + windowtitle
+
+def set_datetime():
+    global segment_datetime
+    now = datetime.datetime.now()
+    
+    date_icon   = PRE_ICON + '' + POST_ICON
+    date_format = '{0:%Y-%m-%d}'
+    date_str  = date_format.format(now)
+    date_text = date_icon + ' %{B-}' \
+              + '%{F' + color['grey700'] + '} ' + date_str
+
+    time_icon   = PRE_ICON + '' + POST_ICON    
+    time_format = '{0:%H:%M:%S}'
+    time_str  = time_format.format(now)
+    time_text = time_icon +' %{B-}' \
+              + '%{F' + color['blue500'] + '} ' + time_str
+
+    segment_datetime = date_text + '  ' + time_text

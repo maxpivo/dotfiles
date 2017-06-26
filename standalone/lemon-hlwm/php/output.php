@@ -13,7 +13,8 @@ const TAG_SHOWS = ['一 ichi', '二 ni', '三 san', '四 shi',
 
 // initialize variable segment
 $segment_windowtitle = ''; # empty string
-$tags_status = [];         # empty array
+$tags_status         = []; # empty array
+$segment_datetime    = ''; # empty string
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
@@ -43,7 +44,11 @@ function get_statusbar_text($monitor)
     foreach ($tags_status as $tag_status) {
         $text .= output_by_tag($monitor, $tag_status);
      }
-    
+
+    # draw window title
+    $text .= '%{c}';
+    $text .= output_by_datetime();
+
     // draw window title
     $text .= '%{r}';
     $text .= output_by_title();
@@ -115,6 +120,12 @@ function output_by_title()
     return $text;
 }
 
+function output_by_datetime()
+{
+    global $segment_datetime; 
+    return $segment_datetime;
+}
+
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # setting variables, response to event handler
 
@@ -129,11 +140,24 @@ function set_tag_value($monitor)
 function set_windowtitle($windowtitle)
 {
     global $segment_windowtitle;
-
-    $icon = PRE_ICON."".POST_ICON;
-    
-    $windowtitle = trim($windowtitle);
+    $icon = PRE_ICON."".POST_ICON;    
       
     $segment_windowtitle = " ${icon} %{B-}"
-        . "%{F".COLOR['grey700']."} ${windowtitle}";
+        . "%{F".COLOR['grey700']."} $windowtitle";
+}
+
+function set_datetime() {
+    global $segment_datetime;
+
+    $date_icon = PRE_ICON."".POST_ICON;
+    $date_format = '%a %b %d';
+    $date_str  = strftime($date_format);
+    $date_text = "$date_icon %{B-}%{F".COLOR['grey700']."} $date_str";
+
+    $time_icon = PRE_ICON."".POST_ICON;
+    $time_format = '%H:%M:%S';
+    $time_str = strftime($time_format);
+    $time_text = "$time_icon %{B-}%{F".COLOR['blue500']."} $time_str";
+
+    $segment_datetime = "$date_text  $time_text";
 }

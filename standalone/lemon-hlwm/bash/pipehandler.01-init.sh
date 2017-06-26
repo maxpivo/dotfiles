@@ -6,7 +6,6 @@
 function content_init() {
     monitor=$1
 
-    # initialize statusbar before loop
     set_tag_value $monitor
     set_windowtitle ''
 

@@ -4,7 +4,6 @@ require_relative 'output'
 # pipe
 
 def content_init(monitor, dzen2_stdin)
-  # initialize statusbar before loop
   set_tag_value(monitor)
   set_windowtitle('')
       

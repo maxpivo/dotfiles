@@ -21,9 +21,9 @@ use constant TAG_SHOWS => ['一 ichi', '二 ni', '三 san', '四 shi',
     '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū'];
 
 # initialize variable segment
-my $segment_windowtitle = '';
-my @tags_status         = [];
-my $segment_datetime    = '';
+my $segment_windowtitle = ''; # empty string
+my @tags_status         = []; # empty array
+my $segment_datetime    = ''; # empty string
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
@@ -55,8 +55,8 @@ sub get_statusbar_text {
         $text .= output_by_tag($monitor, $tag_status);
     }
 
-    # draw window title    
-    # $text .= output_by_datetime();
+    # draw date and time   
+    $text .= output_by_datetime();
     
     # draw window title    
     $text .= output_by_title();
@@ -152,9 +152,9 @@ sub set_datetime {
     my $time_icon = PRE_ICON."".POST_ICON;
     my $time_format = '%H:%M:%S';
     my $time_str = localtime->strftime($time_format);
-    my $time_text = "$date_icon ^bg()^fg($color{'blue500'}) $time_str";
+    my $time_text = "$time_icon ^bg()^fg($color{'blue500'}) $time_str";
 
-    $segment_datetime = "$date_text $time_text";
+    $segment_datetime = "$date_text  $time_text";
 }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----

@@ -64,8 +64,8 @@ sub content_walk {
     my $text = '';
     my $event = '';
 
-    # wait for each event
-    while($event = <$pipe_idle_in>) {
+    # wait for each event, trim newline
+    while (chomp($event = <$pipe_idle_in>)) {
         handle_command_event($monitor, $event);
         
         $text = output::get_statusbar_text($monitor);     

@@ -38,8 +38,8 @@ def content_walk(monitor, dzen2_stdin)
   
   IO.popen(command_in, "r") do |io_idle|
     while io_idle do 
-      # read next event
-      event = io_idle.gets
+      # read next event, trim newline
+      event = (io_idle.gets).strip
       handle_command_event(monitor, event)
         
       text = get_statusbar_text(monitor)

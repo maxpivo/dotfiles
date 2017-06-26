@@ -44,10 +44,10 @@ function _M.content_walk(monitor, pipe_dzen2_out)
     command_in = 'herbstclient --idle'
     local pipe_idle_in  = assert(io.popen(command_in,  'r'))
     local text = ''
-  
-    -- wait for each event 
+
+    -- wait for each event, trim newline 
     for event in pipe_idle_in:lines() do
-        _M.handle_command_event(monitor, event)    
+        _M.handle_command_event(monitor, common.trim1(event))
     
         text = output.get_statusbar_text(monitor)
         pipe_dzen2_out:write(text .. "\n")

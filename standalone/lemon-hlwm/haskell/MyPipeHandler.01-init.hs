@@ -24,7 +24,6 @@ import MyOutput
 
 contentInit :: Int -> Handle -> IO ()
 contentInit monitor pipe_lemon_in = do
-    -- initialize statusbar before loop
     setTagValue monitor 
     setWindowtitle ""
     

@@ -32,7 +32,6 @@ wSleep mySecond = threadDelay (1000000 * mySecond)
 
 contentInit :: Int -> Handle -> IO ()
 contentInit monitor pipe_dzen2_in = do
-    -- initialize statusbar before loop
     setTagValue monitor 
     setWindowtitle ""
     

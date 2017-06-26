@@ -45,9 +45,9 @@ def content_walk(monitor, pipe_lemon_out):
             universal_newlines = True
         )
     
-    # wait for each event  
+    # wait for each event, trim newline 
     for event in pipe_idle_in.stdout:  
-        handle_command_event(monitor, event)
+        handle_command_event(monitor, event.strip())
         
         text = output.get_statusbar_text(monitor)
         pipe_lemon_out.stdin.write(text + '\n')
@@ -77,8 +77,7 @@ def run_lemon(monitor, parameters):
     content_walk(monitor, pipe_lemon_out) # loop for each event
 
     pipe_lemon_out.stdin.close()
-    pipe_sh.stdin.close()
-
+    pipe_lemon_out.stdout.close()
 
 def detach_lemon(monitor, parameters):
     pid = os.fork()

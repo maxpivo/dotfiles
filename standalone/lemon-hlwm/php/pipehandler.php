@@ -27,6 +27,8 @@ function handle_command_event($monitor, $event)
     case 'focus_changed':
         set_windowtitle($column[2]);
         break;
+    case 'interval':
+        set_datetime();
     }
 }
 
@@ -35,29 +37,87 @@ function content_init($monitor, $pipe_lemon_stdin)
     // initialize statusbar before loop
     set_tag_value($monitor);
     set_windowtitle('');
-        
+    set_datetime();
+
     $text = get_statusbar_text($monitor);
     fwrite($pipe_lemon_stdin, $text."\n");
     flush();
 }
 
+function content_event_idle($pipe_cat_stdin) 
+{
+    $pid = pcntl_fork();
+
+    switch($pid) {         
+    case -1 : // fork errror         
+        die('could not fork');
+    case 0  : // we are the child
+        // start a pipe
+        $command_in    = 'herbstclient --idle';
+        $pipe_idle_in  = popen($command_in,  'r'); // handle
+    
+        while(!feof($pipe_idle_in)) {
+            # read next event
+            $event = fgets($pipe_idle_in);
+            fwrite($pipe_cat_stdin, $event);
+            flush();
+        }
+    
+        pclose($pipe_idle_in);
+
+        break;
+    default : // we are the parent
+        // do nothing
+        return $pid;
+    } 
+}
+
+function content_event_interval($pipe_cat_stdin) 
+{
+    date_default_timezone_set("Asia/Jakarta");
+    $pid = pcntl_fork();
+
+    switch($pid) {         
+    case -1 : // fork errror         
+        die('could not fork');
+    case 0  : // we are the child
+        do {
+            $time_text = "interval\n";
+            fwrite($pipe_cat_stdin, $time_text);
+            flush();
+            sleep(1);
+        } while (true);
+        
+        break;
+    default : // we are the parent
+        // do nothing
+        return $pid;
+    } 
+}
+
 function content_walk($monitor, $pipe_lemon_stdin)
 {       
-    // start a pipe
-    $command_in    = 'herbstclient --idle';
-    $pipe_idle_in  = popen($command_in,  'r'); // handle
+    $descriptorspec = array(
+        0 => array('pipe', 'r'),  // stdin
+        1 => array('pipe', 'w'),  // stdout
+        2 => array('pipe', 'w',)  // stderr
+    );
     
-    while(!feof($pipe_idle_in)) {
-        # read next event
-        $event = fgets($pipe_idle_in);
+    $proc_cat = proc_open('cat', $descriptorspec, $pipe_cat);
+
+    content_event_idle($pipe_cat[0]);
+    content_event_interval($pipe_cat[0]);
+
+    while(!feof($pipe_cat[1])) {
+        $event = trim(fgets($pipe_cat[1]));
         handle_command_event($monitor, $event);
         
         $text = get_statusbar_text($monitor);
         fwrite($pipe_lemon_stdin, $text."\n");
         flush();
     }
-    
-    pclose($pipe_idle_in);
+
+    pclose($pipe_cat[1]);
 }
 
 function run_lemon($monitor, $parameters) 

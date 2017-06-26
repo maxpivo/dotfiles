@@ -7,7 +7,6 @@ require_once(__DIR__.'/output.php');
 
 function content_init($monitor, $pipe_lemon_stdin)
 {   
-    // initialize statusbar before loop
     set_tag_value($monitor);
     set_windowtitle('');
         

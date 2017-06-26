@@ -8,7 +8,6 @@ import output
 # pipe
 
 def content_init(monitor, pipe_lemon_out):
-    # initialize statusbar before loop
     output.set_tag_value(monitor)
     output.set_windowtitle('')
         

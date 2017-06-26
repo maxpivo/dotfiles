@@ -45,9 +45,9 @@ def content_walk(monitor, pipe_dzen2_out):
             universal_newlines = True
         )
     
-    # wait for each event  
+    # wait for each event, trim newline 
     for event in pipe_idle_in.stdout:  
-        handle_command_event(monitor, event)
+        handle_command_event(monitor, event.strip())
         
         text = output.get_statusbar_text(monitor)
         pipe_dzen2_out.stdin.write(text)

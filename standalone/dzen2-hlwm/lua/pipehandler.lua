@@ -8,6 +8,14 @@ local output = require('.output')
 local _M = {}
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+-- helper
+
+-- because os.clock function will hogs your cpu
+function _M.os_sleep(n)
+  os.execute('sleep ' .. tonumber(n))
+end
+
+-- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- pipe
 
 function _M.handle_command_event(monitor, event)
@@ -26,6 +34,8 @@ function _M.handle_command_event(monitor, event)
         output.set_tag_value(monitor)
     elseif common.has_value(title_cmds, origin) then
         output.set_windowtitle(column[3])
+    elseif origin == 'interval' then
+        output.set_datetime()
     end
 end
 
@@ -33,28 +43,73 @@ function _M.content_init(monitor, pipe_dzen2_out)
     -- initialize statusbar before loop
     output.set_tag_value(monitor)
     output.set_windowtitle('')
+    output.set_datetime()
 
     local text = output.get_statusbar_text(monitor)
     pipe_dzen2_out:write(text .. "\n")
     pipe_dzen2_out:flush()
 end
 
-function _M.content_walk(monitor, pipe_dzen2_out)    
-    -- start a pipe
-    command_in = 'herbstclient --idle'
-    local pipe_idle_in  = assert(io.popen(command_in,  'r'))
-    local text = ''
+function _M.content_event_idle(pipe_cat_out)
+    local pid = posix.fork()
+
+    if pid == 0 then -- this is the child process
+        -- start a pipe
+        command_in = 'herbstclient --idle'
+        local pipe_in  = assert(io.popen(command_in,  'r'))
   
-    -- wait for each event 
-    for event in pipe_idle_in:lines() do
+        -- wait for each event 
+        for event in pipe_in:lines() do
+            posix.write(pipe_cat_out, event)
+            io.flush()
+        end -- for loop
+   
+        pipein:close()
+    else             -- this is the parent process
+        -- nothing
+    end
+end
+
+function _M.content_event_interval(pipe_cat_out) 
+    local pid = posix.fork()
+
+    if pid == 0 then -- this is the child process
+        while true do
+            local time_text = "interval\n"
+            
+            posix.write(pipe_cat_out, time_text)
+            io.flush() 
+
+            _M.os_sleep(1)
+        end
+    else             -- this is the parent process
+        -- nothing
+    end
+end
+
+function _M.content_walk(monitor, pipe_dzen2_out)  
+    rd, wr = posix.pipe()
+
+    _M.content_event_idle(wr)
+    _M.content_event_interval(wr)
+
+    local bufsize = 4096
+    local event = ''
+
+    while true do
+        -- wait for next event, trim newline
+        event = common.trim1(posix.read(rd, bufsize))
+        if event == nil or #event == 0 then break end
+    
         _M.handle_command_event(monitor, event)    
     
         text = output.get_statusbar_text(monitor)
         pipe_dzen2_out:write(text .. "\n")
         pipe_dzen2_out:flush()
-    end -- for loop
-   
-    pipe_idle_in:close()
+    end -- not using for loop
+
+    posix.close(rd)
+    posix.close(wr)
 end
 
 function _M.run_dzen2(monitor, parameters) 

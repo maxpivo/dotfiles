@@ -38,16 +38,15 @@ def content_walk(monitor, pipe_lemon_out):
     command_in = 'herbstclient --idle'  
     pipe_idle_in = subprocess.Popen(
             [command_in], 
-            # stdout = pipe_out.stdin,
             stdout = subprocess.PIPE,
             stderr = subprocess.STDOUT,
             shell  = True,
             universal_newlines = True
         )
     
-    # wait for each event  
+    # wait for each event, trim newline
     for event in pipe_idle_in.stdout:  
-        handle_command_event(monitor, event)
+        handle_command_event(monitor, event.strip())
         
         text = output.get_statusbar_text(monitor)
         pipe_lemon_out.stdin.write(text + '\n')

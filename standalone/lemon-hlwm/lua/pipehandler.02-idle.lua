@@ -45,10 +45,10 @@ function _M.content_walk(monitor, pipe_lemon_out)
     local pipe_in  = assert(io.popen(command_in,  'r'))
     local text = ''
   
-    -- wait for each event 
-    for event in pipe_in:lines() do
-        _M.handle_command_event(monitor, event)    
-    
+    -- wait for each event, trim newline 
+    for event in pipe_idle_in:lines() do
+        _M.handle_command_event(monitor, common.trim1(event))
+       
         text = output.get_statusbar_text(monitor)
         pipe_lemon_out:write(text .. "\n")
         pipe_lemon_out:flush()

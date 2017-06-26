@@ -15,8 +15,9 @@ include GMC
   '五 go', '六 roku', '七 shichi', '八 hachi', '九 kyū', '十 jū']
 
 # initialize variable segment
-@segment_windowtitle = ''
-@tags_status = []
+@segment_windowtitle = '' # empty string
+@tags_status         = [] # empty array
+@segment_datetime    = '' # empty string
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
@@ -45,7 +46,10 @@ def get_statusbar_text(monitor)
   # draw tags
   @tags_status.each { |tag_status| 
     text << output_by_tag(monitor, tag_status) }
-    
+
+  # draw date and time
+  text << output_by_datetime()
+ 
   # draw window title    
   text << output_by_title()
 end
@@ -99,6 +103,11 @@ def output_by_title()
   text << @segment_windowtitle
 end
 
+def output_by_datetime()
+  text  = " ^r(5x0) #{@SEPARATOR} ^r(5x0) "  
+  text << @segment_datetime
+end
+
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # setting variables, response to event handler
 
@@ -112,4 +121,20 @@ def set_windowtitle(windowtitle)
       
   @segment_windowtitle = " #{icon} ^bg()" \
     + "^fg(#{COLOR['grey700']}) #{windowtitle}"
+end
+
+def set_datetime()
+    date_icon = @PRE_ICON + '' + @POST_ICON
+    localtime = Time.now
+
+    date_format = '%a %b %d'
+    date_str  = localtime.strftime(date_format)
+    date_text = "#{date_icon} ^bg()^fg(#{COLOR['grey700']}) #{date_str}"
+
+    time_icon = @PRE_ICON + '' + @POST_ICON
+    time_format = '%H:%M:%S'
+    time_str  = localtime.strftime(time_format)
+    time_text = "#{time_icon} ^bg()^fg(#{COLOR['blue500']}) #{time_str}"
+
+    @segment_datetime = "#{date_text}  #{time_text}"
 end

@@ -17,7 +17,7 @@ use output;
 
 sub handle_command_event {
     my $monitor = shift;
-    my $event = shift;
+    my $event   = shift;
     
     # find out event origin
     my @column = split(/\t/, $event);
@@ -38,7 +38,9 @@ sub handle_command_event {
             or ($origin eq 'focus_changed')
             ) {
         output::set_windowtitle($column[2]);
-    }    
+    } elsif ($origin eq 'interval') {
+        output::set_datetime();
+    }   
 }
 
 sub content_init {
@@ -48,34 +50,72 @@ sub content_init {
     # initialize statusbar before loop
     output::set_tag_value($monitor);
     output::set_windowtitle('');
+    output::set_datetime();
 
     my $text = output::get_statusbar_text($monitor);
     print $pipe_lemon_out $text."\n";
     flush $pipe_lemon_out;
 }
 
-sub content_walk {
-    my $monitor = shift;
-    my $pipe_lemon_out = shift; 
-    
+sub content_event_idle {
+    my $pipe_cat_out = shift;
+ 
+    my $pid = fork;
+    return if $pid;     # in the parent process
+
     # start a pipe
     my $pipe_idle_in = IO::Pipe->new();
     my $command = 'herbstclient --idle';
     my $handle  = $pipe_idle_in->reader($command);
 
-    my $text = '';
+    # wait for each event
+    my $event = '';
+    while ($event = <$pipe_idle_in>) {
+        print $pipe_cat_out $event;
+        flush $pipe_cat_out;
+    }
+    
+    $pipe_idle_in->close();
+}
+
+sub content_event_interval {
+    my $pipe_cat_out = shift;
+
+    my $pid = fork;
+    return if $pid;     # in the parent process
+    
+    while(1) {         
+        print $pipe_cat_out "interval\n";
+        flush $pipe_cat_out;
+        
+        sleep 1;
+    }
+}
+
+sub content_walk {
+    my $monitor = shift;
+    my $pipe_lemon_out = shift; 
+
+    my ($rh_cat, $wh_cat);
+    my $pid_cat = open2 ($rh_cat, $wh_cat, 'cat') 
+        or die "can't pipe sh: $!";
+
+    content_event_idle($wh_cat);
+    content_event_interval($wh_cat);
+
+    my $text  = '';
     my $event = '';
 
-    # wait for each event
-    while($event = <$pipe_idle_in>) {     
+    # wait for each event, trim newline
+    while (chomp($event = <$rh_cat>)) {
         handle_command_event($monitor, $event);
         
         $text = output::get_statusbar_text($monitor);     
         print $pipe_lemon_out $text."\n";
         flush $pipe_lemon_out;
     }
-    
-    $pipe_idle_in->close();
+
+    waitpid( $pid_cat, 0 );
 }
 
 sub run_lemon { 

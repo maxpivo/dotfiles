@@ -17,7 +17,6 @@ sub content_init {
     my $monitor = shift;
     my $pipe_dzen2_out = shift;
 
-    # initialize statusbar before loop
     output::set_tag_value($monitor);
     output::set_windowtitle('');
 

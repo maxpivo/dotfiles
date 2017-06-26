@@ -28,6 +28,9 @@ function handle_command_event() {
         focus_changed|window_title_changed)            
             set_windowtitle "${column[2]}"
             ;;
+        interval)
+            set_datetime
+            ;;
     esac 
 }
 
@@ -37,24 +40,41 @@ function content_init() {
     # initialize statusbar before loop
     set_tag_value $monitor
     set_windowtitle ''
+    set_datetime
 
     get_statusbar_text $monitor
     echo $buffer
 }
 
+function content_event_idle() {
+    # wait for each event     
+    herbstclient --idle
+}
+
+function content_event_interval() {
+    # endless loop
+    while :; do 
+      echo "interval"
+      sleep 1
+    done
+}
+
 function content_walk() {
     monitor=$1
-
-    # start a pipe
-    command_in='herbstclient --idle'
-
-    # wait for each event     
-    $command_in | while read event; do
-        handle_command_event $monitor "$event"
+    
+    {
+        content_event_idle &
+        pid_idle=$!
+    
+        content_event_interval &
+        pid_interval=$!
+    
+    }  | while read event; do
+            handle_command_event $monitor "$event"
         
-        get_statusbar_text $monitor
-        echo $buffer
-    done    
+            get_statusbar_text $monitor
+            echo $buffer
+        done
 }
 
 function run_lemon() { 

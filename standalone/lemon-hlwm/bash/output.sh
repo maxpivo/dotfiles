@@ -13,6 +13,7 @@ readonly tag_shows=( "一 ichi" "二 ni" "三 san" "四 shi"
 # initialize variable segment
 segment_windowtitle=''; # empty string
 tags_status=();         # empty array
+segment_datetime='';    # empty string
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # decoration
@@ -43,7 +44,12 @@ function get_statusbar_text() {
         output_by_tag $monitor $tag_status
         text+=$buffer
     done
-    
+
+    # draw date and time
+    text+='%{c}'
+    output_by_datetime
+    text+=$buffer
+
     # draw window title
     text+='%{r}'
     output_by_title    
@@ -113,6 +119,10 @@ function output_by_title() {
     buffer=$text
 }
 
+function output_by_datetime() {
+    buffer=$segment_datetime
+}
+
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # setting variables, response to event handler
 
@@ -129,4 +139,16 @@ function set_windowtitle() {
     # "${segmentWindowtitle//^/^^}"
     
     segment_windowtitle=" $icon %{B-}%{F${color['grey700']}} $windowtitle"
+}
+
+function set_datetime() {
+    local date_icon="$pre_icon$post_icon"
+    local date_str=$(date +'%a %b %d')
+    local date_text="$date_icon %{B-}%{F${color['grey700']}} $date_str"
+
+    local time_icon="$pre_icon$post_icon"
+    local time_str=$(date +'%H:%M:%S')
+    local time_text="$time_icon %{B-}%{F${color['blue500']}} $time_str"
+
+    segment_datetime="$date_text  $time_text"
 }

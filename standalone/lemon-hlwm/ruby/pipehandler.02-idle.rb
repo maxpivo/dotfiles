@@ -33,13 +33,13 @@ def content_init(monitor, lemon_stdin)
 end
 
 def content_walk(monitor, lemon_stdin)
-  # start a io
+  # start an io
   command_in = 'herbstclient --idle'
   
   IO.popen(command_in, "r") do |io_idle|
     while io_idle do 
-      # read next event
-      event = io_idle.gets
+      # read next event, trim newline
+      event = (io_idle.gets).strip
       handle_command_event(monitor, event)
         
       text = get_statusbar_text(monitor)
