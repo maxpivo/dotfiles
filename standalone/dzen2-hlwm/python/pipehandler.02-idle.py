@@ -22,7 +22,8 @@ def handle_command_event(monitor, event):
     elif origin in tag_cmds:
         output.set_tag_value(monitor)
     elif origin in title_cmds:
-        output.set_windowtitle(column[2])
+        title = column[2] if (len(column) > 2) else ''
+        output.set_windowtitle(title)
 
 def content_init(monitor, pipe_dzen2_out):
     # initialize statusbar before loop
@@ -70,7 +71,12 @@ def run_dzen2(monitor, parameters):
 
     pipe_dzen2_out.stdin.close()
 
+def detach_dzen2_debug(monitor, parameters):
+    run_lemon(monitor, parameters)
+
 def detach_dzen2(monitor, parameters):
+    # in case of debugging purpose, 
+    # uncomment all the fork related lines.
     pid_dzen2 = os.fork()
     
     if pid_dzen2 == 0:

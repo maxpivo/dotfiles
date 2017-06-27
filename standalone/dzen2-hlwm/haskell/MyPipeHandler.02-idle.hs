@@ -30,12 +30,17 @@ wSleep mySecond = threadDelay (1000000 * mySecond)
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- pipe 
 
+getColumnTitle :: [String] -> String
+getColumnTitle column
+  | length(column) > 2 = column !! 2
+  | otherwise          = ""
+
 handleCommandEvent :: Int -> String -> IO ()
 handleCommandEvent monitor event
   | origin == "reload"      = do system("pkill dzen2"); return ()
   | origin == "quit_panel"  = do exitSuccess; return ()
   | elem origin tagCmds     = do setTagValue monitor
-  | elem origin titleCmds   = do setWindowtitle (column !! 2)
+  | elem origin titleCmds   = do setWindowtitle $ getColumnTitle column
   where
     tagCmds   = ["tag_changed", "tag_flags", "tag_added", "tag_removed"]
     titleCmds = ["window_title_changed", "focus_changed"]

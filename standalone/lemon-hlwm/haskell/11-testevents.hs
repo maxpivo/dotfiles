@@ -64,10 +64,7 @@ main = do
     forever $ do
         -- wait for next event 
         event <- hGetLine pipe_cat_out
-        putStrLn event
-        
-        -- uncomment to examine more complete behaviour    
-        -- putStrLn $ "tab:\t[" ++ event ++ "]"
+        putStrLn $ "event:\t[" ++ event ++ "]"
 
     hClose pipe_cat_out
     hClose pipe_cat_in

@@ -25,7 +25,8 @@ function _M.handle_command_event(monitor, event)
     elseif common.has_value(tag_cmds, origin) then
         output.set_tag_value(monitor)
     elseif common.has_value(title_cmds, origin) then
-        output.set_windowtitle(column[3])
+        local title = (#column > 2) and (column[3]) or ''
+        output.set_windowtitle(title)
     end
 end
 

@@ -26,7 +26,8 @@ function handle_command_event() {
             set_tag_value $monitor
             ;;
         focus_changed|window_title_changed)
-            set_windowtitle "${column[2]}"
+            [[ ${#column[@]} > 2 ]] && title=${column[2]} || title=''
+            set_windowtitle "$title"
             ;;
     esac 
 }

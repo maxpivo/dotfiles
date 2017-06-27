@@ -24,10 +24,7 @@ function content_event_interval() {
     pid_interval=$!
     
 }  | while read event; do
-        echo "$event"
-        
-        # uncomment to examine more complete behaviour
-        # echo -e "tab:\t[${event}]"
+        echo -e "event:\t[${event}]"
     done    
 
 kill pid_idle

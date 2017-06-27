@@ -19,7 +19,8 @@ def handle_command_event(monitor, event)
   when *tag_cmds       # splat operator
     set_tag_value(monitor)
   when *title_cmds     # splat operator
-    set_windowtitle(column[2])
+    title = column.length > 2 ? column[2] : ''
+    set_windowtitle(title)
   end
 end
 
@@ -60,6 +61,9 @@ def run_lemon(monitor, parameters)
       content_walk(monitor, io_lemon) # loop for each event
     end
     Process.detach(pid_content)
+
+    # CPU hog caveat when using 'pkill lemonbar'
+    # Abnormal lemonbar process termination, will make this loop go wild
 
     IO.popen('sh', 'w') do |io_sh|
       while io_lemon do

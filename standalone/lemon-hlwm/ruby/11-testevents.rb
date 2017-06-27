@@ -52,10 +52,7 @@ IO.popen('cat', 'r+') do |io_cat|
     while io_cat do 
       # read next event
       event = (io_cat.gets).strip
-      puts(event)
-            
-      # uncomment to examine more complete behaviour
-      # puts("tab:\t[#{event}]")
+      puts("event:\t[#{event}]")
     end
   
   io_cat.close()

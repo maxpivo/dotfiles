@@ -37,7 +37,8 @@ sub handle_command_event {
     } elsif (  ($origin eq 'window_title_changed') 
             or ($origin eq 'focus_changed')
             ) {
-        output::set_windowtitle($column[2]);
+        my $title = ($#column > 2) ? $column[2] : '';
+        output::set_windowtitle($title);
     } elsif ($origin eq 'interval') {
         output::set_datetime();
     }    

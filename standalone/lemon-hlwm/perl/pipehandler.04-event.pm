@@ -39,7 +39,8 @@ sub handle_command_event {
             ) {
         output::set_windowtitle($column[2]);
     } elsif ($origin eq 'interval') {
-        output::set_datetime();
+        my $title = ($#column > 2) ? $column[2] : '';
+        output::set_windowtitle($title);
     }   
 }
 

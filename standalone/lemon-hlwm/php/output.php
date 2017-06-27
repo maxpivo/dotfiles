@@ -45,7 +45,7 @@ function get_statusbar_text($monitor)
         $text .= output_by_tag($monitor, $tag_status);
      }
 
-    # draw window title
+    # draw date time
     $text .= '%{c}';
     $text .= output_by_datetime();
 

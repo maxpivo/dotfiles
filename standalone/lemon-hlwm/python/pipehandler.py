@@ -7,7 +7,7 @@ import output
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # pipe
 
-def handle_command_event(monitor, event):  
+def handle_command_event(monitor, event):
     # find out event origin
     column = event.split("\t")
     origin = column[0]
@@ -22,7 +22,8 @@ def handle_command_event(monitor, event):
     elif origin in tag_cmds:
         output.set_tag_value(monitor)
     elif origin in title_cmds:
-        output.set_windowtitle(column[2])
+        title = column[2] if (len(column) > 2) else ''
+        output.set_windowtitle(title)
     elif origin == 'interval':
         output.set_datetime()
 
@@ -122,6 +123,9 @@ def run_lemon(monitor, parameters):
 
     pipe_lemon_out.stdin.close()
     pipe_lemon_out.stdout.close()
+
+def detach_lemon_debug(monitor, parameters):
+    run_lemon(monitor, parameters)
 
 def detach_lemon(monitor, parameters):
     # in case of debugging purpose, 

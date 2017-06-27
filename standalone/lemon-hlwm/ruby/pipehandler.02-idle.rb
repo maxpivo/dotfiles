@@ -19,7 +19,8 @@ def handle_command_event(monitor, event)
   when *tag_cmds       # splat operator
     set_tag_value(monitor)
   when *title_cmds     # splat operator
-    set_windowtitle(column[2])
+    title = column.length > 2 ? column[2] : ''
+    set_windowtitle(title)
   end
 end
 

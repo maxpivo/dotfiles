@@ -74,10 +74,7 @@ while true do
     event = trim1(posix.read(rd, bufsize))
     if event == nil or #event == 0 then break end
     
-    print(event)
-
-    -- uncomment to examine more complete behaviour    
-    -- print("tab:\t[" .. event .."]")
+    print("event:\t[" .. event .."]")
 end
 
 posix.close(rd)

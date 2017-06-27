@@ -25,8 +25,9 @@ function handle_command_event() {
             # echo "resetting tags" >&2
             set_tag_value $monitor
             ;;
-        focus_changed|window_title_changed)            
-            set_windowtitle "${column[2]}"
+        focus_changed|window_title_changed)
+            [[ ${#column[@]} > 2 ]] && title=${column[2]} || title=''
+            set_windowtitle "$title"
             ;;
         interval)
             set_datetime

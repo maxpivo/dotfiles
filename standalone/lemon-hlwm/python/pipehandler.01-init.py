@@ -28,7 +28,12 @@ def run_lemon(monitor, parameters):
     content_init(monitor, pipe_lemon_out)
     pipe_lemon_out.stdin.close()
 
+def detach_lemon_debug(monitor, parameters):
+    run_lemon(monitor, parameters)
+
 def detach_lemon(monitor, parameters):
+    # in case of debugging purpose, 
+    # uncomment all the fork related lines.
     pid_lemon = os.fork()
     
     if pid_lemon == 0:

@@ -64,11 +64,7 @@ content_event_idle($wh_cat);
 content_event_interval($wh_cat);
 
 while (chomp($event = <$rh_cat>)) {
-    print "$event\n";
-    
-    # uncomment to examine more complete behaviour
-    #print "tab:\t[$event]\n";
-    
+    print "event:\t[$event]\n";    
     flush STDOUT;
 }
 

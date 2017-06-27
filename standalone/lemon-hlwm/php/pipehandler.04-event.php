@@ -25,7 +25,8 @@ function handle_command_event($monitor, $event)
         break;
     case 'window_title_changed':
     case 'focus_changed':
-        set_windowtitle($column[2]);
+        $title = count($column) > 2 ? $column[2] : '';
+        set_windowtitle($title);
         break;
     case 'interval':
         set_datetime();

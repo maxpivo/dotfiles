@@ -68,10 +68,7 @@ content_event_idle(pipe_cat)
 content_event_interval(pipe_cat)
 
 for event in pipe_cat.stdout:
-    # print(event.strip())
-
-    # uncomment to examine more complete behaviour
-    print('tab:\t[' + event.strip() +']')
+    print('event:\t[' + event.strip() +']')
 
 pipe_cat.stdin.close()
 pipe_cat.stdout.close()

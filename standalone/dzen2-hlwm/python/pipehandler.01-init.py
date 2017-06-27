@@ -28,7 +28,12 @@ def run_dzen2(monitor, parameters):
     content_init(monitor, pipe_dzen2_out)
     pipe_dzen2_out.stdin.close()
 
+def detach_dzen2_debug(monitor, parameters):
+    run_lemon(monitor, parameters)
+
 def detach_dzen2(monitor, parameters):
+    # in case of debugging purpose, 
+    # uncomment all the fork related lines.
     pid_dzen2 = os.fork()
     
     if pid_dzen2 == 0:

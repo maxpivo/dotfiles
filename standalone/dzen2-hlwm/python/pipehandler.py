@@ -22,7 +22,8 @@ def handle_command_event(monitor, event):
     elif origin in tag_cmds:
         output.set_tag_value(monitor)
     elif origin in title_cmds:
-        output.set_windowtitle(column[2])
+        title = column[2] if (len(column) > 2) else ''
+        output.set_windowtitle(title)
     elif origin == 'interval':
         output.set_datetime()
 
@@ -112,6 +113,9 @@ def run_dzen2(monitor, parameters):
     content_walk(monitor, pipe_dzen2_out) # loop for each event
 
     pipe_dzen2_out.stdin.close()
+
+def detach_dzen2_debug(monitor, parameters):
+    run_lemon(monitor, parameters)
 
 def detach_dzen2(monitor, parameters):
     # in case of debugging purpose, 

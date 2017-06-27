@@ -12,11 +12,12 @@ local _M = {}
 
 function _M.handle_command_event(monitor, event)
     -- find out event origin
-    column = common.split(event, "\t")
-    origin = column[1] -- non zero based
+    local column = common.split(event, "\t")
+    local origin = column[1] -- non zero based
 
-    tag_cmds = {'tag_changed', 'tag_flags', 'tag_added', 'tag_removed'}
-    title_cmds = {'window_title_changed', 'focus_changed'}
+    local tag_cmds = {'tag_changed', 
+         'tag_flags', 'tag_added', 'tag_removed'}
+    local title_cmds = {'window_title_changed', 'focus_changed'}
 
     if origin == 'reload' then
         os.execute('pkill lemonbar')
@@ -25,7 +26,8 @@ function _M.handle_command_event(monitor, event)
     elseif common.has_value(tag_cmds, origin) then
         output.set_tag_value(monitor)
     elseif common.has_value(title_cmds, origin) then
-        output.set_windowtitle(column[3])
+        local title = (#column > 2) and (column[3]) or ''
+        output.set_windowtitle(title)
     end
 end
 
