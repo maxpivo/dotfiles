@@ -98,3 +98,15 @@ function detach_lemon() {
     
     run_lemon $monitor $parameters &
 }
+
+function detach_lemon_conky() {    
+    parameters=$@
+
+    command_out="lemonbar $parameters"
+    
+    {
+        dirname=$(dirname $(readlink -f "$0"))
+        path="$dirname/../assets"
+        conky -c "$path/conky.lua"
+    } | $command_out &
+}

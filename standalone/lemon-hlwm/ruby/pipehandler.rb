@@ -121,3 +121,27 @@ def detach_lemon(monitor, parameters)
   pid_lemon = fork { run_lemon(monitor, parameters) }
   Process.detach(pid_lemon)
 end
+
+def detach_lemon_conky(parameters)
+  # warning: Signal.trap is application wide
+  Signal.trap("PIPE", "EXIT")
+    
+  pid_conky = fork do
+    path    = __dir__+ "/../assets"
+    cmd_in  = 'conky -c ' + path + '/conky.lua'
+    cmd_out = 'lemonbar ' + parameters
+  
+    IO.popen(cmd_out, "w") do |io_lemon|
+    IO.popen(cmd_in,  "r") do |io_conky| 
+      while io_conky do
+        io_lemon.puts io_conky.gets
+      end
+
+      io_conky.close()    
+      io_lemon.close()
+    end
+    end
+  end
+
+  Process.detach(pid_conky)
+end

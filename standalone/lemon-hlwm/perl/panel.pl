@@ -15,17 +15,14 @@ use pipehandler;
 
 my $panel_height = 24;
 my $monitor = helper::get_monitor(@ARGV);
-my $lemon_parameters = helper::get_lemon_parameters(
-    $monitor, $panel_height);
 
-# do `man herbsluftclient`, and type \pad to search what it means
+system('pkill lemonbar');
 system("herbstclient pad $monitor $panel_height 0 $panel_height 0");
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# main
-
-# remove all lemonbar instance
-system('pkill lemonbar');
-
 # run process in the background
-pipehandler::detach_lemon($monitor, $lemon_parameters);
+
+my $params_top = helper::get_params_top($monitor, $panel_height);
+pipehandler::detach_lemon($monitor, $params_top);
+
+my $params_bottom = helper::get_params_bottom($monitor, $panel_height);
+pipehandler::detach_lemon_conky($params_bottom);

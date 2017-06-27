@@ -133,6 +133,30 @@ function _M.detach_lemon(monitor, parameters)
     end
 end
 
+function _M.detach_lemon_conky(parameters)
+    local pid_conky = posix.fork()
+
+    if pid_conky == 0 then -- this is the child process
+        local cmd_out  = 'lemonbar ' .. parameters
+        local pipe_out = assert(io.popen(cmd_out, 'w'))
+
+        local dirname  = debug.getinfo(1).source:match("@?(.*/)")
+        local path     = dirname .. "../assets"
+        local cmd_in   = 'conky -c ' .. path .. '/conky.lua'
+        local pipe_in  = assert(io.popen(cmd_in,  'r'))
+
+        for line in pipe_in:lines() do
+            pipe_out:write(line.."\n")
+            pipe_out:flush()
+        end -- for loop
+   
+        pipe_in:close()    
+        pipe_out:close()
+    else                   -- this is the parent process
+        -- nothing
+    end
+end
+
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- return
 

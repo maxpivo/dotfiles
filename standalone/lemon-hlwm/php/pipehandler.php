@@ -164,5 +164,35 @@ function detach_lemon($monitor, $parameters)
         break;
     default : // we are the parent             
         return $pid_lemon;
-    }    
+    }
+}
+
+function detach_lemon_conky($parameters)
+{ 
+    $pid_conky = pcntl_fork();
+
+    switch($pid_conky) {         
+    case -1 : // fork errror         
+        die('could not fork');
+    case 0  : // we are the child
+        $cmd_out  = 'lemonbar '.$parameters;
+        $pipe_out = popen($cmd_out, "w");
+
+        $path     = __dir__."/../assets";
+        $cmd_in   = 'conky -c '.$path.'/conky.lua';
+        $pipe_in  = popen($cmd_in,  "r");
+    
+        while(!feof($pipe_in)) {
+            $buffer = fgets($pipe_in);
+            fwrite($pipe_out, $buffer);
+            flush();
+        }
+    
+        pclose($pipe_in);
+        pclose($pipe_out);
+
+        break;
+    default : // we are the parent             
+        return $pid_conky;
+    }  
 }

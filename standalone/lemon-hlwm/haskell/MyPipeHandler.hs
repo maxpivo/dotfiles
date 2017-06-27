@@ -1,10 +1,12 @@
 module MyPipeHandler
 ( detachLemon
+, detachLemonConky
 ) where
 
 import System.Process
 import System.Posix.Types
 import System.Exit
+import System.Directory
 
 import GHC.IO.Handle
 
@@ -127,3 +129,20 @@ runLemon monitor parameters = do
 detachLemon :: Int -> [String] -> IO ProcessID
 detachLemon monitor parameters = forkProcess 
     $ runLemon monitor parameters 
+
+detachLemonConky :: [String] -> IO ()
+detachLemonConky parameters = do
+    -- Source directory is irrelevant in Haskell
+    -- but we'll do it anyway for the sake of learning
+    dirName <- getCurrentDirectory
+    let conkyFileName = dirName ++ "/../assets" ++ "/conky.lua" 
+
+    (_, Just pipeout, _, _) <- 
+        createProcess (proc "conky" ["-c", conkyFileName])
+        { std_out = CreatePipe } 
+
+    (_, _, _, ph)  <- 
+        createProcess (proc "lemonbar" parameters) 
+        { std_in = UseHandle pipeout }
+      
+    hClose pipeout

@@ -14,25 +14,22 @@ panelHeight = 24
 -- main
 
 main = do
-    -- initialize
-    
     args <- getArgs
     let monitor = getMonitor args
-        
-    geometry <- getGeometry monitor
-    let lemonParameters = getLemonParameters panelHeight geometry
 
-    -- do `man herbsluftclient`, and type \pad to search what it means
+    geometry <- getGeometry monitor
+
+    system "pkill lemonbar"
     system $ "herbstclient pad " ++ show(monitor) ++ " "
         ++ show(panelHeight) ++ " 0 " ++ show(panelHeight) ++ " 0"
-    
-    -- main
-
-    -- remove all lemonbar instance
-    system "pkill lemonbar"
 
     -- run process in the background
-    detachLemon monitor lemonParameters
+
+    let paramsTop = getParamsTop panelHeight geometry
+    detachLemon monitor paramsTop
+
+    let paramsBottom = getParamsBottom panelHeight geometry
+    detachLemonConky paramsBottom
 
     -- end of IO
     return ()

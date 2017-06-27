@@ -55,7 +55,7 @@ sub get_bottom_panel_geometry {
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # lemon Parameters
 
-sub get_lemon_parameters {   
+sub get_params_top {
     # parameter: function argument
     my $monitor = shift;
     my $panel_height = shift;
@@ -74,7 +74,6 @@ sub get_lemon_parameters {
     
     # XFT: require lemonbar_xft_git 
     my $font_takaop  = "takaopgothic-9";
-    my $font_bottom  = "monospace-9";
     my $font_symbol  = "PowerlineSymbols-11";
     my $font_awesome = "FontAwesome-9";
 
@@ -86,6 +85,43 @@ sub get_lemon_parameters {
     return $parameters;
 }
 
+sub get_params_bottom {
+    # parameter: function argument
+    my $monitor = shift;
+    my $panel_height = shift;
+
+    # calculate geometry
+    my @geometry = get_geometry($monitor);
+    my ($xpos, $ypos, $width, $height) = 
+       get_bottom_panel_geometry($panel_height, @geometry); 
+
+    # geometry: -g widthxheight+x+y
+    my $geom_res = "${width}x${height}+${xpos}+${ypos}";
+    
+    # color, with transparency
+    my $bgcolor = '#aa000000';
+    my $fgcolor = '#ffffff';
+    
+    # XFT: require lemonbar_xft_git 
+    my $font_mono    = "monospace-9";
+    my $font_symbol  = "PowerlineSymbols-11";
+    my $font_awesome = "FontAwesome-9";
+
+    # finally
+    my $parameters = "  -g $geom_res -u 2"
+                   . " -B $bgcolor -F $fgcolor"
+                   . " -f $font_mono -f $font_awesome -f $font_symbol";
+
+    return $parameters;
+}
+
+sub get_lemon_parameters {   
+    # parameter: function argument
+    my $monitor = shift;
+    my $panel_height = shift;
+
+    return get_params_top($monitor, $panel_height);
+}
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # end of perl module

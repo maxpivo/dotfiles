@@ -16,17 +16,14 @@ DIR=$(dirname "$0")
 
 panel_height=24
 get_monitor ${@}
-get_lemon_parameters $monitor $panel_height
 
-# do `man herbsluftclient`, and type \pad to search what it means
+pkill lemonbar
 herbstclient pad $monitor $panel_height 0 $panel_height 0
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# pipe
-
-# remove all lemonbar instance
-pkill lemonbar
-
 # run process in the background
+
+get_params_top $monitor $panel_height
 detach_lemon $monitor $lemon_parameters
 
+get_params_bottom $monitor $panel_height
+detach_lemon_conky $lemon_parameters

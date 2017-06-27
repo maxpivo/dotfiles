@@ -9,17 +9,14 @@ require_relative 'pipehandler'
 
 panel_height = 24
 monitor = get_monitor(ARGV)
-lemon_parameters = get_lemon_parameters(monitor, panel_height)
 
-# do `man herbsluftclient`, and type \pad to search what it means
+system('pkill lemonbar')
 system("herbstclient pad #{monitor} #{panel_height} 0 #{panel_height} 0")
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# main
-
-# remove all lemonbar instance
-system('pkill lemonbar')
-
 # run process in the background
-detach_lemon(monitor, lemon_parameters)
 
+params_top = get_params_top(monitor, panel_height)
+detach_lemon(monitor, params_top)
+
+params_bottom = get_params_bottom(monitor, panel_height)
+detach_lemon_conky(params_bottom)

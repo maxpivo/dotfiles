@@ -46,7 +46,7 @@ end
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- lemon Parameters
 
-function _M.get_lemon_parameters(monitor, panel_height)
+function _M.get_params_top(monitor, panel_height)
     -- calculate geometry
     local geometry = _M.get_geometry(monitor)
     local xpos, ypos, width, height = _M.get_top_panel_geometry(
@@ -62,7 +62,6 @@ function _M.get_lemon_parameters(monitor, panel_height)
 
     -- XFT: require lemonbar_xft_git 
     local font_takaop  = "takaopgothic-9"
-    local font_bottom  = "monospace-9"
     local font_symbol  = "PowerlineSymbols-11"
     local font_awesome = "FontAwesome-9"
   
@@ -74,6 +73,39 @@ function _M.get_lemon_parameters(monitor, panel_height)
         .. " -f "..font_symbol
         
     return parameters
+end
+
+function _M.get_params_bottom(monitor, panel_height)
+    -- calculate geometry
+    local geometry = _M.get_geometry(monitor)
+    local xpos, ypos, width, height = _M.get_bottom_panel_geometry(
+        panel_height, geometry)
+
+    -- geometry: -g widthxheight+x+y
+    local geom_res = tostring(width) .. 'x' .. tostring(height)
+           .. '+' .. tostring(xpos)  .. '+' .. tostring(ypos)
+
+    -- color, with transparency    
+    local bgcolor = "'#aa000000'"
+    local fgcolor = "'#ffffff'"
+
+    -- XFT: require lemonbar_xft_git 
+    local font_mono    = "monospace-9"
+    local font_symbol  = "PowerlineSymbols-11"
+    local font_awesome = "FontAwesome-9"
+  
+    local parameters = ""
+        .. " -g "..geom_res.." -u 2"
+        .. " -B "..bgcolor.." -F "..fgcolor
+        .. " -f "..font_mono
+        .. " -f "..font_awesome
+        .. " -f "..font_symbol
+        
+    return parameters
+end
+
+function _M.get_lemon_parameters(monitor, panel_height)
+    return _M.get_params_top(monitor, panel_height)
 end
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----

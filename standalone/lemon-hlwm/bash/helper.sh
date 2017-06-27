@@ -51,7 +51,7 @@ function get_bottom_panel_geometry() {
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # lemonbar Parameters
 
-function get_lemon_parameters() {  
+function get_params_top() {  
     # parameter: function argument
     local monitor=$1
     local panel_height=$2
@@ -69,7 +69,6 @@ function get_lemon_parameters() {
     
     # XFT: require lemonbar_xft_git 
     local font_takaop="takaopgothic-9"
-    local font_bottom="monospace-9"
     local font_symbol="PowerlineSymbols-11"
     local font_awesome="FontAwesome-9"
 
@@ -77,4 +76,35 @@ function get_lemon_parameters() {
     lemon_parameters="  -g $geom_res -u 2"
     lemon_parameters+=" -B $bgcolor -F $fgcolor" 
     lemon_parameters+=" -f $font_takaop -f $font_awesome -f $font_symbol" 
+}
+
+function get_params_bottom() {  
+    # parameter: function argument
+    local monitor=$1
+    local panel_height=$2
+
+    # calculate geometry
+    get_geometry $monitor
+    get_bottom_panel_geometry $panel_height "${geometry[@]}"
+    
+    # geometry: -g widthxheight+x+y
+    geom_res="${width}x${height}+${xpos}+${ypos}"
+    
+    # color, with transparency
+    local bgcolor="#aa000000"
+    local fgcolor="#ffffff"
+    
+    # XFT: require lemonbar_xft_git 
+    local font_mono="monospace-9"
+    local font_symbol="PowerlineSymbols-11"
+    local font_awesome="FontAwesome-9"
+
+    # finally
+    lemon_parameters="  -g $geom_res -u 2"
+    lemon_parameters+=" -B $bgcolor -F $fgcolor" 
+    lemon_parameters+=" -f $font_mono -f $font_awesome -f $font_symbol" 
+}
+
+function get_lemon_parameters() { 
+    get_params_top $monitor $panel_height
 }

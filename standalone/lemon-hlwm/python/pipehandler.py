@@ -139,3 +139,40 @@ def detach_lemon(monitor, parameters):
         finally:
             import signal
             os.kill(pid_lemon, signal.SIGTERM)
+
+def detach_lemon_conky(parameters):
+    pid_conky = os.fork()
+    
+    if pid_conky == 0:
+        try:
+            dirname  = os.path.dirname(os.path.abspath(__file__))
+            path     = dirname + "/../assets"
+            cmd_in   = 'conky -c ' + path + '/conky.lua'
+
+            cmd_out  = 'lemonbar ' + parameters
+
+            pipe_out = subprocess.Popen(
+                    [cmd_out], 
+                    stdin  = subprocess.PIPE,
+                    shell  = True,
+                    universal_newlines=True
+                )
+
+            pipe_in  = subprocess.Popen(
+                    [cmd_in], 
+                    stdout = pipe_out.stdin,
+                    stderr = subprocess.STDOUT,
+                    shell  = True,
+                    universal_newlines = True
+                )
+
+            pipe_out.stdin.close()
+            outputs, errors = pipe_out.communicate()
+    
+            # avoid zombie apocalypse
+            pipe_out.wait()
+
+            os._exit(1)
+        finally:
+            import signal
+            os.kill(pid_conky, signal.SIGTERM)

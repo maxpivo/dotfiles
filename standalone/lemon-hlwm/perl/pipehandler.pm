@@ -162,6 +162,32 @@ sub detach_lemon {
     exit; 
 }
 
+sub detach_lemon_conky { 
+    my $parameters = shift;
+
+    my $pid_conky = fork;
+    return if $pid_conky;     # in the parent process
+
+    my $pipe_out = IO::Pipe->new();
+    my $cmd_in   = "lemonbar " . $parameters;
+    my $hnd_in   = $pipe_out->writer($cmd_in);
+
+    my $pipe_in  = IO::Pipe->new();
+    my $dirname  = dirname(__FILE__);
+    my $path     = "$dirname/../assets";       
+    my $cmd_out  = "conky -c $path/conky.lua";
+    my $hnd_out  = $pipe_in->reader($cmd_out);
+
+    while(<$pipe_in>) {
+        print $pipe_out $_;
+        flush $pipe_out;
+    }
+
+    $pipe_in->close();
+    $pipe_out->close();
+    exit; 
+}
+
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # end of perl module
 
