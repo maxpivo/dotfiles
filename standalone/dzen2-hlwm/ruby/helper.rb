@@ -38,7 +38,7 @@ end
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # dzen Parameters
 
-def get_dzen2_parameters(monitor, panel_height)
+def get_params_top(monitor, panel_height)
   geometry = get_geometry(monitor)
   xpos, ypos, width, height = get_top_panel_geometry(
     panel_height, geometry)
@@ -51,4 +51,23 @@ def get_dzen2_parameters(monitor, panel_height)
                 " -ta l -bg '#{bgcolor}' -fg '#{fgcolor}'" \
                 " -title-name dzentop" \
                 " -fn '#{font}'"
+end
+
+def get_params_bottom(monitor, panel_height)
+  geometry = get_geometry(monitor)
+  xpos, ypos, width, height = get_bottom_panel_geometry(
+    panel_height, geometry)
+    
+  bgcolor = '#000000'
+  fgcolor = '#ffffff'
+  font    = '-*-fixed-medium-*-*-*-11-*-*-*-*-*-*-*'
+   
+  parameters  = "  -x #{xpos} -y #{ypos} -w #{width} -h #{height}" \
+                " -ta l -bg '#{bgcolor}' -fg '#{fgcolor}'" \
+                " -title-name bottomtop" \
+                " -fn '#{font}'"
+end
+
+def get_dzen2_parameters(monitor, panel_height)
+  get_params_top(monitor, panel_height)
 end

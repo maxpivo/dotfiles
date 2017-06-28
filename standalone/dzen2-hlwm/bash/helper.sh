@@ -50,7 +50,7 @@ function get_bottom_panel_geometry() {
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # dzen Parameters
 
-function get_dzen2_parameters() {    
+function get_params_top() {    
     local monitor=$1
     local panel_height=$2
 
@@ -59,10 +59,31 @@ function get_dzen2_parameters() {
     
     local bgcolor="#000000"
     local fgcolor="#ffffff"
-    local font="-*-takaopgothic-medium-*-*-*-12-*-*-*-*-*-*-*"
+    local font='-*-takaopgothic-medium-*-*-*-12-*-*-*-*-*-*-*'
 
     dzen2_parameters="  -x $xpos -y $ypos -w $width -h $height" 
     dzen2_parameters+=" -ta l -bg $bgcolor -fg $fgcolor"
     dzen2_parameters+=" -title-name dzentop"
     dzen2_parameters+=" -fn $font"
+}
+
+function get_params_bottom() {    
+    local monitor=$1
+    local panel_height=$2
+
+    get_geometry $monitor
+    get_bottom_panel_geometry $panel_height "${geometry[@]}"
+    
+    local bgcolor="#000000"
+    local fgcolor="#ffffff"
+    local font='-*-fixed-medium-*-*-*-11-*-*-*-*-*-*-*'
+
+    dzen2_parameters="  -x $xpos -y $ypos -w $width -h $height" 
+    dzen2_parameters+=" -ta l -bg $bgcolor -fg $fgcolor"
+    dzen2_parameters+=" -title-name dzentop"
+    dzen2_parameters+=" -fn $font"
+}
+
+function get_dzen2_parameters() { 
+    get_params_top $monitor $panel_height
 }

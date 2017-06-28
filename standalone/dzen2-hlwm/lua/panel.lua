@@ -8,24 +8,22 @@ local helper      = require('.helper')
 local pipehandler = require('.pipehandler')
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
--- initialize
+-- main
 
 panel_height = 24
 monitor = helper.get_monitor(arg)
-dzen2_parameters = helper.get_dzen2_parameters(monitor, panel_height)
 
--- do `man herbsluftclient`, and type \pad to search what it means
+os.execute('pkill dzen2')
 os.execute('herbstclient pad ' .. monitor .. ' ' 
     .. panel_height .. ' 0 ' .. panel_height .. ' 0')
 
--- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
--- main
-
--- remove all dzen2 instance
-os.execute('pkill dzen2')
-
 -- run process in the background
-pipehandler.detach_dzen2(monitor, dzen2_parameters)
+
+local params_top = helper.get_params_top(monitor, panel_height)
+pipehandler.detach_dzen2(monitor, params_top)
+
+local params_bottom = helper.get_params_bottom(monitor, panel_height)
+pipehandler.detach_dzen2_conky(params_bottom)
 
 -- optional transparency
 pipehandler.detach_transset()

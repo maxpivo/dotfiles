@@ -5,23 +5,21 @@ require_relative 'helper'
 require_relative 'pipehandler'
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# initialize
+# main
 
 panel_height = 24
 monitor = get_monitor(ARGV)
-dzen2_parameters = get_dzen2_parameters(monitor, panel_height)
 
-# do `man herbsluftclient`, and type \pad to search what it means
+system('pkill dzen2')
 system("herbstclient pad #{monitor} #{panel_height} 0 #{panel_height} 0")
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# main
-
-# remove all dzen2 instance
-system('pkill dzen2')
-
 # run process in the background
-detach_dzen2(monitor, dzen2_parameters)
+
+params_top = get_params_top(monitor, panel_height)
+detach_dzen2(monitor, params_top)
+
+params_bottom = get_params_bottom(monitor, panel_height)
+detach_dzen2_conky(params_bottom)
 
 # optional transparency
 detach_transset()

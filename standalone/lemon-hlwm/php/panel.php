@@ -6,7 +6,7 @@ require_once(__DIR__.'/helper.php');
 require_once(__DIR__.'/pipehandler.php');
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# initialize
+# main
 
 $panel_height = 24;
 $monitor = get_monitor($argv);

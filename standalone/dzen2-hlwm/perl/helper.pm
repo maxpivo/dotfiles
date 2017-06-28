@@ -54,7 +54,7 @@ sub get_bottom_panel_geometry {
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # dzen Parameters
 
-sub get_dzen2_parameters {    
+sub get_params_top {    
     my $monitor = shift;
     my $panel_height = shift;
 
@@ -72,6 +72,34 @@ sub get_dzen2_parameters {
                    . " -fn '$font'";
 
     return $parameters;
+}
+
+sub get_params_bottom {    
+    my $monitor = shift;
+    my $panel_height = shift;
+
+    my @geometry = get_geometry($monitor);
+    my ($xpos, $ypos, $width, $height) = 
+       get_bottom_panel_geometry($panel_height, @geometry); 
+    
+    my $bgcolor = '#000000';
+    my $fgcolor = '#ffffff';
+    my $font    = '-*-fixed-medium-*-*-*-11-*-*-*-*-*-*-*';
+
+    my $parameters = "  -x $xpos -y $ypos -w $width -h $height"
+                   . " -ta l -bg '$bgcolor' -fg '$fgcolor'"
+                   . " -title-name dzenbottom"
+                   . " -fn '$font'";
+
+    return $parameters;
+}
+
+sub get_dzen2_parameters {   
+    # parameter: function argument
+    my $monitor = shift;
+    my $panel_height = shift;
+
+    return get_params_top($monitor, $panel_height);
 }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----

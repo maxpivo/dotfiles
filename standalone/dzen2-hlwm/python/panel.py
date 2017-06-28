@@ -8,24 +8,22 @@ import helper
 import pipehandler
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# initialize
+# main
 
 panel_height = 24
 monitor = helper.get_monitor(sys.argv)
-dzen2_parameters = helper.get_dzen2_parameters(monitor, panel_height)
 
-# do `man herbsluftclient`, and type \pad to search what it means
+os.system('pkill dzen2')
 os.system('herbstclient pad ' + str(monitor) + ' ' 
     + str(panel_height) + ' 0 ' + str(panel_height) + ' 0')
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# main
-
-# remove all dzen2 instance
-os.system('pkill dzen2')
-
 # run process in the background
-pipehandler.detach_dzen2(monitor, dzen2_parameters);
+
+params_top    = helper.get_params_top(monitor, panel_height)
+pipehandler.detach_dzen2(monitor, params_top)
+
+params_bottom = helper.get_params_bottom(monitor, panel_height)
+pipehandler.detach_dzen2_conky(params_bottom)
 
 # optional transparency
 pipehandler.detach_transset();

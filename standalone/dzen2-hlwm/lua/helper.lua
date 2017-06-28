@@ -46,7 +46,7 @@ end
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- dzen Parameters
 
-function _M.get_dzen2_parameters(monitor, panel_height)
+function _M.get_params_top(monitor, panel_height)
     local geometry = _M.get_geometry(monitor)
     local xpos, ypos, width, height = _M.get_top_panel_geometry(
         panel_height, geometry)
@@ -63,6 +63,29 @@ function _M.get_dzen2_parameters(monitor, panel_height)
         .. " -fn '" .. font .. "'"
 
     return parameters
+end
+
+function _M.get_params_bottom(monitor, panel_height)
+    local geometry = _M.get_geometry(monitor)
+    local xpos, ypos, width, height = _M.get_bottom_panel_geometry(
+        panel_height, geometry)
+    
+    local bgcolor = '#000000'
+    local fgcolor = '#ffffff'
+    local font    = '-*-fixed-medium-*-*-*-11-*-*-*-*-*-*-*'
+  
+    local parameters = ""
+        .. " -x " .. tostring(xpos)  .. " -y " .. tostring(ypos)
+        .. " -w " .. tostring(width) .. " -h " .. tostring(height)
+        .. " -ta l -bg '" .. bgcolor .. "' -fg '" .. fgcolor .. "'"
+        .. " -title-name dzenbottom"
+        .. " -fn '" .. font .. "'"
+
+    return parameters
+end
+
+function _M.get_dzen2_parameters(monitor, panel_height)
+    return _M.get_params_top(monitor, panel_height)
 end
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----

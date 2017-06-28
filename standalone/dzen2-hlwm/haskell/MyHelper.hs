@@ -2,6 +2,8 @@ module MyHelper
 ( getMonitor
 , getGeometry
 , getDzen2Parameters
+, getParamsTop
+, getParamsBottom
 ) where
 
 import System.Process
@@ -63,8 +65,8 @@ getBottomPanelGeometry
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- dzen Parameters
 
-getDzen2Parameters :: Int -> [Int] -> [String]
-getDzen2Parameters 
+getParamsTop :: Int -> [Int] -> [String]
+getParamsTop
     panelHeight geometry = [
           "-x", xpos,  "-y", ypos,
           "-w", width, "-h", height,
@@ -80,3 +82,25 @@ getDzen2Parameters
         bgcolor = "#000000"
         fgcolor = "#ffffff"
         font    = "-*-takaopgothic-medium-*-*-*-12-*-*-*-*-*-*-*"
+
+getParamsBottom :: Int -> [Int] -> [String]
+getParamsBottom
+    panelHeight geometry = [
+          "-x", xpos,  "-y", ypos,
+          "-w", width, "-h", height,
+          "-ta", "l",
+          "-bg", bgcolor,
+          "-fg", fgcolor,
+          "-title-name", "dzenbottom",
+          "-fn", font
+        ]
+      where
+        XYWH xpos ypos width height = getBottomPanelGeometry 
+                                      panelHeight geometry        
+        bgcolor = "#000000"
+        fgcolor = "#ffffff"
+        font    = "-*-fixed-medium-*-*-*-11-*-*-*-*-*-*-*"
+
+getDzen2Parameters :: Int -> [Int] -> [String]
+getDzen2Parameters panelHeight geometry = 
+    getParamsTop panelHeight geometry

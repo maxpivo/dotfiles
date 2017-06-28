@@ -12,23 +12,21 @@ DIR=$(dirname "$0")
 . ${DIR}/pipehandler.sh
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# initialize
+# main
 
 panel_height=24
 get_monitor ${@}
-get_dzen2_parameters $monitor $panel_height
 
-# do `man herbsluftclient`, and type \pad to search what it means
+pkill dzen2
 herbstclient pad $monitor $panel_height 0 $panel_height 0
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# pipe
-
-# remove all dzen2 instance
-pkill dzen2
-
 # run process in the background
+
+get_params_top $monitor $panel_height
 detach_dzen2 $monitor $dzen2_parameters
+
+get_params_bottom $monitor $panel_height
+detach_dzen2_conky $dzen2_parameters
 
 # optional transparency
 detach_transset

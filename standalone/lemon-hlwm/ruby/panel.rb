@@ -5,7 +5,7 @@ require_relative 'helper'
 require_relative 'pipehandler'
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# initialize
+# main
 
 panel_height = 24
 monitor = get_monitor(ARGV)

@@ -11,7 +11,7 @@ use helper;
 use pipehandler;
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# initialize
+# main
 
 my $panel_height = 24;
 my $monitor = helper::get_monitor(@ARGV);

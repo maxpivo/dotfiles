@@ -20,19 +20,18 @@ main = do
     let monitor = getMonitor args
         
     geometry <- getGeometry monitor
-    let dzen2Parameters = getDzen2Parameters panelHeight geometry
 
-    -- do `man herbsluftclient`, and type \pad to search what it means
+    system "pkill dzen2"
     system $ "herbstclient pad " ++ show(monitor) ++ " "
         ++ show(panelHeight) ++ " 0 " ++ show(panelHeight) ++ " 0"
-    
-    -- main
-
-    -- remove all dzen2 instance
-    system "pkill dzen2"
 
     -- run process in the background
-    detachDzen2 monitor dzen2Parameters
+
+    let paramsTop = getParamsTop panelHeight geometry
+    detachDzen2 monitor paramsTop
+
+    let paramsBottom = getParamsBottom panelHeight geometry
+    detachDzen2Conky paramsBottom
 
     -- optional transparency
     detachTransset

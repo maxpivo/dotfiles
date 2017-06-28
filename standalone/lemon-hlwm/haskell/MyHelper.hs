@@ -4,6 +4,7 @@ module MyHelper
 , XYWH (XYWH)
 , getTopPanelGeometry
 , getBottomPanelGeometry
+, getLemonParameters
 , getParamsTop
 , getParamsBottom
 ) where

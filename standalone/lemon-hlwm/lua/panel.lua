@@ -8,7 +8,7 @@ local helper      = require('.helper')
 local pipehandler = require('.pipehandler')
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
--- initialize
+-- main
 
 local panel_height = 24
 local monitor = helper.get_monitor(arg)

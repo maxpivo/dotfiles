@@ -12,7 +12,7 @@ DIR=$(dirname "$0")
 . ${DIR}/pipehandler.sh
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# initialize
+# main
 
 panel_height=24
 get_monitor ${@}

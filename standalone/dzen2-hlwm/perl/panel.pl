@@ -11,24 +11,21 @@ use helper;
 use pipehandler;
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# initialize
+# main
 
 my $panel_height = 24;
 my $monitor = helper::get_monitor(@ARGV);
-my $dzen2_parameters = helper::get_dzen2_parameters(
-    $monitor, $panel_height);
 
-# do `man herbsluftclient`, and type \pad to search what it means
+system('pkill dzen2');
 system("herbstclient pad $monitor $panel_height 0 $panel_height 0");
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# main
-
-# remove all dzen2 instance
-system('pkill dzen2');
-
 # run process in the background
-pipehandler::detach_dzen2($monitor, $dzen2_parameters);
+
+my $params_top = helper::get_params_top($monitor, $panel_height);
+pipehandler::detach_dzen2($monitor, $params_top);
+
+my $params_bottom = helper::get_params_bottom($monitor, $panel_height);
+pipehandler::detach_dzen2_conky($params_bottom);
 
 # optional transparency
 pipehandler::detach_transset();
