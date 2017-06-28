@@ -17,7 +17,7 @@ DIR=$(dirname "$0")
 panel_height=24
 get_monitor ${@}
 
-pkill lemonbar
+kill_zombie
 herbstclient pad $monitor $panel_height 0 $panel_height 0
 
 # run process in the background

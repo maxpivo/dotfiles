@@ -119,3 +119,10 @@ function detach_transset() {
     } &
 }
 
+function kill_zombie() {
+    pkill dzen2
+    pkill lemonbar
+    pkill cat
+    pkill conky
+    pkill herbstclient
+}

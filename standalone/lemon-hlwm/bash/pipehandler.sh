@@ -110,3 +110,11 @@ function detach_lemon_conky() {
         conky -c "$path/conky.lua"
     } | $command_out &
 }
+
+function kill_zombie() {
+    pkill dzen2
+    pkill lemonbar
+    pkill cat
+    pkill conky
+    pkill herbstclient
+}
