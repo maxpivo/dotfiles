@@ -1,6 +1,7 @@
 module MyPipeHandler
 ( detachLemon
 , detachLemonConky
+, killZombie
 ) where
 
 import System.Process
@@ -146,3 +147,13 @@ detachLemonConky parameters = do
         { std_in = UseHandle pipeout }
       
     hClose pipeout
+
+killZombie :: IO ()
+killZombie = do
+    system "pkill dzen2"
+    system "pkill lemonbar"
+    system "pkill cat"
+    system "pkill conky"
+    system "pkill herbstclient"
+    
+    return ()

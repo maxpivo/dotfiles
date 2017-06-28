@@ -188,6 +188,14 @@ sub detach_lemon_conky {
     exit; 
 }
 
+sub kill_zombie() {
+    system('pkill dzen2');
+    system('pkill lemonbar');
+    system('pkill cat');
+    system('pkill conky');
+    system('pkill herbstclient');
+}
+
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # end of perl module
 

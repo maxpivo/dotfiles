@@ -138,3 +138,11 @@ def detach_transset()
     
   Process.detach(pid_transset)
 end
+
+def kill_zombie()
+    system('pkill dzen2')
+    system('pkill lemonbar')
+    system('pkill cat')
+    system('pkill conky')
+    system('pkill herbstclient')
+end

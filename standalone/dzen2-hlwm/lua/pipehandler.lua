@@ -167,6 +167,14 @@ function _M.detach_transset()
     end
 end
 
+function _M.kill_zombie()
+    os.execute('pkill dzen2')
+    os.execute('pkill lemonbar')
+    os.execute('pkill cat')
+    os.execute('pkill conky')
+    os.execute('pkill herbstclient')
+end
+
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- return
 

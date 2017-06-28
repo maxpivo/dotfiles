@@ -179,3 +179,10 @@ def detach_transset():
         finally:
             import signal
             os.kill(pid_transset, signal.SIGTERM)
+
+def kill_zombie():
+    os.system('pkill dzen2')
+    os.system('pkill lemonbar')
+    os.system('pkill cat')
+    os.system('pkill conky')
+    os.system('pkill herbstclient')

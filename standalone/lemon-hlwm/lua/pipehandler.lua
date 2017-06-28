@@ -157,6 +157,14 @@ function _M.detach_lemon_conky(parameters)
     end
 end
 
+function _M.kill_zombie()
+    os.execute('pkill dzen2')
+    os.execute('pkill lemonbar')
+    os.execute('pkill cat')
+    os.execute('pkill conky')
+    os.execute('pkill herbstclient')
+end
+
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- return
 

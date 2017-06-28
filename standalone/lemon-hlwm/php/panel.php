@@ -11,7 +11,7 @@ require_once(__DIR__.'/pipehandler.php');
 $panel_height = 24;
 $monitor = get_monitor($argv);
 
-system('pkill lemonbar');
+kill_zombie();
 system("herbstclient pad $monitor $panel_height 0 $panel_height 0");
 
 // run process in the background

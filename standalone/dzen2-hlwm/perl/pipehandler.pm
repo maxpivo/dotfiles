@@ -169,7 +169,6 @@ sub detach_dzen2_conky {
     exit; 
 }
 
-
 sub detach_transset { 
     my $pid_transset = fork;
     return if $pid_transset;     # in the parent process
@@ -179,6 +178,14 @@ sub detach_transset {
     system('transset .8 -n dzenbottom >/dev/null');
     
     exit; 
+}
+
+sub kill_zombie() {
+    system('pkill dzen2');
+    system('pkill lemonbar');
+    system('pkill cat');
+    system('pkill conky');
+    system('pkill herbstclient');
 }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----

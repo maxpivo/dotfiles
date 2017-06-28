@@ -196,3 +196,12 @@ function detach_lemon_conky($parameters)
         return $pid_conky;
     }  
 }
+
+function kill_zombie()
+{
+    system('pkill dzen2');
+    system('pkill lemonbar');
+    system('pkill cat');
+    system('pkill conky');
+    system('pkill herbstclient');
+}

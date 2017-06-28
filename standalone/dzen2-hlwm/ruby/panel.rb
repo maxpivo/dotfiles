@@ -10,7 +10,7 @@ require_relative 'pipehandler'
 panel_height = 24
 monitor = get_monitor(ARGV)
 
-system('pkill dzen2')
+kill_zombie()
 system("herbstclient pad #{monitor} #{panel_height} 0 #{panel_height} 0")
 
 # run process in the background

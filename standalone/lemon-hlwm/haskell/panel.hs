@@ -19,7 +19,7 @@ main = do
 
     geometry <- getGeometry monitor
 
-    system "pkill lemonbar"
+    killZombie
     system $ "herbstclient pad " ++ show(monitor) ++ " "
         ++ show(panelHeight) ++ " 0 " ++ show(panelHeight) ++ " 0"
 

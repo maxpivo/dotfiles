@@ -13,7 +13,7 @@ import pipehandler
 panel_height = 24
 monitor = helper.get_monitor(sys.argv)
 
-os.system('pkill dzen2')
+pipehandler.kill_zombie()
 os.system('herbstclient pad ' + str(monitor) + ' ' 
     + str(panel_height) + ' 0 ' + str(panel_height) + ' 0')
 

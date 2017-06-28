@@ -16,7 +16,7 @@ use pipehandler;
 my $panel_height = 24;
 my $monitor = helper::get_monitor(@ARGV);
 
-system('pkill lemonbar');
+pipehandler::kill_zombie();
 system("herbstclient pad $monitor $panel_height 0 $panel_height 0");
 
 # run process in the background

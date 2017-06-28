@@ -186,3 +186,12 @@ function detach_transset()
         system('transset .8 -n dzenbottom >/dev/null');
     }
 }
+
+function kill_zombie()
+{
+    system('pkill dzen2');
+    system('pkill lemonbar');
+    system('pkill cat');
+    system('pkill conky');
+    system('pkill herbstclient');
+}

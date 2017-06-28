@@ -13,7 +13,7 @@ local pipehandler = require('.pipehandler')
 panel_height = 24
 monitor = helper.get_monitor(arg)
 
-os.execute('pkill dzen2')
+pipehandler.kill_zombie()
 os.execute('herbstclient pad ' .. monitor .. ' ' 
     .. panel_height .. ' 0 ' .. panel_height .. ' 0')
 

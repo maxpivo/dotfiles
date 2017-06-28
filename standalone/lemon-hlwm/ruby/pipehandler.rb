@@ -145,3 +145,11 @@ def detach_lemon_conky(parameters)
 
   Process.detach(pid_conky)
 end
+
+def kill_zombie()
+    system('pkill dzen2')
+    system('pkill lemonbar')
+    system('pkill cat')
+    system('pkill conky')
+    system('pkill herbstclient')
+end

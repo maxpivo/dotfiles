@@ -2,6 +2,7 @@ module MyPipeHandler
 ( detachDzen2
 , detachDzen2Conky
 , detachTransset
+, killZombie
 ) where
 
 import System.Process
@@ -149,4 +150,14 @@ detachTransset = forkProcess $ do
     wSleep 1
     system "transset .8 -n dzentop    >/dev/null"
     system "transset .8 -n dzenbottom >/dev/null"
+    return ()
+
+killZombie :: IO ()
+killZombie = do
+    system "pkill dzen2"
+    system "pkill lemonbar"
+    system "pkill cat"
+    system "pkill conky"
+    system "pkill herbstclient"
+    
     return ()
