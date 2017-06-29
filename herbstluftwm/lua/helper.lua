@@ -86,7 +86,7 @@ end
 
 function _M.do_panel() 
     local dirname  = debug.getinfo(1).source:match("@?(.*/)")   
-    local panel   = dirname .. "../bash/dzen2/panel.sh"
+    local panel   = dirname .. "panel-lemonbar.lua"
     if (not file_exists(panel)) then
         panel = "/etc/xdg/herbstluftwm/panel.sh"
     end
@@ -97,7 +97,7 @@ function _M.do_panel()
     handle:close()
     
     local raw = trim1(result) 
-    local monitors = lines(result)
+    local monitors = lines(raw)
     
     for i, monitor in pairs(monitors) do 
         if (not (monitor == nil or monitor == '') ) then

@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # This is a modularized config for herbstluftwm
 
-require_relative 'assets/gmc'
+require_relative 'gmc'
 require_relative 'helper'
 require_relative 'config'
 require_relative 'startup'
@@ -10,7 +10,7 @@ require_relative 'startup'
 # main
 
 # background before wallpaper
-system("xsetroot -solid '#{GMC::Color['blue500']}'")
+system("xsetroot -solid '#{GMC::COLOR['blue500']}'")
 
 # Read the manual in $ man herbstluftwm
 hc('emit_hook reload')

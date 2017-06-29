@@ -1,4 +1,4 @@
-require_relative 'assets/gmc'
+require_relative 'gmc'
 
 module Config
   include GMC
@@ -118,9 +118,9 @@ module Config
     "theme.tiling.reset"    => '1',
     "theme.floating.reset"  => '1',
 
-    "theme.active.color"    => "'#{Color['red500']}'",
-    "theme.normal.color"    => "'#{Color['grey200']}'",
-    "theme.urgent.color"    => "'#{Color['pink500']}'",
+    "theme.active.color"    => "'#{COLOR['red500']}'",
+    "theme.normal.color"    => "'#{COLOR['grey200']}'",
+    "theme.urgent.color"    => "'#{COLOR['pink500']}'",
 
     "theme.inner_width"     => '0',
     "theme.inner_color"     => 'black',
@@ -136,11 +136,11 @@ module Config
   }
 
   Sets = {
-    "frame_border_active_color" => "'#{Color['grey200']}'",
-    "frame_bg_active_color"     => "'#{Color['yellow900']}'",
+    "frame_border_active_color" => "'#{COLOR['grey200']}'",
+    "frame_bg_active_color"     => "'#{COLOR['yellow900']}'",
 
-    "frame_border_normal_color" => "'#{Color['grey50']}'",
-    "frame_bg_normal_color"     => "'#{Color['red500']}'",
+    "frame_border_normal_color" => "'#{COLOR['grey50']}'",
+    "frame_bg_normal_color"     => "'#{COLOR['red500']}'",
 
     "frame_border_width"        => '0',
     "always_show_frame"         => '0',

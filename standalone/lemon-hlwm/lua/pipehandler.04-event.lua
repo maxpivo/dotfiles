@@ -66,7 +66,7 @@ function _M.content_event_idle(pipe_cat_out)
             io.flush()
         end -- for loop
    
-        pipein:close()
+        pipe_in:close()
     else             -- this is the parent process
         -- nothing
     end

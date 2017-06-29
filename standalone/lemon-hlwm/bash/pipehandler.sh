@@ -112,9 +112,9 @@ function detach_lemon_conky() {
 }
 
 function kill_zombie() {
-    pkill dzen2
-    pkill lemonbar
-    pkill cat
+    pkill -x dzen2
+    pkill -x lemonbar
+    pkill -x cat
     pkill conky
     pkill herbstclient
 }

@@ -63,7 +63,7 @@ def bind_cycle_layout():
 
 def do_panel():
     dirname = os.path.dirname(os.path.abspath(__file__))
-    panel   = dirname + "/../bash/dzen2/panel.sh"
+    panel   = dirname + "/panel-lemonbar.py"
 
     if not os.path.isfile(panel) and os.access(panel, os.X_OK):
         panel = "/etc/xdg/herbstluftwm/panel.sh"

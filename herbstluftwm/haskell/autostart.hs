@@ -2,7 +2,7 @@
 
 import System.Process
 
-import Assets.MyGMC
+import MyGMC
 import MyConfig
 import MyHelper
 import MyStartup

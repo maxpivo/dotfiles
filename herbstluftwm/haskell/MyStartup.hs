@@ -9,8 +9,6 @@ import Control.Monad
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- startup
 
-
-
 startup_run :: IO ()
 startup_run = do
     -- no need to use silent, as the std_err redirected

@@ -1,18 +1,13 @@
-package assets::gmc;
+module GMC
 
-use warnings;
-use strict;
+  # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+  # google material colors
+  # https://material.io/guidelines/style/color.html
 
-use Exporter;
-our @ISA = 'Exporter';
-our @EXPORT = qw(%color);
+  # Associative Array (Hash)
+  # http://ruby-doc.org/core-2.4.1/Hash.html
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# google material colors
-# https://material.io/guidelines/style/color.html
-
-# Associative Array (Hash)
-our %color = (
+  COLOR = {
     'white' => '#ffffff',
     'black' => '#000000',
 
@@ -146,9 +141,9 @@ our %color = (
     'deepOrangeA200' => '#ff6e40',
     'deepOrangeA400' => '#ff3d00',
     'deepOrangeA700' => '#dd2c00'
-);
+  }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
-# end of perl module
+# end of ruby module
 
-1;
+end

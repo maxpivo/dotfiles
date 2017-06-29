@@ -1,4 +1,4 @@
-from assets.gmc import color
+from gmc import color
 
 tag_names = list(range(1, 10))
 tag_keys  = list(range(1, 10)) + [0]

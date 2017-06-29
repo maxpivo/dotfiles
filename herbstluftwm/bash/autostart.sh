@@ -3,7 +3,7 @@
 
 DIR=$(dirname "$0")
 
-. ${DIR}/assets/gmc.sh
+. ${DIR}/gmc.sh
 . ${DIR}/config.sh
 . ${DIR}/helper.sh
 . ${DIR}/startup.sh

@@ -66,7 +66,7 @@ end
 # find the panel
 
 def do_panel()
-  panel = __dir__ + "/../bash/dzen2/panel.sh"
+  panel = __dir__ + "/panel-lemonbar.rb"
 
   if not File.exist?(panel) and File.executable?(panel)
     panel = "/etc/xdg/herbstluftwm/panel.sh"

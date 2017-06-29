@@ -79,7 +79,7 @@ sub bind_cycle_layout() {
 
 sub do_panel() {
     my $dirname = dirname(__FILE__);
-    my $panel   = "$dirname/../bash/dzen2/panel.sh";
+    my $panel   = "$dirname/panel-lemonbar.pl";
     if (not -x $panel) { $panel = "/etc/xdg/herbstluftwm/panel.sh"; }
 
     my $monitor_qx = qx(herbstclient list_monitors | cut -d: -f1);

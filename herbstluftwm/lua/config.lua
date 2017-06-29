@@ -1,6 +1,6 @@
 local _M = {}
 
-local gmc    = require ".assets/gmc"
+local gmc    = require ".gmc"
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- tags array

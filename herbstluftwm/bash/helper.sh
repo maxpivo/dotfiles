@@ -72,7 +72,7 @@ function bind_cycle_layout() {
 # find the panel
 
 function do_panel() {
-    local panel=~/.config/herbstluftwm/bash/dzen2/panel.sh
+    local panel=$(dirname "$0")/panel-lemonbar.sh
     [ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
     for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
         # start it on each monitor

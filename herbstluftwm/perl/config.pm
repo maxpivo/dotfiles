@@ -7,7 +7,7 @@ use Exporter;
 our @ISA = 'Exporter';
 our @EXPORT = qw(@tag_names @tag_keys);
 
-use assets::gmc qw(%color);
+use gmc qw(%color);
 
 our @tag_names = (1..9);
 our @tag_keys  = (1..9, 0);

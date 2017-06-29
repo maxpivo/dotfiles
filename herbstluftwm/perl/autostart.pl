@@ -10,7 +10,7 @@ use strict;
 use File::Basename;
 use lib dirname(__FILE__);
 
-use assets::gmc;
+use gmc;
 use helper;
 use config;
 use startup;

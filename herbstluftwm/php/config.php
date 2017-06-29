@@ -1,5 +1,5 @@
 <?php # using PHP7
-require_once('assets/gmc.php');
+require_once('gmc.php');
 
 $tag_names = range(1, 9);
 $tag_keys  = array_merge(range(1, 9), [0]);
@@ -117,9 +117,9 @@ $attributes = array(
     "theme.tiling.reset"    => '1',
     "theme.floating.reset"  => '1',
 
-    "theme.active.color"    => "'${color['red500']}'",
-    "theme.normal.color"    => "'${color['grey200']}'",
-    "theme.urgent.color"    => "'${color['pink500']}'",
+    "theme.active.color"    => "'".COLOR['red500']."'",
+    "theme.normal.color"    => "'".COLOR['grey200']."'",
+    "theme.urgent.color"    => "'".COLOR['pink500']."'",
 
     "theme.inner_width"     => '0',
     "theme.inner_color"     => 'black',
@@ -135,11 +135,11 @@ $attributes = array(
 );
 
 $sets = array(
-    "frame_border_active_color" => "'${color['grey200']}'",
-    "frame_bg_active_color"     => "'${color['yellow900']}'",
+    "frame_border_active_color" => "'".COLOR['grey200']."'",
+    "frame_bg_active_color"     => "'".COLOR['yellow900']."'",
 
-    "frame_border_normal_color" => "'${color['grey50']}'",
-    "frame_bg_normal_color"     => "'${color['red500']}'",
+    "frame_border_normal_color" => "'".COLOR['grey50']."'",
+    "frame_bg_normal_color"     => "'".COLOR['red500']."'",
 
     "frame_border_width"        => '0',
     "always_show_frame"         => '0',

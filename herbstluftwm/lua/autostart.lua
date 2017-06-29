@@ -4,7 +4,7 @@
 local dirname  = debug.getinfo(1).source:match("@?(.*/)")
 package.path = package.path .. ';' .. dirname .. '?.lua;'
 
-local gmc     = require ".assets/gmc"
+local gmc     = require ".gmc"
 local helper  = require(".helper")
 local config  = require(".config")
 local startup = require(".startup")

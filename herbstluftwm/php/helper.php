@@ -68,7 +68,7 @@ function bind_cycle_layout()
 
 function do_panel() 
 {
-    $panel   = __dir__."/../bash/dzen2/panel.sh";
+    $panel   = __dir__."/panel-lemonbar.php";
     if (!is_executable($panel))
         $panel = "/etc/xdg/herbstluftwm/panel.sh";
 

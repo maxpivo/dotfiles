@@ -1,4 +1,4 @@
-module Assets.MyGMC (myColor, colorSchemes) where
+module MyGMC (myColor, colorSchemes) where
 
 -- colorschemes
 import Data.Map as M

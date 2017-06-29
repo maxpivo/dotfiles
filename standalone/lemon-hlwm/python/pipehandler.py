@@ -178,8 +178,8 @@ def detach_lemon_conky(parameters):
             os.kill(pid_conky, signal.SIGTERM)
 
 def kill_zombie():
-    os.system('pkill dzen2')
-    os.system('pkill lemonbar')
-    os.system('pkill cat')
+    os.system('pkill -x dzen2')
+    os.system('pkill -x lemonbar')
+    os.system('pkill -x cat')
     os.system('pkill conky')
     os.system('pkill herbstclient')

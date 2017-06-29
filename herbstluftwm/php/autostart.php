@@ -2,7 +2,7 @@
 <?php # using PHP7
 # This is a modularized config for herbstluftwm
 
-require_once('assets/gmc.php');
+require_once('gmc.php');
 require_once('helper.php');
 require_once('config.php');
 require_once('startup.php');
@@ -11,7 +11,7 @@ require_once('startup.php');
 # main
 
 # background before wallpaper
-system("xsetroot -solid '${color['blue500']}'");
+system("xsetroot -solid '".COLOR['blue500']."'");
 
 # Read the manual in $ man herbstluftwm
 hc('emit_hook reload');

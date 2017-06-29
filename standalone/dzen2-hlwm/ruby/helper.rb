@@ -64,7 +64,7 @@ def get_params_bottom(monitor, panel_height)
    
   parameters  = "  -x #{xpos} -y #{ypos} -w #{width} -h #{height}" \
                 " -ta l -bg '#{bgcolor}' -fg '#{fgcolor}'" \
-                " -title-name bottomtop" \
+                " -title-name dzenbottom" \
                 " -fn '#{font}'"
 end
 

@@ -181,9 +181,9 @@ sub detach_transset {
 }
 
 sub kill_zombie() {
-    system('pkill dzen2');
-    system('pkill lemonbar');
-    system('pkill cat');
+    system('pkill -x dzen2');
+    system('pkill -x lemonbar');
+    system('pkill -x cat');
     system('pkill conky');
     system('pkill herbstclient');
 }

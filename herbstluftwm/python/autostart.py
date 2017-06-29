@@ -3,7 +3,7 @@
 
 import os
 
-from assets.gmc import color
+from gmc import color
 
 import helper
 from helper import hc

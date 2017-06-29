@@ -7,7 +7,7 @@ module MyHelper
 ) where
 
 import System.Process
-import System.Exit
+import System.Exit --
 
 import System.Directory
 import System.IO
@@ -87,7 +87,7 @@ bind_cycle_layout = do
 -- So hardcoded, for the sake of learning
 customFilename :: String -> String
 customFilename home = home ++ path 
-    where path = "/.config/herbstluftwm/bash/dzen2/panel.sh"
+    where path = "/.config/herbstluftwm/haskell/panel-lemonbar"
     
 panelFilename :: IO String
 panelFilename = do

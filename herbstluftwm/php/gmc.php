@@ -1,4 +1,4 @@
-<?php 
+<?php # using PHP7
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # google material colors
@@ -6,7 +6,7 @@
 
 # Associative Array (Hash)
 
-$color = array(
+const COLOR = array(
     'white' => '#ffffff',
     'black' => '#000000',
 

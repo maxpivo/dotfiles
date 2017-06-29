@@ -80,7 +80,7 @@ function get_params_bottom() {
 
     dzen2_parameters="  -x $xpos -y $ypos -w $width -h $height" 
     dzen2_parameters+=" -ta l -bg $bgcolor -fg $fgcolor"
-    dzen2_parameters+=" -title-name dzentop"
+    dzen2_parameters+=" -title-name dzenbottom"
     dzen2_parameters+=" -fn $font"
 }
 

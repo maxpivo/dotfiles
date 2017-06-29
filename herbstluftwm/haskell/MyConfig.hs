@@ -4,7 +4,7 @@ module MyConfig
 , attributes, sets, rules            -- dictionary
 ) where
 
-import Assets.MyGMC
+import MyGMC
 
 type Pair = (String, String)
 
