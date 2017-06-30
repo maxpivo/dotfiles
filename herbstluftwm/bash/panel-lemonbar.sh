@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
-# This is a compact config for herbstluftwm tags in lemonbar
+# ------------------------------------------------------------------
+#
+#     Description: unified config for herbstluftwm lemonbar
+#     Created by: Epsi Nurwijayadi <epsi.nurwijayadi@gmail.com)
+#
+#     Source
+#     https://github.com/epsi-rns/dotfiles/tree/master/standalone/lemon-hlwm/bash
+#
+#     Blog
+#     http://epsi-rns.github.io/desktop/2017/06/11/herbstlustwm-event-idle-overview.html
+#     http://epsi-rns.github.io/desktop/2017/06/02/herbstlustwm-tag-status-bash.html
+#     http://epsi-rns.github.io/desktop/2017/06/12/herbstlustwm-event-idle-bash.html
+#
+# ------------------------------------------------------------------
 
 # libraries
 

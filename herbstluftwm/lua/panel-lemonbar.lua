@@ -1,5 +1,18 @@
 #!/usr/bin/lua
--- This is a compact config for herbstluftwm tags in lemonbar
+-- ------------------------------------------------------------------
+--
+--     Description: unified config for herbstluftwm lemonbar
+--     Created by: Epsi Nurwijayadi <epsi.nurwijayadi@gmail.com)
+--
+--     Source
+--     https://github.com/epsi-rns/dotfiles/tree/master/standalone/lemon-hlwm/lua
+--
+--     Blog
+--     http://epsi-rns.github.io/desktop/2017/06/11/herbstlustwm-event-idle-overview.html
+--     http://epsi-rns.github.io/desktop/2017/06/07/herbstlustwm-tag-status-lua.html
+--     http://epsi-rns.github.io/desktop/2017/06/17/herbstlustwm-event-idle-lua.html
+--
+-- ------------------------------------------------------------------
 
 -- luaposix available in AUR
 local posix = require "posix"
@@ -8,7 +21,49 @@ local dirname  = debug.getinfo(1).source:match("@?(.*/)")
 package.path   = package.path .. ';' .. dirname .. '?.lua;'
   
 local gmc = require('.gmc')
-local common = require('.common')
+
+-- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+-- common
+
+local common = {}
+
+-- common functions
+
+function common.sleep (n)
+    local t = os.clock()
+    while os.clock() - t <= n do
+        -- nothing
+    end
+end
+
+-- https://stackoverflow.com/questions/1426954/split-string-in-lua?rq=1
+function common.split(inputstr, sep)
+        if sep == nil then
+                sep = "%s"
+        end
+        local t={} ; i=1 -- non zero based
+        for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+                t[i] = str
+                i = i + 1
+        end
+        return t
+end
+
+-- http://lua-users.org/wiki/StringTrim
+function common.trim1(s)
+  return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+-- https://stackoverflow.com/questions/33510736/check-if-array-contains-specific-value
+function common.has_value (tab, val)
+    for index, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+
+    return false
+end
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
 -- helper

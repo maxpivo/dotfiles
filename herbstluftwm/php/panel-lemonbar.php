@@ -1,6 +1,19 @@
 #!/usr/bin/php 
 <?php # using PHP7
-# This is a compact config for herbstluftwm tags in lemonbar
+# ------------------------------------------------------------------
+#
+#     Description: unified config for herbstluftwm lemonbar
+#     Created by: Epsi Nurwijayadi <epsi.nurwijayadi@gmail.com)
+#
+#     Source
+#     https://github.com/epsi-rns/dotfiles/tree/master/standalone/lemon-hlwm/php
+#
+#     Blog
+#     http://epsi-rns.github.io/desktop/2017/06/11/herbstlustwm-event-idle-overview.html
+#     http://epsi-rns.github.io/desktop/2017/06/06/herbstlustwm-tag-status-php.html
+#     http://epsi-rns.github.io/desktop/2017/06/16/herbstlustwm-event-idle-php.html
+#
+# ------------------------------------------------------------------
 
 require_once(__DIR__.'/gmc.php');
 

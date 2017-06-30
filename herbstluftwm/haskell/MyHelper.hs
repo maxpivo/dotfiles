@@ -7,7 +7,7 @@ module MyHelper
 ) where
 
 import System.Process
-import System.Exit --
+import System.Exit
 
 import System.Directory
 import System.IO
@@ -21,6 +21,8 @@ type Pair = (String, String)
 
 hc :: String -> IO ExitCode
 hc arguments = system $ "herbstclient " ++ arguments
+
+-- http://epsi-rns.github.io/code/2017/05/12/haskell-loop-with-map.html
 
 -- IO action procedure
 do_config :: String -> [Pair] -> IO ()

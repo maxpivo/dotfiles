@@ -1,5 +1,18 @@
 #!/usr/bin/perl
-# This is a compact config for herbstluftwm tags in dzen2 statusbar
+# ------------------------------------------------------------------
+#
+#     Description: unified config for herbstluftwm dzen2 statusbar
+#     Created by: Epsi Nurwijayadi <epsi.nurwijayadi@gmail.com)
+#
+#     Source
+#     https://github.com/epsi-rns/dotfiles/tree/master/standalone/dzen2-hlwm/perl
+#
+#     Blog
+#     http://epsi-rns.github.io/desktop/2017/06/11/herbstlustwm-event-idle-overview.html
+#     http://epsi-rns.github.io/desktop/2017/06/03/herbstlustwm-tag-status-perl.html
+#     http://epsi-rns.github.io/desktop/2017/06/13/herbstlustwm-event-idle-perl.html
+#
+# ------------------------------------------------------------------
 
 use warnings;
 use strict;

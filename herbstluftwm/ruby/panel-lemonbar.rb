@@ -1,5 +1,18 @@
 #!/usr/bin/ruby
-# This is a compact config for herbstluftwm tags in dzen2 statusbar
+# ------------------------------------------------------------------
+#
+#     Description: unified config for herbstluftwm lemonbar
+#     Created by: Epsi Nurwijayadi <epsi.nurwijayadi@gmail.com)
+#
+#     Source
+#     https://github.com/epsi-rns/dotfiles/tree/master/standalone/lemon-hlwm/ruby
+#
+#     Blog
+#     http://epsi-rns.github.io/desktop/2017/06/11/herbstlustwm-event-idle-overview.html
+#     http://epsi-rns.github.io/desktop/2017/06/05/herbstlustwm-tag-status-ruby.html
+#     http://epsi-rns.github.io/desktop/2017/06/15/herbstlustwm-event-idle-ruby.html
+#
+# ------------------------------------------------------------------
 
 require_relative 'gmc'
 include GMC

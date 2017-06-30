@@ -1,9 +1,27 @@
+#!/usr/bin/env python3
+# ------------------------------------------------------------------
+#
+#     Description: unified config for herbstluftwm autostart
+#     Created by: Epsi Nurwijayadi <epsi.nurwijayadi@gmail.com)
+#
+#     Source
+#     https://github.com/epsi-rns/dotfiles/tree/master/herbstluftwm/python
+#
+#     Blog
+#     http://epsi-rns.github.io/desktop/2017/05/01/herbstlustwm-modularized-overview.html
+#     http://epsi-rns.github.io/desktop/2017/05/04/herbstlustwm-modularized-python.html
+#
+# ------------------------------------------------------------------
+
+import os
 from gmc import color
+
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# config
 
 tag_names = list(range(1, 10))
 tag_keys  = list(range(1, 10)) + [0]
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # keybindings
 
 # if you have a super key you will be much happier with Mod set to Mod4
@@ -16,7 +34,6 @@ s = 'Shift'
 c = 'Control'
 m = 'Mod4'
 a = 'Mod1'
-
 
 # resizing frames
 resizestep = "0.05";
@@ -80,7 +97,6 @@ keybinds = {
     m+'-'+a+'-n'     : 'spawn mpc next'
 }
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # tags
 
 tagskeybinds = {
@@ -109,7 +125,6 @@ mousebinds = {
     m+'-Button3'  : 'resize'
 }
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # theme
 
 attributes = {
@@ -154,7 +169,6 @@ sets = {
     'mouse_recenter_gap'        : '0'
 }
 
-# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # rules
 
 rules = {
@@ -177,3 +191,148 @@ rules = {
     "windowtype='_NET_WM_WINDOW_TYPE_DIALOG'" : 'fullscreen=on ',
     "windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)'" : 'manage=off'
 }
+
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# helper
+
+def hc(arguments):
+    os.system("herbstclient "+arguments)
+
+def do_config(command, dictionary):
+    # loop over dictionary
+    for key, value in dictionary.items():
+        hc(command+' '+key+' '+value)
+
+        # uncomment to debug in terminal
+        # print(command+' '+key+' '+value)
+
+# tags related
+
+def set_tags_with_name():
+    hc("rename default '" + str(tag_names[0]) + "' 2>/dev/null || true")
+    
+    for index, tag_name in enumerate(tag_names):
+        hc("add '" + str(tag_names[index]) + "'")
+        
+        # uncomment to debug in terminal
+        # print(index)
+
+        key = tag_keys[index];
+        if key:
+            hc("keybind Mod4-" + str(key) 
+                + " use_index '" + str(index) + "'")
+            hc("keybind Mod4-Shift-" + str(key) 
+                + " move_index '" + str(index) + "'")
+
+# miscellanous
+
+# I don't understand what this is
+def bind_cycle_layout():
+    # The following cycles through the available layouts
+    # within a frame, but skips layouts, if the layout change 
+    # wouldn't affect the actual window positions.
+    # I.e. if there are two windows within a frame,
+    # the grid layout is skipped.
+
+    hc( "keybind Mod4-space " \
+        "or , and . compare tags.focus.curframe_wcount = 2 " \
+        ". cycle_layout +1 vertical horizontal max vertical grid " \
+        ", cycle_layout +1 ")
+
+# do multi monitor setup here, e.g.:
+# hc("set_monitors 1280x1024+0+0 1280x1024+1280+0")
+# or simply:
+# hc("detect_monitors")
+
+# find the panel
+
+def do_panel():
+    dirname = os.path.dirname(os.path.abspath(__file__))
+    panel   = dirname + "/panel-lemonbar.py"
+
+    if not os.path.isfile(panel) and os.access(panel, os.X_OK):
+        panel = "/etc/xdg/herbstluftwm/panel.sh"
+    
+    raw = os.popen('herbstclient list_monitors | cut -d: -f1').read()
+    monitors = raw.split("\n")
+
+    for monitor in (monitors):
+        os.system(panel + ' ' + str(monitor) + ' &');
+
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# load on startup
+
+def startup_run():
+    command = 'silent new_attr bool my_not_first_autostart'
+    exitcode = os.system('herbstclient ' + command)
+
+    if exitcode == 0:
+      # non windowed app
+        os.system("compton &")
+        os.system("dunst &")
+        os.system("parcellite &")
+        os.system("nitrogen --restore &")
+        os.system("mpd &")
+
+      # windowed app
+        os.system("xfce4-terminal &")
+        os.system("sleep 1 && firefox &")
+        os.system("sleep 2 && geany &")
+        os.system("sleep 2 && thunar &")
+
+
+# ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
+# main
+
+# background before wallpaper
+os.system("xsetroot -solid '"+color['blue500']+"'")
+
+# Read the manual in $ man herbstluftwm
+hc('emit_hook reload')
+
+# gap counter
+os.system("echo 35 > /tmp/herbstluftwm-gap");
+
+# do not repaint until unlock
+hc("lock");
+
+# standard
+# remove all existing keybindings
+hc('keyunbind --all')
+hc("mouseunbind --all")
+hc("unrule -F")
+
+set_tags_with_name()
+
+# do hash config
+do_config("keybind",   keybinds)
+do_config("keybind",   tagskeybinds)
+do_config("mousebind", mousebinds)
+do_config("attr",      attributes)
+do_config("set",       sets)
+do_config("rule",      rules)
+
+# finishing, some extra miles
+
+# I'm not sure what in this is
+bind_cycle_layout()
+
+# example of custom layout
+layout = "(split horizontal:0.5:0 " \
+         "(clients vertical:0) (clients vertical:0))"
+hc("load " + str(tag_names[0]) + " '" + layout + "'")
+
+# tag number 5
+hc("floating 5 on")
+
+# hc("set tree_style '╾│ ├└╼─┐'")
+hc("set tree_style '⊙│ ├╰»─╮'")
+
+# unlock, just to be sure
+hc("unlock")
+
+# launch statusbar panel (e.g. dzen2 or lemonbar)
+do_panel()
+
+# load on startup
+startup_run()

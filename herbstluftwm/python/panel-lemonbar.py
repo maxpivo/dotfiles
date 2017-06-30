@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
-# This is a compact config for herbstluftwm tags in lemonbar
+# ------------------------------------------------------------------
+#
+#     Description: unified config for herbstluftwm lemonbar
+#     Created by: Epsi Nurwijayadi <epsi.nurwijayadi@gmail.com)
+#
+#     Source
+#     https://github.com/epsi-rns/dotfiles/tree/master/standalone/lemon-hlwm/python
+#
+#     Blog
+#     http://epsi-rns.github.io/desktop/2017/06/11/herbstlustwm-event-idle-overview.html
+#     http://epsi-rns.github.io/desktop/2017/06/04/herbstlustwm-tag-status-python.html
+#     http://epsi-rns.github.io/desktop/2017/06/14/herbstlustwm-event-idle-python.html
+#
+# ------------------------------------------------------------------
 
 import os
 import sys

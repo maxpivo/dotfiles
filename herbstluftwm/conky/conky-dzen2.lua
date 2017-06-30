@@ -1,5 +1,18 @@
 -- vim: ts=4 sw=4 noet ai cindent syntax=lua
 
+-- ------------------------------------------------------------------
+--
+--     Description: unified config for standalone conky dzen2 statusbar
+--     Created by: Epsi Nurwijayadi <epsi.nurwijayadi@gmail.com)
+--
+--     Source
+--     https://github.com/epsi-rns/dotfiles/tree/master/standalone/dzen2/conky
+--
+--     Blog
+--     http://epsi-rns.github.io/desktop/2017/04/11/standalone-dzen2-conky.html
+--
+-- ------------------------------------------------------------------
+
 --[[
 Conky, a system monitor, based on torsmo
 ]]
@@ -316,8 +329,8 @@ enabled = ''
     .. parts.memory()    
     .. parts.cpu0()
     .. parts.cputemp()
-    .. parts.ssid()
-    .. parts.network()
+--    .. parts.ssid()
+--    .. parts.network()
     .. helper.separator()
 
 -- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
