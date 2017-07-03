@@ -32,7 +32,7 @@ Topic
 
 ### Lemonbar
 
-![Lemonbar: Top: HerbstluftWM][lemonbar-top]
+![Lemonbar: Top: HerbstluftWM][lemon-top]
 
 
 ## Bottom: Standalone Conky Monitor
@@ -43,7 +43,7 @@ Topic
 
 ### Lemonbar
 
-![Lemon: Bottom: Standalone][lemon-bottom]
+![Lemonbar: Bottom: Standalone][lemon-bottom]
 
 
 ## Fullscreen
@@ -200,7 +200,7 @@ Haskell Coding
 [dzen2-top]:    https://github.com/epsi-rns/dotfiles/blob/master/herbstluftwm/readme/hlwm-dzen2-ss.png
 [lemon-top]:    https://github.com/epsi-rns/dotfiles/blob/master/herbstluftwm/readme/hlwm-lemon-ss.png
 [dzen2-bottom]: https://github.com/epsi-rns/dotfiles/blob/master/herbstluftwm/readme/hlwm-dzen2-conky-ss.png
-[lemon-bottom]: https://github.com/epsi-rns/dotfiles/blob/master/herbstluftwm/readme/hlwm-lemom-conky-ss.png
+[lemon-bottom]: https://github.com/epsi-rns/dotfiles/blob/master/herbstluftwm/readme/hlwm-lemon-conky-ss.png
 
 [photos-ss-hlwm-blue]: https://lh3.googleusercontent.com/ljvFheUuz-7eR58c3iqngwmVZ7l5HdIRIYZsJNBvyrOW5PSbF0PGPgCuEAuMezumvJkg2HXMWfS-3KJJrMVQO9Ft2etnCh4ur1CXT5PV7G7fbQQqK1X3aBLKfLLb7dWjvSdvR_jkdH6QjfQAhlVrauFxj1C86Zw-nxgITRDgcF12mrWHtzJtVx8s_jN89pTykF17gB8gQWg7rGPEnIlIuqlWZwlrtGeJ5lbWKuqxEcw1IsCfWusH2986IE4GBbRAPn3Wc9w0LxbIP9TPpputL01ETslZxziwAeWDq93HvT_37jyLh0cieQVTN7pzY6A4y-hP1yb3JNjwL1-1u8HNSbcJL3LRyB4hl3dPA4kY594RszuRXFpzEF1OePFm4nctQkCGu19bdqHXRu_W03hlL8DoCnHmLNnFXDORspPgSddbXd1JrjfBZBCLOQmhCcmtsupwGtYHyIUM43_QAnRMR3WqPoSVQxz8u-Ku5kBY0VnBY78iNJVkJoqJA2WBbm8cIAzBRmqF2CMMCa9x3BtEvYW9f2AZbXY-gwEMPJba8ffGF2L0yQQ9oEJp6TeW3cnFOcwR6hKfJAIrlDoGLE8nWO9CRUez_-7nKq5y3mbfGtAc2-EOjRrr6dM4nZ1JA1EWJFWUxa3VD57EemHW8xOeHWi69tDN3YAf9dsqVfT7Og=w1280-h800-no
 [photos-ss-hlwm-red]:  https://lh3.googleusercontent.com/Q9Af_TFU9wtq-X6gPdGUMXJKoxfZL6pKXErFRMJwDljnuW45_nqH6LANauwUpfKg3SHwEKEs-Rvy5FnzGna2ZoEUUF8Sb2KYQmsffCG2967e-ZMSk2MUDHRVTO1yv_F70cfh5ONCbUu-vAiEXzw2MkXmYi9Bbj7sHN09YCWyUgzQiNNDPXI5CXnxzWJyv7fwdHrrslDyQEoKWcPrXEH3nOU5PkvuHzZ0Dzxa1uzYreSS0UO6pxD50ut6omurZbzDfkRfGsuX7umwNupYPdmGQNuC0EyDdVg6gm-A_DS8bkj9p8FVEQB7P3sWkiMa3uIoiS1dzAQJRpw_u5DmIt6hP-L-Z815rkTkmnZgyxpggoKGUTuy2k5uXg9RA3TXLMDNDlAsd6F9GYTtdknCVbervXtAY5W6pux-mejG8XIxEydE6m3YmPwBKnJpygGN1spr7895UxZz46tfoZCfHrhEY6_xWbFHOvCi3V2JiWkClwP1GOhnmFFPq2gRoOTGMqNnZZ8CwwCBKpPZf2ZOWcbLG-wBOLvaoY8MjrltFfMcVQctoE5AjP61CjsHEaF3ofdHT2yV5Yvi2i_I2YzUF4_Gv1w9IrPsBQfy0CBcYS4c_9rpOPJ_DD0ckSvdttQiTwFplOwu7mOgRSmZwAtSyNLyISEHBsjbqNmt1GqdzOCFbA=w1280-h800-no
