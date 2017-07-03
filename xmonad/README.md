@@ -1,27 +1,27 @@
 XMonad
 =====================
 
-# DZen2 Statusbar Preview
+# Dzen2 Statusbar Preview
 
 You can change the color easily by editing lib/MyColor.hs.
 
 ## Top Monitor
 
-![XMonad DZen2: Monitor on Top][dzen-top]
+![XMonad Dzen2: Monitor on Top][dzen-top]
 
 ## Bottom Layout, Task and Date
 
-![XMonad DZen2: Layout, Task and Date][dzen-bottom]
+![XMonad Dzen2: Layout, Task and Date][dzen-bottom]
 
 ## Workspace
 
-![XMonad DZen2: Workspace at the Bottom][dzen-workspace]
+![XMonad Dzen2: Workspace at the Bottom][dzen-workspace]
 
 -- -- --
 
 # Screenshots
 
-## Modularized, Using DZen2
+## Modularized, Using Dzen2
 
 <strong>OS</strong>: Arch/Manjaro<br>
   + <strong>WM</strong>: XMonad<br>
@@ -38,7 +38,7 @@ You can change the color easily by editing lib/MyColor.hs.
 
 <br/><br/>
 
-## Using DZen2
+## Using Dzen2
 
 <strong>OS</strong>: Arch<br>
 <strong>WM</strong>: XMonad<br>
