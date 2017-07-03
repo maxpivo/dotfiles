@@ -1,7 +1,5 @@
-HerbstluftWM in Seven Languages
+HerbstluftWM in Seven Languages Summary
 =====================
-
--- -- --
 
 # Preface
 
@@ -81,7 +79,7 @@ Dotshare
 
 Red Screenshot
 
-*	[photos.google.com Red][photos-ss-hlwm-blue1]
+*	[photos.google.com Red][photos-ss-hlwm-red1]
 
 Blue Screenshot
 
