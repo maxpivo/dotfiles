@@ -3,9 +3,9 @@ HerbstluftWM in Seven Languages Summary
 
 # Preface
 
-![Giphy Screencast][giphy-img]
-
 HerbstluftWM has been stealing my attention for three months. [Primary] topic is *Modularized HerbstluftWM Configuration*. 
+
+![Giphy Screencast][giphy-img]
 
 And there are also complementary topics. I have done, implementing herbstluftWM statusbar, [Part One] contain *tag status decoration* and [Part Two] contain *idle event*. Both Dzen2 and Lemonbar in [Part One], designed specifically for HerbstluftWM's Tag. This idle event in [Part Two] give me challenge, and lead me to solve some *Advance Pipe and Fork* issue. 
 
@@ -53,7 +53,14 @@ Topic
 ## Giphy
 
 GIF using byzanz and gifsicle.
+
 *	[Giphy Screencast][giphy-512]
+
+## YouTube Video
+
+MP4 using simplescreenrecorder
+
+*	https://youtu.be/erWOZpi8uWU
 
 -- -- --
 
