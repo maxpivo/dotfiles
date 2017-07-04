@@ -3,6 +3,8 @@ HerbstluftWM in Seven Languages Summary
 
 # Preface
 
+![Giphy Screencast][giphy-img]
+
 HerbstluftWM has been stealing my attention for three months. [Primary] topic is *Modularized HerbstluftWM Configuration*. 
 
 And there are also complementary topics. I have done, implementing herbstluftWM statusbar, [Part One] contain *tag status decoration* and [Part Two] contain *idle event*. Both Dzen2 and Lemonbar in [Part One], designed specifically for HerbstluftWM's Tag. This idle event in [Part Two] give me challenge, and lead me to solve some *Advance Pipe and Fork* issue. 
@@ -47,6 +49,11 @@ Topic
 ## Fullscreen
 
 ![HerbstluftWM: Dual Panel][photos-ss-hlwm-red]
+
+## Giphy
+
+GIF using byzanz and gifsicle.
+*	[Giphy Screencast][giphy-512]
 
 -- -- --
 
@@ -207,3 +214,6 @@ Haskell Coding
 https://photos.google.com/share/AF1QipMO53TtSJVXrkn8R0s4wre4QWgX7_G5CoaSkFMneVHFp9Tu5STBmdjW3M3fpA2eEw/photo/AF1QipOT7-pmGwsLEivr7U4glNkWVUbUgJbWMZ-ytMs7?key=WGIySDVOaVpibkJCRkV5NWVZUUs3UnNLNHR1MVpn
 
 [photos-ss-hlwm-red1]: https://photos.google.com/share/AF1QipMO53TtSJVXrkn8R0s4wre4QWgX7_G5CoaSkFMneVHFp9Tu5STBmdjW3M3fpA2eEw/photo/AF1QipPqMNt9e3_UypKHqASPs_njHBQPX7Kn8X_O9aTp?key=WGIySDVOaVpibkJCRkV5NWVZUUs3UnNLNHR1MVpn
+
+[giphy-512]: https://giphy.com/gifs/modular-standalone-herbstluftwm-l4FGmHTcdl3R4jGxi
+[giphy-img]: https://media.giphy.com/media/l4FGmHTcdl3R4jGxi/giphy.gif
