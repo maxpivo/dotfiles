@@ -1,0 +1,47 @@
+Good Day Dear Coder,
+ 
+I have done, implementing herbstluftwm tag for both lemonbar and dzen2.
+
+¤ https://github.com/epsi-rns/dotfiles/tree/master/standalone/lemon-hlwm
+¤ https://github.com/epsi-rns/dotfiles/tree/master/standalone/dzen2-hlwm
+
+»»
+
+## Blog
+
+All I need is time, being alone to pour these script into a bunch of tutorials.
+
+¤ Overview: 2 Articles
+
+¤ Statusbar and HerbstluftWM: 
+» Focusing on tags: herbstclient tag_status
+» 7 Articles (BASH, Perl, Python, Ruby, PHP, Lua, Haskell)
+
+¤ Advance Pipe and Fork: 
+» Focusing on event: herbstclient --idle
+» 7 Articles (BASH, Perl, Python, Ruby, PHP, Lua, Haskell)
+» Putting it all together with other statusbar
+
+Hints: The Haskell part is full of tricks. I'm thinking of make another Haskell article. e.g. about no mutable global state variable with haskell.
+
+»»
+
+## Pipe Overview of Lemonbar in HerbstluftWM.
+
+
+In shell it is basically just a pipe:
+
+¤ herbstclient idle | content processing | lemonbar | sh
+
+This is a three tier pipes, since content processing happened between pipe. The content processing itself is a complex part. 
+
+Well it is challenging, and no sufficient tutorial in internet. That's is why I'm eager to pour them down in a blog.
+
+»»
+
+## Dotfiles
+
+Currently, all I have is only the script code. I haven't got time to write it down now. I'm pretty busy about the moment. And I desperately need some rest. So please, enjoy the code.
+
+Thank you for reading.
+I'll be back when the blog ready.

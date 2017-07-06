@@ -62,6 +62,10 @@ MP4 using simplescreenrecorder
 
 *	https://youtu.be/erWOZpi8uWU
 
+## DeviantArt
+
+*	[HerbstluftWM in Seven Languages][deviant-hlwm]
+
 -- -- --
 
 # Source Code
@@ -224,3 +228,5 @@ https://photos.google.com/share/AF1QipMO53TtSJVXrkn8R0s4wre4QWgX7_G5CoaSkFMneVHF
 
 [giphy-512]: https://giphy.com/gifs/modular-standalone-herbstluftwm-l4FGmHTcdl3R4jGxi
 [giphy-img]: https://media.giphy.com/media/l4FGmHTcdl3R4jGxi/giphy.gif
+
+[deviant-hlwm]: http://nurwijayadi.deviantart.com/art/HerbstluftWM-in-Seven-Languages-690831034

@@ -1,0 +1,16 @@
+Standalone Lemonbar Conky
+A Sweet Lemonbar GUI Dance using Conky Lua
+
+Blog
+» http://epsi-rns.github.io/desktop/2017/04/14/standalone-lemonbar-conky.html
+
+Source Code
+» https://github.com/epsi-rns/dotfiles/tree/master/standalone/lemon/conky
+
+DotShare
+» http://dotshare.it/dots/1505/
+
+DeviantArt
+» http://nurwijayadi.deviantart.com/art/Standalone-Lemonbar-Conky-690868985
+
+#standalone #modular #lemonbar #bash #conky #lua 

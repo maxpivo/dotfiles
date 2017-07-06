@@ -1,0 +1,63 @@
+[Part One] Statusbar and HerbstluftWM
+
+This is a complementary topic for previous "Modularized HerbstluftWM Configuration" article. I have done, implementing herbstluftwm tag decoration. Both Dzen2 and Lemonbar, designed specifically for HerbstluftWM's Tag.
+
+"Once hard, now easy."
+
+»» 
+
+# Blog
+
+Overview
+¤ http://epsi-rns.github.io/desktop/2017/06/01/herbstlustwm-tag-status-overview.html
+
+BASH
+¤ http://epsi-rns.github.io/desktop/2017/06/02/herbstlustwm-tag-status-bash.html
+
+Perl
+¤ http://epsi-rns.github.io/desktop/2017/06/03/herbstlustwm-tag-status-perl.html
+
+Python
+¤ http://epsi-rns.github.io/desktop/2017/06/04/herbstlustwm-tag-status-python.html
+
+Ruby
+¤ http://epsi-rns.github.io/desktop/2017/06/05/herbstlustwm-tag-status-ruby.html
+
+PHP
+¤ http://epsi-rns.github.io/desktop/2017/06/06/herbstlustwm-tag-status-php.html
+
+Lua
+¤ http://epsi-rns.github.io/desktop/2017/06/07/herbstlustwm-tag-status-lua.html
+
+Haskell
+¤ http://epsi-rns.github.io/desktop/2017/06/08/herbstlustwm-tag-status-haskell.html
+
+»»
+
+# Source Code
+
+Dzen2
+¤ https://github.com/epsi-rns/dotfiles/tree/master/standalone/dzen2-hlwm
+
+Lemonbar
+¤ https://github.com/epsi-rns/dotfiles/tree/master/standalone/lemon-hlwm
+
+#standalone #modular #herbstluftwm #lemonbar #dzen2
+#bash #perl #python #ruby #php #lua #haskell
+
+»»
+
+[Part Two] Advance Pipe and Fork [Coming Soon]
+
+The source code of [Part Two] is still missing one main feature about combining these two:
+*	herbsclient idle event based, and
+*	custom interval based.
+
+I'll be back when [Part Two] ready.
+
+»»
+
+I hope that, this material useful.
+
+Thank you for reading.
+

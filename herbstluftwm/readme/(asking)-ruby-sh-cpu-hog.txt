@@ -1,0 +1,76 @@
+"Closing Pipe Process"
+
+How do I close every forked process when a ruby script Terminated ?
+
+»» 
+
+I have a script, that utilize some pipes, forks and loop.
+The Ruby script itself is fine.
+
+combined_event | content_processing | lemonbar | sh
+
+The issue is when I do '$ pkill lemonbar' from terminal,
+the CPU will be hogged almost 100% by the 'sh' shell.
+
+This is the Source file.
+
+* https://github.com/epsi-rns/dotfiles/blob/master/standalone/lemon-hlwm/ruby/pipehandler.rb
+
+»» 
+
+And this is the function
+
+def run_lemon(monitor, parameters)
+  command_out  = 'lemonbar ' + parameters
+
+  # note the r+ mode
+  IO.popen(command_out, 'r+') do |io_lemon| 
+
+    pid = fork do 
+      content_init(monitor, io_lemon)
+      content_walk(monitor, io_lemon) # loop for each event
+    end
+    Process.detach(pid)  
+
+    IO.popen('sh', 'w') do |io_sh|
+      while io_lemon do
+        io_sh.puts io_lemon.gets
+      end
+        
+      io_sh.close()
+    end
+ 
+    io_lemon.close()
+  end
+end
+
+»» 
+
+I suspect that, the issue lies here
+
+      while io_lemon do
+        io_sh.puts io_lemon.gets
+      end
+      
+when lemonbar die, the io_lemon loop gone wild beyond control.
+
+»» 
+
+In this screenshot,
+I pkill lemonbar form the previous script.
+And run another script to show new lemonbar.
+
+The CPU had been hogged since before the new lemonbar script shown.
+
+»» 
+
+Now the question are could be
+
+* How do I close every forked process when a ruby script Terminated ?
+
+* Or, How do I make the 'sh' loop nicer, when the input pipe closed ?
+
+* Or just, how do I prevent the hogged CPU caused by, terminated lemonbar ?
+
+
+Thank you for helping, and attention.

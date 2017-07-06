@@ -1,0 +1,16 @@
+Text User Interface GUI Dance with Conky Lua
+(Command Line Interface)
+
+Blog
+» http://epsi-rns.github.io/desktop/2017/04/12/standalone-cli-conky.html
+
+Source Code
+» https://github.com/epsi-rns/dotfiles/tree/master/standalone/cli/conky
+
+DotShare
+» http://dotshare.it/dots/1504/
+
+DeviantArt
+» http://nurwijayadi.deviantart.com/art/Standalone-CLI-Conky-690863801
+
+#standalone #modular #cli #bash #conky #lua 

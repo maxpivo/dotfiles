@@ -1,0 +1,60 @@
+[Part Two] HerbstluftWM Idle Event
+
+This is a complementary topic for previous "Modularized HerbstluftWM Configuration" article. I have done, implementing herbstluftwm idle event. Both Dzen2 and Lemonbar, designed specifically for HerbstluftWM's Tag. This [part two], contain Advance Pipe and Fork, a very interesting topic.
+
+"Once hard, now easy."
+
+»» 
+
+# Blog
+
+Overview
+¤ http://epsi-rns.github.io/desktop/2017/06/11/herbstlustwm-event-idle-overview.html
+
+BASH
+¤ http://epsi-rns.github.io/desktop/2017/06/12/herbstlustwm-event-idle-bash.html
+
+Perl
+¤ http://epsi-rns.github.io/desktop/2017/06/13/herbstlustwm-event-idle-perl.html
+
+Python
+¤ http://epsi-rns.github.io/desktop/2017/06/14/herbstlustwm-event-idle-python.html
+
+Ruby
+¤ http://epsi-rns.github.io/desktop/2017/06/15/herbstlustwm-event-idle-ruby.html
+
+PHP
+¤ http://epsi-rns.github.io/desktop/2017/06/16/herbstlustwm-event-idle-php.html
+
+Lua
+¤ http://epsi-rns.github.io/desktop/2017/06/07/herbstlustwm-tag-status-lua.html
+
+Haskell
+¤ http://epsi-rns.github.io/desktop/2017/06/18/herbstlustwm-event-idle-haskell.html
+
+»»
+
+# Source Code
+
+Dzen2
+¤ https://github.com/epsi-rns/dotfiles/tree/master/standalone/dzen2-hlwm
+
+Lemonbar
+¤ https://github.com/epsi-rns/dotfiles/tree/master/standalone/lemon-hlwm
+
+#standalone #modular #herbstluftwm #lemonbar #dzen2 #pipe #fork
+#bash #perl #python #ruby #php #lua #haskell
+
+# Links
+
+Dotshare
+¤ http://dotshare.it/dots/1498/
+
+»»
+
+# Finally Finished
+
+I hope that, this material useful.
+
+Thank you for reading.
+

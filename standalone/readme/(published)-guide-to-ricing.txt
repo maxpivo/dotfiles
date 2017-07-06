@@ -1,0 +1,57 @@
+A Sweet GUI Dance for CLI, Dzen2 and Lemonbar
+
+"This tutorial utilized Conky as main tools"
+
+[OOT]
+
+"Desktop ricing is easy when you have guidance."
+
+This is a complementary topic for Tiling Window Manager. I have made some tutorials. Not a very advance one, not very pretty, but enough for anyone who dare stepping on Linux Art path. The dark side of *nix porn is, you have to jump deep, learn about it. They are not just about panel, but also the application in Terminal, Fonts, and Original Wallpaper. The manual is not enough, google search is a must. Just like chemistry, you have to creativily mix one stuff with another. Compare between experiment and case. And here is my case with Conky, modular Lua script. These articles save your time from google searching. Some steps ahead, reducing unnecessary experiment. Prevent reinvent the wheel.
+
+"Once hard, now easy."
+
+#standalone #modular #cli #lemonbar #dzen2 #bash #conky #lua 
+
+»»
+
+Piping and Forking in Linux Script
+» http://epsi-rns.github.io/pages/desktop/pipe.html
+
+Debugging Conky
+» http://epsi-rns.github.io/desktop/2017/04/22/debugging-conky.html
+
+A Sweet Lemonbar GUI Dance using Conky Lua.
+» http://epsi-rns.github.io/desktop/2017/04/14/standalone-lemonbar-conky.html
+
+Getting XLFD Font
+» http://epsi-rns.github.io/desktop/2017/04/13/getting-xlfd-font.html
+
+Text User Interface GUI Dance with Conky Lua
+» http://epsi-rns.github.io/desktop/2017/04/12/standalone-cli-conky.html
+
+A Dzen2 GUI Dance using Conky Lua.
+» http://epsi-rns.github.io/desktop/2017/04/11/standalone-dzen2-conky.html
+
+XBM Decoration to suit Your Dzen2
+» http://localhost:4000/desktop/2017/04/08/create-xbm-for-dzen2.html
+
+A Bashful GUI Dance with Dzen2
+» http://epsi-rns.github.io/desktop/2017/04/01/standalone-dzen2-bash.html
+
+I'm no longer Bashful, but Conky.
+
+»»
+
+What's next ?
+
+Wise people said, "never announce your move". Since I'm not a wise mature one, I'm free to speak my desire.
+
+Actually I'm pretty busy, and I'm not sure if I have time. So I have to stop pouring my mind into my blog. But here it is, a to do list, or to be specific, just a wish list. I have done some partially, but not finished yet, but most of them, are just an idea.
+
+
+»»
+
+Thank you for reading.
+I hope that this guidance useful.
+
+Have a nice weekend

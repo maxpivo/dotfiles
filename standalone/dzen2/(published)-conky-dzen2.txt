@@ -1,0 +1,17 @@
+Standalone Dzen2 Conky
+A Sweet Dzen2 GUI Dance using Conky Lua
+
+Blog
+» http://epsi-rns.github.io/desktop/2017/04/11/standalone-dzen2-conky.html
+» http://epsi-rns.github.io/desktop/2017/04/01/standalone-dzen2-bash.html
+
+Source Code
+» https://github.com/epsi-rns/dotfiles/tree/master/standalone/dzen2/conky
+
+DotShare
+» http://dotshare.it/dots/1506/
+
+DeviantArt
+» http://nurwijayadi.deviantart.com/art/Standalone-Dzen2-Conky-690875060
+
+#standalone #modular #dzen2 #bash #conky #lua 
