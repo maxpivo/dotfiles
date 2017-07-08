@@ -38,7 +38,7 @@ playlist_display_mode = "classic"
 # song_status_format = "{{%a} // {%t}} // {%b}"
 # song_library_format = "{%n - }{%t}|{%f}"
 
-song_list_format = "{$8%n▕ $9}{$2$b%a$/b$4 - $9}{$8$b%t$/b$8}|{$4$b%f$/b$9}$R{$8▕ $4%b$9}{$8▕ $8%l$9}"
+song_list_format = "{$8%n▕ $9}{$8$b%a$/b$4 - $9}{$8%t$/b$8}|{$1$b%f$/b$9}$R{$8▕ $4%b$9}{$8▕ $8%l$9}"
 song_status_format = "$2%a $9• $3%n. $b%t$/b $9• $4%b {(Disc %d) }$9• $5%y$9"
 
 #song_columns_list_format = "(6f)[blue]{l} (25)[red]{a} (40)[green]{t|f} (30)[yellow]{b}"
@@ -74,14 +74,31 @@ empty_tag_color = "yellow"
 header_window_color = "white"
 volume_color = "green"
 
+# -- -- --
+
 main_window_color = "white"
-main_window_highlight_color = "white"
+
+# deprecated
+# main_window_highlight_color = "white"
+
+# in favor of this
+current_item_prefix = "white"
+current_item_suffix = "white"
+
+# -- -- --
 
 progressbar_color = "black"
 
-active_column_color = "red"
+
 window_border_color = "red"
 active_window_border = "red"
+
+# deprecated
+# active_column_color = "red"
+
+# in favor of this
+current_item_inactive_column_prefix = "red"
+current_item_inactive_column_suffix = "red"
 
 
 

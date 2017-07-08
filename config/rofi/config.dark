@@ -1,11 +1,11 @@
 ! Window opacity
-rofi.opacity: 90
+! Opacity was removed in favor of ARGB
+! rofi.opacity: 90
 
-! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
-rofi.color-normal: #161616,  #5c5dad,  #000000,  #000000,  #c9c925
-rofi.color-urgent: #161616,  #ad3737,  #000000,  #000000,  #fdf6e3
-rofi.color-active: #161616,  #ffffff,  #000000,  #000000,  #fdf6e3
+! State:           'bg',       'fg',    'bgalt',     'hlbg',     'hlfg'
+rofi.color-normal: #88161616,  #5c5dad,  #88000000,  #88000000,  #c9c925
+rofi.color-urgent: #88161616,  #ad3737,  #88000000,  #88000000,  #fdf6e3
+rofi.color-active: #88161616,  #ffffff,  #88000000,  #88000000,  #fdf6e3
 
 !                  'background', 'border'
-rofi.color-window: #161616,      #5c5dad
-
+rofi.color-window: #dd161616,    #dd5c5dad
