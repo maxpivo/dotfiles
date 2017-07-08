@@ -10,10 +10,12 @@ theme='bright-deco'
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # include
-. ~/Documents/standalone/dzen2/bash/gmc.sh
-. ~/Documents/standalone/dzen2/bash/vars.sh
-. ~/Documents/standalone/dzen2/bash/segments.sh
-. ~/Documents/standalone/dzen2/bash/output.sh
+
+DIR=$(dirname "$0")
+. ${DIR}/gmc.sh
+. ${DIR}/vars.sh
+. ${DIR}/segments.sh
+. ${DIR}/output.sh
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # main

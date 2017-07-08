@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # include
-. ~/Documents/standalone/dzen2/bash-example/03-output.sh
+DIR=$(dirname "$0")
+. ${DIR}/03-output.sh
 
 # dzen2
 

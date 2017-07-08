@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 generated_output() {
-    conky -c ~/Documents/standalone/lemon/example/03-output.lua
+    DIR=$(dirname "$0")
+    conky -c ${DIR}/03-output.lua
 }
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----

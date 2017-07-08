@@ -15,11 +15,10 @@ conky.config = {
 Prepare
 ]]
 
-home = os.getenv("HOME")
-path = '/Documents/standalone/lemon/multi/'
-dofile(home .. path .. 'gmc.lua')
-dofile(home .. path .. 'helper.lua')
-dofile(home .. path .. 'parts.lua')
+local dirname  = debug.getinfo(1).source:match("@?(.*/)")
+dofile(dirname .. 'gmc.lua')
+dofile(dirname .. 'helper.lua')
+dofile(dirname .. 'parts.lua')
 
 -- shortcut
 local _h = helper

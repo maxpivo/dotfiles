@@ -75,7 +75,7 @@ pkill dzen2
 # This is just a sample.
 # more dzen-conky means more CPU.
 
-path=~/Documents/standalone/dzen2/multi
+path=$(dirname "$0")
 
 # execute dzen
 conky -c $path/conky-topleft.lua      | dzen2 $parameters_topleft &

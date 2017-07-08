@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-. ~/Documents/standalone/cli/example/ansi.sh
-. ~/Documents/standalone/cli/example/helpercpu.sh
-. ~/Documents/standalone/cli/example/progressbar.sh
+DIR=$(dirname "$0")
+. ${DIR}/ansi.sh
+. ${DIR}/helpercpu.sh
+. ${DIR}/progressbar.sh
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # test

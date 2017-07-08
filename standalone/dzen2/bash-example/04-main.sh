@@ -4,7 +4,8 @@
 pkill dzen2
 
 # include
-. ~/Documents/standalone/dzen2/bash-example/04-output.sh
+DIR=$(dirname "$0")
+. ${DIR}/04-output.sh
 
 # dzen2
 

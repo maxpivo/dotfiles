@@ -6,5 +6,6 @@ tput civis  -- invisible
 
 clear
 
-conky -c ~/Documents/standalone/cli/example/03.lua 
+DIR=$(dirname "$0")
+conky -c ${DIR}/03.lua 
 

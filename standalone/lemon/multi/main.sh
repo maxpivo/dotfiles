@@ -21,7 +21,7 @@ font_monospace="monospace-9"
 # remove all lemonbar instance
 pkill lemonbar
 
-path=~/Documents/standalone/lemon/multi
+path=$(dirname "$0")
 
 conky -c $path/conky-top.lua | lemonbar \
     -g $position_top -u 2 -B $background -F $foreground \

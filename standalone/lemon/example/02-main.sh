@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 # include
-. ~/Documents/standalone/lemon/example/gmc.sh
-. ~/Documents/standalone/lemon/example/02-output.sh
+DIR=$(dirname "$0")
+. ${DIR}/gmc.sh
+. ${DIR}/02-output.sh
 
 # ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----
 # parameters
