@@ -1,5 +1,8 @@
 #! /bin/sh
 
+# not epsi's script
+# http://dotshare.it/dots/1415/
+
 HEIGHT=24
 FONT="-*-fixed-*-*-*-*-12-*-*-*-*-*-*-*"
 FONT_ICON="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"

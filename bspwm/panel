@@ -1,5 +1,8 @@
 #! /bin/sh
 
+# not epsi's script
+# http://dotshare.it/dots/1415/
+
 PANEL_FIFO=/tmp/panel-fifo
 
 DIR=$(dirname "$0")
