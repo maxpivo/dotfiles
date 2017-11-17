@@ -1,0 +1,21 @@
+alias pksyu="packer -Syu --noconfirm --noedit"
+alias youtube-mp3="youtube-dl --extract-audio --audio-format mp3"
+
+alias docker-ps="docker ps -a --format 'table {{.Image}}\t{{.Names}}\t{{.Status}}'"
+alias docker-ls="docker image list --format 'table {{.Repository}}\t{{.Size}}'"
+
+alias cd-my-blog="cd /media/Works/Development/github/epsi-rns.github.io/"
+alias jekyll-dev="jekyll serve --config _config.yml,_config_dev.yml"
+
+alias al='grep alias ~/.bashrc --color=auto'
+
+alias grep='grep --color=auto'
+alias mount='mount | column -t'
+alias ports='netstat -tulanp'
+alias fhere="find . -name "
+alias df="df -Th --total"
+# alias df="pydf"
+alias du="du -ach | sort -h"
+alias free="free -mt"
+alias ps="ps auxf"
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
